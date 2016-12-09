@@ -21,16 +21,16 @@
 
 \newcommand{\vorname}{Patrick}
 \newcommand{\nachname}{Hilgenstock}
-\newcommand{\matrikelnummer}{1234567}
+\newcommand{\matrikelnummer}{2203656}
 
 \newcommand{\titel}{Oregon\\[0.2ex] 
 				\Large Eine Team-basierte Web-Applikation zur Stoff-Vertiefung}
 
-\newcommand{\erstpruef}{Prof. Vorname Nachname}
-\newcommand{\zweitpruef}{Prof. Vorname Nachname}
+\newcommand{\erstpruef}{Prof. Dr. Edmund Weitz}
+\newcommand{\zweitpruef}{Prof. Dr Torsten Edeler}
 
 %\date{vorl�ufige Fassung vom \today}   % praktisch f�r Vorab-Versionen. 
-\date{\sffamily Hamburg, 2. 2. 2020}  % Abgabedatum!
+\date{\sffamily Hamburg, **.**.****}  % Abgabedatum!
 
 %--------------------------------------------------------------------------------------
 %----------------------------- hier gehts los! --------------------------------------
@@ -43,95 +43,21 @@
 \clearpage          % Seitenumbruch
 
 
-%------------ Zusammenfassung / Abstract ------------------
-
-\thispagestyle{empty}
-\selectlanguage{english}
-\section*{\centering\abstractname}
-Form and layout of this \LaTeX-template incorporate the guidelines for theses in the Media Technology Department \glqq Richtlinien zur Erstellung schriftlicher Arbeiten, vorrangig Bachelor-Thesis (BA) und Master-Thesis (MA) im Department Medientechnik in der Fa\-kul\-t�t DMI an der HAW Hamburg\grqq\ in the version of December 6, 2012 by Prof.\ Wolfgang Willaschek. 
-
-The thesis should be printed single-sided (simplex). The binding correction (loss at the left aper edge due to binding) might be adjusted, according to the type of binding. This template incorporates a binding correction as BCOR=1mm (suitable for adhesive binding) in the \LaTeX\ document header.
-
-{\bfseries This is the english version of the opening abstract} (don't forget to set \LaTeX's language setting back to ngerman after the english text). 
- 
- 
-\selectlanguage{ngerman}
-\section*{\centering\abstractname}
-Diese \LaTeX-Vorlage ber�cksichtigt in Form und Layout die Vorgaben f�r Abschlussarbeiten im Department Medientechnik \glqq Richtlinien zur Erstellung schriftlicher Arbeiten, vorrangig Bachelor-Thesis (BA) und Master-Thesis (MA) im Department Medientechnik in der Fakult�t DMI an der HAW Hamburg\grqq, Fassung vom 6. Dezember 2012 von Prof. Wolfgang Willaschek.
- 
-Der Ausdruck soll einseitig erfolgen (Simplex). Je nach Bindung ist ggf. die Bindekorrektur (Verlust am linken Seitenrand durch die Bindung) noch anzupassen. In dieser Vorlage ist eine Bindekorrektur im header der \LaTeX-Datei mit BCOR=1mm f�r Klebebindung eingestellt.
-
-{\bfseries Das ist die deutsche Version der vorangestellten Zusammenfassung. Beide Versionen -- englisch und deutsch -- sind verbindlich!}
-
-
-%--------------------------- Text -------------------------------
-
 \chapter{Einleitung}
 
 \section{Zielsetzung}
 
-Bilder werden in \LaTeX\ am einfachsten mit includegraphics eingebunden und in eine figure-Umgebung eingebettet. Sie k�nnen mit optionalen Parametern skaliert werden; in Abbildung \ref{b_trommelmik} ist die Bildbreite auf das 0.8-fache des Satzspiegels skaliert.
-
-Zu jeder Abbildung geh�rt eine nummerierte Bildunterschrift und ein Verweis im Text (Abb. \ref{b_trommelmik}). \LaTeX\ unterst�tzt das mit dem caption-Befehl. Mit den Befehlen label und ref werden symbolische Labels definiert und abgerufen. F�r Seitenverweise wird der Befehl pageref genutzt: Richtcharakteristiken sind i.Allg. frequenzabh�ngig (Abb. \ref{b_richtch} auf S. \pageref{b_richtch}). 
-
-Mit label und ref kann man nicht nur auf Bilder oder Tabellen verweisen, sondern auf jede nummerierte Struktur, z.B. auf Gleichungen, Kapitel oder Unterkapitel: Zu Fu�noten siehe Abschnitt \ref{sec_fussnot}. 
-
-%----------- BILD ANFANG -------------
-\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
-\centering
-\includegraphics[width=0.8\textwidth]{bilder/drums} 
-% Bilddatei aus dem Unterverzeichnis bilder holen, skalieren auf 0.8*Satzspiegel
-\caption{Abnahme einer Trommel mit speziellem Anklemm-Mikrofon}\label{b_trommelmik}
-\end{figure}
-%------------- BILD ENDE ---------------
-
-Praktische Tipps f�r die Erstellung von Bildern: Aufl�sung 300 dpi, bei Fotos gen�gen u.U. 150 dpi. Bei Scans von Strichzeichnungen sollte die Aufl�sung bezogen auf die Druckgr��e mindestens 1200 dpi betragen (siehe Abb. \ref{b_richtch}). 
-
-%----------- BILD ANFANG -------------
-\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
-\centering
-\includegraphics[width=1.0\textwidth]{bilder/3x_richtchars}
-\caption[Richtcharakteristiken von Kleinmembran-Studiomikrofonen]{Richtcharakteristiken von Kleinmembran-Studiomikrofonen. V.l.n.r.: Kugel, Acht, Niere. Die Bildbreite ist hier skaliert auf die volle Breite des Satzspiegels.}\label{b_richtch}
-% bei langen Bildunterschriften kann der optionale Parameter des caption-Befehls so wie hier f�r die Kurzfassung im Abbildungsverzeichnis genutzt werden  
-\end{figure}
-%------------- BILD ENDE ---------------
-
-F�r Formelsatz stellt \LaTeX\ die nummerierte Umgebung equation und die nicht-nummerierte Umgebung displaymath zur Verf�gung. Mit label und ref kann dann im Text Bezug auf die Gleichungen genommen werden (Gleichung \ref{gl_fourier}). 
-
-\begin{equation}\label{gl_fourier}
-S(f) = \int_{-\infty}^{\infty} s(t)e^{-j 2 \pi f t}dt
-\end{equation}
-
-Mathematik im Zeilenmodus sieht so aus $f_0 = \frac{1}{2\pi} \sqrt{\frac{s}{m}}$, w�hrend dieselbe Gleichung als abgesetzte Formel -- hier mit der displaymath-Umgebung -- so aussieht: 
-
-\begin{displaymath}
-f_0 = \frac{1}{2\pi} \sqrt{\frac{s}{m}} 
-\end{displaymath}
-
-F�r mehrzeilige Herleitungen oder Berechnungen benutzt man in \LaTeX\ die Umgebung eqnarray.
-
-Einheiten innerhalb von Formeln werden -- wie auch Text -- grunds�tzlich steil (nicht-kursiv) gesetzt. Innerhalb der mathematischen Umgebung nimmt man daf�r eine mbox (make box); die Abst�nde werden mit Komma, Semikolon oder quad eingestellt:
-
-\begin{displaymath}
-f_0 = \frac{1}{2\pi} \sqrt{\frac{s}{m}} \quad \mbox{[Hz]}
-% \, kleiner Abstand \; mittlerer Abstand \quad gro�er Abstand
-\end{displaymath}
-
-Gleiches gilt f�r Funktionsnamen (sin, cos, arctan, log, ...). F�r die meisten Funktionsnamen gibt es aber zur Vereinfachung entsprechende Befehle, sodass man nicht immer die mbox braucht.
+Das Ziel dieser Arbeit ist es eine Webapplikation zu erstellen, welche bei der Gestaltung einer Mathematik-Vorlesung helfen soll. Dabei werden von der Anwendung Aufgaben generiert und an den Nutzer gesendet. Dieser kann diese nun lösen und seine Antwort abschicken. Nach der Validierung bekommt er ein Feedback und bei dem korrekten Lösen eine neue Aufgabe, sowie einige Punkte für sein Team. Der Administrator kann dabei den ganzen Vorgang überwachen und den aktuellen Punktestand einsehen. \\
+Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er jedes mal eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommen aber doch jedes mal unterschiedliche Variablen beinhalten und so ein erneutes Berechnen erfordern.
 
 
 \section{Bereits existierende Software}
 
-Das w�rtliche Zitat wird durch Kursivschrift und Anf�hrungszeichen kenntlich gemacht, und nat�rlich kommt ein Quellenverweis dazu:
+Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut stößt man auf sehr viele Programme die sich mit dem Vertiefen von Stoff befassen. Allerdings setzen diese lediglich darauf den Nutzer Aufgaben zu stellen und die Aufgaben zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen \\
 
-% \emph = Texthervorhebung durch Schriftumschaltung (emphasize), \medskip: vertikaler Abstand (\smallskip, \bigskip)
-\medskip
-\emph{\glqq Ebenso wie die Sinne sind in der Klanggestalt die geistig-ideellen Bereiche mit den physisch-materiellen verbunden, d.h. die s�ngerische Intention muss sich den Prinzipien der Klangwahrnehmung unterordnen.\grqq} \citep[111]{sowodniok}.
-\medskip
+Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Webanwendung "MARS" (Minimal Audience Response System). Dieses ist sehr gut dafür geeignet statische Fragen zu stellen und zu validieren. Allerdings ist es hier nicht möglich dynamisch Aufgaben zu erstellen. Zusätzlich kann nur ein einziges Mal eine Antwort abgegeben werden, es ist also nicht möglich mehrere Fragen des selben Bereiches zu beantworten und so sein Wissen intensiver zu testen. \\
 
-Alternativ kann man ein Zitat auch in den laufenden Text einflechten, denn wie schon Sowodniok bemerkte, muss sich 
-\emph{\glqq die s�ngerische Intention [...] den Prinzipien der Klangwahrnehmung unterordnen\grqq} \citep[111]{sowodniok}. 
-Die Quellenverweise werden weiter unten erkl�rt.
+Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben aus verschiedenen Themenbereichen kümmern, zum Beispiel RegexGolf ( \url{https://alf.nu/RegexGolf} ). Hierbei handelt es sich um eine Anwendung bei der dem Nutzer eine Liste von Wörtern gegeben wird. Die Aufgabe besteht nun darin einen regulären Ausdruck zu finden welcher für einen Teil der Liste matcht und bei der anderen nicht.
 
 \section{Vorteile der neuen Lösung}
 
@@ -141,118 +67,30 @@ Die Quellenverweise werden weiter unten erkl�rt.
 
 \section{an das Frontend}
 
-\chapter{Ein anderes Kapitel}
+\chapter{Security}
 
-\section{Unterkapitel mit Fußnote, Aufzählungen und Tabellen}\label{sec_fussnot}
+\section{Die Sicherung des Frontends}
 
-Fu�noten sollte man sparsam und bewusst verwenden, erkl�rende Zus�tze und Quellenverweise m�glichst in den Text integrieren. Damit bleiben Fu�noten v.A. reserviert f�r wenige Erg�nzungen, die den Lesefluss st�ren w�rden, aber nicht weggelassen werden sollen\footnote{Und so sieht die Fu�note dann aus}.
+\section{Die Sicherung des Backends}
 
-F�r Aufz�hlungen stellt \LaTeX\ die beiden Umgebungen itemize und enumerate zur Verf�gung. So sieht eine itemize-Aufz�hlung aus:
+\chapter{Ein Rundgang durch die Anwendung}
 
-\begin{itemize}\setlength{\itemsep}{0ex} % itemsep ist der Abstand zwischen den Punkten der Aufz�hlung
-\item erster Punkt
-\item zweiter Punkt
-\end{itemize}
+\section{Sicht des Nutzers}
 
-Und das ist eine enumerate-Aufz�hlung:
+\section{Die Sicht des Administrators}
 
-\begin{enumerate}\setlength{\itemsep}{0ex}
-\item erster Punkt
-\item zweiter Punkt
-\end{enumerate}
+\subsection{Übersicht über die laufende Runde}
 
-Aufz�hlungen k�nnen auch verschachtelt werden. Als Beispiel dient hier eine enumerate-Umgebung innerhalb einer enumerate-Umgebung:
+\subsection{Das Starten einer neuen Runde}
 
-\begin{enumerate}\setlength{\itemsep}{0ex}
-\item erster Punkt
-\item 
-	\begin{enumerate}\setlength{\itemsep}{-0.5ex}
-	\item erster Unterpunkt im zweiten Punkt
-	\item zweiter Unterpunkt im zweiten Punkt
-	\item dritter Unterpunkt im zweiten Punkt
-	\end{enumerate}
-\item dritter Punkt
-\end{enumerate}
+\subsection{Verwaltung der Generatoren}
 
-Als n�chstes folgt ein Beispiel f�r eine einfache Tabelle. Wie auch die Bilder m�ssen die Tabellen stets Unterschrift und Nummer und zwingend einen Verweis im Text haben. In \LaTeX\ wird das wie bei den Abbildungen durch den caption-Befehl und das Befehlspaar label und ref gel�st (Tabelle \ref{t_buli}). F�r ein modernes Tabellenlayout wird das \LaTeX-booktabs-Paket benutzt (siehe dazu die Kommentare im Quelltext). Die mittlere Spalte ist hier auf feste Breite (6 cm) gesetzt, damit bei viel Text ein automatischer Umbruch erfolgen kann.
+\chapter{Fazit}
 
-%----------- TABELLE START -------------
-\begin{table}[htp] 
-\centering
-\begin{tabular}{r|p{6cm}|c|c}  % Spalten nach Ausrichtung: l, c, r, p{breite}, mit zwei vertikalen Spaltentrennern
-%bitte nicht das kleine L "l" und den Vertikalstrich "|" verwechseln!!! :)
-% kleines L steht f�r eine linksb�ndige Spalte, Vertikalstrich erzeugt eine Trennlinie zwischen zwei Spalten
-\toprule
-\multicolumn{4}{c}{\large\bfseries Erste Bundesliga, Spielzeit 2011/2012}\\ \midrule
-Platz & Verein & TD & Punkte\\ \midrule
-1 & Borussia Dortmund & +20 & 29\\ \midrule
-2 & Borussia M�nchengladbach & +14 & 29\\ \midrule
-3 & FC Bayern M�nchen & +26 & 28\\ \midrule
-10 & Hertha BSC Berlin (Ballsportclub), Verein aus der Hauptstadt & $-$1 & 18 \\
-\bottomrule
-\end{tabular}
-\caption{Bundesligatabelle vom 14. Spieltag}\label{t_buli}
-\end{table}
-%--------- TABELLE ENDE ---------------
+\section{Das Ergebnis}
 
-Tabelle \ref{t_buli2} zeigt eine Variante die ein kompakteres und eleganteres Ergebnis liefert, ohne vertikale Striche, daf�r mit eingef�rbten Zeilen.
+\section{Wie kann die Anwendung verbessert / erweitert werden}
 
-%----------- TABELLE START -------------
-\begin{table}[htp] 
-\rowcolors{1}{}{lgray} % bei jeder Zeile die Farbe wechseln, abwechselnd nix und hellgrau
-\centering
-\begin{tabular}{rlcc}  % Spalten nach Ausrichtung: l, c, r, p{breite} 
-\toprule
-\multicolumn{4}{c}{\large\sffamily Erste Bundesliga, Spielzeit 2011/2012}\\ \midrule
-1 & Borussia Dortmund & +20 & 29\\ 
-2 & Borussia M�nchengladbach & +14 & 29\\
-3 & FC Bayern M�nchen & +26 & 28\\
-10 & Hertha BSC Berlin & $-$1 & 18 \\ \bottomrule
-\end{tabular}
-\caption{Noch eine Bundesligatabelle vom 14. Spieltag}\label{t_buli2}
-\end{table}
-%--------- TABELLE ENDE ---------------
-
-
-
-\section{Unterkapitel mit drei exemplarischen Quellenverweisen}
-
-Quellenverweise werden mit Autorennamen und Jahr in runden Klammern gesetzt. Dazu wird hier das \LaTeX-natbib-Paket genutzt; der citep-Befehl erzeugt die Quellenangabe auf Basis der Eintr�ge im Literaturverzeichnis \citep{bluray}. Auf gleiche Weise lassen sich auch mehrere Quellen zusammenfassen \citep{dooley_streicher,stephenson}. 
-
-Auf B�cher oder andere umfangreichere Quellen soll mit Seitenangabe verwiesen werden. Daf�r stellt der Befehle citep  einen optionalen Parameter zur Verf�gung. Und so sieht dann die vollst�ndige Quellenangabe aus \citep[116]{kuttruff}. 
-
-Die Quellen sollen im Literaturverzeichnis alphabetisch sortiert sein.
-
-
-\subsection{Unter-Unterkapitel zu Hyperlinks und Internetquellen}
-
-Die Beispiele unten im Literaturverzeichnis zeigen exemplarisch, welche Angaben zu den Quellen erforderlich sind (siehe dazu auch die Kommentare im \LaTeX-Quelltext). 
-
-Und noch eine \LaTeX-Spezialit�t zum Schluss: Durch die Einbindung von url- und hyperref-Paket im header werden die Quellenverweise im PDF-Dokument automatisch mit der jeweiligen Quelle im Literaturverzeichnis verlinkt, und bei Internetquellen werden die URLs anklickbar. Zudem werden die Verzeichnisse (Inhaltsverzeichnis, Abbildungs- und Tabellenverzeichnis) mit den jeweiligen Objekten verlinkt, und es werden Links zwischen jedem \emph{label} und  dazugeh�rigem \emph{ref} erzeugt, also z.B. zwischen Bildverweis im Text und dem Bild. Die Farben der Links k�nnen im header frei eingestellt werden. Im hier vorgeschlagenen Layout sind die URLs und die Quellenverweise Dunkelblau, die anderen Links sind nicht hervorgehoben (Schwarz). 
-
-
-\chapter{Ergebnisse}
-
-Der thematische Teil schlie�t mit einer klaren inhaltlichen, auf der Grundidee aufbauenden thematischen Zusammenfassung, insbesondere bezogen auf die in der Arbeit gewonnenen eigenen Erkenntnisse und deren m�gliche Auswirkungen auf Forschung und Wissenschaft. 
-
-Ganz am Schluss, nach eventuellen Anh�ngen, nach Abbildungs- und evtl. Tabellenverzeichnis, und nach dem Literaturverzeichnis, folgt die Eigenst�ndigkeitserkl�rung, die unterschrieben werden muss.
-
-
-\appendix
-\chapter{Material}
-
-\section{Fragebögen, Messprotokolle etc.}
-In den Anh�ngen landen ggf. Listings, Frageb�gen, Datenbl�tter, Messprotokolle, Skizzen zu Versuchsaufbauten und �hnliches Material zur Arbeit. Im \LaTeX-Dokument leitet der Befehl appendix die Anh�nge ein.
-
-
-
-%--------------------- VERZEICHNISSE ----------------
-
-\listoffigures % Abbildungsverzeichnis erzeugen
-\listoftables % Tabellenverzeichnis erzeugen
-
-%--------------------- LITERATURLISTE ---------------
-% Die Eintr�ge sollen alphabetisch sortiert sein.
 
 \begin{thebibliography}{}
 
