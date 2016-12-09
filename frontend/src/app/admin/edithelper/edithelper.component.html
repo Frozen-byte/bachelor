@@ -1,0 +1,56 @@
+{{message}}
+<div class="row">
+  <span>Edit an existing function: </span>
+  <select id="edit" (change)="selectChanged($event.target.value)" [(ngModel)]="select">
+    <option></option>
+    <option *ngFor="let function of functions" [value]="function">{{function}}</option>
+  </select>
+  <button class="btn btn-approve" (click)="reset()">Reset</button>
+  <button class="btn btn-approve" (click)="triggerFetch()">{{buttonText()}}</button>
+  <button class="btn" (click)="delete()" [disabled]="!select || select==''">Löschen</button>
+</div>
+
+<div class="row">
+  <span>Name</span><input type="text" [(ngModel)]="function.name"/>
+</div>
+
+<div class="row">{{message}}</div>
+
+
+<div class="row">
+  <span>Script</span>
+</div>
+<div class="row">
+  <textarea autosize cols="100" spellcheck="false" [(ngModel)]="function.code"></textarea>
+</div>
+
+
+<div class="row">
+  <span>Beschreibung</span>
+</div>
+<div class="row">
+  <textarea autosize cols="100" spellcheck="false" [(ngModel)]="function.description"></textarea>
+</div>
+
+<div class="row">
+  <span>Konstanten</span>
+</div>
+<div class="row">
+  <textarea autosize cols="100" spellcheck="false" [(ngModel)]="function.constants"></textarea>
+</div>
+
+<div class="row">
+  <span>Argumente</span>
+</div>
+<div class="row">
+  <textarea autosize cols="100" spellcheck="false" [(ngModel)]="function.params"></textarea>
+</div>
+
+
+
+<div class="row">
+  <button class="btn btn-approve" (click)="test()">Test</button>
+  <button class="btn btn-approve" (click)="create()">Create</button>
+</div>
+
+

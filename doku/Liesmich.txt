@@ -1,0 +1,27 @@
+Das Template besteht aus 5 LaTeX-Dateien und 1 (+ 2) Bilddateien:
+
+hawmt-abschlussarbeits-header.tex
+- enthaelt die wesentlichen Formateinstellungen für Abschlussarbeiten im Department Medientechnik (Schriftgrad, Layout, …)
+- UTF8-codiert und ohne Umlaute, daher auf jedem System lesbar
+
+hawmt-bachelor-titelblatt.tex
+hawmt-master-titelblatt.tex
+- enthaelt das Standard-Deckblatt-Layout fuer Bachelor- und Massenarbeit
+- UTF8-codiert und ohne Umlaute, daher auf jedem System lesbar
+
+LaTeX-Mac-Abschlussarbeits-Template.tex
+LaTeX-Win-Abschlussarbeits-Template.tex
+- das eigentliche Template, das als "Hauptdokument" übersetzt werden kann. 
+Header und Titelblatt werden automatisch eingebunden (siehe input-Befehle im Hauptdokument).
+Die Mac-Variante ist im Format "MacOS Lateinisch" gespeichert und hat intern die LaTeX-Formateinstellung applemac. Diese Version sollte auf den meisten Mac-Systemen lesbar sein (Umlaute pruefen!).
+Die Win-Variante ist im Format "ISO Latin 1" gespeichert und hat intern die LaTeX-Formateinstellung latin1. Diese Version sollte auf den meisten Windows-Systemen lesbar sein (Umlaute pruefen!).  
+
+Die Datei HAW_wuerfel.jpg wird auf dem Titelblatt benutzt, sie sollte im gleichen Verzeichnis liegen wie die TeX-Dateien.
+
+Dazu kommen zwei Bilddateien drums.jpeg und 3xrichtchars.jpeg im Unterverzeichnis /bilder, die zur testweisen Kompilierung der Template-Datei noetig sind.
+
+Die Datei LaTeX-Abschlussarbeits-Template.pdf dient als Referenz für die Ueberpruefung der eigenen LaTeX-Installation und gleichzeitig als Referenz für die Gestaltung einer Bachelor- oder Massenarbeit im Department Medientechnik.
+
+------
+Quickstart:
+LaTeX-Xxx-Abschlussarbeits-Tepmplate laden, zwei Mal [!] mit PDFLaTeX uebersetzen. Mit dem mitgelieferten LaTeX-Abschlussarbeits-Template.pdf vergleichen: so sollte es aussehen.

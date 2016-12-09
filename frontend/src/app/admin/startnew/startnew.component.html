@@ -1,0 +1,29 @@
+<div *ngIf="!init">
+<div *ngIf="!runningGenerator">
+  <div class="row">
+    {{message}}
+  </div>
+  <div class="row">
+    <select id="edit" (change)="selectChanged($event.target.value)">
+      <option></option>
+      <option *ngFor="let generator of generators" [value]="generator">{{generator}}</option>
+    </select>
+  </div>
+  <div class="row">
+    <input type="text" [(ngModel)]="time"/>
+  </div>
+
+  <div class="row">Starting {{selected}} for {{time}} seconds</div>
+  <div class="row">
+    <button type="button" class="btn" (click)="start()">Start</button>
+
+  </div>
+</div>
+<div *ngIf="runningGenerator">
+  <div class="row">Es läuft bereits eine Aufgabe : {{runningGenerator}}</div>
+  <div class="row">
+    <button class="btn" (click)="stop()">Anhalten</button>
+  </div>
+
+</div>
+</div>

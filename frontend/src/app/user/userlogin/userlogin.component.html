@@ -1,0 +1,16 @@
+<div class="col-sm-12">
+  <span>Bitte wähle dein Team aus</span>
+</div>
+
+{{selectedteam}}
+<div class="row">
+  <div *ngFor="let team of teamnames" class="col-sm-12 col-md-4 col-lg-2">
+    <button class="btn btn-block" [ngClass]="{'selected': selectedteam==team}" (click)='selectedteam=team'>{{team}}
+    </button>
+
+  </div>
+</div>
+<div class="row">
+  <button class="btn" (click)="login()">Login</button>
+
+</div>

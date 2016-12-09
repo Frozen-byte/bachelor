@@ -1,0 +1,90 @@
+<div class="col-sm-8">
+  <div class="row">
+    <span>Edit an existing script: </span>
+    <select id="edit" (change)="selectChanged($event.target.value)">
+      <option></option>
+      <option *ngFor="let generator of generators" [value]="generator">{{generator}}</option>
+    </select>
+    <button id="reset" class="btn btn-approve" (click)="reset()">Reset</button>
+
+    <button class="btn" [disabled]="!generator.id"(click)="delete()">Löschen</button>
+  </div>
+
+  <div class="row">
+    <span>Name</span><input type="text" [(ngModel)]="generator.name"/>
+  </div>
+
+  <div class="row">{{message}}</div>
+
+
+  <div class="row">
+    <span>Variable Script</span>
+  </div>
+  <div class="row">
+    <textarea autosize id="variable" spellcheck="false" (focus)="focusVariable=true"
+              (blur)="focusVariable=false" [(ngModel)]="generator.variableScript"></textarea>
+  </div>
+
+
+  <div class="row">
+    <span>Mathjax Script</span>
+  </div>
+  <div class="row">
+    <textarea autosize cols="100" id="mathjax" spellcheck="false" (focus)="focusMathjax=true"
+              (blur)="focusMathjax=false" [(ngModel)]="generator.mathjaxScript"></textarea>
+  </div>
+
+  <div class="row">
+    <span>Testsolution</span>
+  </div>
+  <div class="row">
+    <textarea autosize cols="100" id="solution" spellcheck="false" [(ngModel)]="generator.solutionScript"></textarea>
+  </div>
+
+
+  <div class="row">
+    Auto-Testen benutzen <input type="checkbox" [(ngModel)]="autotest">
+  </div>
+  <div class="row">
+    Testcount : <input type="text" [(ngModel)]="testcount">
+  </div>
+  <div class="row">
+    <button class="btn btn-approve" (click)="test()">Test</button>
+    <button class="btn btn-approve" (click)="create()">Create</button>
+  </div>
+  <div *ngIf="testData">
+    <div *ngFor="let data of testData">
+      <div *ngIf="data.error" class="error">{{testData.error}}</div>
+      <div *ngIf="!data.error">
+        <div *ngIf="data.success===undefined" class="row" [MathJax]="data.mathjax"></div>
+        <div *ngIf="data.success!==undefined" [ngClass]="data.success? 'success':'fail'" class="row" [MathJax]="data.mathjax">te</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+<div class="col-sm-4">
+  <div *ngIf="focusMathjax">
+    <div *ngFor="let mathjax of mathjaxFunctions" on-mouseover="onhover(mathjax)">
+      <div class="tooltipp">{{mathjax.name}} : ({{mathjax.params}})
+        <span class="tooltiptext" *ngIf="hovered==mathjax">{{mathjax.description}}</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="focusVariable">
+    <div *ngFor="let variable of variableFunctions" on-mouseover="onhover(variable)">
+
+      <div class="tooltipp">{{variable.name}} : ({{variable.params}})
+        <span class="tooltiptext" *ngIf="hovered==variable">{{variable.description}}</span>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+

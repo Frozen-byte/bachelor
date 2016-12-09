@@ -1,0 +1,28 @@
+
+<div *ngIf="runningGenerator">
+  <h3 align="center">Momentan läuft: {{runningGenerator}}</h3>
+
+</div>
+
+<div *ngIf="!runningGenerator">
+  <h3 align="center">Kein aktive Aufgabe</h3>
+
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div *ngIf="runtimeinfo" class="col-sm-4">
+    <knob [actual]="timeLeft()" [max]="runtimeinfo.runTime">
+    </knob>
+  </div>
+</div>
+<div class="row">
+<div *ngIf="overview">
+  <div *ngFor="let answer of overview">
+    {{answer.name}}
+    <or-progressbar [actual]="answer.data.correct" [max]="answer.data.correct+answer.data.wrong"></or-progressbar>
+
+  </div>
+</div>
+
+
+</div>

@@ -1,0 +1,40 @@
+
+<div class="col-sm-12">
+    <span>User<input type="radio" (click)="setAdmin(false)" name="admin" checked="checked" /></span>
+    <span>Admin<input type="radio" (click)="setAdmin(true)" name="admin" /></span>
+  </div>
+
+  <div class="col-sm-12">{{message}}</div>
+
+  <div *ngIf="admin">
+    <div class="col-sm-12">
+      <h4>Bitte geben sie ihren Nutzernamen und ihr Passwort ein</h4>
+    </div>
+    <div class="col-sm-12">
+      <span>Nutzername </span><input type="text" [(ngModel)]="username">
+    </div>
+    <div class="col-sm-12">
+      <span>Passwort </span><input type="text" (keyUp.enter)="login()"  [(ngModel)]="password">
+    </div>
+
+  </div>
+
+  <div *ngIf="!admin">
+
+    <div class="col-sm-12">
+      <span>Bitte wähle dein Team aus</span>
+    </div>
+
+    {{selectedteam}}
+    <div class="row">
+      <div *ngFor="let team of teamnames" class="col-sm-12 col-md-4 col-lg-2">
+        <button class="btn btn-block" [ngClass]="{'selected': selectedteam==team}" (click)='selectedteam=team'>{{team}}</button>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-sm-12">
+    <button class="btn" (click)="login()">Anmelden</button>
+  </div>
+

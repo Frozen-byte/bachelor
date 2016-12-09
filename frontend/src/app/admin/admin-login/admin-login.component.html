@@ -1,0 +1,18 @@
+<div class="col-md-12">
+  <h4>Bitte geben sie ihren Nutzernamen und ihr Passwort ein</h4>
+</div>
+<div class="col-md-2">
+  <span>Nutzername </span>
+</div>
+<div class="col-md-10">
+  <input type="text" [(ngModel)]="username">
+</div>
+<div class="col-md-2">
+  <span>Passwort </span>
+</div>
+<div class="col-md-10">
+  <input type="text" (keyUp.enter)="login()"  [(ngModel)]="password">
+</div>
+<div class="col-sm-12">
+  <button class="btn" (click)="login()">Login</button>
+</div>

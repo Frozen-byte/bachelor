@@ -1,0 +1,9 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {0.1}Bedienungsanleitung}{4}{section.0.1}
+\contentsline {section}{\numberline {0.2}Entwicklerhandbuch}{4}{section.0.2}
+\contentsline {section}{\numberline {0.3}Softwarearchitektur}{4}{section.0.3}
+\contentsline {section}{\numberline {0.4}Projektauswertung}{4}{section.0.4}
+\contentsline {subsection}{\numberline {0.4.1}Was funktionierte?}{4}{subsection.0.4.1}
+\contentsline {subsection}{\numberline {0.4.2}Was lief unerwartet?}{4}{subsection.0.4.2}
+\contentsline {subsection}{\numberline {0.4.3}Ausblick}{4}{subsection.0.4.3}
+\contentsline {subsection}{\numberline {0.4.4}Tats\IeC {\"a}chlicher Aufwand}{4}{subsection.0.4.4}

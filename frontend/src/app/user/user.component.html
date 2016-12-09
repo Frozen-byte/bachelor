@@ -1,0 +1,29 @@
+<div *ngIf="config.initialized">
+  <div *ngIf="!http.isAuthenticated()">
+    <or-userlogin (update)="getTask()"></or-userlogin>
+  </div>
+  <div *ngIf="http.isAuthenticated()">
+
+    <div class="row">
+      <div class="col-sm-offset-4 col-sm-4">
+        <h3 align="center">Client</h3>
+      </div>
+    </div>
+    <div *ngIf="task">
+      <div class="row panel panel-default" [MathJax]="task"></div>
+      <div class="row">
+        <label for="answer">Antwort: {{answer}}</label>
+        <input type="text" id="answer" class="form-control" [(ngModel)]="answer">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="send()">Send</button>
+    </div>
+
+    <div *ngIf="!task" class="row">Keine Aufgabe gefunden..</div>
+
+    <button type="button" class="btn btn-danger" (click)="getTask()">Refresh</button>
+    <div class="row">
+      <h3 align="center" [ngClass]="messageRed? 'false':'correct'" [class.show]="message" class="step">{{message}}</h3>
+
+    </div>
+  </div>
+</div>

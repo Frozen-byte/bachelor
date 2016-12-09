@@ -1,0 +1,36 @@
+<div *ngIf="config.initialized">
+
+  <div *ngIf="http.isAuthenticated()">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li [ngClass]="{active: type=='overview'}"><a routerLink="/admin/overview">Übersicht</a></li>
+          <li [ngClass]="{active: type=='new'}"><a routerLink="/admin/new">Neuen Generator starten</a></li>
+          <li [ngClass]="{active: type=='generator'}"><a routerLink="/admin/generator">Generator bearbeiten</a></li>
+          <li [ngClass]="{active: type=='function'}"><a routerLink="/admin/function">Helper-Funktionen bearbeiten</a></li>
+          <li [ngClass]="{active: type=='error'}"><a routerLink="/admin/error">Fehler-Log begutachten</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div *ngIf="type=='generator'">
+      <or-admin-editgenerator></or-admin-editgenerator>
+    </div>
+    <div *ngIf="type=='function'">
+      <or-admin-editfunction></or-admin-editfunction>
+    </div>
+    <div *ngIf="type=='new'">
+      <or-admin-startnew></or-admin-startnew>
+    </div>
+    <div *ngIf="type=='overview'">
+      <or-admin-overview></or-admin-overview>
+    </div>
+    <div *ngIf="type=='error'">
+      <or-admin-error></or-admin-error>
+    </div>
+  </div>
+  <div *ngIf="!http.isAuthenticated()">
+
+    <or-admin-login></or-admin-login>
+  </div>
+</div>

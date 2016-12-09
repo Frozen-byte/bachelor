@@ -1,0 +1,32 @@
+{
+	"backend": "http://localhost",
+	"backendport":"8080",
+	"socketioport":"8000",
+	"socketioadmin":"/admin",
+	"defaultuser":"user",
+	"defaultpassword":"password",
+	"endpoints": {
+		"login":"auth",
+		"generatornames":"admin/generators",
+		"generator":"admin/generator",
+		"jaxhelper":"generated/mathjax.js",
+		"variablehelper":"generated/variables.js",
+		"variablefunctions":"admin/variablefunctions",
+		"mathjaxfunctions":"admin/mathjaxfunctions",
+		"variablefunction":"admin/variablefunction",
+		"mathjaxfunction":"admin/mathjaxfunction",
+		"rvariablefunction":"admin/rvariablefunction",
+		"rmathjaxfunction":"admin/rmathjaxfunction",
+		"runninggenerator":"generator/running",
+		"startgenerator":"generator/start",
+		"stopgenerator":"generator/stop",
+		"gamestatus":"generator/status",
+		"task":"client/task",
+		"clientlogin":"client/login",
+		"teamnames":"client/teams",
+		"runtimeinfo":"game/runtime",
+		"errors":"errors/all"
+		
+	
+	}
+}
