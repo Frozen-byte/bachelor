@@ -45,14 +45,6 @@
 
 \chapter{Einleitung}
 
-\section{Einige Begriffserklärungen}
-
--REST-API
--Backend
--Frontend
--POJO
--Aufteilung einer Aufgabe
-
 \section{Zielsetzung}
 
 Das Ziel dieser Arbeit ist es eine Webapplikation zu erstellen, welche bei der Gestaltung einer Mathematik-Vorlesung helfen soll. Dabei werden von der Anwendung Aufgaben generiert und an den Nutzer gesendet. Dieser kann diese nun lösen und seine Antwort abschicken. Nach der Validierung bekommt er ein Feedback und bei dem korrekten Lösen eine neue Aufgabe, sowie einige Punkte für sein Team. Der Administrator kann dabei den ganzen Vorgang überwachen und den aktuellen Punktestand einsehen. \\
@@ -76,6 +68,19 @@ Zusätzlich wird es sich hierbei um ein Open Source Projekt handeln, das heißt,
 Nicht zu vergessen ist auch der Aspekt der Erweiterbarkeit. Sollten sich nach Abschluss der ersten Iteration neue Anforderungen ergeben so ist man in der Lage diese jederzeit in das bestehende Projekt zu integrieren und es zu erweitern. \\
 
 Doch am wichtigsten ist der Aspekt, der dynamischen Aufgabengeneriung, auf welchen besonders viel Wert gelegt wird. Nur so kann sichergestellt werden, dass ein Wiederverwertungswert entsteht und das Wissen eines Nutzers in der Tiefe getestet werden kann.
+
+\section{Was ist eigentlich eine Aufgabe}
+
+Bevor mit der eigentlichen Arbeit angefangen werden konnte stand am Anfang eine Frage: Was genau ist eigentlich eine Aufgabe? In welche Teile kann man sie aufteilen und wie kann man eine Aufgabe beschreiben? \\
+Um vernünftig mit einer Aufgabe umgehen zu können wird sie in Zukunft wie folgt definiert : \\
+Bei einer Aufgabe handelt es sich um Konstrukt welches in drei Teile aufteilbar ist. \\
+1. Die Variablen \\
+Jede Aufgabe benötigt einen bestimmten Satz an Variablen die nach bestimmten Regeln gewählt werden können. Das ändern der Variablen ändert nichts an dem Sinn oder der Art der Aufgabe.\\
+2. Die Darstellung \\
+Jede Aufgabe besitzt eine Darstellungsart über die sie an einen menschlichen Nutzer übermittelt werden, der dadurch in der Lage ist die Aufgabe zu verstehen und zu bearbeiten. \\
+3. Die Lösung \\
+
+
 
 \chapter{Ein Blick unter die Haube - Das Backend}
 
