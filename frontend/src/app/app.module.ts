@@ -25,6 +25,7 @@ import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { UserloginComponent } from './user/userlogin/userlogin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { ErrorComponent } from './admin/error/error.component';
+import {SecurityService} from "./service/security.service";
 const appRoutes: Routes = [
   {
     path: 'admin/:type',
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
   declarations: [ AppComponent,LoginComponent, AdminComponent,EditScriptComponent, EditScriptComponent, MathjaxComponent,
     EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent],
   bootstrap:    [ AppComponent ],
-  providers: [ConfigService,  HttpService, GeneratorService, GeneratedcodeService]
+  providers: [ConfigService,  HttpService, GeneratorService, GeneratedcodeService, SecurityService]
 })
 export class AppModule { }
 

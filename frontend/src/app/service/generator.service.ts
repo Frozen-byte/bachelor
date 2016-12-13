@@ -5,6 +5,7 @@ import {Http, Response} from '@angular/http'
 import {ConfigService} from "./config.service";
 import {HttpService} from "./httpservice.service";
 import {TestData} from "../data/testdata";
+import {SecurityService} from "./security.service";
 
 declare function generateVariables(): any;
 declare function generateMathjax(variables:any): string;
@@ -17,7 +18,7 @@ export class GeneratorService {
 
   scriptTagName="Generator_Tag"
 
-  constructor(private http: HttpService, private config: ConfigService) {
+  constructor(private http: HttpService, private config: ConfigService, private security:SecurityService) {
 
   }
 
@@ -60,6 +61,10 @@ export class GeneratorService {
         var oldTag = document.getElementById(this.scriptTagName);
         if(oldTag!=null) {
           oldTag.outerHTML='';
+        }
+
+        if(!this.security.applySecurity(script)) {
+          console.log('Found not allowed function in script. abort test and warn user')
         }
 
         try {
