@@ -30,7 +30,7 @@
 \newcommand{\zweitpruef}{Prof. Dr Torsten Edeler}
 
 %\date{vorl�ufige Fassung vom \today}   % praktisch f�r Vorab-Versionen. 
-\date{\sffamily Hamburg, **.**.****}  % Abgabedatum!
+\date{\sffamily Hamburg, 20.02.2017}  % Abgabedatum!
 
 %--------------------------------------------------------------------------------------
 %----------------------------- hier gehts los! --------------------------------------
@@ -44,6 +44,14 @@
 
 
 \chapter{Einleitung}
+
+\section{Einige Begriffserklärungen}
+
+-REST-API
+-Backend
+-Frontend
+-POJO
+-Aufteilung einer Aufgabe
 
 \section{Zielsetzung}
 
@@ -61,21 +69,47 @@ Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben 
 
 \section{Vorteile der neuen Lösung}
 
-\chapter{Anforderungen}
+Die Vorteile der neuen Lösung bestehen hauptsächlich darin, die Vorteile bereits bestehender Lösungen zu kombinieren, während die Nachteile ausgemerzt werden. \\
 
-\section{an das Backend}
+Zusätzlich wird es sich hierbei um ein Open Source Projekt handeln, das heißt, dass das Projekt ebenfalls jederzeit eingeesehen werden kann um daraus zu lernen oder eigene Schlüsse zu ziehen. Gleichzeitig bedeutet Open Source auch frei verfügbar, jeder der diese Applikation benötigt und die notwendige Hardware zur Verfügung hat wird jederzeit in der Lage sein einen Server mit dem Projekt aufzusetzen und dieses für die eigenen Zwecke zu nutzen \\
 
-\section{an das Frontend}
+Nicht zu vergessen ist auch der Aspekt der Erweiterbarkeit. Sollten sich nach Abschluss der ersten Iteration neue Anforderungen ergeben so ist man in der Lage diese jederzeit in das bestehende Projekt zu integrieren und es zu erweitern. \\
 
-\chapter{Security}
+Doch am wichtigsten ist der Aspekt, der dynamischen Aufgabengeneriung, auf welchen besonders viel Wert gelegt wird. Nur so kann sichergestellt werden, dass ein Wiederverwertungswert entsteht und das Wissen eines Nutzers in der Tiefe getestet werden kann.
 
-\section{Die Sicherung des Frontends}
+\chapter{Ein Blick unter die Haube - Das Backend}
+
+\section{Die Wahl des Frameworks}
+
+Aufzählung vorhandener Frameworks und deren Vor / Nachteile
+Warum Spring Boot
+
+\section{Die Datenbankanbindung}
 
 \section{Die Sicherung des Backends}
 
-\chapter{Ein Rundgang durch die Anwendung}
 
-\section{Sicht des Nutzers}
+\section{Die Endpunkte der Schnittstelle}
+
+
+\chapter{Die Sicht des Anwenders - Das Frontend}
+
+\section{Die Wahl des Frameworks}
+
+Durch die Definition der Vorteile der neuen Anwendung werden auch direkt Anforderungen an das Framework mit dem gearbeitet wird gestellt. Das Wichtigste ist die klare Abtrennung der verschiedenen Abschnitte sowie der Erweiterbarkeit. Wenn man sich auf dem aktuellen Markt umschaut kommt ein klarer Kanditat dafür in Frage: Angular 2. \\
+Aufzählung Vorteile Angular sowie integrierte Patterns
+
+\section{Die Sicherung auf der obersten Ebene}
+
+Login-Komponente
+Speichern JWT-Token
+Anhängen von Token an jeden Request
+
+\section{Die Sicht des Nutzers}
+
+\subsection{Die Auswahl des Teams}
+
+\subsection{Das Bearbeiten der Aufgaben}
 
 \section{Die Sicht des Administrators}
 
@@ -84,6 +118,8 @@ Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben 
 \subsection{Das Starten einer neuen Runde}
 
 \subsection{Verwaltung der Generatoren}
+
+
 
 \chapter{Fazit}
 
