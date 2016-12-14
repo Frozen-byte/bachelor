@@ -15,7 +15,8 @@ import {AuthenticationObject} from "../../data/AuthenticationObject";
 export class UserloginComponent implements OnInit {
 
   teamnames: string[];
-  selectedteam: string
+  selectedteam: string;
+  message:string;
 
   @Output() update = new EventEmitter()
 
@@ -34,6 +35,12 @@ export class UserloginComponent implements OnInit {
           this.teamnames = data.json()
 
           this.selectedteam = this.teamnames[0]
+        },
+        (error:any) => {
+          console.log(error.status)
+          if(error.status==0) {
+            this.message = 'REST-Server offline..'
+          }
         }
       )
   }

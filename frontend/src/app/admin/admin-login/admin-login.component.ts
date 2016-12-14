@@ -15,10 +15,12 @@ import {AuthenticationObject} from "../../data/AuthenticationObject";
 })
 export class AdminLoginComponent implements OnInit {
 
-  username:string ='root'
-  password:string = 'root'
+  username: string = 'root'
+  password: string = 'root'
+  message:string;
 
-  constructor(private httpService: HttpService, private configService: ConfigService, private router: Router, private http: Http) { }
+  constructor(private httpService: HttpService, private configService: ConfigService, private router: Router, private http: Http) {
+  }
 
   ngOnInit() {
   }
@@ -30,8 +32,13 @@ export class AdminLoginComponent implements OnInit {
     }
 
     this.httpService.login(auth, (success: boolean) => {
-      this.httpService.setAdmin(true)
-      this.router.navigateByUrl('/admin/overview')
+      if (success) {
+        this.httpService.setAdmin(true)
+        this.router.navigateByUrl('/admin/overview')
+
+      } else {
+        this.message ='Fehler beim einloggen..'
+      }
 
     })
   }

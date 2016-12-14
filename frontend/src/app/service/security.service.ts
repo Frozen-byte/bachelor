@@ -16,7 +16,7 @@ export class SecurityService {
     http.doGet(config.variablefunctions)
       .map((response: Response) => response.json())
       .subscribe(
-        (data:String[]) => {
+        (data:string[]) => {
           this.allowedVariableFunctions = data;
         }
       )
@@ -24,7 +24,7 @@ export class SecurityService {
     http.doGet(config.mathjaxfunctions)
       .map((response: Response) => response.json())
       .subscribe(
-        (data:String[]) => {
+        (data:string[]) => {
           this.allowedMathjaxFunctions= data;
         }
       )
