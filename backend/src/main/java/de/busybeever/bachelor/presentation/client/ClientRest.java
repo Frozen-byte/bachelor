@@ -75,6 +75,9 @@ public class ClientRest {
 	
 	@PostMapping("task")
 	public ResponseEntity<?> postTask(@RequestParam("solution") String solution, HttpServletRequest request) {
+		if(gameStatusService.isGameRunning()) {
+			
+		}
 		Integer userId = (Integer) request.getSession().getAttribute("id");
 		return generatorService.validateAnswer(solution, userId);
 		

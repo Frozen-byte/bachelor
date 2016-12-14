@@ -14,7 +14,7 @@ import {RuntimeInformation} from "../../data/RuntimeInformation";
 })
 export class OverviewComponent implements OnInit {
 
-  overview:any;
+  overview:any = [];
   runningGenerator:String;
   time:number;
   runtimeinfo:RuntimeInformation;
@@ -47,11 +47,11 @@ export class OverviewComponent implements OnInit {
 
       this.time = new Date().getTime()
 
-      this.overview = this.transformRuntimeInfo(data);
+      this.transformRuntimeInfo(data);
     })
 
     socket.on('init', (data:any) => {
-      this.overview = this.transformRuntimeInfo(data);
+      this.transformRuntimeInfo(data);
     })
 
     socket.on('running', (data:String) =>{
@@ -80,18 +80,41 @@ export class OverviewComponent implements OnInit {
   }
 
   transformRuntimeInfo(data) {
-    if(!data) return null;
-    let transformed = [];
+    if(!data) {
+      this.overview = [];
+      return;
+    }
+    if(!this.overview) {
+      this.overview = [];
+    }
+
     var keys = Object.keys(data.answers)
-    keys.forEach(function(value){
-      let obj = {
-        name : value,
-        data : data.answers[value]
+    keys.forEach((value) =>{
+      let index = -1;
+      //Check if we have this name in the data set
+      for(let i=0; i<this.overview.length;i++) {
+        if(this.overview[i].name==value) {
+          index=i;
+          break;
+        }
       }
-      transformed.push(obj)
+      //If the data set already contains this name
+      if(index!=-1) {
+        this.overview[index].data = data.answers[value];
+      }else {
+        let obj = {
+          name : value,
+          data : data.answers[value]
+        }
+        this.overview.push(obj);
+      }
+
+
+
+
     })
 
-    return transformed
+
   }
 
 }

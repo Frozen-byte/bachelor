@@ -35,8 +35,6 @@ public class GeneratorRest {
 
 	@PostMapping("start")
 	public ResponseEntity<?> startGenerator(@RequestBody StartGeneratorObject obj) {
-		System.out.println(obj.getTime());
-		System.out.println(obj.getName());
 		return new ResponseEntity<String>(generatorService.startGenerator(obj));
 	}
 

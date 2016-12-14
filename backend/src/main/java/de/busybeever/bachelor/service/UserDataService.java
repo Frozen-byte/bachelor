@@ -29,4 +29,8 @@ public class UserDataService {
 	public Task getTask(Integer userId) {
 		return taskMapping.get(userId);
 	}
+	
+	public void resetTasks() {
+		this.taskMapping.clear();
+	}
 }

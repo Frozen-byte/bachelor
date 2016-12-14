@@ -44,6 +44,7 @@ public class GeneratorService {
 			scriptWrapper = new JavaScriptWrapper(obj.getName(), script, scriptService.getVariableScript(),
 					scriptService.getMathjaxScript());
 			gameStatusService.startNew(obj.getTime());
+			userDataService.resetTasks();
 		} catch (ScriptException e) {
 			e.printStackTrace();
 			globalErrorService.appendError(e.getMessage());
