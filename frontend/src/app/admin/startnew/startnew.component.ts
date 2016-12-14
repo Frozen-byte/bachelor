@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router'
 import {HttpService} from "../../service/httpservice.service";
 import {ConfigService} from "../../service/config.service";
 import {Response} from "@angular/http"
@@ -20,7 +21,7 @@ export class StartnewComponent implements OnInit {
 
   init:boolean=true
 
-  constructor(private httpService: HttpService, private configService: ConfigService) {
+  constructor(private httpService: HttpService, private configService: ConfigService, private router:Router) {
   }
 
   ngOnInit() {
@@ -71,6 +72,7 @@ export class StartnewComponent implements OnInit {
             if(data.status==200) {
               this.message="Generator gestartet"
               this.runningGenerator= msg.name
+              this.router.navigateByUrl('/admin/overview')
             }
           },
           (error:any) => {

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import de.busybeever.bachelor.presentation.game.RuntimeInformation;
 import de.busybeever.bachelor.presentation.game.TeamAnswer;
 import de.busybeever.bachelor.presentation.generator.UpdateOverviewObject;
+import de.busybeever.bachelor.websockets.AdminNamespace;
 
 @Service
 public class GameStatusService {
@@ -22,6 +23,9 @@ public class GameStatusService {
 	
 	@Autowired
 	private GeneratorService generatorService;
+	
+	@Autowired
+	private AdminNamespace adminNamespace;
 	
 	private String[] teams = { "Team Eins", "Team Zwei" };
 
@@ -77,7 +81,7 @@ public class GameStatusService {
 				System.out.println("timer done");
 				gameRunning = false;
 				generatorService.stopGenerator();
-				
+				adminNamespace.informAboutEnd();
 			}
 		};
 		scheduler.scheduleTask(endTime,timer);

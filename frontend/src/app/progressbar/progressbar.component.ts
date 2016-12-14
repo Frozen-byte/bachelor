@@ -22,12 +22,7 @@ export class ProgressbarComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-
-
     this.percentage = Math.floor(this.actual*100/this.max);
-
-
-
   }
 
 

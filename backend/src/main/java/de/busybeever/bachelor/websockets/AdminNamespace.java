@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIONamespace;
@@ -22,7 +22,7 @@ import de.busybeever.bachelor.security.jwt.AuthenticationRequest;
 import de.busybeever.bachelor.service.GameStatusService;
 import de.busybeever.bachelor.service.GeneratorService;
 
-@Component
+@Service
 public class AdminNamespace {
 
 	@Value("${socketio.admin.namespace}")
@@ -87,6 +87,12 @@ public class AdminNamespace {
 				e.sendEvent("update", obj);
 			});
 		}
+	}
+	
+	public void informAboutEnd() {
+		authenticatedAdmins.forEach(e-> {
+			e.sendEvent("end");
+		});
 	}
 	
 }

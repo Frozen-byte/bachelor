@@ -67,6 +67,12 @@ export class OverviewComponent implements OnInit {
       }
     })
 
+    socket.on('end', ()=> {
+      this.runningGenerator = null;
+      this.runtimeinfo = null;
+
+    })
+
     socket.on('denied', ()=> {
       console.error("Login failed. Show popup?") //TODO
     })
