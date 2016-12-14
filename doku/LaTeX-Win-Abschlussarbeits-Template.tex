@@ -66,20 +66,28 @@ Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source h
 
 \chapter{Konzeption der Anwendung}
 
-
-
 \section{Analyse des Anwendungsfeldes}
 
+Bevor man sich nun an die Entwicklung der Anwendung macht bleibt eine Frage offen. Für wen ist sie eigentlich gemacht und wie soll sie eingesetzt werden? \\
+Als grobe Eingrenzung lässt sich sagen, dass diese Anwendung für die Lehre geschaffen wird, um genau zu sein für den Teilbereich der Mathematik. Wichtig ist hierbei zu beachten, dass sich die Applikation nach dem momentanen Konzept nur während der Vorlesung / des Unterrichts benutzen lässt. Dies liegt daran, dass die Idee Teams vorsieht, welche zusammenarbeiten und so Punkte sammeln. Die Arbeit als einzelne Person ist nicht vorgesehen. \\
+Da die Anwendung vorsieht, dass jeder Nutzer einen eigenen Zugang zum Internet hat verlagert sich das Hauptnutzungsfeld in höhere Bildungsstufen, zum Beispiel Universität und Fachhochschule, da dort jeder ein eigenes Smartphone oder sogar einen Laptop benutzt. \\
+Zusammenfassend lässt sich also sagen, dass die Anwendung hauptsächlich im Bereich der Lehre der Mathematik in Universitäten und Fachhochschulen zum Einsatz kommen wird.
 
 \section{Was ist eine Aufgabe}
 
+Als letzten Schritt ist nun noch zu definieren was genau eine Aufgabe eigentlich ist, beziehungsweise wie sie im Sinne dieser Anwendung gesehen wird. \\
+Für diese Arbeit werden wir Aufgaben immer in drei Teilen betrachten:
+\begin{enumerate}
+\item Die Variablen \\
+Als erstes betrachten wir die Variablen. Sie werden für jede Aufgabe neu generiert. Dadurch, dass diese dynamisch generiert wird jedes mal wenn eine Aufgabe angefragt wird.
+\item Die Darstellung \\
+An zweiter Stelle befassen wir uns mit der Darstellung der Aufgabe. Um die vorher generierten Variablen für den menschlichen Nutzer angemessen darzustellen wird hier eine Zeichenkette generiert, welche die Aufgabe repräsentiert, in die dann die Variablen eingesetzt werden.
+\item Die Lösung \\
+Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache übrig. Die Validierung der Aufgabe. Es wird die Lösung des Nutzers übergeben und festgestellt ob diese korrekt gelöst wurde oder nicht.
+\end{enumerate}
+
+
 \section{Analyse der Anforderungen}
-
-\section{Zielgruppe der Anwendung}
-
-
-
-\section{Resultate für die Anwendung}
 
 \section{Verwendete Technologien}
 
@@ -106,9 +114,9 @@ Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source h
 
 
 \section{Die Sicht des Administrators}
-\subsection{Bearbeitung der Generatoren und seinen Hilfsmitteln}
-\subsection{Starten eines neuen Generators}
-\subsection{Übersicht über das laufende und letzte Spiel}
+\subsection{Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln}
+\subsection{Starten eines neuen Aufgaben-Generators}
+\subsection{Übersicht über die laufende und letzte Aufgabe}
 \subsection{Der Fehler-Log}
 
 
@@ -162,13 +170,13 @@ Kuttruff, Heinrich:
 % Formatierung f�r Fachbuch mit Herausgeber und mehreren Autoren
 \bibitem[Spehr(2009)]{spehr}
 Spehr, Georg (Hrsg.): 
-\emph{Funktionale Kl�nge}, transcript 2009
+\emph{Funktionale Klnge}, transcript 2009
 
 % Formatierung f�r ein einzelnes Kapitel eines speziellen Autors aus einem Fachbuch mit mehreren Autoren
 \bibitem[Sowodniok(2009)]{sowodniok}
 Sowodniok, Ulrike: 
 \glqq Funktionaler Stimmklang -- Ein Prozess mit Nachhalligkeit\grqq, 
-in: Spehr, Georg (Hrsg.): \emph{Funktionale Kl�nge}, transcript 2009
+in: Spehr, Georg (Hrsg.): \emph{Funktionale Klnge}, transcript 2009
 
 % Formatierung f�r Aufsatz / Paper: Titel in Anf�hrungszeichen, Zeitschriftentitel kursiv
 \bibitem[Stephenson(1990)]{stephenson}

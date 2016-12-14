@@ -78,7 +78,6 @@ public class GameStatusService {
 		timer = new TimerTask() {		
 			@Override
 			public void run() {
-				System.out.println("timer done");
 				gameRunning = false;
 				generatorService.stopGenerator();
 				adminNamespace.informAboutEnd();
