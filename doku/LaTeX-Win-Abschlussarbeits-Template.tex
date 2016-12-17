@@ -29,6 +29,7 @@
 \newcommand{\erstpruef}{Prof. Dr. Edmund Weitz}
 \newcommand{\zweitpruef}{Prof. Dr Torsten Edeler}
 
+
 %\date{vorl�ufige Fassung vom \today}   % praktisch f�r Vorab-Versionen. 
 \date{\sffamily Hamburg, 20.02.2017}  % Abgabedatum!
 
@@ -91,7 +92,46 @@ Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache üb
 
 \section{Verwendete Technologien}
 
+Für die Anwendung ist nun bereits klar, dass es sich um eine Webanwendung handeln wird. Doch stehen noch einige Fragen zu dieser offen. Wie sieht das Frontend aus? Welcher Technologie wird zum Ausliefern der Backend Daten genutzt? Diese Fragen werden nachfolgend geklärt.
+
 \subsection{Spring-Boot}
+
+Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht. \\
+Bei Spring handelt es sich um ein Webframework, welches die Entwicklung von Java-Applikation (insbesondere im Web-Bereich) vereinfacht. \\
+
+\emph{\glqq   
+Das Spring Framework (kurz Spring) ist ein quelloffenes Framework für die Java-Plattform. Ziel des Spring Frameworks ist es, die Entwicklung mit Java/Java EE zu vereinfachen und gute Programmierpraktiken zu fördern. Spring bietet mit einem breiten Spektrum an Funktionalität eine ganzheitliche Lösung zur Entwicklung von Anwendungen und deren Geschäftslogiken; dabei steht die Entkopplung der Applikationskomponenten im Vordergrund.
+\grqq} \footnote{https://de.wikipedia.org/wiki/Spring\_(Framework)}
+
+Kurz gesagt hilft das Framework dabei eine Anwendung Modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese Übersichtlich bleiben. Zwei Kernkonzepte die dabei besonders wichtig sind sind die Controller und Services \\
+
+\textbf{Controller}\\
+Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Das Ergebnis von diesem wird dann über den Controller zurück an den Sender der Anfrage gesendet \\
+
+\textbf{Service}\\
+Bei einem Service handelt es sich um einen Teil eines Programmes welcher die Logik für einen bestimmten Abschnitt des Programmes kontrolliert. Services werden hauptsächlich dafür angewendet die Logik aus Controller-Klassen auszulagern und den Code so übersichtlich zu halten \\
+
+Zusätzlich implementiert Spring das Pattern der Dependency-Injection.
+
+\textbf{Service}\\
+\emph{\glqq   
+Als Dependency Injection (englisch dependency ‚Abhängigkeit‘ und injection ‚Injektion‘; Abkürzung DI) wird in der objektorientierten Programmierung ein Entwurfsmuster bezeichnet, welches die Abhängigkeiten eines Objekts zur Laufzeit reglementiert: Benötigt ein Objekt beispielsweise bei seiner Initialisierung ein anderes Objekt, ist diese Abhängigkeit an einem zentralen Ort hinterlegt – es wird also nicht vom initialisierten Objekt selbst erzeugt. \grqq} \footnote{https://de.wikipedia.org/wiki/Dependency\_Injection} \\ 
+
+Gleichzeit stellt Spring-Boot auch direkt einen Container für die Webapplikation zur Verfügung. Das bedeutet, dass die Programmierung sich komplett mit der REST-API und ihren Funktionalitäten beschäftigen kann und nur sehr wenig Zeit für die Konfiguration des Web-Servers verbraucht wird.
+
+
+\subsection{Typescript}
+
+\emph{\glqq   
+TypeScript is a free and open-source programming language developed and maintained by Microsoft. It is a strict superset of JavaScript, and adds optional static typing and class-based object-oriented programming to the language. \\
+TypeScript is designed for development of large applications and transcompiles to JavaScript. As TypeScript is a superset of JavaScript, any existing JavaScript programs are also valid TypeScript programs.
+\grqq} \footnote{https://en.wikipedia.org/wiki/TypeScript} \\
+
+Besonders für Entwickler welche aus der Welt der stark-typisierten Programmierwelt kamen war TypeScript ein großer Fortschritt. Durch die Möglichkeit Variablen stark zu typisieren entstand die Möglichkeit Schnittstellen klarer zu definieren. Gleichzeitig wurden die bestehenden Möglichkeiten Entwicklungsumgebungen mit Auto-Vervollständigung auszustatten verbessert. \\
+Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Beschleunigung der Entwicklung, während die Testbarkeit vereinfacht wird und Fehler besser vermieden werden können.
+
+
+\subsection{Bootstrap}
 
 \subsection{Angular 2}
 
@@ -145,40 +185,50 @@ Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache üb
 \section{Wie kann die Anwendung verbessert / erweitert werden}
 
 
-
 \begin{thebibliography}{}
 
-% Formatierung f�r Internetquelle
-% Grundregel: Name, Vorname (falls vorhanden), V�-Jahr (falls vorhanden), Titel in Anf�hrungszeichen, URL, Datum des letzten Aufrufs
+% Formatierung für Internetquelle
+% Grundregel: Name, Vorname (falls vorhanden), Vö-Jahr (falls vorhanden), Titel in Anführungszeichen, URL, Datum des letzten Aufrufs
 % zur Formatierung der URL unbedingt den url-Befehl benutzen!!!
+
+\bibitem[Spring Dokumentation(2016)]{spring}
+Spring-Dokumentation
+\url{https://spring.io/docs}, letzter Zugriff: 17.12.2016
+
+\bibitem[Spring-Boot Dokumentation(2016)]{spring-boot}
+Spring-Boot-Dokumentation
+\url{http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/}, letzter Zugriff: 17.12.2016
+
+
+
 \bibitem[Blu-ray Disc Association(2005)]{bluray} 
 Blu-ray Disc Association: 
 \emph{White paper Blu-ray Disc Format 2.B Audio Visual Application, Format Specifications for BD-ROM}, 
 \url{http://www.blu-raydisc.com/Assets/downloadablefile/2b_bdrom_audiovisualapplication_0305-12955-15269.pdf}, 2005, letzter Zugriff: 1. 10. 2012
 
-% Formatierung f�r Aufsatz / Paper: Titel in Anf�hrungszeichen, Zeitschriftentitel kursiv
+% Formatierung für Aufsatz / Paper: Titel in Anführungszeichen, Zeitschriftentitel kursiv
 \bibitem[Dooley \& Streicher(1982)]{dooley_streicher} 
 Dooley, Wesley L.  \& Streicher, Ronald D.:
 \glqq M--S Stereo: A Powerful Technique for Working in Stereo\grqq, 
 \emph{Journ. Audio Engineering Society} vol. 30 (10), 1982
 
-% Formatierung f�r Fachbuch, Diplomarbeit o.�.: Titel kursiv
+% Formatierung für Fachbuch, Diplomarbeit o.Ä.: Titel kursiv
 \bibitem[Kuttruff(1991)]{kuttruff}
 Kuttruff, Heinrich: 
 \emph{Room Acoustics}, 3. Aufl., Elsevier 1991
 
-% Formatierung f�r Fachbuch mit Herausgeber und mehreren Autoren
+% Formatierung für Fachbuch mit Herausgeber und mehreren Autoren
 \bibitem[Spehr(2009)]{spehr}
 Spehr, Georg (Hrsg.): 
-\emph{Funktionale Klnge}, transcript 2009
+\emph{Funktionale Klänge}, transcript 2009
 
-% Formatierung f�r ein einzelnes Kapitel eines speziellen Autors aus einem Fachbuch mit mehreren Autoren
+% Formatierung für ein einzelnes Kapitel eines speziellen Autors aus einem Fachbuch mit mehreren Autoren
 \bibitem[Sowodniok(2009)]{sowodniok}
 Sowodniok, Ulrike: 
 \glqq Funktionaler Stimmklang -- Ein Prozess mit Nachhalligkeit\grqq, 
-in: Spehr, Georg (Hrsg.): \emph{Funktionale Klnge}, transcript 2009
+in: Spehr, Georg (Hrsg.): \emph{Funktionale Klänge}, transcript 2009
 
-% Formatierung f�r Aufsatz / Paper: Titel in Anf�hrungszeichen, Zeitschriftentitel kursiv
+% Formatierung für Aufsatz / Paper: Titel in Anführungszeichen, Zeitschriftentitel kursiv
 \bibitem[Stephenson(1990)]{stephenson}
 Stephenson, Uwe: 
 \glqq Comparison of the Mirror Image Source Method and the Sound Particle Simulation Method\grqq, 
