@@ -16,9 +16,6 @@ import javax.persistence.Table;
 @Table(name="scripts")
 public class ScriptEntity implements Serializable{
 
-	private static final long serialVersionUID = -4232125676287964651L;
-
-
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;

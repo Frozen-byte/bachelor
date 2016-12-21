@@ -56,7 +56,7 @@ Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generie
 
 Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut stößt man auf sehr viele Programme die sich mit dem Vertiefen von Stoff befassen. Allerdings setzen diese lediglich darauf den Nutzer Aufgaben zu stellen und die Aufgaben zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen. Ebenfalls als Nachteil aufzufassen ist hier die Tatsache, dass es sich bei fast allen Lösungen um Programme handelt welche käuflich zu erwerben sind\\
 
-Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Webanwendung "MARS" (Minimal Audience Response System). Dieses ist sehr gut dafür geeignet statische Fragen zu stellen und zu validieren. Allerdings ist es hier nicht möglich dynamisch Aufgaben zu erstellen. Zusätzlich kann nur ein einziges Mal eine Antwort abgegeben werden, es ist also nicht möglich mehrere Fragen des selben Bereiches zu beantworten und so sein Wissen intensiver zu testen. \\
+Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Webanwendung ``MARS'' (Minimal Audience Response System). Dieses ist sehr gut dafür geeignet statische Fragen zu stellen und zu validieren. Allerdings ist es hier nicht möglich dynamisch Aufgaben zu erstellen. Zusätzlich kann nur ein einziges Mal eine Antwort abgegeben werden, es ist also nicht möglich mehrere Fragen des selben Bereiches zu beantworten und so sein Wissen intensiver zu testen. \\
 
 Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben aus verschiedenen Themenbereichen kümmern, zum Beispiel RegexGolf ( \url{https://alf.nu/RegexGolf} ). Hierbei handelt es sich um eine Anwendung bei der dem Nutzer eine Liste von Wörtern gegeben wird. Die Aufgabe besteht nun darin einen regulären Ausdruck zu finden welcher für einen Teil der Liste matcht und bei der anderen nicht.
 
@@ -94,30 +94,165 @@ Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache üb
 
 Für die Anwendung ist nun bereits klar, dass es sich um eine Webanwendung handeln wird. Doch stehen noch einige Fragen zu dieser offen. Wie sieht das Frontend aus? Welcher Technologie wird zum Ausliefern der Backend Daten genutzt? Diese Fragen werden nachfolgend geklärt.
 
-\subsection{Spring-Boot}
 
-Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht. \\
-Bei Spring handelt es sich um ein Webframework, welches die Entwicklung von Java-Applikation (insbesondere im Web-Bereich) vereinfacht. \\
+\subsection{MySQL}
 
-\emph{\glqq   
-Das Spring Framework (kurz Spring) ist ein quelloffenes Framework für die Java-Plattform. Ziel des Spring Frameworks ist es, die Entwicklung mit Java/Java EE zu vereinfachen und gute Programmierpraktiken zu fördern. Spring bietet mit einem breiten Spektrum an Funktionalität eine ganzheitliche Lösung zur Entwicklung von Anwendungen und deren Geschäftslogiken; dabei steht die Entkopplung der Applikationskomponenten im Vordergrund.
-\grqq} \footnote{https://de.wikipedia.org/wiki/Spring\_(Framework)}
+Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Accounts von Administratoren über mehrere Sitzungen hinweg persistiert werden müssen. Ebenfalls stand die Idee im Raum die durchschnittlichen Ergebnisse von Aufgaben zu speichern um so langfristige Beobachtungen durchführen zu können. Daher war recht früh klar, dass auf eine Datenbank kein Verzicht sein kann.
 
-Kurz gesagt hilft das Framework dabei eine Anwendung Modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese Übersichtlich bleiben. Zwei Kernkonzepte die dabei besonders wichtig sind sind die Controller und Services \\
+--Warum MySQL
 
-\textbf{Controller}\\
-Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Das Ergebnis von diesem wird dann über den Controller zurück an den Sender der Anfrage gesendet \\
+\subsection{Dependency-Injection}
 
-\textbf{Service}\\
-Bei einem Service handelt es sich um einen Teil eines Programmes welcher die Logik für einen bestimmten Abschnitt des Programmes kontrolliert. Services werden hauptsächlich dafür angewendet die Logik aus Controller-Klassen auszulagern und den Code so übersichtlich zu halten \\
-
-Zusätzlich implementiert Spring das Pattern der Dependency-Injection. \\
-
-\textbf{Dependency-Injection}\\
 \emph{\glqq   
 Als Dependency Injection (englisch dependency ‚Abhängigkeit‘ und injection ‚Injektion‘; Abkürzung DI) wird in der objektorientierten Programmierung ein Entwurfsmuster bezeichnet, welches die Abhängigkeiten eines Objekts zur Laufzeit reglementiert: Benötigt ein Objekt beispielsweise bei seiner Initialisierung ein anderes Objekt, ist diese Abhängigkeit an einem zentralen Ort hinterlegt – es wird also nicht vom initialisierten Objekt selbst erzeugt. \grqq} \footnote{https://de.wikipedia.org/wiki/Dependency\_Injection} \\ 
 
+Bei der Dependency-Injection handelt es sich um ein Pattern welches aus der heutigen Welt der Programmierung kaum wegzudenken ist. Anstatt das einzelne Komponenten ihre Abhängigkeiten selber erzeugen geben sie lediglich an, dass sie eine Abhängigkeit benötigen welche einen bestimmten Satz an Aufgaben erfüllen kann (oft durch ein Interface definiert). Daraufhin sucht der Dependency-Injector nach einer Komponente (in den meisten Frameworks als ``Service'' bezeichnet) die diese Anforderungen erfüllt und fügt sie in den Anfragenden ein (bei diesem Prozess handelt es sich dann um die ``Injection'') \\
+
+\begin{minipage}{\textwidth}
+\emph{Beispiel für eine Komponente zur Abfragung von Daten (Datenbankzugriff)}
+\begin{lstlisting}
+public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> {
+	public ScriptEntity findByName(String name);
+	public List<ScriptEntity> findAll();
+}
+\end{lstlisting} 
+\end{minipage}
+
+
+\textbf{Service}\\
+Der Begriff Dienst (auch Service oder Daemon) beschreibt in der Informatik allgemein eine technische, autarke Einheit, die zusammenhängende Funktionalitäten zu einem Themenkomplex bündelt und über eine klar definierte Schnittstelle zur Verfügung stellt.\\
+ 
+\begin{minipage}{\textwidth}
+\emph{Beispiel für einen Service zum Sammeln von Fehlern}
+\begin{lstlisting}
+public interface GlobalErrorService {
+	public void appendError(String message);
+	public List<String> getErrors();
+}
+\end{lstlisting}
+\end{minipage}
+
+Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Business-Logik'' und der technischen Implementation stark getrennt. Dies fördert die Nachvollziehbarkeit von Programmabschnitten. Ebenfalls wird dank der loseren Kopplung die Wiederverwertbarkeit von Code verbessert. Daher wird Dependency-Injection immer dann verwendet wenn auf Modularität Wert gelegt wird \\
+
+
+\textbf{Geschäftslogik} \\
+\emph{\glqq   
+Geschäftslogik (englisch business logic, auch Anwendungslogik) ist ein abstrakter Begriff in der Softwaretechnik, der eine Abgrenzung der durch die Aufgabenstellung selbst motivierten Logik eines Softwaresystems von der technischen Implementierung zum Ziel hat.
+\grqq} \footnote{https://de.wikipedia.org/wiki/Geschäftslogik} \\
+
+Ebenfalls zu erwähnen ist die Verbesserung des Verständnisses von Programmcode, insbesondere wenn man nicht den gesamten Kontext der Anwendung kennt. Dies liegt daran, dass jeder Service immer für einen Satz an Aufgaben steht welche logisch zusammenhängen (zum Beispiel das Verwalten der Punktzahl von Nutzern). Sollte ein Service ebenfalls Abhängigkeiten haben werden diese ebenfalls über den Dependency-Injectior eingefügt. \\
+
+Als letzter Punkt steht die Verbesserung der Testbarkeit. Dadurch, dass die einzelnen Komponenten ihre Abhängigkeiten an einer zentralen Stellle anfragen anstatt sie selber zu erzeugen können an dieser simplere Versionen der Abhängigkeiten hinterlegt werden (sogennante Mock's), wodurch die Funktionen der zu testenden Komponente steigt da Fehler durch die Abhängigkeiten in dieser Umgebung nicht auftreten können. \\
+
+\textbf{Mock} \\
+\emph{\glqq   
+Mock-Objekte (auch Attrappe, von englisch to mock ‚etwas vortäuschen‘) sind in der Softwareentwicklung Objekte, die als Platzhalter für echte Objekte innerhalb von Modultests verwendet werden. Diese werden umgangssprachlich auch Mocks genannt.
+\grqq} \footnote{https://de.wikipedia.org/wiki/Mock-Objekt} \\
+
+Das Pattern der Dependency-Injection wird von denn im Nachhinein folgenden Frameworks Spring(-Boot) sowie Angular 2 implementiert und intensiv genutzt.
+
+
+
+
+
+\subsection{Spring-Boot}
+
+
+Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht. \\
+
+\emph{\glqq   
+Das Spring Framework (kurz Spring) ist ein quelloffenes Framework für die Java-Plattform. Ziel des Spring Frameworks ist es, die Entwicklung mit Java/Java EE zu vereinfachen und gute Programmierpraktiken zu fördern. Spring bietet mit einem breiten Spektrum an Funktionalität eine ganzheitliche Lösung zur Entwicklung von Anwendungen und deren Geschäftslogiken; dabei steht die Entkopplung der Applikationskomponenten im Vordergrund.
+\grqq} \footnote{https://de.wikipedia.org/wiki/Spring\_(Framework)} \\
+
+Kurz gesagt hilft das Framework dabei eine Anwendung modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte die dabei besonders wichtig sind sind die Controller, sowie die bereits erklärten Services und die Dependency-Injection \\
+
+\textbf{Controller}\\
+Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Das Ergebnis von diesem wird dann über den Controller zurück an den Sender der Anfrage gesendet \\
+Damit gibt Spring einen recht eindeutigen
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/SpringLayers} 
+\caption[\url{http://image.slidesharecdn.com/springsourceusi2009v3-0-090702135517-phpapp01/95/developing-modular-java-applications-13-728.jpg?cb=1246543977}]{Konzept einer Spring-Anwendung}
+\end{figure} 
+
 Gleichzeit stellt Spring-Boot auch direkt einen Container für die Webapplikation zur Verfügung. Das bedeutet, dass die Programmierung sich komplett mit der REST-API und ihren Funktionalitäten beschäftigen kann und nur sehr wenig Zeit für die Konfiguration des Web-Servers verbraucht wird.
+
+Ein großer Teil der Konfiguration findet außerhalb des Codes statt. In dem Projekt kann eine Datei mit dem Namen ``application.properties'' hinterlegt werden. Hier können dann mehrere Sachen eingestellt werden, wie zum Beispiel der Port unter dem der Server laufen soll.
+
+\begin{minipage}{\textwidth}
+\emph{Konfiguration des Server-Ports}
+\begin{lstlisting}
+spring.server.port=8080
+\end{lstlisting} 
+\end{minipage}
+
+\subsection{Spring Data JPA}
+
+\emph{\glqq   
+Implementing a data access layer of an application has been cumbersome for quite a while. Too much boilerplate code has to be written to execute simple queries as well as perform pagination, and auditing. Spring Data JPA aims to significantly improve the implementation of data access layers by reducing the effort to the amount that’s actually needed. As a developer you write your repository interfaces, including custom finder methods, and Spring will provide the implementation automatically.
+\grqq} \footnote{http://projects.spring.io/spring-data-jpa/} \\
+
+Bei Spring Data JPA (im nachfolgenden nur noch als JPA bezeichnet) handelt es sich um eines der Projekte aus dem Spring-Ökosystem welches in wahrscheinlich jedem Spring Projekt heutzutage genutzt wird. Das Hauptziel des Projektes ist es, dass überflüssiger Code der jedes mal geschrieben wird automatisch generiert werden kann und so dem Entwickler viel Arbeit abnimmt. Der Zugriff auf eine Datenbank wird enorm erleichtert, indem die Verbindung automatisch aufgebaut und die Querys automatisch aus Interfaces generiert werden. \\
+Als erstes muss JPA also die Information erlangen wie die Datenbank erreichbar ist und wie die Zugangsdaten lauten. Dies wird in der application.properties angegeben \\
+
+\begin{minipage}{\textwidth}
+\emph{Konfiguration der Datenbankverbindung}
+\begin{lstlisting}
+spring.datasource.url=jdbc:mysql://localhost:3306/bachelor
+spring.datasource.username=root
+spring.datasource.password=root
+\end{lstlisting} 
+
+\end{minipage}
+
+Nach dem JPA nun die Verbindung mit der Datenbank aufbauen kann muss definiert werden wie die Datenbank-Entitäten in Java-Objekte umgewandelt werden und in welchen Tabellen sie sich befinden. In JPA wird dies dadurch umgesetzt, dass für jede Entität eine Klasse angelegt wird in der durch Annotationen festgelegt wird wie die Daten in das Objekt gelegt werden. \\
+
+\begin{minipage}{\textwidth}
+\emph{Beispiel für eine Datenbank-Entität}
+\begin{lstlisting}
+@Entity
+@Table(name="scripts")
+public class ScriptEntity implements Serializable{
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable=false, name="name")
+	private String name;
+	
+	@Column(nullable=false, name="variablescript")
+	private String variableScript;
+	
+	@Column(nullable=false, name="solutionscript")
+	private String solutionScript;
+
+	@Column(nullable=false, name="mathjaxscript")
+	private String mathjaxScript;
+	
+	/*Getter/Setter/Konstruktor*/
+}
+\end{lstlisting}
+\end{minipage}
+
+Zu guter Letzt muss ein Interface erzeugt werden, welches definiert was für Querys zur Verfügung stehen. Um das zu realisieren wird ein Interface erzeugt, welches die Querys erzeugt indem es bei der Benennung der Methoden bestimmten Konventionen folgt. Wichtig ist hierbei, dass es das bereits gegebene Interface CrudRepository erweitern muss. Dadurch wird es von JPA erkannt und einige Funktionalität direkt gegeben (wie zum Beispiel findAll, save und delete).
+Um nun eigene Querys hinzufügen gibt es zwei Möglichkeiten. Entweder über eine Annotation oder über die Benennung der Funktion
+
+\begin{minipage}{\textwidth}
+\emph{Beispiel für eine eigene Querys}
+\begin{lstlisting}
+public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> {
+
+	public ScriptEntity findByName(String name);
+	
+	@Query("SELECT p FROM ScriptEntity s WHERE s.name = :name")
+	public ScriptEntity customQuery(@Param("name")String name);
+}
+\end{lstlisting}
+\end{minipage}
+
+
 
 
 \subsection{Typescript}
@@ -133,18 +268,26 @@ Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Bes
 
 \subsection{Bootstrap}
 
-\subsection{Angular 2}
+Bootstrap ist ein anpassungsfähiges und zuerst für mobile Geräte entwickeltes Framework. Egal, wie gut du dich auskennst, kannst du damit einfacher und schneller kleine wie große Projekte entwickeln, die auf Geräten in allen erdenklichen Formen funktionieren.
 
-\subsection{MySQL}
+\subsection{Angular 2 / Angular CLI}
 
-\subsection{Spring Data JPA}
+--ANGULAR 2 DEFINITION--
+
+Bei Angular 2 handelt es sich um eines der neusten Frameworks wenn es um die Entwicklung von Webseiten geht. Es ist bekannt als eines der besten Frameworks wenn es um die Entwicklung von einer sogenannten ``SPA'' geht, was bei der enstehenden Anwendung der Fall sein wird. \\
+
+\emph{\glqq   
+Als Single-Page-Webanwendung (englisch single-page application, kurz SPA) oder Einzelseiten-Webanwendung wird eine Webanwendung bezeichnet, die aus einem einzigen HTML-Dokument besteht und deren Inhalte dynamisch nachgeladen werden. Diese Art von Web-Architektur steht im Gegensatz zu klassischen Webanwendungen, die aus mehreren, untereinander verlinkten HTML-Dokumenten bestehen. Hierdurch wird allerdings die Grundlage geschaffen, eine Webanwendung in Form einer Rich-Client- bzw. Fat-Client-Verteilung zu entwickeln. Eine verstärkte clientseitige Ausführung der Webanwendung ermöglicht eine Reduzierung der Serverlast sowie die Umsetzung von selbstständigen Webclients, die beispielsweise eine Offline-Unterstützung anbieten.
+\grqq} \footnote{https://de.wikipedia.org/wiki/Single-Page-Webanwendung} \\
+
+
+Warum also eine Single-Page-Application? Der Hauptvorteil liegt darin, dass bei dem Initialisieren der Seite fast alle benötigten Informationen geladen werden, somit fallen die Ladezeiten nach der ersten Initialisierung sehr gering aus. Das sorgt insbesondere bei Nutzern von mobilen Endgeräten für eine bessere User-Experience, da bei diesen (bedingt durch schwächere Prozessoren) die Ladezeiten besonders ins Gewicht fallen. Gleichzeitig reduzieren sich die Anforderungen an den Webserver, da der Content nur ein einziges mal ausgeliefert werden muss. Lediglich durch die Abfragung einiger Daten zur Laufzeit (wie zum Beispiel das Erhalten einer neuen Aufgabe) wird der Server nach dem Ausliefern der Webseite kontaktiert. \\
+
 
 
 
 
 \chapter{Ein Rundgang durch das Frontend}
-
-
 
 
 
@@ -188,7 +331,7 @@ Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Bes
 
 \section{Wie kann die Anwendung verbessert / erweitert werden}
 
-
+\listoffigures
 \begin{thebibliography}{}
 
 % Formatierung für Internetquelle

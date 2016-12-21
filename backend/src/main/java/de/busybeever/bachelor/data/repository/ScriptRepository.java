@@ -9,8 +9,7 @@ import de.busybeever.bachelor.data.entity.ScriptEntity;
 
 public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> {
 
-	public List<ScriptEntity> findAll();
-	
+	public List<ScriptEntity> findAll();	
 	public ScriptEntity findByName(String name);
 
 }

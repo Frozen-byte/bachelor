@@ -28,7 +28,7 @@ public class GeneratorService {
 	private GameStatusService gameStatusService;
 
 	@Autowired
-	private GlobalErrorService globalErrorService;
+	private GlobalErrorServiceImpl globalErrorService;
 
 	public HttpStatus startGenerator(StartGeneratorObject obj) {
 		if (scriptWrapper != null) {

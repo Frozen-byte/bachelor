@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import de.busybeever.bachelor.service.GameStatusService;
 import de.busybeever.bachelor.service.GeneratorService;
-import de.busybeever.bachelor.service.GlobalErrorService;
+import de.busybeever.bachelor.service.GlobalErrorServiceImpl;
 import de.busybeever.bachelor.service.UserDataService;
 
 @RestController
@@ -34,7 +34,7 @@ public class ClientRest {
 	private GameStatusService gameStatusService;
 	
 	@Autowired
-	private GlobalErrorService globalErrorService;
+	private GlobalErrorServiceImpl globalErrorService;
 	
 	
 	@GetMapping("teams")

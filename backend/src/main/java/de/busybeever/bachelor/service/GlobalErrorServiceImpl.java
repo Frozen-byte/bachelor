@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import de.busybeever.bachelor.service.impl.GlobalErrorService;
+
 @Service
-public class GlobalErrorService {
+public class GlobalErrorServiceImpl implements GlobalErrorService {
 
 	private List<String> errors = new ArrayList<>();
 	

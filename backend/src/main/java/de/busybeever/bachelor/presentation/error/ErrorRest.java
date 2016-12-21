@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.busybeever.bachelor.service.GlobalErrorService;
+import de.busybeever.bachelor.service.GlobalErrorServiceImpl;
 
 @RestController
 @RequestMapping("errors")
 public class ErrorRest {
 
 	@Autowired
-	private GlobalErrorService globalErrorService;
+	private GlobalErrorServiceImpl globalErrorService;
 	
 	@GetMapping("/all")
 	public List<String> getErrors () {
