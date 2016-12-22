@@ -1,11 +1,11 @@
-package de.busybeever.bachelor.service;
+package de.busybeever.bachelor.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import de.busybeever.bachelor.service.impl.GlobalErrorService;
+import de.busybeever.bachelor.service.GlobalErrorService;
 
 @Service
 public class GlobalErrorServiceImpl implements GlobalErrorService {

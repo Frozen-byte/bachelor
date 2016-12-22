@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,6 @@ import de.busybeever.bachelor.data.repository.MathjaxFunctionRepository;
 import de.busybeever.bachelor.data.repository.ScriptRepository;
 import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
 import de.busybeever.bachelor.service.AdminService;
-
 @PreAuthorize("hasAuthority('ADMIN')")
 @RestController
 @RequestMapping("admin")
@@ -39,7 +37,6 @@ public class AdminRest {
 	@Autowired
 	private AdminService adminService;
 	
-	@CrossOrigin("*")
 	@GetMapping("/login")
 	public String test() {
 		return RequestContextHolder.currentRequestAttributes().getSessionId();
@@ -125,18 +122,6 @@ public class AdminRest {
 	public void deleteVariableFunction(@RequestParam Integer id) {
 		variableFunctionRepository.delete(id);
 	}
-	/*
-	@GetMapping("/rmathjaxfunction")
-	public String[] getRefactoredMathjaxFunctions() {
-		return adminService.getRefactoredFunctionEntities(mathjaxFunctionRepository);
-	}
-	
-	@GetMapping("rvariablefunction")
-	public String[] getRefactoredVariableFunctions() {
-		return adminService.getRefactoredFunctionEntities(variableFunctionRepository);
-		
-	}
-	*/
 	@GetMapping("/rmathjaxfunction")
 	public List<MathjaxFunctionEntity> getRefactoredMathjaxFunctions() {
 		return mathjaxFunctionRepository.findAll();

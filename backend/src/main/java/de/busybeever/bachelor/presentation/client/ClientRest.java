@@ -4,7 +4,6 @@ import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.tomcat.jni.Global;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import de.busybeever.bachelor.service.GameStatusService;
 import de.busybeever.bachelor.service.GeneratorService;
-import de.busybeever.bachelor.service.GlobalErrorServiceImpl;
+import de.busybeever.bachelor.service.GlobalErrorService;
 import de.busybeever.bachelor.service.UserDataService;
 
 @RestController
@@ -34,7 +33,7 @@ public class ClientRest {
 	private GameStatusService gameStatusService;
 	
 	@Autowired
-	private GlobalErrorServiceImpl globalErrorService;
+	private GlobalErrorService globalErrorService;
 	
 	
 	@GetMapping("teams")
