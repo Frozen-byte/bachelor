@@ -95,9 +95,21 @@ Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache üb
 Für die Anwendung ist nun bereits klar, dass es sich um eine Webanwendung handeln wird. Doch stehen noch einige Fragen zu dieser offen. Wie sieht das Frontend aus? Welcher Technologie wird zum Ausliefern der Backend Daten genutzt? Diese Fragen werden nachfolgend geklärt.
 
 
-\subsection{MySQL}
+\subsection{MariaDB}
 
-Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Accounts von Administratoren über mehrere Sitzungen hinweg persistiert werden müssen. Ebenfalls stand die Idee im Raum die durchschnittlichen Ergebnisse von Aufgaben zu speichern um so langfristige Beobachtungen durchführen zu können. Daher war recht früh klar, dass auf eine Datenbank kein Verzicht sein kann.
+Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Accounts von Administratoren über mehrere Sitzungen hinweg persistiert werden müssen. Ebenfalls stand die Idee im Raum die durchschnittlichen Ergebnisse von Aufgaben zu speichern um so langfristige Beobachtungen durchführen zu können. Daher war recht früh klar, dass auf eine Datenbank kein Verzicht sein kann. \\
+
+Wenn man sich nun aber überlegt was für eine Datenbank in einem Projekt eingesetzt werden sollte landet man vor einer großen Frage: Dokument-basiert oder doch lieber relational? \\
+Bei relationalen Datenbanken besteht einer der Hauptvorteile liegt in ihrer Struktur. Ihr Aufbau in mehrere Tabellen erlaubt es,dass es sehr leicht ist Duplikate von Daten zu vermeiden (auch bekannt unter dem Begriff ``Normalisierung''). Dadurch bleibt die Datenbank kleiner und leichter zu durchsuchen, was gut für die Performanz ist. \\
+
+Sollte man allerdings Flexibilität benötigen so sind Dokument-basierte Datenbanken die richtige Wahl. Dadurch, dass die Daten einfach in ein Dokument abgelegt werden und nicht an ein Schema gebunden sind an das sich gehalten werden muss können die einzelnen Dokumente ohne Probleme sehr voneinander abweichen. Am ehesten vergleichbar ist dies mit einem normalen JSON-Objekt. Da die Daten hier nicht über mehrere Tabellen verteilt sind lässt sich ein Dokument jederzeit mit einem einzelnen Query aus der Datenbank extrahieren. Daher sind Dokument-basierte Datenbanken immer dann die richtige Wahl wenn viele Datensätze existieren, welche allerdings keine Beziehung zu einander haben (nicht-relationale Datensätze) \\
+
+
+
+Relational VS Dokument-Basierte
+MSSQL, Oracle, Postgress
+
+
 
 --Warum MySQL
 
@@ -155,20 +167,36 @@ Das Pattern der Dependency-Injection wird von denn im Nachhinein folgenden Frame
 
 
 
-\subsection{Spring-Boot}
+\subsection{Spring(-Boot)}
 
 
-Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht. \\
+Auf der Suche nach einem Framework für die Programmierung des REST-Backends stolpert man oft über drei die sich wiederholen. Express-JS, Sinatra und Spring-Boot. \\
+
+
+\emph{\glqq   
+Express ist ein einfaches und flexibles Node.js-Framework von Webanwendungen, das zahlreiche leistungsfähige Features und Funktionen für Webanwendungen und mobile Anwendungen bereitstellt.
+\grqq} \footnote{http://expressjs.com/de/)} \\
+
+Schaut man sich als erstes Express an stößt man auf leichtes Package-Managment (dank NPM), eine Sprache die exzellent für das Bearbeiten und Manipulieren von JSON gemacht ist. Gleichzeitig ist das Problem, dass viele Bibliotheken unterschiedliche Standards benutzen was der Übersicht in größeren Projekten schadet. Zusätzlich kommt das Problem, dass Javascript durch fehlende starke Typisierung eine Sprache ist die bei wachsenden Code-Mengen immer unübersichtlicher wird, während nicht für alle Bibliotheken eine Typescript Implementation vorhanden ist die die Arbeit erleichtern würde. Dazu kommt, dass die Nutzung mehrerer Kerne (und so die Handhabung vieler Anfragen an den Server) nur mittels Prozess-Managern möglich ist, welche ebenfalls wieder Konfiguration und Testaufwand bedeuten. Als letztes ist zu sagen, dass Express-JS eine relativ kleine Entwickler-Basis besitzt, was zu weniger Möglichkeiten für Hilfestellungen bei Problemen führt \\
+
 
 \emph{\glqq   
 Das Spring Framework (kurz Spring) ist ein quelloffenes Framework für die Java-Plattform. Ziel des Spring Frameworks ist es, die Entwicklung mit Java/Java EE zu vereinfachen und gute Programmierpraktiken zu fördern. Spring bietet mit einem breiten Spektrum an Funktionalität eine ganzheitliche Lösung zur Entwicklung von Anwendungen und deren Geschäftslogiken; dabei steht die Entkopplung der Applikationskomponenten im Vordergrund.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Spring\_(Framework)} \\
 
+Schaut man sich als letztes das Spring-Framework an stößt man auf ein System welches über ein inzwischen gigantisches Ökosystem an Erweiterungen verfügt. Seit März 2004 hat es immer mehr an Popularität und an Features dazu gewonnen. Doch ein wirklich großer Sprung war der Release von Spring-Boot. Dieses übernahm ein Großteil der Konfiguration einer Anwendung und kam bereits mit integriertem Webcontainer mit. Einer der vielen Vorteile die Spring mitbrachte war die Dependency-Injection, welche von Haus aus implementiert war und direkt verwendet werden konnte. Die Absicherung einer Anwendung wird durch Spring-Security ebenfalls erheblich vereinfacht, welches direkt Schutz gegen einige Angriffe bietet, sowie einige Authentifizierungsverfahren erheblich vereinfacht. Eines der Probleme ist allerdings, dass es sich bei Spring (und all seinen Erweiterungen) inzwischen um ein immens großes Projekt handelt, was es sehr schwer machen kann mit Spring anzufangen und die erste Webanwendung zu schreiben.
+
+
+Alternative : Express-JS, Sinatra
+
+Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht. \\
+
+
+
 Kurz gesagt hilft das Framework dabei eine Anwendung modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte die dabei besonders wichtig sind sind die Controller, sowie die bereits erklärten Services und die Dependency-Injection \\
 
 \textbf{Controller}\\
 Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Das Ergebnis von diesem wird dann über den Controller zurück an den Sender der Anfrage gesendet \\
-Damit gibt Spring einen recht eindeutigen
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -203,7 +231,6 @@ spring.datasource.url=jdbc:mysql://localhost:3306/bachelor
 spring.datasource.username=root
 spring.datasource.password=root
 \end{lstlisting} 
-
 \end{minipage}
 
 Nach dem JPA nun die Verbindung mit der Datenbank aufbauen kann muss definiert werden wie die Datenbank-Entitäten in Java-Objekte umgewandelt werden und in welchen Tabellen sie sich befinden. In JPA wird dies dadurch umgesetzt, dass für jede Entität eine Klasse angelegt wird in der durch Annotationen festgelegt wird wie die Daten in das Objekt gelegt werden. \\
@@ -268,9 +295,20 @@ Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Bes
 
 \subsection{Bootstrap}
 
+Gegenstück : Material
+
+\emph{\glqq   
 Bootstrap ist ein anpassungsfähiges und zuerst für mobile Geräte entwickeltes Framework. Egal, wie gut du dich auskennst, kannst du damit einfacher und schneller kleine wie große Projekte entwickeln, die auf Geräten in allen erdenklichen Formen funktionieren.
+\grqq} \footnote{http://holdirbootstrap.de//} \\
+
+Aus der heutigen Welt der Webentwicklung ist Bootstrap kaum wegzudenken. Durch die leichte Entwicklung für alle vorhandenen Formate und Endgeräte hat es sich als äußerst robust herausgestellt wenn es um die schnelle Entwicklung von Webseiten geht. \\
+Gleichzeitig bietet es ein großes Repertoire an CSS-Klassen für alle Elemente der HTML-Entwicklung was es sogar Personen mit wenig Erfahrung im Design-Bereich ermöglicht spektakuläre Ergebnisse mit wenig Arbeit zu erzielen.
 
 \subsection{Angular 2 / Angular CLI}
+
+Hat Möglichkeit für Server-Site Rendering https://universal.angular.io/
+Alternative : ReactJS, Angular, Server-Site-Rendering (Thymeleaf, Dot-JS)
+
 
 --ANGULAR 2 DEFINITION--
 
@@ -283,6 +321,7 @@ Als Single-Page-Webanwendung (englisch single-page application, kurz SPA) oder E
 
 Warum also eine Single-Page-Application? Der Hauptvorteil liegt darin, dass bei dem Initialisieren der Seite fast alle benötigten Informationen geladen werden, somit fallen die Ladezeiten nach der ersten Initialisierung sehr gering aus. Das sorgt insbesondere bei Nutzern von mobilen Endgeräten für eine bessere User-Experience, da bei diesen (bedingt durch schwächere Prozessoren) die Ladezeiten besonders ins Gewicht fallen. Gleichzeitig reduzieren sich die Anforderungen an den Webserver, da der Content nur ein einziges mal ausgeliefert werden muss. Lediglich durch die Abfragung einiger Daten zur Laufzeit (wie zum Beispiel das Erhalten einer neuen Aufgabe) wird der Server nach dem Ausliefern der Webseite kontaktiert. \\
 
+\subsection{SocketIO}
 
 
 
@@ -346,12 +385,16 @@ Spring-Dokumentation
 Spring-Boot-Dokumentation
 \url{http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/}, letzter Zugriff: 17.12.2016
 
-
+https://blog.php-dev.info/2014/04/mariadb-vs-mysql/
+https://www.quora.com/What-are-the-advantages-and-disadvantages-of-using-Sinatra-vs-Express-for-a-web-service-API
 
 \bibitem[Blu-ray Disc Association(2005)]{bluray} 
 Blu-ray Disc Association: 
 \emph{White paper Blu-ray Disc Format 2.B Audio Visual Application, Format Specifications for BD-ROM}, 
 \url{http://www.blu-raydisc.com/Assets/downloadablefile/2b_bdrom_audiovisualapplication_0305-12955-15269.pdf}, 2005, letzter Zugriff: 1. 10. 2012
+
+
+
 
 % Formatierung für Aufsatz / Paper: Titel in Anführungszeichen, Zeitschriftentitel kursiv
 \bibitem[Dooley \& Streicher(1982)]{dooley_streicher} 
