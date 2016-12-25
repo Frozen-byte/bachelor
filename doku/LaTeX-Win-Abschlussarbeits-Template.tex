@@ -104,14 +104,11 @@ Bei relationalen Datenbanken besteht einer der Hauptvorteile liegt in ihrer Stru
 
 Sollte man allerdings Flexibilität benötigen so sind Dokument-basierte Datenbanken die richtige Wahl. Dadurch, dass die Daten einfach in ein Dokument abgelegt werden und nicht an ein Schema gebunden sind an das sich gehalten werden muss können die einzelnen Dokumente ohne Probleme sehr voneinander abweichen. Am ehesten vergleichbar ist dies mit einem normalen JSON-Objekt. Da die Daten hier nicht über mehrere Tabellen verteilt sind lässt sich ein Dokument jederzeit mit einem einzelnen Query aus der Datenbank extrahieren. Daher sind Dokument-basierte Datenbanken immer dann die richtige Wahl wenn viele Datensätze existieren, welche allerdings keine Beziehung zu einander haben (nicht-relationale Datensätze) \\
 
+Da in dem Projekt die Notwendigkeit war eine Relation zwischen Nutzern und ihren Rolen (Administrator / Nutzer) herzustellen ist die Wahl auf eine relationale Datenbank gefallen. \\
+
+Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen : MariaDB oder MySQL. Hier die Wahl zu treffen ging recht schnell, da es sich bei MariaDB um nicht viel mehr als einen Fork von MySQL handelt, welcher auf einer performanteren Engine und einer intensiveren Betreeung durch das Entwickler-Team basiert.
 
 
-Relational VS Dokument-Basierte
-MSSQL, Oracle, Postgress
-
-
-
---Warum MySQL
 
 \subsection{Dependency-Injection}
 
@@ -279,20 +276,6 @@ public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> 
 \end{lstlisting}
 \end{minipage}
 
-
-
-
-\subsection{Typescript}
-
-\emph{\glqq   
-TypeScript is a free and open-source programming language developed and maintained by Microsoft. It is a strict superset of JavaScript, and adds optional static typing and class-based object-oriented programming to the language. \\
-TypeScript is designed for development of large applications and transcompiles to JavaScript. As TypeScript is a superset of JavaScript, any existing JavaScript programs are also valid TypeScript programs.
-\grqq} \footnote{https://en.wikipedia.org/wiki/TypeScript} \\
-
-Besonders für Entwickler welche aus der Welt der stark-typisierten Programmierwelt kamen war TypeScript ein großer Fortschritt. Durch die Möglichkeit Variablen stark zu typisieren entstand die Möglichkeit Schnittstellen klarer zu definieren. Gleichzeitig wurden die bestehenden Möglichkeiten Entwicklungsumgebungen mit Auto-Vervollständigung auszustatten verbessert. \\
-Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Beschleunigung der Entwicklung, während die Testbarkeit vereinfacht wird und Fehler besser vermieden werden können.
-
-
 \subsection{Bootstrap}
 
 Gegenstück : Material
@@ -304,22 +287,35 @@ Bootstrap ist ein anpassungsfähiges und zuerst für mobile Geräte entwickeltes
 Aus der heutigen Welt der Webentwicklung ist Bootstrap kaum wegzudenken. Durch die leichte Entwicklung für alle vorhandenen Formate und Endgeräte hat es sich als äußerst robust herausgestellt wenn es um die schnelle Entwicklung von Webseiten geht. \\
 Gleichzeitig bietet es ein großes Repertoire an CSS-Klassen für alle Elemente der HTML-Entwicklung was es sogar Personen mit wenig Erfahrung im Design-Bereich ermöglicht spektakuläre Ergebnisse mit wenig Arbeit zu erzielen.
 
-\subsection{Angular 2 / Angular CLI}
-
-Hat Möglichkeit für Server-Site Rendering https://universal.angular.io/
-Alternative : ReactJS, Angular, Server-Site-Rendering (Thymeleaf, Dot-JS)
 
 
---ANGULAR 2 DEFINITION--
+\subsection{Typescript / Angular 2}
 
-Bei Angular 2 handelt es sich um eines der neusten Frameworks wenn es um die Entwicklung von Webseiten geht. Es ist bekannt als eines der besten Frameworks wenn es um die Entwicklung von einer sogenannten ``SPA'' geht, was bei der enstehenden Anwendung der Fall sein wird. \\
+Bevor man sich mit der Technologie beschäftigt die benutzt wurde um das Frontend zu bauen muss man sich vorher mit einer anderen Errungenschaft der Webentwicklung auseinander setzen. Typescript. \\
+
+\emph{\glqq   
+TypeScript is a free and open-source programming language developed and maintained by Microsoft. It is a strict superset of JavaScript, and adds optional static typing and class-based object-oriented programming to the language. \\
+TypeScript is designed for development of large applications and transcompiles to JavaScript. As TypeScript is a superset of JavaScript, any existing JavaScript programs are also valid TypeScript programs.
+\grqq} \footnote{https://en.wikipedia.org/wiki/TypeScript} \\
+
+Besonders für Entwickler welche aus der Welt der stark-typisierten Programmierwelt kamen war TypeScript ein großer Fortschritt. Durch die Möglichkeit Variablen stark zu typisieren entstand die Möglichkeit Schnittstellen klarer zu definieren. Gleichzeitig wurden die bestehenden Möglichkeiten Entwicklungsumgebungen mit Auto-Vervollständigung auszustatten verbessert. \\
+Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Beschleunigung der Entwicklung, während die Testbarkeit vereinfacht wird und Fehler besser vermieden werden können. Kurz gesagt: Bessere Software in weniger Zeit.
+
+Was für die Anwendung relativ früh klar war war, dass es sich um eine Single Page Application (kurz SPA) handeln sollte. Doch was genau ist das und wieso sollte es verwendet werden? \\
+
 
 \emph{\glqq   
 Als Single-Page-Webanwendung (englisch single-page application, kurz SPA) oder Einzelseiten-Webanwendung wird eine Webanwendung bezeichnet, die aus einem einzigen HTML-Dokument besteht und deren Inhalte dynamisch nachgeladen werden. Diese Art von Web-Architektur steht im Gegensatz zu klassischen Webanwendungen, die aus mehreren, untereinander verlinkten HTML-Dokumenten bestehen. Hierdurch wird allerdings die Grundlage geschaffen, eine Webanwendung in Form einer Rich-Client- bzw. Fat-Client-Verteilung zu entwickeln. Eine verstärkte clientseitige Ausführung der Webanwendung ermöglicht eine Reduzierung der Serverlast sowie die Umsetzung von selbstständigen Webclients, die beispielsweise eine Offline-Unterstützung anbieten.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Single-Page-Webanwendung} \\
 
+Warum also eine Single-Page-Application? Der Hauptvorteil liegt darin, dass bei dem Initialisieren der Seite fast alle benötigten Informationen geladen werden, somit fallen die Ladezeiten nach der ersten Initialisierung sehr gering aus. Das sorgt insbesondere bei Nutzern von mobilen Endgeräten für eine bessere User-Experience, da bei diesen (bedingt durch schwächere Prozessoren) die Ladezeiten besonders ins Gewicht fallen. Gleichzeitig reduzieren sich die Anforderungen an den Webserver, da der Content nur ein einziges mal ausgeliefert werden muss. Lediglich durch die Abfragung einiger Daten zur Laufzeit (wie zum Beispiel das Erhalten einer neuen Aufgabe) wird der Server nach dem Ausliefern der Webseite kontaktiert.\\
 
-Warum also eine Single-Page-Application? Der Hauptvorteil liegt darin, dass bei dem Initialisieren der Seite fast alle benötigten Informationen geladen werden, somit fallen die Ladezeiten nach der ersten Initialisierung sehr gering aus. Das sorgt insbesondere bei Nutzern von mobilen Endgeräten für eine bessere User-Experience, da bei diesen (bedingt durch schwächere Prozessoren) die Ladezeiten besonders ins Gewicht fallen. Gleichzeitig reduzieren sich die Anforderungen an den Webserver, da der Content nur ein einziges mal ausgeliefert werden muss. Lediglich durch die Abfragung einiger Daten zur Laufzeit (wie zum Beispiel das Erhalten einer neuen Aufgabe) wird der Server nach dem Ausliefern der Webseite kontaktiert. \\
+Nachdem nun evaluiert wurde, dass eine SPA ein Gewinn ist also die Frage nach dem Framework / der Library um das umzusetzen. Im Raum stehen zwei Varianten. Zum einen ReactJS (welches seit längerem existiert und weit bekannt ist) oder das gerade in der Beta angekommene Angular 2. \\
+Direkt zu sagen ist, dass Angular 2 von Haus aus mit Typescript gebaut ist. Das bedeutet bester Typescript bei der Entwicklung von Angular 2, was bei ReactJS nur teilweise ist und viele Varianten wie man am besten mit ReactJS und Typescript arbeitet sich widersprechen da keine klare Konvention herrscht. \\
+Zusätzlich implementiert Angular 2 eine bessere Trennung der verschiedenen Komponenten. Während in ReactJS HTML und Javascript Code in der selben Klasse stehen werden in Angular 2 klare Mechanismen aufgezeigt wie diese sauber zu trennen und in verschiedenen Dateien abzulegen sind. Was gleichzeitig auch einer der Nachteile von Angular 2 ist. Dadurch, dass HTML und Script sauber getrennt werden ist es schwerer die Script-Variablen im HTML zu referenzieren und alle Namen im Kopf zu behalten ohne die zweite Datei irgendwo geöffnet zu haben. \\
+Bei Angular 2, sowie ReactJS handelt es sich standardmäßig um Technologien bei denen ``Client-Side Rendering'' betrieben wird. Das beudetet, dass vom Server alle Dateien ausgeliefert werden die benötigt werden. Der Client nimmt diese entgegen und rendert die einzelnen HTML-Komponenten und fügt diese korrekt zusammen. Das bedeutet, dass die Last des Rendering auf den Client übertragen wird. Das bedeutet weniger Aufwand für den Server, gleichzeitig aber eine bessere Performanz für den Server (da dieser nicht selber rendern muss). Was bei Angular2 aber auch unterstützt wird ist die Möglichkeit auf der Seite des Server zu rendern. Das bedeutet wenn man  die Ladezeiten auf dem Client reduzieren will und einen performanten Server zur Hand hat ist dies die korrekte Lösung. Möglich ist dies durch eine kürzlich herausgekommene Erweiterung für Angular 2 \url{https://universal.angular.io/}. \\
+
+Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusätzlich dazu, dass hinter Angular 2 ein Team von Entwicklern steht welche Erfahrungen aus einem vorherigen Projekt (AngularJS) gezogen haben um daraus von neu an ein komplett neues Framework zu erstellen welches aus den Problemen der alten Version gelernt hat und diese ausgemerzt hat.
 
 \subsection{SocketIO}
 
@@ -387,6 +383,8 @@ Spring-Boot-Dokumentation
 
 https://blog.php-dev.info/2014/04/mariadb-vs-mysql/
 https://www.quora.com/What-are-the-advantages-and-disadvantages-of-using-Sinatra-vs-Express-for-a-web-service-API
+https://medium.freecodecamp.com/angular-2-versus-react-there-will-be-blood-66595faafd51#.ufvfcrtqo
+
 
 \bibitem[Blu-ray Disc Association(2005)]{bluray} 
 Blu-ray Disc Association: 

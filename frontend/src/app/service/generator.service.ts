@@ -6,6 +6,7 @@ import {ConfigService} from "./config.service";
 import {HttpService} from "./httpservice.service";
 import {TestData} from "../data/testdata";
 import {SecurityService} from "./security.service";
+import {SecurityResult} from "../data/securityresult";
 
 declare function generateVariables(): any;
 declare function generateMathjax(variables:any): string;
@@ -49,7 +50,7 @@ export class GeneratorService {
     return clone
   }
 
-  public testGenerator(generator: Generator, autotest:boolean, testCount:number, callback:(data:TestData[])=>void ) {
+  public testGenerator(generator: Generator, autotest:boolean, testCount:number, callback:(data:TestData[], result:SecurityResult)=>void ) {
 
     generator = this.parseForComputer(generator)
 
@@ -62,9 +63,10 @@ export class GeneratorService {
         if(oldTag!=null) {
           oldTag.outerHTML='';
         }
-
-        if(!this.security.applySecurity(script)) {
-          console.log('Found not allowed function in script. abort test and warn user')
+        var securityResult = this.security.applySecurity(script);
+        if(!securityResult.valid) {
+          callback([], securityResult);
+          return;
         }
 
         try {
@@ -72,7 +74,7 @@ export class GeneratorService {
         } catch(err) {
           let result = new TestData();
           result.error = err;
-          callback([result])
+          callback([result], securityResult)
           return
         }
 
@@ -96,7 +98,7 @@ export class GeneratorService {
 
 
 
-        callback(retData)
+        callback(retData, securityResult)
       },
       (error:Error) => {
         console.log(error)

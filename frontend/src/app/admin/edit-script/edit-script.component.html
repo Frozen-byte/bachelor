@@ -52,6 +52,13 @@
     <button class="btn btn-approve" (click)="test()">Test</button>
     <button class="btn btn-approve" (click)="create()">Create</button>
   </div>
+  <div *ngIf="!securityResult.valid" class="col-sm-4">
+    <div *ngFor="let result of securityResult.results" [ngClass]="result.allowed? 'success':'fail'">
+      {{result.name}}
+    </div>
+
+  </div>
+
   <div *ngIf="testData">
     <div *ngFor="let data of testData">
       <div *ngIf="data.error" class="error">{{testData.error}}</div>

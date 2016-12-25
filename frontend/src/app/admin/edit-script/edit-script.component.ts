@@ -8,6 +8,7 @@ import {GeneratorService} from "../../service/generator.service";
 import {GeneratedcodeService} from "../../service/generatedcode.service";
 import {TestData} from "../../data/testdata";
 import {HelperFunction} from "../../data/helperfunction";
+import {SecurityResult} from "../../data/securityresult";
 @Component({
   selector: 'or-admin-editgenerator',
   templateUrl: './edit-script.component.html',
@@ -25,6 +26,7 @@ export class EditScriptComponent implements OnInit {
   message: string;
   generator: Generator = new Generator();
   testData:TestData[];
+  securityResult:SecurityResult = new SecurityResult();
   autotest:boolean;
 
   hovered: HelperFunction;
@@ -89,17 +91,26 @@ export class EditScriptComponent implements OnInit {
 
 
   test() {
-    try {
+
       this.generatedCodeService.loadCode(false)
-      this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[]) => {
-        this.testData = data
+      this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
+        this.securityResult = result;
+        this.testData = data;
       })
-    }
+
 
 
   }
 
   create() {
+    this.generatedCodeService.loadCode(false)
+    this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
+      this.securityResult = result;
+      this.testData = data;
+    })
+    if(!this.securityResult.valid) {
+      return;
+    }
     this.httpService.doPost(this.configService.generator, this.generatorService.parseForComputer(this.generator)).subscribe(
       (data: Response) => {
         this.message = data.text()

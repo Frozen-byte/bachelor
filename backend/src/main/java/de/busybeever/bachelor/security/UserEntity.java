@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +26,10 @@ public class UserEntity implements Serializable {
 
 	@Column(name = "password")
     private String password;   
+	
+	@Enumerated
+	@Column(name="role")
+	private Role role;
 
 	public Long getId() {
 		return id;
@@ -44,6 +49,10 @@ public class UserEntity implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	public Role getRole() {
+		return role;
 	}
 	
 	

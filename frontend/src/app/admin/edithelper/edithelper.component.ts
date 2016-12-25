@@ -4,6 +4,8 @@ import {HelperFunction} from "../../data/helperfunction";
 import {ConfigService} from "../../service/config.service";
 import {Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {SecurityService} from "../../service/security.service";
+import {SecurityResult} from "../../data/securityresult";
 @Component({
   selector: 'or-admin-editfunction',
   templateUrl: './edithelper.component.html',
@@ -18,8 +20,13 @@ export class EdithelperComponent implements OnInit {
   //true if editing mathjax, false if editing variable
   editMathjax: boolean = true;
 
+  securityResult: SecurityResult=  {
+    valid:true,
+    results:[]
+  }
 
-  constructor(private httpService: HttpService, private configService: ConfigService) {
+
+  constructor(private httpService: HttpService, private configService: ConfigService, private security:SecurityService) {
   }
 
 
@@ -48,6 +55,15 @@ export class EdithelperComponent implements OnInit {
 
 
   create() {
+
+    this.securityResult = this.security.applySecurity(this.function.code);
+    if(!this.securityResult.valid) {
+      console.log(this.securityResult.results.length)
+      this.securityResult.results.forEach(function(value){
+        console.log(value.name)
+      })
+      return;
+    }
     let url = this.editMathjax ? this.configService.mathjaxfunction : this.configService.variablefunction;
     this.httpService.doPost(url, this.function)
       .subscribe(
