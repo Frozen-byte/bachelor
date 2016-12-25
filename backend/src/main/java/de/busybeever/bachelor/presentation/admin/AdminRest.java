@@ -20,6 +20,7 @@ import de.busybeever.bachelor.data.repository.MathjaxFunctionRepository;
 import de.busybeever.bachelor.data.repository.ScriptRepository;
 import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
 import de.busybeever.bachelor.service.AdminService;
+import de.busybeever.bachelor.service.ValidationService;
 @PreAuthorize("hasAuthority('ADMIN')")
 @RestController
 @RequestMapping("admin")
@@ -36,6 +37,9 @@ public class AdminRest {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private ValidationService validationSerice;
 	
 	@GetMapping("/login")
 	public String test() {
@@ -59,6 +63,9 @@ public class AdminRest {
 	
 	@PostMapping("/generator")
 	public String postEntity(@RequestBody ScriptEntity entity) {
+		if(validationSerice.containsNotAllowedFunctions(entity)) {
+			return "Nicht erlaubte Funktion gefunden";
+		}
 		if(entity.getId()!=null) {
 			ScriptEntity old = scriptRepository.findOne(entity.getId());
 			if(old!=null) {
@@ -67,11 +74,11 @@ public class AdminRest {
 				old.setName(entity.getName());
 				old.setSolutionScript(entity.getSolutionScript());
 				scriptRepository.save(old);
-				return "Updated old entity";
+				return "Alte Entität wurde erneuert";
 			}
 		}
 		scriptRepository.save(entity);
-		return "Created new entity";
+		return "Neue Entität in der Datenbank gespeichert";
 	}
 	
 	@DeleteMapping("/generator")

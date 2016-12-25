@@ -2,15 +2,20 @@ package de.busybeever.bachelor.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.busybeever.bachelor.data.entity.FunctionEntity;
 import de.busybeever.bachelor.data.repository.FunctionRepository;
 import de.busybeever.bachelor.service.AdminService;
+import de.busybeever.bachelor.service.ValidationService;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
+	@Autowired
+	private ValidationService validationService;
+	
 	public <T extends FunctionEntity> String[] getRefactoredFunctionEntities(FunctionRepository<T> repo) {
 		List<T> entites = repo.findAll();
 		String[] data= new String[entites.size()];
@@ -28,6 +33,10 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	public <T extends FunctionEntity> String saveFunction(T entity, FunctionRepository<T> repository) {
+		if(validationService.containsNotAllowedFunctions(entity)) {
+			System.out.println("NOPPPEEE");
+			return "Nicht erlaubte Funktion gefunden";
+		}
 		if(entity.getId()!=null) {
 			T old = repository.findOne(entity.getId());
 			if(old!=null) {

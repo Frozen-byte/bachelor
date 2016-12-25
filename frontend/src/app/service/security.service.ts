@@ -50,6 +50,8 @@ export class SecurityService {
       }
       match = this.regex.exec(script);
     }
+    //test only
+    //result.valid=true;
     return result;
   }
 }
