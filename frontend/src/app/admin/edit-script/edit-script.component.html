@@ -61,7 +61,7 @@
 
   <div *ngIf="testData">
     <div *ngFor="let data of testData">
-      <div *ngIf="data.error" class="error">{{testData.error}}</div>
+      <div *ngIf="data.error" class="error">{{data.error}}</div>
       <div *ngIf="!data.error">
         <div *ngIf="data.success===undefined" class="row" [MathJax]="data.mathjax"></div>
         <div *ngIf="data.success!==undefined" [ngClass]="data.success? 'success':'fail'" class="row" [MathJax]="data.mathjax">te</div>

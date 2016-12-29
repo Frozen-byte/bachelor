@@ -96,6 +96,8 @@ export class EditScriptComponent implements OnInit {
       this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
         this.securityResult = result;
         this.testData = data;
+        console.log(result)
+        console.log(data)
       })
 
 

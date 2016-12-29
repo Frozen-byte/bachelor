@@ -50,7 +50,7 @@ public class ValidationServiceImpl implements ValidationService {
 		return allowedMethods;
 	}
 	
-	private Pattern pattern = Pattern.compile("([\\.a-zA-Z]*)\\(.*\\)");
+	private static final Pattern pattern = Pattern.compile("([\\.a-zA-Z]*)\\(.*\\)");
 	
 	@Override
 	public boolean containsNotAllowedFunctions(FunctionEntity entity) {

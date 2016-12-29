@@ -1,22 +1,26 @@
+
+
 <div *ngIf="!message">
   <div *ngIf="teamnames">
     <div class="col-sm-12">
-      <span>Bitte wähle dein Team aus</span>
+      <h3 align="center">
+        Willkommen bei Open Tasks. Bitte wählen dein Team aus um mit der Bearbeitung der Aufgaben zu beginnen.
+      </h3>
     </div>
 
-    {{selectedteam}}
-    <div class="row">
-      <div *ngFor="let team of teamnames" class="col-sm-12 col-md-4 col-lg-2">
-        <button class="btn btn-block" [ngClass]="{'selected': selectedteam==team}" (click)='selectedteam=team'>{{team}}
-        </button>
-
-      </div>
+    <div class="col-sm-12">
+      <b>{{selectedteam}}</b>
     </div>
-    <div class="row">
-      <button class="btn" (click)="login()">Login</button>
+    <div *ngFor="let team of teamnames" class="col-sm-12 col-md-4 col-lg-2">
+      <button class="btn btn-block" [ngClass]="{'selected': selectedteam==team}" (click)='selectedteam=team'>{{team}}
+      </button>
+
+    </div>
+    <div class="col-sm-12">
+      <button class="btn btn-primary" (click)="login()">Login</button>
     </div>
   </div>
 </div>
-<div *ngIf="message">
+<div *ngIf="message" class="col-sm-12">
   {{message}}
 </div>
