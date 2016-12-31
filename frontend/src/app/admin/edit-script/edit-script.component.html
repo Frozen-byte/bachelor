@@ -11,6 +11,12 @@
   </div>
 
   <div class="row">
+    <span>FormType</span>
+    <select [(ngModel)]="generator.formType">
+      <option *ngFor="let type of formTypes">{{type}}</option>
+    </select>
+  </div>
+  <div class="row">
     <span>Name</span><input type="text" [(ngModel)]="generator.name"/>
   </div>
 
@@ -40,6 +46,7 @@
   <div class="row">
     <textarea autosize cols="100" id="solution" spellcheck="false" [(ngModel)]="generator.solutionScript"></textarea>
   </div>
+
 
 
   <div class="row">

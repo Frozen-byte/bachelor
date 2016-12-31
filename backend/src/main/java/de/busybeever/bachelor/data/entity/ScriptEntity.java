@@ -5,10 +5,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.aspectj.util.GenericSignature.FormalTypeParameter;
+
+import de.busybeever.bachelor.data.enums.FormType;
 
 
 
@@ -31,6 +36,10 @@ public class ScriptEntity implements Serializable{
 
 	@Column(nullable=false, name="mathjaxscript")
 	private String mathjaxScript;
+	
+	@Enumerated
+	@Column(nullable=false, name="formtype")
+	private FormType formType;
 	
 	public ScriptEntity(){}
 
@@ -62,10 +71,14 @@ public class ScriptEntity implements Serializable{
 		return variableScript;
 	}
 	
+	public FormType getFormType() {
+		return formType;
+	}
+
 	@Override
 	public String toString() {
 		return "ScriptEntity [id=" + id + ", name=" + name + ", variableScript=" + variableScript + ", solutionScript="
-				+ solutionScript + ", mathJaxScript=" + mathjaxScript + "]";
+				+ solutionScript + ", mathjaxScript=" + mathjaxScript + ", formType=" + formType + "]";
 	}
 
 	public void setName(String name) {
@@ -82,6 +95,10 @@ public class ScriptEntity implements Serializable{
 
 	public void setMathjaxScript(String mathjaxScript) {
 		this.mathjaxScript = mathjaxScript;
+	}
+	
+	public void setFormType(FormType formType) {
+		this.formType = formType;
 	}
 	
 	

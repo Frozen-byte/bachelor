@@ -22,6 +22,8 @@ export class EditScriptComponent implements OnInit {
   constructor(private httpService: HttpService, private configService: ConfigService, private generatorService: GeneratorService, private generatedCodeService: GeneratedcodeService) {
   }
 
+  formTypes = ['Text', 'Numbers', 'Matrix']
+
   generators: string[];
   message: string;
   generator: Generator = new Generator();
@@ -51,6 +53,7 @@ export class EditScriptComponent implements OnInit {
           (data: Generator) => {
             this.generatorService.parseForHuman(data)
             this.generator = data;
+            console.log(data);
           }
         )
     }
@@ -96,8 +99,6 @@ export class EditScriptComponent implements OnInit {
       this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
         this.securityResult = result;
         this.testData = data;
-        console.log(result)
-        console.log(data)
       })
 
 
