@@ -327,12 +327,22 @@ Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusä
 
 \chapter{Ein Rundgang durch das Frontend}
 
-
+Das Frontend ist im wesentlichen in zwei große Abschnitte geteilt - Die Ansicht des Nutzers (Also die Anwendung wie sie von den Studenten gesehen wird die dort ihre Aufgaben erhalten und bearbeiten können) und die Ansicht des Administrators, welche hauptsächlich die Aufgabe hat die Anwendung zu verwalten und Einstellungen zu ändern. Daher werden diese beiden Sichten im Nachfolgenden getrennt voneinander behandelt, beziehungsweise ein Einblick in die Funktionsweise gewährt.
 
 \section{Die Ansicht des Nutzers}
 
 
 \subsection{Die Auswahl des Teams}
+
+Bevor mit der Bearbeitung der Aufgaben beginnen kann ist vorher der Login-Prozess von Nöten. Der Nutzer muss dafür lediglich ein Team auswählen und dies über Knopf-Druck bestätigen. Um die Auswahl besonders für Mobiltelefone gut auszulegen ist die Auswahl über Knöpfe gewählt worden. Um die aktuelle Auswahl hervorzuheben wird das ausgewählte Team als Text über den Knöpfen dargestellt, zusätzlich wird der entsprechende Knopf mit rotem Text versehen.
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/UserLogin} 
+\caption[Login für den Nutzer / Teamauswahl]{Team Auswahl für den Nutzer}
+\end{figure} 
+
+Sobald der Login Knopf betätigt wurde werden mehrere Pakete an den Server geschickt. Bei dem ersten handelt es sich um das Erhalten des Tokens welches in Zukunft für die eindeutige Identifizierung und Authentifizierung zur Nutzung der REST-API genutzt wird. Sobald dieser Prozess beendet wurde wird die Auswahl des Teams übermittelt. Sind alle diese Prozesse erfolgreich wird auf die Bearbeitung der Aufgaben weitergeleitet. 
 
 \subsection{Erhalten und bearbeiten der Aufgaben}
 
