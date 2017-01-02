@@ -8,7 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import de.busybeever.bachelor.data.entity.ScriptEntity;
+import de.busybeever.bachelor.data.enums.FormType;
+import de.busybeever.bachelor.data.repository.ScriptRepository;
 import de.busybeever.bachelor.javascript.JavaScriptWrapper;
+import de.busybeever.bachelor.presentation.client.Assignment;
 import de.busybeever.bachelor.presentation.client.Task;
 import de.busybeever.bachelor.presentation.generator.StartGeneratorObject;
 import de.busybeever.bachelor.presentation.generator.UpdateOverviewObject;
@@ -22,10 +26,14 @@ import de.busybeever.bachelor.service.UserDataService;
 public class GeneratorServiceImpl implements GeneratorService{
 
 	private JavaScriptWrapper scriptWrapper;
+	private FormType formType;
 
 	@Autowired
 	private ScriptService scriptService;
 
+	@Autowired
+	private ScriptRepository scriptRepository;
+	
 	@Autowired
 	private UserDataService userDataService;
 
@@ -39,12 +47,13 @@ public class GeneratorServiceImpl implements GeneratorService{
 		if (scriptWrapper != null) {
 			return HttpStatus.BAD_REQUEST;
 		}
-
-		String script = scriptService.constructScript(obj.getName());
-		if (script == null) {
+		ScriptEntity entity = scriptRepository.findByName(obj.getName());
+		
+		if (entity == null) {
 			return HttpStatus.NOT_FOUND;
 		}
 
+		String script = scriptService.constructScript(entity);
 		try {
 			scriptWrapper = new JavaScriptWrapper(obj.getName(), script, scriptService.getVariableScript(),
 					scriptService.getMathjaxScript());
@@ -56,6 +65,7 @@ public class GeneratorServiceImpl implements GeneratorService{
 			return HttpStatus.INTERNAL_SERVER_ERROR;
 
 		}
+		this.formType = entity.getFormType();
 		return HttpStatus.OK;
 	}
 
@@ -81,12 +91,14 @@ public class GeneratorServiceImpl implements GeneratorService{
 		Bindings variables;
 
 		variables = scriptWrapper.generateVariables();
-		return new Task(scriptWrapper.getComputedMathjax(variables), variables);
+		return new Task(scriptWrapper.getComputedMathjax(variables), variables, formType);
 
 	}
 
-	public ResponseEntity<String> validateAnswer(String answer, Integer userId) {
-
+	public ResponseEntity<Assignment> validateAnswer(String answer, Integer userId) {
+		if(!gameStatusService.isGameRunning()) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		Task task = userDataService.getTask(userId);
 		if (task == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -94,13 +106,12 @@ public class GeneratorServiceImpl implements GeneratorService{
 			try {
 				boolean result = scriptWrapper.validateAnswer(task.getVariables(), answer);
 				String team = userDataService.getTeam(userId);
-				System.out.println(userId + " uid");
 				if (result) {
 					gameStatusService.incrementCorrectAnswer(team);
 
 					Task newTask = generateTask();
 					userDataService.addTask(userId, newTask);
-					return new ResponseEntity<>(newTask.getMathjax(), HttpStatus.OK);
+					return new ResponseEntity<>(new Assignment(newTask.getMathjax(), newTask.getFormType()), HttpStatus.OK);
 				} else {
 					gameStatusService.incrementWrongAnswer(team);
 					return new ResponseEntity<>(HttpStatus.OK);
@@ -108,7 +119,7 @@ public class GeneratorServiceImpl implements GeneratorService{
 			} catch (ScriptException e) {
 				e.printStackTrace(); 
 				globalErrorService.appendError(e.getMessage());
-		
+
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();

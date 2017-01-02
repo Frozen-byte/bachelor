@@ -39,8 +39,10 @@ export class StartnewComponent implements OnInit {
         (data: string[]) => {
           this.generators = data;
           this.init=false
+          console.log("1")
         }, (error: any) => {
           this.init=false;
+          console.log("2")
         }
       )
 

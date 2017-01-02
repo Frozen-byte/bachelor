@@ -26,6 +26,8 @@ import { UserloginComponent } from './user/userlogin/userlogin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { ErrorComponent } from './admin/error/error.component';
 import {SecurityService} from "./service/security.service";
+import { MatrixformComponent } from './user/forms/matrix/matrixform/matrixform.component';
+import { NumberformComponent } from './user/forms/number/numberform/numberform.component';
 const appRoutes: Routes = [
   {
     path: 'admin/:type',
@@ -42,7 +44,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
   declarations: [ AppComponent,LoginComponent, AdminComponent,EditScriptComponent, EditScriptComponent, MathjaxComponent,
-    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent],
+    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent],
   bootstrap:    [ AppComponent ],
   providers: [ConfigService,  HttpService, GeneratorService, GeneratedcodeService, SecurityService]
 })

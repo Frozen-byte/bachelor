@@ -349,9 +349,47 @@ Sobald der Login Knopf betätigt wurde werden mehrere Pakete an den Server gesch
 
 
 \section{Die Sicht des Administrators}
-\subsection{Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln}
-\subsection{Starten eines neuen Aufgaben-Generators}
+
+Ein weiterer wichtiger Punkt der Anwendung war die Verwaltung und Übersicht über die Aufgaben und die Lösungen die von den Studenten abgegeben wurden. Nicht zu vergessen ist allerdings auch, dass die Aufgaben in diesem Abschnitt verwaltet und erweitert werden müssen. \\
+Daher wurde diese Sektion in die Verwaltung von laufenden Aufgaben (Übersicht / Starten eines neuen Aufgaben-Generators), die Verwaltung und Erweiterung von Aufgaben (Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln) und das Evaluieren von Fehlerzuständen aufgeteilt (Der Fehler-Log). Die Navigation innerhalb diesem Teil der Anwendung funktioniert über eine Navigationsleiste \\
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/NavBar} 
+\caption[Navigationsleiste Admin-Bereich]{Navigationsleiste Admin-Bereich}
+\end{figure} 
+
 \subsection{Übersicht über die laufende und letzte Aufgabe}
+
+Die während der Laufzeit wahrscheinlich am meisten genutzte Seite : Die Übersicht. Hier wird eine Oberfläche dargestellt, welche optisch aufbereitet die Daten anzeigt die von der Anwendung erzeugt werden: Die Zeit wie lange eine Aufgabe noch läuft, sowie den aktuellen Stand an richtig / falsch gelösten Aufgaben der verschiedenen Teams \\
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/Overview} 
+\caption[Übersicht Seite während einer laufenden Aufgabe]{Übersicht Seite während einer laufenden Aufgabe}
+\end{figure} 
+In der obersten Zeile ist immer zu sehen welcher Generator momentan läuft.
+
+Um die Zeit die noch verbleibt darzustellen wurde die Bibliothek jQuery-Knob \footnote{https://github.com/aterrien/jQuery-Knob} verwendet, welche in Eigenarbeit in eine Angular 2 Komponente umgewandelt wurde um sie dann in die Übersicht Seite einzubetten. \\
+
+Darunter ist abschließend der Stand der einzelnen Teams zu sehen. Die Namen der Teams werden über den Fortschrittsbalken angezeigt, welche das Verhältnis von richtig zu falsch gelösten Aufgaben darstellt. Zusätzlich ist, sobald die erste Aufgabe korrekt gelöst wurde, der absolute Stand der korrekt gelösten Aufgaben zu sehen. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/Bars} 
+\caption[Fortschrittsbalken]{Fortschrittsbalken}
+\end{figure} 
+
+Sollte die Zeit der Bearbeitung auslaufen ändert sich die Ansicht auf der Seite. Die Zeitanzeige verschwindet, und der Name des laufenden Generators wird mit der Info-Meldung ersetzt, dass zur Zeit keine aktive Aufgabe läuft. Die Anzahl der richtig und falsch gelösten Aufgaben der vergangenen Aufgabe wird allerdings weiterhin korrekt angezeigt und kann ausgewertet oder mit den Studenten besprochen werden.
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/TaskOver} 
+\caption[Übersicht nach Ende der Aufgabe]{Übersicht nach Ende der Aufgabe}
+\end{figure} 
+
+
+
+\subsection{Starten eines neuen Aufgaben-Generators}
+\subsection{Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln}
 \subsection{Der Fehler-Log}
 
 

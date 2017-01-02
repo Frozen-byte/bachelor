@@ -91,13 +91,4 @@ public class ScriptServiceImpl implements ScriptService{
 		
 		return script;
 	}
-	
-	public String constructScript(String name) {
-		ScriptEntity entity = scriptRepository.findByName(name);
-		if(entity!=null) {
-			return constructScript(entity);
-		} else {
-			return null;
-		}
-	}
 }

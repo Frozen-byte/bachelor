@@ -5,6 +5,7 @@ import {Response} from '@angular/http'
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Rx';
 import {Title} from '@angular/platform-browser'
+import {Assignment} from "../data/assignment";
 
 @Component({
   selector: 'app-user',
@@ -13,7 +14,7 @@ import {Title} from '@angular/platform-browser'
 })
 export class UserComponent implements OnInit {
 
-  task: string;
+  task: Assignment;
   answer: string;
   message: string;
   messageRed: boolean;
@@ -23,51 +24,48 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
 
-    if(!this.config.initialized) {
-      this.config.setCompletionCallback( ()=> {
-        if(this.http.isAuthenticated()) {
-          this.getTask()
-        }
-      })
-    }
     this.titleService.setTitle("User")
     if (this.http.isAuthenticated()) {
       this.getTask()
     }
-
   }
 
   send() {
     if (this.answer && this.answer != '') {
       this.http.doPost(this.config.task + "?solution=" + encodeURIComponent(this.answer), {})
+        .map((response: Response) => response.json())
         .subscribe(
-          (data: Response) => {
-            if (data.text() == '') {
+          (data: Assignment) => {
+            if (data.mathjax=='') {
               this.setMessage("Falsche Antwort", true)
             } else {
-              this.task = data.text()
+              this.task = data;
               this.setMessage("Richtige Antwort", false)
             }
 
           }, (error: any) => {
 
             if (error.status == 500) {
-              alert("Schwerwiegender Server Fehler")
+              alert("Schwerwiegender Server Fehler");
+            }
+            else if(error.status==400) {
+              alert("Es läuft keine Aufgabe");
             }
           }
         )
 
     } else {
-      this.setMessage("Bitte geben sie eine gültige Antowrt ein", true);
+      this.setMessage("Bitte geben sie eine gültige Antwort ein", true);
     }
   }
 
   getTask() {
-    console.log("s")
     this.http.doGet(this.config.task)
+      .map((response: Response) => response.json())
       .subscribe(
-        (data: Response) => {
-          this.task = data.text()
+        (data: Assignment) => {
+          this.task = data;
+          console.log(data)
         },
         (error: any) => {
           console.log(error)
@@ -77,7 +75,7 @@ export class UserComponent implements OnInit {
           }
           //Internal server error, corrupt script
           if (error.status == 500) {
-            alert("Critical error getting task. This is server side")
+            alert("Schwerwiegender Fehler auf der Server Seite")
           }
         }
       )

@@ -10,10 +10,18 @@
       </div>
     </div>
     <div *ngIf="task">
-      <div class="row panel panel-default" [MathJax]="task"></div>
+      <div class="row panel panel-default" [MathJax]="task.mathjax"></div>
       <div class="row">
         <label for="answer">Antwort: {{answer}}</label>
+      </div>
+      <div class="row" *ngIf="task.formType=='Text'">
         <input type="text" id="answer" class="form-control" [(ngModel)]="answer">
+      </div>
+      <div class="row" *ngIf="task.formType=='Numbers'">
+        <or-numberform></or-numberform>
+      </div>
+      <div class="row" *ngIf="task.formType=='Matrix'">
+        <or-matrixform [(answer)]="answer"></or-matrixform>
       </div>
       <button type="button" class="btn btn-primary" (click)="send()">Send</button>
     </div>

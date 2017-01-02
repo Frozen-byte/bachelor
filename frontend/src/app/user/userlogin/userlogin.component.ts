@@ -37,7 +37,6 @@ export class UserloginComponent implements OnInit {
           this.selectedteam = this.teamnames[0]
         },
         (error:any) => {
-          console.log(error.status)
           if(error.status==0) {
             this.message = 'REST-Server offline..'
           }
@@ -56,18 +55,16 @@ export class UserloginComponent implements OnInit {
       }
 
       this.httpService.login(auth, (success: boolean) => {
-        this.httpService.setAdmin(false)
+        if(success) {
+          this.httpService.setAdmin(false)
+          this.httpService.doPost(this.configService.clientlogin, {team: this.selectedteam})
+            .subscribe(
+              (data: Response) => {
 
-
-        this.httpService.doPost(this.configService.clientlogin, {team: this.selectedteam})
-          .subscribe(
-            (data: Response) => {
-              this.update.emit();
-              //Workaround until event emitter fixxed
-              this.router.navigateByUrl('/user');
-            }
-          )
-
+                this.update.emit();
+              }
+            )
+        }
       })
     }
 

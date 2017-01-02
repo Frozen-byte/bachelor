@@ -1,0 +1,18 @@
+<!--
+<input type="text" [ngModel]=answer (ngModelChange)="updateData($event)">
+-->
+<div *ngFor="let arr of answerArr; let row=index" class="row">
+  <div class="col-sm-2" *ngFor="let answer of arr; let column=index">
+    <input type="text" (keyup)="updateAnswer(row,column, $event)" [value]="answerArr[row][col]">
+    {{answerArr[row]}}
+  </div>
+</div>
+
+
+<div *ngFor="let arr of answerArr; let row=index" class="row">
+  <div class="col-sm-2" *ngFor="let answer of arr; let column=index">
+    <input type="text" [(ngModel)]="answerArr[row][col]">
+
+  </div>
+</div>
+

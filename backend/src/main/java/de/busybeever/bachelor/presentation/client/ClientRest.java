@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.busybeever.bachelor.data.enums.FormType;
 import de.busybeever.bachelor.service.GameStatusService;
 import de.busybeever.bachelor.service.GeneratorService;
 import de.busybeever.bachelor.service.GlobalErrorService;
@@ -50,11 +51,12 @@ public class ClientRest {
 	}
 	
 	@GetMapping("task")
-	public ResponseEntity<String> getTask(HttpServletRequest request) {
+	public ResponseEntity<Assignment> getTask(HttpServletRequest request) {
 		Integer userId = (Integer) request.getSession().getAttribute("id");
 		//Mb make this whole stuff a service method to keep controller clean
 		if(gameStatusService.isGameRunning()) {
 			Task task = userDataService.getTask(userId);
+			
 			if(task==null) {
 				try {
 					task = generatorService.generateTask();
@@ -64,7 +66,7 @@ public class ClientRest {
 				}
 				userDataService.addTask(userId, task);
 			}
-			return new ResponseEntity<String>(task.getMathjax(), HttpStatus.OK);
+			return new ResponseEntity<Assignment>(new Assignment(task.getMathjax(), task.getFormType()), HttpStatus.OK);
 		}else {
 			//Generator is null => no task running right now
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -73,10 +75,7 @@ public class ClientRest {
 	}
 	
 	@PostMapping("task")
-	public ResponseEntity<?> postTask(@RequestParam("solution") String solution, HttpServletRequest request) {
-		if(gameStatusService.isGameRunning()) {
-			
-		}
+	public ResponseEntity<Assignment> postTask(@RequestParam("solution") String solution, HttpServletRequest request) {
 		Integer userId = (Integer) request.getSession().getAttribute("id");
 		return generatorService.validateAnswer(solution, userId);
 		

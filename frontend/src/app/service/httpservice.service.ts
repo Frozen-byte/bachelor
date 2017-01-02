@@ -57,6 +57,7 @@ export class HttpService {
         this.jwt = data.json().token
         callback(true)
       }, (error: Error) => {
+        console.log(error)
         callback(false)
       }
     )

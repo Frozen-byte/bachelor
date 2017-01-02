@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import de.busybeever.bachelor.javascript.JavaScriptWrapper;
+import de.busybeever.bachelor.presentation.client.Assignment;
 import de.busybeever.bachelor.presentation.client.Task;
 import de.busybeever.bachelor.presentation.generator.StartGeneratorObject;
 import de.busybeever.bachelor.presentation.generator.UpdateOverviewObject;
@@ -20,6 +21,6 @@ public interface GeneratorService {
 
 	public UpdateOverviewObject getStatus();
 	public Task generateTask() throws ScriptException;
-	public ResponseEntity<String> validateAnswer(String answer, Integer userId);
+	public ResponseEntity<Assignment> validateAnswer(String answer, Integer userId);
 
 }

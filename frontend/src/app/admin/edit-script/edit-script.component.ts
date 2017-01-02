@@ -53,7 +53,6 @@ export class EditScriptComponent implements OnInit {
           (data: Generator) => {
             this.generatorService.parseForHuman(data)
             this.generator = data;
-            console.log(data);
           }
         )
     }
