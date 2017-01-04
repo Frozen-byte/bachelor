@@ -23,7 +23,7 @@ import de.busybeever.bachelor.service.ScriptService;
 import de.busybeever.bachelor.service.UserDataService;
 
 @Service
-public class GeneratorServiceImpl implements GeneratorService{
+public class GeneratorServiceImpl implements GeneratorService {
 
 	private JavaScriptWrapper scriptWrapper;
 	private FormType formType;
@@ -33,7 +33,7 @@ public class GeneratorServiceImpl implements GeneratorService{
 
 	@Autowired
 	private ScriptRepository scriptRepository;
-	
+
 	@Autowired
 	private UserDataService userDataService;
 
@@ -48,7 +48,7 @@ public class GeneratorServiceImpl implements GeneratorService{
 			return HttpStatus.BAD_REQUEST;
 		}
 		ScriptEntity entity = scriptRepository.findByName(obj.getName());
-		
+
 		if (entity == null) {
 			return HttpStatus.NOT_FOUND;
 		}
@@ -96,7 +96,7 @@ public class GeneratorServiceImpl implements GeneratorService{
 	}
 
 	public ResponseEntity<Assignment> validateAnswer(String answer, Integer userId) {
-		if(!gameStatusService.isGameRunning()) {
+		if (!gameStatusService.isGameRunning()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Task task = userDataService.getTask(userId);
@@ -111,13 +111,14 @@ public class GeneratorServiceImpl implements GeneratorService{
 
 					Task newTask = generateTask();
 					userDataService.addTask(userId, newTask);
-					return new ResponseEntity<>(new Assignment(newTask.getMathjax(), newTask.getFormType()), HttpStatus.OK);
+					return new ResponseEntity<>(new Assignment(newTask.getMathjax(), newTask.getFormType()),
+							HttpStatus.OK);
 				} else {
 					gameStatusService.incrementWrongAnswer(team);
 					return new ResponseEntity<>(HttpStatus.OK);
 				}
 			} catch (ScriptException e) {
-				e.printStackTrace(); 
+				e.printStackTrace();
 				globalErrorService.appendError(e.getMessage());
 
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

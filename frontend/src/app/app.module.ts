@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {Autosize} from 'angular2-autosize';
@@ -42,7 +42,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
+  imports:      [ BrowserModule, FormsModule,ReactiveFormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
   declarations: [ AppComponent,LoginComponent, AdminComponent,EditScriptComponent, EditScriptComponent, MathjaxComponent,
     EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent],
   bootstrap:    [ AppComponent ],

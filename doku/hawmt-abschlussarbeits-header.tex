@@ -24,6 +24,7 @@
 \usepackage{listings}
 \usepackage{color}
 
+
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -60,6 +61,15 @@
 % Fonteinstellungen fuer Bildunterschriften: serifenlos (sf = sans serif), "Abbildung" fett (bf = bold face)
 \setkomafont{captionlabel}{\sffamily\bfseries}
 \setkomafont{caption}{\sffamily}
+
+\lstset{
+    string=[s]{"}{"},
+    stringstyle=\color{blue},
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
+
+
 
 %------------------------------------------------------------------------------------------------------------------
 %------ Eigenstaendigkeitserklaerung im gerahmten Kasten (parbox in einer framebox) ------

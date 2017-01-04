@@ -322,8 +322,11 @@ Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusä
 
 \subsection{SocketIO}
 
+Alternative: PubNub, WS, uWebSockets
 
+\subsection{JSON Web Tokens} \label{JWT}
 
+Alternative: Basic Auth, Cookie Authentication
 
 \chapter{Ein Rundgang durch das Frontend}
 
@@ -399,7 +402,45 @@ Sollte die Zeit der Bearbeitung auslaufen ändert sich die Ansicht auf der Seite
 
 \section{Die Sicherung der REST-API}
 
+Ein wichtiger Punkt bei der Entwicklung eines Backends ist immer die Sicherheit. Daher wird in diesem Kapitel darauf eingegangen wie in dieser Applikation die Sicherheit der REST-API, sowie die zusätzliche Sicherheit die auf dieser Seite für den Nutzer eingebaut wurde, erreicht wurde. \\
+
+\subsection{Authentifizierung und Rollen-System}
+
+Eine der grundlegenden Fragen wenn es um Sicherheit geht ist die Authentifizierung. Für diese Anwendung wurden \hyperref[JWT]{JSON Web Tokens} gewählt um eine Authentifizierung zu gewährleisten. \\
+In der Implementation bedeutet dies, dass bevor der erste Austausch von Nutzdaten erfolgen kann als erstes der Austausch des Tokens erfolgen muss. Von der Seite des Nutzers wird eine Anfrage gesendet welche Nutzername und Passwort beinhaltet. Dieses wird mit der Datenbank abgeglichen. Wird der Nutzer gefunden und ist das Passwort korrekt wird ein Token generiert und an den Anfrage-Steller zurück gesendet. Wichtig ist hierbei zu erwähnen, dass die Passwörter nur in kodierter Form in der Datenbank vorliegen (für diese Anwendung wurde als Kodierung der Algorithmus MD5 gewählt) und so gewährleistet wird, dass wenn ein fremder Lesezugriff auf die Datenbank auftreten sollte die Passwörter schwerer zu entschlüsseln sind. \\
+Jedes mal wenn nun Daten abgefragt werden sollen schickt der Nutzer sein Token mit. Der Server überprüft die Validität des Tokens und wenn diese gewährleistet wurde erhält der Nutzer die angefragten Daten. \\
+
+Allerdings ist dies nicht der einzige Mechanismus der in der REST-API eingebaut wurde. Jeder Nutzer hat eine Rolle welche in der Datenbank eingespeichert ist. Bei der Authentifizierung wird ebenfalls die Rolle dieses Nutzers ausgelesen. Jede Rolle hat einen fest zugewiesenen Satz an Befugnissen, welche diesem Nutzer angehängt werden. \\
+Der Großteil der Controller hat als Voraussetzung um die Daten abfragen zu dürfen vorher eine Abfrage ob die Person die aktuell die Daten anfragt die benötigte Befugnis besitzt diese zu lesen. Ist diese Abfrage erfolgreich werden die Daten ausgeliefert, ansonsten kommt als Antwort lediglich ein 403 - Forbidden.
+
 \section{Dokumentation der REST-Schnittstellen}
+
+\subsection{Admin}
+
+Benötigte Befugnis : ADMIN \\
+
+\noindent Pfad: admin/generators \\
+Methode: GET \\
+Beschreibung: Sucht alle Generatoren und gibt ihre Namen zurück \\
+Rückgabe: \begin{lstlisting} 
+["Euklidischer Algorithmus", "Matritzenmultiplikation"]
+\end{lstlisting}
+
+\noindent Pfad: admin/generator \\
+Methode: GET \\
+Beschreibung: Sucht den Generator mit dem angegebenen Namen und gibt ihn zurück \\
+URL-Parameter: name : Der Name des Generators \\
+Rückgabe: \begin{lstlisting} 
+{
+  "id": 19,
+  "name": "Einfache Addition",
+  "variableScript": "var a = vf.int(10,20)\nvar b = vf.int(10,20)\nvar solution = a+b\nreturn {a:a, b:b, solution:solution}",
+  "solutionScript": "return variables.a + variables.b = solution",
+  "mathjaxScript": "return \"$$ $a + $b $$\"",
+  "formType": "Numbers"
+}
+\end{lstlisting}
+
 
 \section{Die Generierung und Validierung der Aufgaben}
 

@@ -21,7 +21,7 @@ import de.busybeever.bachelor.data.repository.ScriptRepository;
 import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
 import de.busybeever.bachelor.service.AdminService;
 import de.busybeever.bachelor.service.ValidationService;
-@PreAuthorize("hasAuthority('ADMIN')")
+//@PreAuthorize("hasAuthority('ADMIN')")
 @RestController
 @RequestMapping("admin")
 public class AdminRest {
