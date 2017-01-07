@@ -72,7 +72,7 @@ Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source h
 
 \section{Analyse des Anwendungsfeldes}
 
-Bevor man sich nun an die Entwicklung der Anwendung macht bleibt eine Frage offen. Für wen ist sie eigentlich gemacht und wie soll sie eingesetzt werden? \\
+Bevor man sich nun an die Entwicklung der Anwendung macht bleibt eine Frage offen: Für wen ist sie eigentlich gemacht und wie soll sie eingesetzt werden? \\
 Als grobe Eingrenzung lässt sich sagen, dass diese Anwendung für die Lehre geschaffen wird, um genau zu sein für den Teilbereich der Mathematik. Wichtig ist hierbei zu beachten, dass sich die Applikation nach dem momentanen Konzept nur während der Vorlesung / des Unterrichts benutzen lässt. Dies liegt daran, dass die Idee Teams vorsieht, welche zusammenarbeiten und so Punkte sammeln. Die Arbeit als einzelne Person ist nicht vorgesehen. \\
 Da die Anwendung vorsieht, dass jeder Nutzer einen eigenen Zugang zum Internet hat verlagert sich das Hauptnutzungsfeld in höhere Bildungsstufen, zum Beispiel Universität und Fachhochschule, da dort jeder ein eigenes Smartphone oder sogar einen Laptop benutzt. \\
 Zusammenfassend lässt sich also sagen, dass die Anwendung hauptsächlich im Bereich der Lehre der Mathematik in Universitäten und Fachhochschulen zum Einsatz kommen wird.
@@ -89,9 +89,6 @@ An zweiter Stelle befassen wir uns mit der Darstellung der Aufgabe. Um die vorhe
 \item Die Lösung \\
 Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache übrig. Die Validierung der Aufgabe. Es wird die Lösung des Nutzers übergeben und festgestellt ob diese korrekt gelöst wurde oder nicht.
 \end{enumerate}
-
-
-\section{Analyse der Anforderungen}
 
 \section{Verwendete Technologien}
 
@@ -324,9 +321,18 @@ Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusä
 
 Alternative: PubNub, WS, uWebSockets
 
+Es stand bereits sehr früh klar, dass Daten vom Server zum Client übertragen werden müssen um den aktuellen Stand der Aufgaben für die Übersicht des Administrators aktuell zu halten. Früher hätte man dafür Long Polling verwendet, doch heute gibt es eine Technologie, welche erheblich besser für diesen Zweck geeignet ist: Websockets. \\
+WEBSOCKET DEFINITION
+Für dieses Protokoll gibt es inzwischen etliche Implementierungen (PubNub, WS, uWebSockets um nur einige zu nennen), da für dieses Projekt am wichtigsten war eine zuverlässige Lösung zu haben fiel die Entscheidung am Ende auf socket.io, da es ein Projekt ist welches schon sehr lange genutzt, gewartet und weiterentwickelt ist. Daher ist bei einem so erfahrenen Entwicklerteam zu rechnen, dass es recht reibungslos funktioniert und auch zukünftige Versionen stabil und performant sind.
+
 \subsection{JSON Web Tokens} \label{JWT}
 
 Alternative: Basic Auth, Cookie Authentication
+
+Wenn man im Web-Bereich Anwendungen entwickelt gibt es einne Abschnitt welcher fast immer relevant ist: Die Authentifizierung. Daher ist dieser Bereich inzwischen auch so vielschichtig und es gibt enorm viele Möglichkeiten und Verfahren Authentifizierung erfolgreich umzusetzen. Als Verfahren welches wohl am längsten dabei ist gibt es zum Beispiel ``Basic Auth''. Hierbei wird bei jeder Anfrage im Header der Nutzername und das Passwort übertragen. Dieses wird auf Server Seite überprüft und bei Korrektheit die Daten ausgeliefert. \\
+Vorteile von anderen aufzählen. Cookie Authentication OAuth
+
+Am Ende ist die Wahl auf JSON Web Tokens(JWT) gefallen. Dieses Prinzip basiert darauf, dass der Nutzer bei den Anfragen ein Token mitschickt welches alle Daten benötigt die zur Authentifizierung notwendig sind. Zusätzlich beinhaltet JWT die Möglichkeit Nutzdaten im Token mitzuschicken, das bedeutet, dass der Nutzer nach der Authentifizierung Daten erhalten kann welche für die gesamte Nutzung der Anwendung wichtig sind, wie zum Beispiel welche Rolle er erhalten hat und welche Rechte damit verbunden sind. 
 
 \chapter{Ein Rundgang durch das Frontend}
 
@@ -348,6 +354,26 @@ Bevor mit der Bearbeitung der Aufgaben beginnen kann ist vorher der Login-Prozes
 Sobald der Login Knopf betätigt wurde werden mehrere Pakete an den Server geschickt. Bei dem ersten handelt es sich um das Erhalten des Tokens welches in Zukunft für die eindeutige Identifizierung und Authentifizierung zur Nutzung der REST-API genutzt wird. Sobald dieser Prozess beendet wurde wird die Auswahl des Teams übermittelt. Sind alle diese Prozesse erfolgreich wird auf die Bearbeitung der Aufgaben weitergeleitet. 
 
 \subsection{Erhalten und bearbeiten der Aufgaben}
+
+Nachdem nun die initiale Prozedur der Team-Auswahl beendet ist kommt der Student zu dem Hauptteil der Anwendung. Die Erhaltung und Bearbeitung der Aufgaben. Nach der Einwahl erscheint ein Hinweis, dass bisher keine Aufgabe gefunden wurde, mit einem Knopf, welcher das Anfragen einer Aufgabe ermgölicht. \\
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/NoTask} 
+\caption[Login für den Nutzer / Teamauswahl]{Team Auswahl für den Nutzer}
+\end{figure} 
+
+Sollte dieser Knopf betätigt werden wird eine Anfrage an den Server gesendet, welche entweder mit dem Erhalt einer Aufgabe oder der Information, dass momentan kein Generator vorhanden ist beendet wird. \\
+
+NoTaskRunning Graphic here \\
+
+Sollte eine Aufgabe erhalten worden beginnt nun die Bearbeitung der Aufgabe. Der erhaltene Inhalt wird als mathematische Formel dargestellt, hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein gibt er diese in das dafür vorgesehene Feld ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet welcher diese validiert. Für den Studenten gibt es nun drei Fälle. \\
+AUFZÄHLUNG \\
+1. Die Bearbeitungszeit für die Aufgabe ist abgelaufen. Der Nutzer erhält eine Informationsanzeige über den Ablauf der Zeit. Die momentan angezeigte Aufgabe wird entfernt \\
+2. Die Aufgabe wurde korrekt gelöst. Der Nutzer erhält eine neue Aufgabe, sowie eine Notifikation über die korrekte Lösung \\
+3. Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben. \\
+
+GRAFIKEN EINBINDEN \\
+
 
 
 
