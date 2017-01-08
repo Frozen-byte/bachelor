@@ -108,5 +108,10 @@ public class GameStatusServiceImpl implements GameStatusService{
 	public RuntimeInformation generateRuntimeInformation() {
 		return new RuntimeInformation(endTime, runTime);
 	}
+	
+	@Override
+	public Date getEndTime() {
+		return endTime;
+	}
 
 }

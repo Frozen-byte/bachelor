@@ -18,6 +18,9 @@ export class UserComponent implements OnInit {
   answer: string;
   message: string;
   messageRed: boolean;
+  tasksCorrect:number;
+  tasksWrong:number;
+  endTime:Date;
 
   constructor(private http: HttpService, private config: ConfigService, private router: Router, private titleService: Title) {
   }
@@ -38,9 +41,11 @@ export class UserComponent implements OnInit {
           (data: Assignment) => {
             if (data.mathjax=='') {
               this.setMessage("Falsche Antwort", true)
+              this.tasksWrong++;
             } else {
               this.task = data;
               this.setMessage("Richtige Antwort", false)
+              this.tasksCorrect++;
             }
 
           }, (error: any) => {
@@ -50,6 +55,7 @@ export class UserComponent implements OnInit {
             }
             else if(error.status==400) {
               alert("Es läuft keine Aufgabe");
+              this.endTime = null;
             }
           }
         )
@@ -65,7 +71,7 @@ export class UserComponent implements OnInit {
       .subscribe(
         (data: Assignment) => {
           this.task = data;
-          console.log(data)
+
         },
         (error: any) => {
           console.log(error)

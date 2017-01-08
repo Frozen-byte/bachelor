@@ -19,5 +19,5 @@ public interface GameStatusService {
 	public void setTeams(String[] teams);
 	public boolean isGameRunning();
 	public RuntimeInformation generateRuntimeInformation();
-
+	public Date getEndTime();
 }

@@ -91,7 +91,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 		Bindings variables;
 
 		variables = scriptWrapper.generateVariables();
-		return new Task(scriptWrapper.getComputedMathjax(variables), variables, formType);
+		return new Task(scriptWrapper.getComputedMathjax(variables), variables, formType, gameStatusService.getEndTime());
 
 	}
 
