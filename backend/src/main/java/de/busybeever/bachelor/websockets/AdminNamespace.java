@@ -75,10 +75,6 @@ public class AdminNamespace {
 		}
 	}
 	
-	public void setUserRepository(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-	
 	@Scheduled(fixedRate=1000)
 	public void update() {
 		UpdateOverviewObject obj = gameStatusService.generateUpdate();
