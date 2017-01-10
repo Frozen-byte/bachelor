@@ -23,6 +23,10 @@
       <div class="row" *ngIf="task.formType=='Matrix'">
         <or-matrixform [(answer)]="answer"></or-matrixform>
       </div>
+
+      <div class="row">
+        <or-progressbar [max]="tasksCorrect+tasksWrong" [actual]="tasksCorrect"></or-progressbar>
+      </div>
       <button type="button" class="btn btn-primary" (click)="send()">Send</button>
     </div>
 

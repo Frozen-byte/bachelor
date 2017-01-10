@@ -18,8 +18,8 @@ export class UserComponent implements OnInit {
   answer: string;
   message: string;
   messageRed: boolean;
-  tasksCorrect:number;
-  tasksWrong:number;
+  tasksCorrect:number = 0;
+  tasksWrong:number = 0;
   endTime:Date;
 
   constructor(private http: HttpService, private config: ConfigService, private router: Router, private titleService: Title) {
@@ -40,6 +40,7 @@ export class UserComponent implements OnInit {
         .subscribe(
           (data: Assignment) => {
             if (data.mathjax=='') {
+
               this.setMessage("Falsche Antwort", true)
               this.tasksWrong++;
             } else {
@@ -49,13 +50,17 @@ export class UserComponent implements OnInit {
             }
 
           }, (error: any) => {
-
+            console.log(error)
             if (error.status == 500) {
               alert("Schwerwiegender Server Fehler");
             }
             else if(error.status==400) {
               alert("Es läuft keine Aufgabe");
               this.endTime = null;
+            } else {
+              // Workaround. Fix this!
+              this.setMessage("Falsche Antwort", true)
+              this.tasksWrong++;
             }
           }
         )
@@ -90,6 +95,7 @@ export class UserComponent implements OnInit {
   lastTimer = 0;
 
   private setMessage(message: string, messageRed: boolean) {
+    console.log("settin message "+message)
     this.messageRed = messageRed;
     this.message = message;
     let lid = ++this.lastTimer;

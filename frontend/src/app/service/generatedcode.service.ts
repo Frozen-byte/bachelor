@@ -12,7 +12,7 @@ export class GeneratedcodeService {
 
 
   loadCode(force: boolean) {
-    if (force | !this.initialized) {
+    if (force || !this.initialized) {
       this.initialized = true;
       //TODO: add security mechanism to prevent code injection
       this.http.get(this.configService.jaxhelper).subscribe(
