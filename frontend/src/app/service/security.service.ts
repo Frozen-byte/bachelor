@@ -26,8 +26,7 @@ export class SecurityService {
   regex:RegExp = /([.a-zA-Z]*)\(.*\)/g
   //Checks if the script, passed as string uses any non-allowed functions
   applySecurity(script:String) : SecurityResult {
-    //namedGroup(*)
-
+    script = script.replace(/ /g, '');
     var result:SecurityResult = {
       results : [],
       valid:true

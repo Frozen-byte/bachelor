@@ -67,6 +67,7 @@ public class ValidationServiceImpl implements ValidationService {
 	}
 	
 	private boolean validateScript(String script, String type, Integer id) {
+		script = script.replace(" ", "");
 		List<String> allowed = allowedMethods();
 		Matcher matcher = pattern.matcher(script);
 		boolean failure = false;
