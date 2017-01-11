@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'or-matrixform',
-  templateUrl: './matrixform.component.html',
-  styleUrls: ['./matrixform.component.css']
+  selector: 'or-fractureform',
+  templateUrl: './fractureform.component.html',
+  styleUrls: ['./fractureform.component.css']
 })
-export class MatrixformComponent implements OnInit, OnChanges {
-
+export class FractureformComponent implements OnInit {
 
   @Input() answer : string;
   @Input() valid: boolean
@@ -28,4 +27,5 @@ export class MatrixformComponent implements OnInit, OnChanges {
     this.valid = value;
     this.validChange.emit(value)
   }
+
 }

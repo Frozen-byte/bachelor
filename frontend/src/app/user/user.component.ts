@@ -22,6 +22,8 @@ export class UserComponent implements OnInit {
   tasksWrong:number = 0;
   endTime:Date;
 
+  valid:boolean;
+
   constructor(private http: HttpService, private config: ConfigService, private router: Router, private titleService: Title) {
   }
 

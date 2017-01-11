@@ -22,7 +22,7 @@ export class EditScriptComponent implements OnInit {
   constructor(private httpService: HttpService, private configService: ConfigService, private generatorService: GeneratorService, private generatedCodeService: GeneratedcodeService) {
   }
 
-  formTypes = ['Text', 'Numbers', 'Matrix']
+  formTypes = ['Text', 'Zahlen', 'Matrix', 'Dezimal', 'Bruch']
 
   generators: string[];
   message: string;

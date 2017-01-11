@@ -1,1 +1,16 @@
-<input type="text" [(ngModel)]="answer">
+<div class="col-sm-12">
+  <input type="text" [(ngModel)]="answer" (ngModelChange)="update()">
+</div>
+
+<button class="col-sm-4" (click)="addLetter(1)">1</button>
+<button class="col-sm-4" (click)="addLetter(2)">2</button>
+<button class="col-sm-4" (click)="addLetter(3)">3</button>
+<button class="col-sm-4" (click)="addLetter(4)">4</button>
+<button class="col-sm-4" (click)="addLetter(5)">5</button>
+<button class="col-sm-4" (click)="addLetter(6)">6</button>
+<button class="col-sm-4" (click)="addLetter(7)">7</button>
+<button class="col-sm-4" (click)="addLetter(8)">8</button>
+<button class="col-sm-4" (click)="addLetter(9)">9</button>
+<button class="col-sm-4" (click)="clearLast()">C</button>
+<button class="col-sm-4" (click)="addLetter(0)">0</button>
+<button class="col-sm-4" (click)="clearAll()">CE</button>
