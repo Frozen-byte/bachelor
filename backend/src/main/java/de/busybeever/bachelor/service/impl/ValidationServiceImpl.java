@@ -50,7 +50,7 @@ public class ValidationServiceImpl implements ValidationService {
 		return allowedMethods;
 	}
 	
-	private static final Pattern pattern = Pattern.compile("([a-zA-Z]* *)\\(.*\\)");
+	private static final Pattern pattern = Pattern.compile("([\\.a-zA-Z]* *)\\(.*\\)");
 	
 	@Override
 	public boolean containsNotAllowedFunctions(FunctionEntity entity) {
@@ -73,11 +73,16 @@ public class ValidationServiceImpl implements ValidationService {
 		while(matcher.find()) {
 			String group = matcher.group(1);
 			if(!allowed.contains(group)) {
-				if(!failure) {
-					globalErrorService.appendError("Fehler bei der Validierung von "+ type + " mit der ID "+ id +" entdeckt.");
+				String[] groupArr = group.split("\\.");
+				String toTest = groupArr[groupArr.length-1];
+				if(!allowed.contains(toTest)) {
+					if(!failure) {
+						globalErrorService.appendError("Fehler bei der Validierung von "+ type + " mit der ID "+ id +" entdeckt.");
+					}
+					globalErrorService.appendError("Funktion mit Namen: "+group+" ist nicht erlaubt.");
+					failure = true;
 				}
-				globalErrorService.appendError("Funktion mit Namen: "+group+" ist nicht erlaubt.");
-				failure = true;
+				
 			}
 		}
 		if(failure) {

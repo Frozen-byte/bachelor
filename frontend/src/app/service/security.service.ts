@@ -23,7 +23,7 @@ export class SecurityService {
       )
   }
 
-  regex:RegExp = /([a-zA-Z]*\s*)\(.*\)/g
+  regex:RegExp = /([.a-zA-Z]*\s*)\(.*\)/g
   //Checks if the script, passed as string uses any non-allowed functions
   applySecurity(script:String) : SecurityResult {
     var result:SecurityResult = {
@@ -35,11 +35,18 @@ export class SecurityService {
     while (match != null) {
 
       if(this.allowedFunctions.indexOf(match[1])==-1) {
-        result.valid = false;
-        result.results.push({
-          name:match[1],
-          allowed:false
-        })
+        let toTest = match[1];
+        let testArr = toTest.split(".");
+        toTest = testArr[testArr.length-1];
+
+        if(this.allowedFunctions.indexOf(toTest)==-1) {
+          result.valid = false;
+          result.results.push({
+            name:match[1],
+            allowed:false
+          })
+        }
+
       }else {
         result.results.push({
           name:match[1],
