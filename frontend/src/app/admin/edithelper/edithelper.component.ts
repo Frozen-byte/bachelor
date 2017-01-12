@@ -6,6 +6,7 @@ import {Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {SecurityService} from "../../service/security.service";
 import {SecurityResult} from "../../data/securityresult";
+import {GeneratedcodeService} from "../../service/generatedcode.service";
 @Component({
   selector: 'or-admin-editfunction',
   templateUrl: './edithelper.component.html',
@@ -19,6 +20,8 @@ export class EdithelperComponent implements OnInit {
   message: string = 'Wählen sie eine Entität aus dem Dropdown um sie zu bearbeiten'
   //true if editing mathjax, false if editing variable
   editMathjax: boolean = true;
+  testCount:number = 1;
+  testResults:string[];
 
   securityResult: SecurityResult=  {
     valid:true,
@@ -26,7 +29,7 @@ export class EdithelperComponent implements OnInit {
   }
 
 
-  constructor(private httpService: HttpService, private configService: ConfigService, private security:SecurityService) {
+  constructor(private httpService: HttpService, private configService: ConfigService, private security:SecurityService, private generated:GeneratedcodeService) {
   }
 
 
@@ -58,9 +61,7 @@ export class EdithelperComponent implements OnInit {
 
     this.securityResult = this.security.applySecurity(this.function.code);
     if(!this.securityResult.valid) {
-      console.log(this.securityResult.results.length)
       this.securityResult.results.forEach(function(value){
-        console.log(value.name)
       })
       return;
     }
@@ -71,6 +72,41 @@ export class EdithelperComponent implements OnInit {
           this.message = data.text()
         }
       )
+  }
+
+  test() {
+    this.securityResult = this.security.applySecurity(this.function.code)
+    this.generated.loadCode(false)
+
+    this.httpService.doPost(this.configService.backend+'generated/constructHelper', this.function)
+      .map(
+        (result:Response) => result.text()
+      ).subscribe(
+      (data:string) => {
+        try {
+          eval(data)
+          this.testResults=[];
+          for(let i=0; i<this.testCount;i++) {
+            let r = ft.test();
+            if(this.editMathjax) {
+              r = '$$ '+ r+" $$";
+            }
+            if (typeof r === 'object') {
+              r = r.toString()
+            }
+
+            this.testResults.push(r);
+          }
+
+        } catch(e) {
+          console.log(e)
+          console.log(data)
+          console.log("error evaluating  :(")
+        }
+      })
+
+
+
   }
 
   delete() {

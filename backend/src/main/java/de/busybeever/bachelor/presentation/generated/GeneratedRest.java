@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.busybeever.bachelor.data.entity.FunctionEntity;
+import de.busybeever.bachelor.data.entity.MathjaxFunctionEntity;
 import de.busybeever.bachelor.data.entity.ScriptEntity;
 import de.busybeever.bachelor.service.ScriptService;
 
@@ -18,7 +20,7 @@ import de.busybeever.bachelor.service.ScriptService;
 
 @RestController
 @RequestMapping("generated")
-public class GeneratedController {
+public class GeneratedRest {
 
 	@Autowired
 	private ScriptService scriptService;
@@ -38,5 +40,11 @@ public class GeneratedController {
 	public String constructScript(@RequestBody ScriptEntity entity) {
 
 		return scriptService.constructScript(entity);
+	}
+	
+	@PostMapping("constructHelper")
+	public String constructHelper(@RequestBody MathjaxFunctionEntity entity) {
+		return scriptService.constructHelperScript(entity);
+		
 	}
 }

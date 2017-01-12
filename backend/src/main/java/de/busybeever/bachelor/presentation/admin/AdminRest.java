@@ -3,7 +3,6 @@ package de.busybeever.bachelor.presentation.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import de.busybeever.bachelor.data.entity.MathjaxFunctionEntity;
 import de.busybeever.bachelor.data.entity.ScriptEntity;
 import de.busybeever.bachelor.data.entity.VariableFunctionEntity;
+import de.busybeever.bachelor.data.enums.FormType;
 import de.busybeever.bachelor.data.repository.MathjaxFunctionRepository;
 import de.busybeever.bachelor.data.repository.ScriptRepository;
 import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
@@ -62,7 +62,9 @@ public class AdminRest {
 	}
 	
 	@PostMapping("/generator")
-	public String postEntity(@RequestBody ScriptEntity entity) {
+	public String postEntity(@RequestBody ScriptEntity entity, @RequestParam("formType")FormType formType) {
+		entity.setFormType(formType);
+
 		if(validationSerice.containsNotAllowedFunctions(entity)) {
 			return "Nicht erlaubte Funktion gefunden";
 		}
@@ -73,6 +75,7 @@ public class AdminRest {
 				old.setVariableScript(entity.getVariableScript());
 				old.setName(entity.getName());
 				old.setSolutionScript(entity.getSolutionScript());
+				old.setFormType(entity.getFormType());
 				scriptRepository.save(old);
 				return "Alte Entität wurde erneuert";
 			}

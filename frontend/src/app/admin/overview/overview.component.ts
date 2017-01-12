@@ -5,7 +5,7 @@ import {HttpService} from "../../service/httpservice.service";
 import {Router, NavigationStart} from '@angular/router'
 import {Response} from '@angular/http'
 import 'rxjs/add/operator/map';
-import {RuntimeInformation} from "../../data/RuntimeInformation";
+import {RuntimeInformation} from "../../data/runtimeInformation";
 
 @Component({
   selector: 'or-admin-overview',

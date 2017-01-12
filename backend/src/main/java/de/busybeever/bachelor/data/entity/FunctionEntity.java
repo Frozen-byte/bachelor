@@ -9,13 +9,14 @@ public abstract interface FunctionEntity {
 	public String getParams();
 	public String getConstants();
 	public Integer getId();
+	public String getTestCode();
 	
 	public void setName(String name);
 	public void setCode(String code);
 	public void setDescription(String description);
 	public void setParams(String params);
 	public void setConstants(String constants);
-	
+	public void setTestCode(String code);
 	
 	
 	

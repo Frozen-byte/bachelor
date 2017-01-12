@@ -5,7 +5,7 @@ import {ConfigService} from '../service/config.service'
 import {Router} from '@angular/router'
 
 import {Response, Http} from '@angular/http'
-import {AuthenticationObject} from "../data/AuthenticationObject";
+import {AuthenticationObject} from "../data/authenticationObject";
 
 
 @Component({

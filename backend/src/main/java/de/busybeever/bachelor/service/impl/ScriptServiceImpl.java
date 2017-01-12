@@ -82,13 +82,29 @@ public class ScriptServiceImpl implements ScriptService{
 		builder.append("mathjax = mathjax.split(replacer).join(variables[key]);");
 		builder.append("}");
 		builder.append("return mathjax");
+		builder.append("}");	
+		String script = builder.toString();
+
+		return script;
+	}
+	@Override
+	public String constructHelperScript(FunctionEntity entity) {
+		StringBuilder builder = new StringBuilder();
+		if(entity.getConstants()!=null) {
+			builder.append("ft= {"+entity.getConstants());
+			builder.append("}\n");
+		}
+		builder.append("ft.helper = function("+entity.getParams()+"){");
+		
+		builder.append(entity.getCode());
+		builder.append("}\n");
+		builder.append("ft.test=function(){\n");
+		builder.append("return ft.helper("+entity.getTestCode()+")");
 		builder.append("}");
 		
 		
-		String script = builder.toString();
 		
-		
-		
-		return script;
+		return builder.toString();
 	}
+
 }

@@ -37,6 +37,14 @@ public class MathjaxFunctionEntity implements FunctionEntity, Serializable {
 	@Column(nullable=true)
 	private String constants;
 	
+	@Column (nullable = false,name="testcode")
+	private String testCode;
+	
+	@Override
+	public String getTestCode() {
+		return testCode;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -88,6 +96,10 @@ public class MathjaxFunctionEntity implements FunctionEntity, Serializable {
 
 	public void setParams(String params) {
 		this.params = params;
+	}
+	
+	public void setTestCode(String testCode) {
+		this.testCode = testCode;
 	}
 	
 	

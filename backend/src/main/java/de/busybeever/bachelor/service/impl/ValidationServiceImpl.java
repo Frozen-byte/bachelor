@@ -50,7 +50,7 @@ public class ValidationServiceImpl implements ValidationService {
 		return allowedMethods;
 	}
 	
-	private static final Pattern pattern = Pattern.compile("([\\.a-zA-Z]*)\\(.*\\)");
+	private static final Pattern pattern = Pattern.compile("([a-zA-Z]* *)\\(.*\\)");
 	
 	@Override
 	public boolean containsNotAllowedFunctions(FunctionEntity entity) {
@@ -67,7 +67,6 @@ public class ValidationServiceImpl implements ValidationService {
 	}
 	
 	private boolean validateScript(String script, String type, Integer id) {
-		script = script.replace(" ", "");
 		List<String> allowed = allowedMethods();
 		Matcher matcher = pattern.matcher(script);
 		boolean failure = false;

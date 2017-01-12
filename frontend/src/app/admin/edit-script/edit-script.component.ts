@@ -9,6 +9,7 @@ import {GeneratedcodeService} from "../../service/generatedcode.service";
 import {TestData} from "../../data/testdata";
 import {HelperFunction} from "../../data/helperfunction";
 import {SecurityResult} from "../../data/securityresult";
+import {FormType} from "../../data/formType";
 @Component({
   selector: 'or-admin-editgenerator',
   templateUrl: './edit-script.component.html',
@@ -20,9 +21,11 @@ export class EditScriptComponent implements OnInit {
 
 
   constructor(private httpService: HttpService, private configService: ConfigService, private generatorService: GeneratorService, private generatedCodeService: GeneratedcodeService) {
+    // http://stackoverflow.com/questions/21293063/how-to-programmatically-enumerate-an-enum-type-in-typescript-0-9-5
+    this.formTypes = Object.keys(FormType).map(k => FormType[k]).filter(v => typeof v ==='string') as string[];
   }
 
-  formTypes = ['Text', 'Zahlen', 'Matrix', 'Dezimal', 'Bruch']
+  formTypes: string[];
 
   generators: string[];
   message: string;
@@ -109,20 +112,22 @@ export class EditScriptComponent implements OnInit {
     this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
       this.securityResult = result;
       this.testData = data;
-    })
-    if(!this.securityResult.valid) {
-      return;
-    }
-    this.httpService.doPost(this.configService.generator, this.generatorService.parseForComputer(this.generator)).subscribe(
-      (data: Response) => {
-        this.message = data.text()
-        this.generators.push(this.generator.name)
-
-      },
-      (error: any) => {
-        this.message = "Es gab einen unerwarteten Fehler"
+      if(!this.securityResult.valid) {
+        return;
       }
-    )
+      this.httpService.doPost(this.configService.generator+'?formType='+this.generator.formType, this.generatorService.parseForComputer(this.generator)).subscribe(
+        (data: Response) => {
+          this.message = data.text()
+          this.generators.push(this.generator.name)
+
+        },
+        (error: any) => {
+          this.message = "Es gab einen unerwarteten Fehler"
+        }
+      )
+
+    })
+
   }
 
   reset() {

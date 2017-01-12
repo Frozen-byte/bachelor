@@ -8,5 +8,6 @@ public interface ScriptService {
 	public String getMathjaxScript();
 	public String getVariableScript();
 	public String constructScript(ScriptEntity entity);
+	public String constructHelperScript(FunctionEntity entity);
 
 }

@@ -10,4 +10,5 @@ export class HelperFunction {
   description:string
   params:string
   constants:string
+  testCode:string;
 }

@@ -37,6 +37,14 @@ public class VariableFunctionEntity implements FunctionEntity, Serializable  {
 	@Column(nullable=true)
 	private String constants;
 	
+	@Column (nullable = false,name="testcode")
+	private String testCode;
+	
+	@Override
+	public String getTestCode() {
+		return testCode;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -83,6 +91,10 @@ public class VariableFunctionEntity implements FunctionEntity, Serializable  {
 
 	public void setConstants(String constants) {
 		this.constants = constants;
+	}
+	
+	public void setTestCode(String testCode) {
+		this.testCode = testCode;
 	}
 	
 	

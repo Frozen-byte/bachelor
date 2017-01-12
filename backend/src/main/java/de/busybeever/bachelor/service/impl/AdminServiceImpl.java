@@ -45,6 +45,7 @@ public class AdminServiceImpl implements AdminService {
 				old.setDescription(entity.getDescription());
 				old.setName(entity.getName());
 				old.setParams(entity.getParams());
+				old.setTestCode(entity.getTestCode());
 				repository.save(old);
 				
 				return "Updated old entity";

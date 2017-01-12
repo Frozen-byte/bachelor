@@ -46,8 +46,21 @@
   <div class="row">
     <span>Argumente</span>
   </div>
+
   <div class="row">
     <textarea autosize cols="100" spellcheck="false" [(ngModel)]="function.params"></textarea>
+  </div>
+
+
+  <div class="row">
+    <span>Testargumente</span>
+  </div>
+
+  <div class="row">
+    <textarea autosize cols="100" spellcheck="false" [(ngModel)]="function.testCode"></textarea>
+  </div>
+  <div class="row">
+    <span>Testcount:</span> <input type="text" [(ngModel)]="testCount">
   </div>
 
 
@@ -60,6 +73,10 @@
     <div *ngFor="let result of securityResult.results" [ngClass]="result.allowed? 'success':'fail'">
       {{result.name}}
     </div>
+  </div>
+  <div *ngIf="testResults" >
+    <div *ngFor="let result of testResults" [MathJax]="result"></div>
+
   </div>
 </div>
 

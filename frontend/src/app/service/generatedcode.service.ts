@@ -17,7 +17,13 @@ export class GeneratedcodeService {
       //TODO: add security mechanism to prevent code injection
       this.http.get(this.configService.jaxhelper).subscribe(
         (data:Response) => {
-          eval(data.text())
+          try {
+            eval(data.text())
+          } catch(e) {
+            console.log(e)
+            console.log(data.text())
+          }
+
         },
         (data:any) => {
           alert("Unerwarteter Fehler des Mathjaxhelper Scripts ")
@@ -26,7 +32,12 @@ export class GeneratedcodeService {
 
       this.http.get(this.configService.variablehelper).subscribe(
         (data:Response) => {
-          eval(data.text())
+          try {
+            eval(data.text())
+          } catch(e) {
+            console.log(e)
+            console.log(data.text())
+          }
         },
         (data:any) => {
           alert("Unerwarteter Fehler beim Laden des VarHelper Scripts ")
