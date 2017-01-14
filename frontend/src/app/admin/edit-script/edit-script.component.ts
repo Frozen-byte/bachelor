@@ -105,12 +105,13 @@ export class EditScriptComponent implements OnInit {
         this.securityResult = result;
         this.testData = data;
       })
-
-
-
   }
 
   create() {
+    if(!this.generator.formType) {
+      this.message="Bitte wählen sie den Formular Typen aus"
+      return;
+    }
     this.generatedCodeService.loadCode(false)
     this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
       this.securityResult = result;
@@ -137,7 +138,6 @@ export class EditScriptComponent implements OnInit {
           this.message = "Es gab einen unerwarteten Fehler"
         }
       )
-
     })
 
   }

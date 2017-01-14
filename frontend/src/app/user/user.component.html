@@ -12,7 +12,7 @@
     <div *ngIf="task">
       <div class="row panel panel-default" [MathJax]="task.mathjax"></div>
       <div class="row">
-        <label for="answer">Antwort: {{answer}}</label>
+        <label for="answer" [ngClass]="valid? 'correct':'false'">Antwort: {{answer}}</label>
       </div>
 
       <div class="row" *ngIf="task.formType=='Text'">

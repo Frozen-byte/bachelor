@@ -36,7 +36,7 @@ export class UserComponent implements OnInit {
   }
 
   send() {
-    if (this.answer && this.answer != '') {
+    if (this.valid) {
       this.http.doPost(this.config.task + "?solution=" + encodeURIComponent(this.answer), {})
         .map((response: Response) => response.json())
         .subscribe(
