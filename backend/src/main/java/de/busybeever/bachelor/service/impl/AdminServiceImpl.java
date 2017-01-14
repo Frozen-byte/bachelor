@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.busybeever.bachelor.data.entity.FunctionEntity;
+import de.busybeever.bachelor.data.enums.PostResult;
 import de.busybeever.bachelor.data.repository.FunctionRepository;
+import de.busybeever.bachelor.presentation.UpdateDatabaseResponse;
 import de.busybeever.bachelor.service.AdminService;
 import de.busybeever.bachelor.service.ValidationService;
 
@@ -32,10 +34,9 @@ public class AdminServiceImpl implements AdminService {
 		return data;	
 	}
 	
-	public <T extends FunctionEntity> String saveFunction(T entity, FunctionRepository<T> repository) {
+	public <T extends FunctionEntity> UpdateDatabaseResponse saveFunction(T entity, FunctionRepository<T> repository) {
 		if(validationService.containsNotAllowedFunctions(entity)) {
-			System.out.println("NOPPPEEE");
-			return "Nicht erlaubte Funktion gefunden";
+			return new UpdateDatabaseResponse(PostResult.NOT_ALLOWED, null);
 		}
 		if(entity.getId()!=null) {
 			T old = repository.findOne(entity.getId());
@@ -47,12 +48,11 @@ public class AdminServiceImpl implements AdminService {
 				old.setParams(entity.getParams());
 				old.setTestCode(entity.getTestCode());
 				repository.save(old);
-				
-				return "Updated old entity";
+				return new UpdateDatabaseResponse(PostResult.UPDATED, old.getId());
 			}
 		}
-		repository.save(entity);
-		return "Created new entity";
+		FunctionEntity fe =repository.save(entity);
+		return new UpdateDatabaseResponse(PostResult.SAVED_NEW, fe.getId());
 		
 	}
 	

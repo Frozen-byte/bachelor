@@ -14,12 +14,14 @@ export class MathjaxComponent  {
   ngOnChanges() {
     this.el.nativeElement.innerHTML = this.texExpression;
     //Catch non existance of mathjax , this happens in dev mode without internet connection
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.el.nativeElement]);
+    /*
+    if(MathJax!==undefined) {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.el.nativeElement]);
+    }
+    */
 
 
 
    }
 
 }
-
-declare var MathJax;
