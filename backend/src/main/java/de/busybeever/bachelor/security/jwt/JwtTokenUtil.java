@@ -1,12 +1,15 @@
 package de.busybeever.bachelor.security.jwt;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mobile.device.Device;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -21,15 +24,10 @@ public class JwtTokenUtil implements Serializable {
 	private static final long serialVersionUID = -3301605591108950415L;
 
 	private static final String CLAIM_KEY_USERNAME = "sub";
-	private static final String CLAIM_KEY_AUDIENCE = "audience";
 	private static final String CLAIM_KEY_CREATED = "created";
 	private static final String CLAIM_KEY_UUID ="uuid";
+	private static final String CLAIM_KEY_AUTHORITIES="authorities";
 
-	private static final String AUDIENCE_UNKNOWN = "unknown";
-	private static final String AUDIENCE_WEB = "web";
-	private static final String AUDIENCE_MOBILE = "mobile";
-	private static final String AUDIENCE_TABLET = "tablet";
-	
 	private int nextUUID=0;
 
 	@Value("${jwt.secret}")
@@ -69,17 +67,6 @@ public class JwtTokenUtil implements Serializable {
 		}
 		return expiration;
 	}
-
-	public String getAudienceFromToken(String token) {
-		String audience;
-		try {
-			final Claims claims = getClaimsFromToken(token);
-			audience = (String) claims.get(CLAIM_KEY_AUDIENCE);
-		} catch (Exception e) {
-			audience = null;
-		}
-		return audience;
-	}
 	
 	public int getUUIDFromToken(String token) {
 		final Claims claims = getClaimsFromToken(token);
@@ -107,29 +94,12 @@ public class JwtTokenUtil implements Serializable {
 		return expiration.before(new Date());
 	}
 
-	private String generateAudience(Device device) {
-		String audience = AUDIENCE_UNKNOWN;
-		if (device.isNormal()) {
-			audience = AUDIENCE_WEB;
-		} else if (device.isTablet()) {
-			audience = AUDIENCE_TABLET;
-		} else if (device.isMobile()) {
-			audience = AUDIENCE_MOBILE;
-		}
-		return audience;
-	}
-
-	private Boolean ignoreTokenExpiration(String token) {
-		String audience = getAudienceFromToken(token);
-		return (AUDIENCE_TABLET.equals(audience) || AUDIENCE_MOBILE.equals(audience));
-	}
-
 	public String generateToken(UserDetails userDetails, Device device) {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
-		claims.put(CLAIM_KEY_AUDIENCE, generateAudience(device));
 		claims.put(CLAIM_KEY_CREATED, new Date());
 		claims.put(CLAIM_KEY_UUID, nextUUID++);
+		claims.put(CLAIM_KEY_AUTHORITIES, makeAuthoritiesClaim(userDetails));
 		return generateToken(claims);
 	}
 
@@ -137,10 +107,20 @@ public class JwtTokenUtil implements Serializable {
 		return Jwts.builder().setClaims(claims).setExpiration(generateExpirationDate())
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
+	
+	private Object makeAuthoritiesClaim(UserDetails userdetails) {
+		Collection<? extends GrantedAuthority> authorities = userdetails.getAuthorities();
+		String[] claim = new String[authorities.size()];
+		Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
+		for (int i = 0; i < claim.length; i++) {
+			claim[i] = iterator.next().getAuthority();
+		}
+		return claim;
+		
+	}
 
 	public Boolean canTokenBeRefreshed(String token) {
-		final Date created = getCreatedDateFromToken(token);
-		return !isTokenExpired(token) || ignoreTokenExpiration(token);
+		return !isTokenExpired(token);
 	}
 
 	public String refreshToken(String token) {

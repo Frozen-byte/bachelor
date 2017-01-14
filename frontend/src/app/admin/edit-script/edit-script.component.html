@@ -82,6 +82,7 @@
 </div>
 <div class="col-sm-4">
   <div *ngIf="focusMathjax">
+    <div>mj.</div>
     <div *ngFor="let mathjax of mathjaxFunctions" on-mouseover="onhover(mathjax)">
       <div class="tooltipp">{{mathjax.name}} : ({{mathjax.params}})
         <span class="tooltiptext" *ngIf="hovered==mathjax">{{mathjax.description}}</span>
@@ -89,6 +90,7 @@
     </div>
   </div>
   <div *ngIf="focusVariable">
+    <div>vf.</div>
     <div *ngFor="let variable of variableFunctions" on-mouseover="onhover(variable)">
 
       <div class="tooltipp">{{variable.name}} : ({{variable.params}})
