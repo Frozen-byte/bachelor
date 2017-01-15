@@ -319,20 +319,22 @@ Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusä
 
 \subsection{SocketIO}
 
-Alternative: PubNub, WS, uWebSockets
-
 Es stand bereits sehr früh klar, dass Daten vom Server zum Client übertragen werden müssen um den aktuellen Stand der Aufgaben für die Übersicht des Administrators aktuell zu halten. Früher hätte man dafür Long Polling verwendet, doch heute gibt es eine Technologie, welche erheblich besser für diesen Zweck geeignet ist: Websockets. \\
-WEBSOCKET DEFINITION
+
+\emph{\glqq   
+WebSockets ist eine fortschrittliche Technologie welche es möglich macht eine interaktive Kommunikations-Session zwischen dem Browser des Benutzers und dem Server herzustellen. Mit dieser API können Sie Nachrichten zum Server senden und ereignisorientierte Antworten erhalten ohne beim Server die Antwort abzufragen.
+\grqq} \footnote{https://developer.mozilla.org/de/docs/WebSockets} \\
+
+
 Für dieses Protokoll gibt es inzwischen etliche Implementierungen (PubNub, WS, uWebSockets um nur einige zu nennen), da für dieses Projekt am wichtigsten war eine zuverlässige Lösung zu haben fiel die Entscheidung am Ende auf socket.io, da es ein Projekt ist welches schon sehr lange genutzt, gewartet und weiterentwickelt ist. Daher ist bei einem so erfahrenen Entwicklerteam zu rechnen, dass es recht reibungslos funktioniert und auch zukünftige Versionen stabil und performant sind.
 
 \subsection{JSON Web Tokens} \label{JWT}
 
-Alternative: Basic Auth, Cookie Authentication
+Wenn man im Web-Bereich Anwendungen entwickelt gibt es einne Abschnitt welcher fast immer relevant ist: Die Authentifizierung. Daher ist dieser Bereich inzwischen auch so vielschichtig und es gibt enorm viele Möglichkeiten und Verfahren Authentifizierung erfolgreich umzusetzen. Als Verfahren welches wohl am längsten dabei ist gibt es zum Beispiel ``Basic Auth''. Hierbei wird bei jeder Anfrage im Header der Nutzername und das Passwort übertragen. Dieses wird auf Server Seite überprüft und bei Korrektheit die Daten ausgeliefert. Der Vorteil ist eine sehr einfache Logik, allerdings muss der Server bei jeder Anfrage die Korrektheit von Nutzername und Passwort überprüfen, sowie eventuelle Daten die mit dem Nutzer in Verbindung stehen aus der Datenbank extrahieren. \\
 
-Wenn man im Web-Bereich Anwendungen entwickelt gibt es einne Abschnitt welcher fast immer relevant ist: Die Authentifizierung. Daher ist dieser Bereich inzwischen auch so vielschichtig und es gibt enorm viele Möglichkeiten und Verfahren Authentifizierung erfolgreich umzusetzen. Als Verfahren welches wohl am längsten dabei ist gibt es zum Beispiel ``Basic Auth''. Hierbei wird bei jeder Anfrage im Header der Nutzername und das Passwort übertragen. Dieses wird auf Server Seite überprüft und bei Korrektheit die Daten ausgeliefert. \\
-Vorteile von anderen aufzählen. Cookie Authentication OAuth
+Zwei Ansätze die sich relativ ähneln sind Token und Cookie Authentication. Bei beiden wird ein Objekt generiert welches von dem Client als Authentifizerungs-Objekt bei jeder Anfrage mitgeschickt wird. Der Unterschied ist, dass Cookies direkt im Browser gespeichert werden, während die Speicherung von Tokens vom Programmierer selber entwickelt werden muss (und dann meistens im RAM gehalten werden). \\
 
-Am Ende ist die Wahl auf JSON Web Tokens(JWT) gefallen. Dieses Prinzip basiert darauf, dass der Nutzer bei den Anfragen ein Token mitschickt welches alle Daten benötigt die zur Authentifizierung notwendig sind. Zusätzlich beinhaltet JWT die Möglichkeit Nutzdaten im Token mitzuschicken, das bedeutet, dass der Nutzer nach der Authentifizierung Daten erhalten kann welche für die gesamte Nutzung der Anwendung wichtig sind, wie zum Beispiel welche Rolle er erhalten hat und welche Rechte damit verbunden sind. 
+Am Ende ist die Wahl auf JSON Web Tokens(JWT) gefallen. Zusätzlich zu den Authentifizierungsmöglichkeiten beinhaltet JWT die Möglichkeit Nutzdaten im Token mitzuschicken. Das bedeutet, dass der Nutzer nach der Authentifizierung Daten erhalten kann welche für die gesamte Nutzung der Anwendung wichtig sind, wie zum Beispiel welche Rolle er erhalten hat und welche Rechte damit verbunden sind. 
 
 \chapter{Ein Rundgang durch das Frontend}
 
@@ -469,6 +471,8 @@ Rückgabe: \begin{lstlisting}
 
 
 \section{Die Generierung und Validierung der Aufgaben}
+
+
 
 \section{Die Sicherung der Aufgaben-Generierung}
 
