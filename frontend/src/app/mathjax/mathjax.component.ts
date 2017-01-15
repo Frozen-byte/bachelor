@@ -4,22 +4,17 @@ import { Directive, ElementRef, Input } from '@angular/core';
   selector: '[MathJax]',
 })
 export class MathjaxComponent  {
-
-  @Input(' MathJax')
+    public MathJax: any;
+    @Input('MathJax')
   texExpression:string;
 
   constructor(private el: ElementRef) {
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes) {
     this.el.nativeElement.innerHTML = this.texExpression;
-    //Catch non existance of mathjax , this happens in dev mode without internet connection
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.el.nativeElement]);
-
-
-
+    //MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.el.nativeElement]);
    }
 
-}
 
-declare var MathJax;
+}

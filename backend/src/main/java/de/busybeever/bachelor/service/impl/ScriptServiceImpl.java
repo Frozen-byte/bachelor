@@ -72,7 +72,7 @@ public class ScriptServiceImpl implements ScriptService{
 		builder.append("function generateMathjax(variables){");
 		builder.append(entity.getMathjaxScript());
 		builder.append("}");
-		builder.append("function testSolution(variables, solution) {");
+		builder.append("function testSolution(variables, userinput) {");
 		builder.append(entity.getSolutionScript());
 		builder.append("}");
 		builder.append("function getComputedMathjax(variables){");

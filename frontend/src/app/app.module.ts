@@ -30,6 +30,7 @@ import { MatrixformComponent } from './user/forms/matrix/matrixform/matrixform.c
 import { NumberformComponent } from './user/forms/number/numberform/numberform.component';
 import { DezimalformComponent } from './user/forms/dezimalform/dezimalform.component';
 import { FractureformComponent } from './user/forms/fractureform/fractureform.component';
+import { TextformComponent } from './user/forms/textform/textform.component';
 const appRoutes: Routes = [
   {
     path: 'admin/:type',
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports:      [ BrowserModule, FormsModule,ReactiveFormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
   declarations: [ AppComponent,LoginComponent, AdminComponent,EditScriptComponent, EditScriptComponent, MathjaxComponent,
-    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent, DezimalformComponent, FractureformComponent],
+    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent, DezimalformComponent, FractureformComponent, TextformComponent],
   bootstrap:    [ AppComponent ],
   providers: [ConfigService,  HttpService, GeneratorService, GeneratedcodeService, SecurityService]
 })

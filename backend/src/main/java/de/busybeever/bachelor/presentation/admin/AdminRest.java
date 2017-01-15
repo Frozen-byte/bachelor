@@ -16,9 +16,11 @@ import de.busybeever.bachelor.data.entity.MathjaxFunctionEntity;
 import de.busybeever.bachelor.data.entity.ScriptEntity;
 import de.busybeever.bachelor.data.entity.VariableFunctionEntity;
 import de.busybeever.bachelor.data.enums.FormType;
+import de.busybeever.bachelor.data.enums.PostResult;
 import de.busybeever.bachelor.data.repository.MathjaxFunctionRepository;
 import de.busybeever.bachelor.data.repository.ScriptRepository;
 import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
+import de.busybeever.bachelor.presentation.UpdateDatabaseResponse;
 import de.busybeever.bachelor.service.AdminService;
 import de.busybeever.bachelor.service.ValidationService;
 //@PreAuthorize("hasAuthority('ADMIN')")
@@ -62,11 +64,11 @@ public class AdminRest {
 	}
 	
 	@PostMapping("/generator")
-	public String postEntity(@RequestBody ScriptEntity entity, @RequestParam("formType")FormType formType) {
+	public UpdateDatabaseResponse postEntity(@RequestBody ScriptEntity entity, @RequestParam("formType")FormType formType) {
 		entity.setFormType(formType);
 
 		if(validationSerice.containsNotAllowedFunctions(entity)) {
-			return "Nicht erlaubte Funktion gefunden";
+			return new UpdateDatabaseResponse(PostResult.NOT_ALLOWED, null);
 		}
 		if(entity.getId()!=null) {
 			ScriptEntity old = scriptRepository.findOne(entity.getId());
@@ -77,11 +79,11 @@ public class AdminRest {
 				old.setSolutionScript(entity.getSolutionScript());
 				old.setFormType(entity.getFormType());
 				scriptRepository.save(old);
-				return "Alte Entität wurde erneuert";
+				return new UpdateDatabaseResponse(PostResult.UPDATED, old.getId());
 			}
 		}
-		scriptRepository.save(entity);
-		return "Neue Entität in der Datenbank gespeichert";
+		ScriptEntity res = scriptRepository.save(entity);
+		return new UpdateDatabaseResponse(PostResult.SAVED_NEW, res.getId());
 	}
 	
 	@DeleteMapping("/generator")
@@ -113,12 +115,12 @@ public class AdminRest {
 	}
 	
 	@PostMapping("/variablefunction")
-	public String postVariableFunction(@RequestBody VariableFunctionEntity entity) {
+	public UpdateDatabaseResponse postVariableFunction(@RequestBody VariableFunctionEntity entity) {
 		return adminService.saveFunction(entity, variableFunctionRepository);
 	}
 	
 	@PostMapping("/mathjaxfunction")
-	public String postMathjaxFunction(@RequestBody MathjaxFunctionEntity entity) {
+	public UpdateDatabaseResponse postMathjaxFunction(@RequestBody MathjaxFunctionEntity entity) {
 		return adminService.saveFunction(entity, mathjaxFunctionRepository);
 
 	}

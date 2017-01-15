@@ -10,6 +10,8 @@ import {TestData} from "../../data/testdata";
 import {HelperFunction} from "../../data/helperfunction";
 import {SecurityResult} from "../../data/securityresult";
 import {FormType} from "../../data/formType";
+import {UpdateDataBaseReponse} from "../../data/updateDatabaseResponse";
+import {PostResult} from "../../data/postresult"
 @Component({
   selector: 'or-admin-editgenerator',
   templateUrl: './edit-script.component.html',
@@ -56,6 +58,7 @@ export class EditScriptComponent implements OnInit {
           (data: Generator) => {
             this.generatorService.parseForHuman(data)
             this.generator = data;
+            this.message ='';
           }
         )
     }
@@ -102,12 +105,13 @@ export class EditScriptComponent implements OnInit {
         this.securityResult = result;
         this.testData = data;
       })
-
-
-
   }
 
   create() {
+    if(!this.generator.formType) {
+      this.message="Bitte wählen sie den Formular Typen aus"
+      return;
+    }
     this.generatedCodeService.loadCode(false)
     this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
       this.securityResult = result;
@@ -115,17 +119,25 @@ export class EditScriptComponent implements OnInit {
       if(!this.securityResult.valid) {
         return;
       }
-      this.httpService.doPost(this.configService.generator+'?formType='+this.generator.formType, this.generatorService.parseForComputer(this.generator)).subscribe(
-        (data: Response) => {
-          this.message = data.text()
-          this.generators.push(this.generator.name)
-
+      this.httpService.doPost(this.configService.generator+'?formType='+this.generator.formType, this.generatorService.parseForComputer(this.generator))
+        .map((response: Response) => response.json())
+        .subscribe(
+        (data: UpdateDataBaseReponse) => {
+          if(data.result==PostResult.NOT_ALLOWED) {
+            this.message ='Nicht erlaubte Funktion gefunden'
+          }else if(data.result==PostResult.SAVED_NEW) {
+            this.message = 'Neue Entität gespeichert'
+            this.generators.push(this.generator.name)
+            this.generator.id = data.id
+          } else if(data.result ==PostResult.UPDATED) {
+            this.message ="Bestende Entität erneuert"
+            this.generator.id=data.id;
+          }
         },
         (error: any) => {
           this.message = "Es gab einen unerwarteten Fehler"
         }
       )
-
     })
 
   }
