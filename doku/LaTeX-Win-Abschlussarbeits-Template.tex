@@ -264,7 +264,7 @@ Zu guter Letzt muss ein Interface erzeugt werden, welches definiert was für Que
 Um nun eigene Querys hinzufügen gibt es zwei Möglichkeiten. Entweder über eine Annotation oder über die Benennung der Funktion
 
 \begin{minipage}{\textwidth}
-\emph{Beispiel für eine eigene Querys}
+\emph{Beispiel für eigene Querys}
 \begin{lstlisting}
 public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> {
 
@@ -314,6 +314,8 @@ Nachdem nun evaluiert wurde, dass eine SPA ein Gewinn ist also die Frage nach de
 Direkt zu sagen ist, dass Angular 2 von Haus aus mit Typescript gebaut ist. Das bedeutet bester Typescript bei der Entwicklung von Angular 2, was bei ReactJS nur teilweise ist und viele Varianten wie man am besten mit ReactJS und Typescript arbeitet sich widersprechen da keine klare Konvention herrscht. \\
 Zusätzlich implementiert Angular 2 eine bessere Trennung der verschiedenen Komponenten. Während in ReactJS HTML und Javascript Code in der selben Klasse stehen werden in Angular 2 klare Mechanismen aufgezeigt wie diese sauber zu trennen und in verschiedenen Dateien abzulegen sind. Was gleichzeitig auch einer der Nachteile von Angular 2 ist. Dadurch, dass HTML und Script sauber getrennt werden ist es schwerer die Script-Variablen im HTML zu referenzieren und alle Namen im Kopf zu behalten ohne die zweite Datei irgendwo geöffnet zu haben. \\
 Bei Angular 2, sowie ReactJS handelt es sich standardmäßig um Technologien bei denen ``Client-Side Rendering'' betrieben wird. Das beudetet, dass vom Server alle Dateien ausgeliefert werden die benötigt werden. Der Client nimmt diese entgegen und rendert die einzelnen HTML-Komponenten und fügt diese korrekt zusammen. Das bedeutet, dass die Last des Rendering auf den Client übertragen wird. Das bedeutet weniger Aufwand für den Server, gleichzeitig aber eine bessere Performanz für den Server (da dieser nicht selber rendern muss). Was bei Angular2 aber auch unterstützt wird ist die Möglichkeit auf der Seite des Server zu rendern. Das bedeutet wenn man  die Ladezeiten auf dem Client reduzieren will und einen performanten Server zur Hand hat ist dies die korrekte Lösung. Möglich ist dies durch eine kürzlich herausgekommene Erweiterung für Angular 2 \url{https://universal.angular.io/}. \\
+
+Ein Feature welches ebenfalls beide Bibliotheken implementieren ist das sogenannte ``Two-Way-Binding''. Bei dem Two-Way-Binding wird eine Variable, welche in der View genutzt wird mit einer Variable aus dem Model verknüpft. Ein klassisches Beispiel dafür sind Textfelder. Wenn der Nutzer eine Eingabe betätigt wird dies ebenfalls an das Model weitergeleitet, welches daraufhin die zugehörige Variable erneuert. Gleichzeitig wird bei Veränderung der Variable im Model die View geupdatet. So kann man zum Beispiel ein Knopf der für einen Reset des Textfeldes verantwortlich ist einfach die Variable im Model ändern, die View wird automatisch erneuert. \\
 
 Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusätzlich dazu, dass hinter Angular 2 ein Team von Entwicklern steht welche Erfahrungen aus einem vorherigen Projekt (AngularJS) gezogen haben um daraus von neu an ein komplett neues Framework zu erstellen welches aus den Problemen der alten Version gelernt hat und diese ausgemerzt hat.
 
@@ -420,6 +422,37 @@ Sollte die Zeit der Bearbeitung auslaufen ändert sich die Ansicht auf der Seite
 
 
 \subsection{Starten eines neuen Aufgaben-Generators}
+
+Damit das Programm in der Vorlesung genutzt werden kann reicht es allerdings nicht nur den Stand der laufenden Aufgabe anzuzeigen. Es ist ebenfalls notwendig einen neuen Generator starten zu können. \\
+Dafür wurde ein Tab eingerichtet welcher unter dem Namen ``Neuen Generator starten'' erreichbar ist.
+Auf dieser Seite gibt es zwei verschiedene Ansichten, die je nach Status des Programmes gezeigt werden. \\
+Bei der ersten Ansicht handelt es sich um die Ansicht die gezeigt wird wenn aktuell kein Generator am Laufen ist. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/StartNew} 
+\caption[Starten eines neuen Aufgaben-Generators]{Starten eines neuen Aufgaben-Generators}
+\end{figure} 
+
+Die Ansicht besteht aus zwei Teilen. Der untere Teil besteht aus der Benennung der existierenden Teams. Der Administrator ist hier in der Lage in zwei Textfeldern die gewünschten Namen einzugeben. Danach bestätigt er die Eingabe durch Knopfdruck. Daraufhin werden die neuen Namen an den Server übertragen, welche diese nun für alle folgenden Generatoren verwenden wird. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/StartDropDown} 
+\caption[Auswahl-Menü für den zu startenden Generator]{Auswahl-Menü für den zu startenden Generator}
+\end{figure} 
+
+Bei der Auswahl welcher Generator gestartet werden soll wurde wieder ein Drop-Down zur Auswahl des Generators gewählt. Die Daten die vom Server geholt werden, werden als Optionen zum Auswählen dargestellt, sollte der Start Knopf gedrückt werden ohne, dass ein Option ausgewählt wurde so erscheint eine Benachrichtigung für den Nutzer dies bitte zu korrigieren, selbiges geschieht bei einer ungültigen Angabe für die Laufzeit des Generators. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/TaskRunning} 
+\caption[Anzeige bei bereits laufendem Generator]{Anzeige bei bereits laufendem Generator}
+\end{figure} 
+
+Sollte aber bereits ein Generator gestartet sein wird eine andere Sicht gezeigt. Der Nutzer wird darüber informiert, dass bereits Aufgaben generiert werden. Er erhält zudem den Namen des Generators und die Möglichkeit ihn vorzeitig abzubrechen (zum Beispiel bei Start des falschen oder vorzeitigem Abbruch der Aufgabe)
+
+
 \subsection{Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln}
 \subsection{Der Fehler-Log}
 
@@ -431,6 +464,7 @@ Sollte die Zeit der Bearbeitung auslaufen ändert sich die Ansicht auf der Seite
 \section{Die Sicherung der REST-API}
 
 Ein wichtiger Punkt bei der Entwicklung eines Backends ist immer die Sicherheit. Daher wird in diesem Kapitel darauf eingegangen wie in dieser Applikation die Sicherheit der REST-API, sowie die zusätzliche Sicherheit die auf dieser Seite für den Nutzer eingebaut wurde, erreicht wurde. \\
+
 
 \subsection{Authentifizierung und Rollen-System}
 
