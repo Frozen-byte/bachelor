@@ -1,18 +1,18 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-@Directive({
-  selector: '[MathJax]',
+@Component({
+  selector: 'or-mathjax',
+  template: '<div [innerHTML]="texExpression"></div>'
+
 })
 export class MathjaxComponent  {
-    public MathJax: any;
     @Input('MathJax')
   texExpression:string;
 
-  constructor(private el: ElementRef) {
+  constructor() {
   }
 
   ngOnChanges(changes) {
-    this.el.nativeElement.innerHTML = this.texExpression;
     //MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.el.nativeElement]);
    }
 

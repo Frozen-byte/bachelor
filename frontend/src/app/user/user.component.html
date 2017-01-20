@@ -10,7 +10,7 @@
       </div>
     </div>
     <div *ngIf="task">
-      <div class="row panel panel-default" [MathJax]="task.mathjax"></div>
+      <or-mathjax class="row panel panel-default" [MathJax]="task.mathjax"></or-mathjax>
       <div class="row">
         <label for="answer" [ngClass]="valid? 'correct':'false'">Antwort: {{answer}}</label>
       </div>
