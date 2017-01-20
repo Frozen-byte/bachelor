@@ -487,6 +487,15 @@ Jedes mal wenn nun Daten abgefragt werden sollen schickt der Nutzer sein Token m
 Allerdings ist dies nicht der einzige Mechanismus der in der REST-API eingebaut wurde. Jeder Nutzer hat eine Rolle welche in der Datenbank eingespeichert ist. Bei der Authentifizierung wird ebenfalls die Rolle dieses Nutzers ausgelesen. Jede Rolle hat einen fest zugewiesenen Satz an Befugnissen, welche diesem Nutzer angehängt werden. \\
 Der Großteil der Controller hat als Voraussetzung um die Daten abfragen zu dürfen vorher eine Abfrage ob die Person die aktuell die Daten anfragt die benötigte Befugnis besitzt diese zu lesen. Ist diese Abfrage erfolgreich werden die Daten ausgeliefert, ansonsten kommt als Antwort lediglich ein 403 - Forbidden.
 
+\subsection{Die Sicherung der Aufgaben-Generierung}
+
+Neben der Sicherung der Rest-API an sich ist natürlich ein weiterer wichtiger Aspekt die Sicherung der Aufgaben-Generierung. Einerseits muss darauf geachtet werden, dass sich kein unerlaubter Code auf der Seite des Servers befindet und hier Schaden anrichten kann, andererseits ist es ebenfalls wichtig, dass keine Entitäten an den Administrator ausgeliefert werden die schadhaften Code enthalten (wenn er die Generatoren editiert und dabei auch testet). \\
+
+Um dies zu bewerkstelligen wurde der selbe Ansatz wie im Frontend gewählt. Jeder Generator, sowie jede Helper-Funktion, wird bei Ankunft im Backend getestet. Dabei wird darauf geachtet welche Funktionsaufrufe getätigt wurden. Jeder einzelne wird mit der Liste von erlaubten Funktionen abgeglichen, sollte eine gefunden werden die nicht erlaubt ist wird das Speichern der Entität abgebrochen und ein Fehler an den Sender der Anfrage zurück geschickt. \\
+
+Gleichzeitig wirft dieser Prozess eine Frage auf: Welchen Mehrwert hat es Code zweimal zu testen, beide Male mit der selben Methode? Um diese Frage zu beantworten ist es wichtig sich folgendes bewusst zu machen: Der Code auf der Client-Seite kann korrumpiert werden. Ein Nutzer mit dem Ziel Schaden zuzufügen könnte ihn editieren und so Anfragen schicken, welche normalerweise direkt auf Client Seite abgefangen und verboten werden würden. Sollte der Code allerdings nicht korrumpiert sein, so ist gute Praxis einen Generator bevor er abgeschickt wird zu testen, so wird der unnötige Austausch von Daten vermieden und dem Nutzer insgesamt eine flüssigere Erfahrung geboten.
+
+
 \section{Dokumentation der REST-Schnittstellen}
 
 \subsection{Admin}
@@ -518,9 +527,14 @@ Rückgabe: \begin{lstlisting}
 
 \section{Die Generierung und Validierung der Aufgaben}
 
+Kommen wir zu dem Hauptpunkt der Anwendung. Die Generierung und Validierung der Aufgaben. Jedes Mal wenn ein Generator angefragt wird wird dieser aus der Datenbank geladen. Die hier geladene Entität enthält allerdings nur Bruchstücke des Codes zur Generierung, wobei diese eindeutig reichen um den Generator eindeutig zu rekonstruieren. Sobald die Rekonstruktion abgeschlossen ist wird eine virtuelle Machine gestartet innerhalb der Code ausgeführt und die Aufgaben generiert werden. Um die virtuelle Machine(VM) zu starten und die Kommunikation zwischen Java und Javascript Code zu ermöglichen wird die --NAME EINFÜGEN-- API genutzt, auf die hier nicht weiter eingangen wird. \\
+
+Sobald der Generator geladen wurde wird eine Rückmeldung an die Routine gegeben die ihn gestartet hat. Kommt nun eine Anfrage an den Server eine Aufgabe zu generieren wird dies an die Javascript-VM weitergeleitet. Der dafür benötigte Kontext wird hierbei der eindeutigen ID des Nutzers zugeordnet und abgespeichert. Bei erfolgreicher Generierung wird diese zurück gegeben, damit sie vom Nutzer bearbeitet werden kann, bei einem Fehler wird dieser Fehler in den Fehler-Log geschrieben und dem Nutzer die Meldung zurück gegeben, dass ein Fehler aufgetreten ist. \\
+
+Wenn die Aufgabe bearbeitet wurde und die Lösung ankommt wird als erstes der korrekte Kontext vom Java-Code gesucht. Dafür wird geguckt ob eine Aufgabe mit der eindeutigen ID des Users verknüpft wurde. Wird keiner gefunden so wird ein Fehler ausgegeben. Sollte allerdings ein Kontext gefunden werden (was immer der Fall ist außer im Client-Seitigen Code liegt ein Fehler vor, außer die Bearbeitungszeit ist abgelaufeb) so wird der Javascript-VM die Lösung, sowie der Kontext (Variablen welche bei der Generierung erzeugt und für die Lösung benötigt werden) übergeben. Diese validiert die Lösung, sollte sie korrekt sein wird ein true zurück geben, ansonsten false. Der Java-Code nimmt diesen Wert nun an, verarbeitet ihn und gibt dem Nutzer die entsprechende Rückmeldung.
 
 
-\section{Die Sicherung der Aufgaben-Generierung}
+
 
 
 
