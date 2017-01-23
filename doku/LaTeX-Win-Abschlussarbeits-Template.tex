@@ -60,12 +60,16 @@ Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Weba
 
 Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben aus verschiedenen Themenbereichen kümmern, zum Beispiel RegexGolf ( \url{https://alf.nu/RegexGolf} ). Hierbei handelt es sich um eine Anwendung bei der dem Nutzer eine Liste von Wörtern gegeben wird. Die Aufgabe besteht nun darin einen regulären Ausdruck zu finden welcher für einen Teil der Liste matcht und bei der anderen nicht. \\
 
-Befasst man sich mit Firmen von großen Firmen im Bereich der Mathematik-Software stößt man auf Maple TA, WeBWork, Moodle und STACK
+Es gibt allerdings auch Projekte welche sich in der Kategorie aufhalten in die OpenTasks fallen wird. Darunter fallen zum Beispiel Maple TA \footnote{http://www.maplesoft.com/products/mapleta/}, WebWork \footnote{http://webwork.maa.org} und Moodle \footnote{https://moodle.de/} \\
+Bei Maple TA handelt es sich um ein System welches alle Funktionalitäten abdeckt die gewünscht sind und dazu noch von einem vollwertigen Linear Algebra System unterstützt wird das für Berechnungen und Aufgabenstellungen zur Verfügung steht. Durch den großen Umfang an Funktionalität steigert allerdings auch die Komplexität des Programms enorm. Zusätzlich handelt es sich bei Maple TA um kostenpflichtige Software.\\
+Auf WeBwork und Moodle wird hier nicht näher eingegangen, gesagt sei lediglich, dass es sich bei WebWork um FreeWare handelt (die allerdings selber gehostet werden muss), während Moodle kostenpflichtig sind. \\
+Bei WeBWork, Maple TA, sowie Moodle handelt es sich um Anwendungen mit relativ hohem Lernaufwand für den Administrator, was eine schnelle Nutzung nur schwer möglich macht.
 
 
 \section{Vorteile der neuen Lösung}
 
 Bei der neuen Anwendung soll es sich um ein Projekt handelt welches alle Vorteile existierender Programme vereint, während es die Nachteile auslässt. Das bedeutet, dass die Anwendung viel Wert darauf legt erweiterbar zu sein, ein möglichst großes Spektrum an Aufgaben abdecken zu können und dynamisch Aufgaben zu generieren können. \\
+Dabei ist es wichtig, dass die Anwendung nicht zu komplex wird. Sie soll für einen neuen Nutzer so intuitiv wie möglich verständlich sein. Zusätzlich soll die Installation sehr einfach sein. Im Zentrum steht die Idee des "Herunterladen und direkt starten".
 Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source handeln, das heißt der Quellcode ist frei verfügbar und kostenlos, ebenso wie die Webapplikation selbst.
 
 \chapter{Konzeption der Anwendung}
@@ -108,7 +112,9 @@ Da in dem Projekt die Notwendigkeit war eine Relation zwischen Nutzern und ihren
 
 Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen : MariaDB oder MySQL. Hier die Wahl zu treffen ging recht schnell, da es sich bei MariaDB um nicht viel mehr als einen Fork von MySQL handelt, welcher auf einer performanteren Engine und einer intensiveren Betreeung durch das Entwickler-Team basiert.
 
+\subsection{H2}
 
+Ein wichtiger Punkt der Anwendung war allerdings auch, dass der Installationsprozess der Anwendung möglichst leicht sein sollte. Dies ist leider nicht der Fall wenn es notwendig ist, dass eine Datenbank installiert und initialisiert wird. Daher wird bei OpenTasks die Alternative Angeboten durch eine kleine Änderung der Konfiguration eine ``in-memory-database'' zu benutzen. Dabei handelt es sich um eine Datenbank die lediglich im Arbeitsspeicher der Maschine existiert und keinerlei Lese und Schreibzugriffe auf die Festplatte ausführt, während eine normale Datenbank den Großteil der Daten auf der Festplatte speichert. Dadurch wird der Installationsaufwand reduziert. Allerdings ist zu betonen, dass für eine langfristige Installation immer eine TODO: WORT EINSETZEN zu empfehlen ist. Das liegt daran, dass die auf der Festplatte gespeicherten Daten sicherer sind, sollte es zu einem Absturz des Programmes oder der Maschine kommen. Zusätzlich wird bei solchen der Arbeitsspeicher wenig belastet und die Anforderungen sinken.
 
 \subsection{Dependency-Injection}
 
@@ -198,7 +204,7 @@ Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung v
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/SpringLayers} 
-\caption[Der Grafik \url{http://image.slidesharecdn.com/springsourceusi2009v3-0-090702135517-phpapp01/95/developing-modular-java-applications-13-728.jpg?cb=1246543977}]{Konzept einer Spring-Anwendung nachempfunden}
+\caption[Der Grafik \url{http://image.slidesharecdn.com/springsourceusi2009v3-0-090702135517-phpapp01/95/developing-modular-java-applications-13-728.jpg?cb=1246543977}]{Konzept einer Spring-Anwendung}
 \end{figure} 
 
 Gleichzeit stellt Spring-Boot auch direkt einen Container für die Webapplikation zur Verfügung. Das bedeutet, dass die Programmierung sich komplett mit der REST-API und ihren Funktionalitäten beschäftigen kann und nur sehr wenig Zeit für die Konfiguration des Web-Servers verbraucht wird.
@@ -371,10 +377,12 @@ Sollte dieser Knopf betätigt werden wird eine Anfrage an den Server gesendet, w
 NoTaskRunning Graphic here \\
 
 Sollte eine Aufgabe erhalten worden beginnt nun die Bearbeitung der Aufgabe. Der erhaltene Inhalt wird als mathematische Formel dargestellt, hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein gibt er diese in das dafür vorgesehene Feld ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet welcher diese validiert. Für den Studenten gibt es nun drei Fälle. \\
-AUFZÄHLUNG \\
-1. Die Bearbeitungszeit für die Aufgabe ist abgelaufen. Der Nutzer erhält eine Informationsanzeige über den Ablauf der Zeit. Die momentan angezeigte Aufgabe wird entfernt \\
-2. Die Aufgabe wurde korrekt gelöst. Der Nutzer erhält eine neue Aufgabe, sowie eine Notifikation über die korrekte Lösung \\
-3. Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben. \\
+\begin{enumerate}
+\item Die Bearbeitungszeit für die Aufgabe ist abgelaufen. Der Nutzer erhält eine Informationsanzeige über den Ablauf der Zeit. Die momentan angezeigte Aufgabe wird entfernt
+\item Die Aufgabe wurde korrekt gelöst. Der Nutzer erhält eine neue Aufgabe, sowie eine Notifikation über die korrekte Lösung
+\item Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben
+\end{enumerate} 
+
 
 GRAFIKEN EINBINDEN \\
 

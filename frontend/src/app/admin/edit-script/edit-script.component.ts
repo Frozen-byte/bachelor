@@ -11,7 +11,6 @@ import {HelperFunction} from "../../data/helperfunction";
 import {SecurityResult} from "../../data/securityresult";
 import {FormType} from "../../data/formType";
 import {UpdateDataBaseReponse} from "../../data/updateDatabaseResponse";
-import {PostResult} from "../../data/postresult"
 @Component({
   selector: 'or-admin-editgenerator',
   templateUrl: './edit-script.component.html',
@@ -24,7 +23,7 @@ export class EditScriptComponent implements OnInit {
 
   constructor(private httpService: HttpService, private configService: ConfigService, private generatorService: GeneratorService, private generatedCodeService: GeneratedcodeService) {
     // http://stackoverflow.com/questions/21293063/how-to-programmatically-enumerate-an-enum-type-in-typescript-0-9-5
-    this.formTypes = Object.keys(FormType).map(k => FormType[k]).filter(v => typeof v ==='string') as string[];
+    this.formTypes = Object.keys(FormType).map(k => FormType[k]).filter(v => typeof v === 'string') as string[];
   }
 
   formTypes: string[];
@@ -32,9 +31,9 @@ export class EditScriptComponent implements OnInit {
   generators: string[];
   message: string;
   generator: Generator = new Generator();
-  testData:TestData[];
-  securityResult:SecurityResult = new SecurityResult();
-  autotest:boolean;
+  testData: TestData[];
+  securityResult: SecurityResult = new SecurityResult();
+  autotest: boolean;
 
   hovered: HelperFunction;
 
@@ -58,7 +57,7 @@ export class EditScriptComponent implements OnInit {
           (data: Generator) => {
             this.generatorService.parseForHuman(data)
             this.generator = data;
-            this.message ='';
+            this.message = '';
           }
         )
     }
@@ -100,44 +99,52 @@ export class EditScriptComponent implements OnInit {
 
   test() {
 
-      this.generatedCodeService.loadCode(false)
-      this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
+    this.generatedCodeService.loadCode(false)
+    try {
+      this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result: SecurityResult) => {
         this.securityResult = result;
         this.testData = data;
       })
+
+    } catch (e) {
+      console.log(e)
+    }
+
   }
 
   create() {
-    if(!this.generator.formType) {
-      this.message="Bitte wählen sie den Formular Typen aus"
+    if (!this.generator.formType) {
+      this.message = "Bitte wählen sie den Formular Typen aus"
       return;
     }
     this.generatedCodeService.loadCode(false)
-    this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result:SecurityResult) => {
+    this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result: SecurityResult) => {
       this.securityResult = result;
       this.testData = data;
-      if(!this.securityResult.valid) {
+      if (!this.securityResult.valid) {
         return;
       }
-      this.httpService.doPost(this.configService.generator+'?formType='+this.generator.formType, this.generatorService.parseForComputer(this.generator))
+      this.httpService.doPost(this.configService.generator + '?formType=' + this.generator.formType, this.generatorService.parseForComputer(this.generator))
         .map((response: Response) => response.json())
         .subscribe(
-        (data: UpdateDataBaseReponse) => {
-          if(data.result==PostResult.NOT_ALLOWED) {
-            this.message ='Nicht erlaubte Funktion gefunden'
-          }else if(data.result==PostResult.SAVED_NEW) {
-            this.message = 'Neue Entität gespeichert'
-            this.generators.push(this.generator.name)
-            this.generator.id = data.id
-          } else if(data.result ==PostResult.UPDATED) {
-            this.message ="Bestende Entität erneuert"
-            this.generator.id=data.id;
+          (data: UpdateDataBaseReponse) => {
+            console.log(data.result)
+            if (data.result == "NOT_ALLOWED") {
+              this.message = 'Nicht erlaubte Funktion gefunden'
+            } else if (data.result == "SAVED_NEW") {
+              this.message = 'Neue Entität gespeichert'
+              this.generators.push(this.generator.name)
+              this.generator.id = data.id
+            } else if (data.result == "UPDATED") {
+              this.message = "Bestende Entität erneuert"
+              this.generator.id = data.id;
+            }
+          },
+          (error: any) => {
+            console.log(error)
+            this.message = "Es gab einen unerwarteten Fehler"
           }
-        },
-        (error: any) => {
-          this.message = "Es gab einen unerwarteten Fehler"
-        }
-      )
+        )
     })
 
   }
@@ -147,15 +154,15 @@ export class EditScriptComponent implements OnInit {
   }
 
   delete() {
-    this.httpService.doDelete(this.configService.generator+'?id='+this.generator.id)
+    this.httpService.doDelete(this.configService.generator + '?id=' + this.generator.id)
       .subscribe(
-        (data:Response) => {
+        (data: Response) => {
           this.generators.splice(this.generators.indexOf(this.generator.name))
           this.generator = new Generator()
         },
-        (error:any) =>{
+        (error: any) => {
           console.log('error')
-    }
+        }
       )
   }
 }

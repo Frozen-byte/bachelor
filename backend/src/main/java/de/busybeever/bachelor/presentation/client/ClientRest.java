@@ -66,6 +66,10 @@ public class ClientRest {
 				}
 				userDataService.addTask(userId, task);
 			}
+			if(task==null) {
+				globalErrorService.appendError("Fehler bei der Generierung einer Aufgabe");
+				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 			return new ResponseEntity<Assignment>(new Assignment(task.getMathjax(), task.getFormType()), HttpStatus.OK);
 		}else {
 			//Generator is null => no task running right now

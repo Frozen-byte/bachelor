@@ -39,8 +39,9 @@ export class SecurityService {
         let testArr = toTest.split(".");
         toTest = testArr[testArr.length-1];
 
-        if(this.allowedFunctions.indexOf(toTest)==-1) {
+        if(toTest.length>1 && this.allowedFunctions.indexOf(toTest)==-1) {
           result.valid = false;
+          console.log("Found invalid item: "+match[1])
           result.results.push({
             name:match[1],
             allowed:false

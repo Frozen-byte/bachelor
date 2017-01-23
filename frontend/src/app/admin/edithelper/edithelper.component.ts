@@ -6,7 +6,6 @@ import {Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {SecurityService} from "../../service/security.service";
 import {SecurityResult} from "../../data/securityresult";
-import {PostResult} from "../../data/postresult"
 import {GeneratedcodeService} from "../../service/generatedcode.service";
 import {UpdateDataBaseReponse} from "../../data/updateDatabaseResponse";
 @Component({
@@ -72,13 +71,13 @@ export class EdithelperComponent implements OnInit {
       .map((response: Response) => response.json())
       .subscribe(
         (data: UpdateDataBaseReponse) => {
-          if(data.result==PostResult.NOT_ALLOWED) {
+          if(data.result=="NOT_ALLOWED") {
             this.message ='Nicht erlaubte Funktion gefunden'
-          }else if(data.result==PostResult.SAVED_NEW) {
+          }else if(data.result=="SAVED_NEW") {
             this.message = 'Neue Entität gespeichert'
             this.functions.push(this.function.name)
             this.function.id = data.id
-          } else if(data.result ==PostResult.UPDATED) {
+          } else if(data.result =="UPDATED") {
             this.message ="Bestende Entität erneuert"
             this.function.id=data.id;
           }
@@ -109,6 +108,8 @@ export class EdithelperComponent implements OnInit {
 
             this.testResults.push(r);
           }
+
+          console.log("strt")
 
         } catch(e) {
           console.log(e)

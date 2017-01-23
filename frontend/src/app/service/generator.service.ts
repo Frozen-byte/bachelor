@@ -83,18 +83,27 @@ export class GeneratorService {
         scriptTag.id=this.scriptTagName
         document.head.appendChild(scriptTag)
         var retData= [];
-        for(let counter=0; counter<testCount;counter++) {
-          let variables = generateVariables();
-          let mathjax = this.getComputedMathjax(variables, generateMathjax(variables));
-          var data= new TestData();
-          data.variables = variables;
-          data.mathjax = mathjax;
-          if(autotest) {
-            data.success = testSolution(variables, variables.solution)
+          for(let counter=0; counter<testCount;counter++) {
+            var data= new TestData();
 
+            try {
+              let variables = generateVariables();
+              let mathjax = this.getComputedMathjax(variables, generateMathjax(variables));
+              data.variables = variables;
+              data.mathjax = mathjax;
+              if(autotest) {
+                data.success = testSolution(variables, variables.solution)
+
+              }
+
+            } catch(e) {
+              data.error=e;
+            }
+
+            retData.push(data)
           }
-          retData.push(data)
-        }
+
+
 
 
 

@@ -24,4 +24,16 @@ export class ErrorComponent implements OnInit {
       )
   }
 
+  clear() {
+    this.httpService.doPost(this.config.backend+"/errors/clear", {})
+      .subscribe(
+        (data:any) => {
+          this.errors=[];
+        },
+        (error:any) => {
+          console.log(error)
+        }
+      )
+  }
+
 }

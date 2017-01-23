@@ -1,6 +1,8 @@
 package de.busybeever.bachelor.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,8 +15,8 @@ import de.busybeever.bachelor.data.entity.FunctionEntity;
 import de.busybeever.bachelor.data.entity.ScriptEntity;
 import de.busybeever.bachelor.data.repository.MathjaxFunctionRepository;
 import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
-import de.busybeever.bachelor.service.ValidationService;
 import de.busybeever.bachelor.service.GlobalErrorService;
+import de.busybeever.bachelor.service.ValidationService;
 
 @Service
 public class ValidationServiceImpl implements ValidationService {
@@ -75,7 +77,7 @@ public class ValidationServiceImpl implements ValidationService {
 			if(!allowed.contains(group)) {
 				String[] groupArr = group.split("\\.");
 				String toTest = groupArr[groupArr.length-1];
-				if(!allowed.contains(toTest)) {
+				if(!toTest.isEmpty() && !allowed.contains(toTest)) {
 					if(!failure) {
 						globalErrorService.appendError("Fehler bei der Validierung von "+ type + " mit der ID "+ id +" entdeckt.");
 					}
@@ -99,4 +101,5 @@ public class ValidationServiceImpl implements ValidationService {
 		}
 		
 	}
+	
 }
