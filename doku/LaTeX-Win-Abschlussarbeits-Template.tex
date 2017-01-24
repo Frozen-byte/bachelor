@@ -114,7 +114,12 @@ Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen : Maria
 
 \subsection{H2}
 
-Ein wichtiger Punkt der Anwendung war allerdings auch, dass der Installationsprozess der Anwendung möglichst leicht sein sollte. Dies ist leider nicht der Fall wenn es notwendig ist, dass eine Datenbank installiert und initialisiert wird. Daher wird bei OpenTasks die Alternative Angeboten durch eine kleine Änderung der Konfiguration eine ``in-memory-database'' zu benutzen. Dabei handelt es sich um eine Datenbank die lediglich im Arbeitsspeicher der Maschine existiert und keinerlei Lese und Schreibzugriffe auf die Festplatte ausführt, während eine normale Datenbank den Großteil der Daten auf der Festplatte speichert. Dadurch wird der Installationsaufwand reduziert. Allerdings ist zu betonen, dass für eine langfristige Installation immer eine TODO: WORT EINSETZEN zu empfehlen ist. Das liegt daran, dass die auf der Festplatte gespeicherten Daten sicherer sind, sollte es zu einem Absturz des Programmes oder der Maschine kommen. Zusätzlich wird bei solchen der Arbeitsspeicher wenig belastet und die Anforderungen sinken.
+Ein wichtiger Punkt der Anwendung war allerdings auch, dass der Installationsprozess der Anwendung möglichst unkompliziert sein sollte. Dies ist leider nicht der Fall wenn es notwendig ist, dass eine Datenbank installiert und initialisiert wird. Daher wird bei OpenTasks die Alternative angeboten durch eine kleine Änderung der Konfiguration eine ``in-memory-database''(IMDB) zu benutzen. Dabei handelt es sich um eine Datenbank die lediglich im Arbeitsspeicher der Maschine existiert und keinerlei Lese und Schreibzugriffe auf die Festplatte ausführt, während eine normale Datenbank den Großteil der Daten auf der Festplatte speichert. Dadurch wird der Installationsaufwand reduziert. \\
+
+Einer der Hauptvorteile einer solchen Datenbank liegt in der schnellen Zugriffszeit, da Arbeitsspeicher erheblich performanter ist als Festplattenspeicher. Allerdings hat eine IMDB nicht nur Vorteile. Arbeitsspeicher ist erheblich teurer als regulärer Festplattenspeicher, daher sind die Kosten nicht zu vernachlässigen. Da es sich bei OpenTasks nur um kleine Datenmengen handelt ist dies in dieser Anwendung zu vernachlässigen. \\
+Ein viel größeres Problem ist hingegen die Persistenz der Daten. Da bei einer IMDB alle Daten im Arbeitsspeicher gehalten werden sind sie im Falle eines Absturzes alle verloren. Viele moderne Datenbanken nutzen daher das Prinzip von ``Snapshots''. Dabei wird in regelmäßigen Abständen (oder bei ordnungsgemäßem herunterfahren der Datenbank) der aktuelle Stand der Datenbank auf der Festplatte gespeichert um den Datenverlust zu reduzieren. Trotzdem sind diese Daten niemals so sicher wie bei einer Datenbank, welche ihre Daten auf der Festplatte speichert. \\
+
+Daher ist es, für eine dauerhafte Installation, immmer besser eine Festplatten-basierte Datenbank zu benutzen. Für eine kurze Testphase ist allerdings eine IMDB eine angenehme Alternative.
 
 \subsection{Dependency-Injection}
 
@@ -542,10 +547,6 @@ Kommen wir zu dem Hauptpunkt der Anwendung. Die Generierung und Validierung der 
 Sobald der Generator geladen wurde wird eine Rückmeldung an die Routine gegeben die ihn gestartet hat. Kommt nun eine Anfrage an den Server eine Aufgabe zu generieren wird dies an die Javascript-VM weitergeleitet. Der dafür benötigte Kontext wird hierbei der eindeutigen ID des Nutzers zugeordnet und abgespeichert. Bei erfolgreicher Generierung wird diese zurück gegeben, damit sie vom Nutzer bearbeitet werden kann, bei einem Fehler wird dieser Fehler in den Fehler-Log geschrieben und dem Nutzer die Meldung zurück gegeben, dass ein Fehler aufgetreten ist. \\
 
 Wenn die Aufgabe bearbeitet wurde und die Lösung ankommt wird als erstes der korrekte Kontext vom Java-Code gesucht. Dafür wird geguckt ob eine Aufgabe mit der eindeutigen ID des Users verknüpft wurde. Wird keiner gefunden so wird ein Fehler ausgegeben. Sollte allerdings ein Kontext gefunden werden (was immer der Fall ist außer im Client-Seitigen Code liegt ein Fehler vor, außer die Bearbeitungszeit ist abgelaufeb) so wird der Javascript-VM die Lösung, sowie der Kontext (Variablen welche bei der Generierung erzeugt und für die Lösung benötigt werden) übergeben. Diese validiert die Lösung, sollte sie korrekt sein wird ein true zurück geben, ansonsten false. Der Java-Code nimmt diesen Wert nun an, verarbeitet ihn und gibt dem Nutzer die entsprechende Rückmeldung.
-
-
-
-
 
 
 \chapter{Fazit}
