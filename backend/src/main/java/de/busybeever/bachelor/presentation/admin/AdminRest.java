@@ -66,7 +66,6 @@ public class AdminRest {
 	@PostMapping("/generator")
 	public UpdateDatabaseResponse postEntity(@RequestBody ScriptEntity entity, @RequestParam("formType")FormType formType) {
 		entity.setFormType(formType);
-
 		if(validationSerice.containsNotAllowedFunctions(entity)) {
 			return new UpdateDatabaseResponse(PostResult.NOT_ALLOWED, null);
 		}

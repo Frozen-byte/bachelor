@@ -469,10 +469,12 @@ Einer der Hauptfehler der bei OpenTasks auftreten kann sind Fehler während der 
 
 Was ist nun aber die Lösung für dieses Problem? In der Implementierung wird so vorgegangen, dass immer eine Aufgabe erzeugt wird. Sollte dieser Prozess fehlschlagen wird ein Fehler produziert. Dieser Fehler wird zum einen an den Nutzer (den Studenten) weitergeleitet und auf seiner Seite angezeigt. Zusätzlich wird jeder Fehler der registriert wird auf Server-Seite abgespeichert. Der Administrator hat nun die Möglichkeit in der Webanwendung auf den Tab ``Fehler-Log'' zu gehen. Sobald diese Seite besucht wird wird eine Anfrage an den Server gesendet. Dieser antwortet mit einem Datensatz der alle Fehler enthält die während der Laufzeit produziert wurden. Daraufhin könnnen diese evaluiert und der entsprechende Generator korrigiert werden, sodass dieser Fehler in Zukunft vermieden werden kann. \\
 
+Die zweite Fehlerquelle ist die Validierung der Skripte. Da auf Server-Seite ebenfalls eine Validierung der Skripte statt findet (siehe \pageref{GenerateTaskChapter}) müssen die Fehler die hier entdeckt werden für den Administrator sichtbar sein. Diese werden ebenfalls in dem Fehler-Log angezeigt und können dort nachgelesen werden.
+
 %REPLACE WITH ERROR LOG GRAPHIC
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
-\includegraphics[width=1\textwidth]{bilder/TaskRunning} 
+\includegraphics[width=1\textwidth]{bilder/ErrorLog} 
 \caption[Der Fehler-Log]{Der Fehler-Log}
 \end{figure} 
 
@@ -495,7 +497,7 @@ Jedes mal wenn nun Daten abgefragt werden sollen schickt der Nutzer sein Token m
 Allerdings ist dies nicht der einzige Mechanismus der in der REST-API eingebaut wurde. Jeder Nutzer hat eine Rolle welche in der Datenbank eingespeichert ist. Bei der Authentifizierung wird ebenfalls die Rolle dieses Nutzers ausgelesen. Jede Rolle hat einen fest zugewiesenen Satz an Befugnissen, welche diesem Nutzer angehängt werden. \\
 Der Großteil der Controller hat als Voraussetzung um die Daten abfragen zu dürfen vorher eine Abfrage ob die Person die aktuell die Daten anfragt die benötigte Befugnis besitzt diese zu lesen. Ist diese Abfrage erfolgreich werden die Daten ausgeliefert, ansonsten kommt als Antwort lediglich ein 403 - Forbidden.
 
-\subsection{Die Sicherung der Aufgaben-Generierung}
+\subsection{Die Sicherung der Aufgaben-Generierung}\label{GenerateTaskChapter}
 
 Neben der Sicherung der Rest-API an sich ist natürlich ein weiterer wichtiger Aspekt die Sicherung der Aufgaben-Generierung. Einerseits muss darauf geachtet werden, dass sich kein unerlaubter Code auf der Seite des Servers befindet und hier Schaden anrichten kann, andererseits ist es ebenfalls wichtig, dass keine Entitäten an den Administrator ausgeliefert werden die schadhaften Code enthalten (wenn er die Generatoren editiert und dabei auch testet). \\
 

@@ -62,8 +62,8 @@ public class ValidationServiceImpl implements ValidationService {
 	@Override
 	public boolean containsNotAllowedFunctions(ScriptEntity entity) {
 		
-		return validateScript(entity.getMathjaxScript(), "Skript", entity.getId()) &
-				validateScript(entity.getSolutionScript(), "Skript", entity.getId()) &
+		return validateScript(entity.getMathjaxScript(), "Skript", entity.getId()) |
+				validateScript(entity.getSolutionScript(), "Skript", entity.getId()) |
 				validateScript(entity.getVariableScript(), "Skript", entity.getId());
 		
 	}
@@ -77,7 +77,7 @@ public class ValidationServiceImpl implements ValidationService {
 			if(!allowed.contains(group)) {
 				String[] groupArr = group.split("\\.");
 				String toTest = groupArr[groupArr.length-1];
-				if(!toTest.isEmpty() && !allowed.contains(toTest)) {
+				if(!toTest.replace(" ", "").isEmpty() && !allowed.contains(toTest)) {
 					if(!failure) {
 						globalErrorService.appendError("Fehler bei der Validierung von "+ type + " mit der ID "+ id +" entdeckt.");
 					}
