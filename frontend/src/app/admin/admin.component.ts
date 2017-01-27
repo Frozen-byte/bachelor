@@ -21,6 +21,9 @@ export class AdminComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         this.type = params['type']
+        if(this.type=='') {
+          this.type='overview';
+        }
       }
     )
   }

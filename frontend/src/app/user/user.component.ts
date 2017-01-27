@@ -22,6 +22,9 @@ export class UserComponent implements OnInit {
   tasksWrong:number = 0;
   endTime:Date;
 
+  taskStarted:Date;
+  averageTime:number;
+
   valid:boolean;
 
   constructor(private http: HttpService, private config: ConfigService, private router: Router, private titleService: Title) {
@@ -48,7 +51,14 @@ export class UserComponent implements OnInit {
             } else {
               this.task = data;
               this.setMessage("Richtige Antwort", false)
-              this.tasksCorrect++;
+
+              let timeTaken = new Date().getSeconds()-this.taskStarted.getSeconds();
+              if(this.averageTime) {
+                this.averageTime = (this.averageTime*this.tasksCorrect+timeTaken)/++this.tasksCorrect
+              } else {
+                this.averageTime = timeTaken;
+                this.tasksCorrect++;
+              }
             }
 
           }, (error: any) => {
@@ -78,6 +88,7 @@ export class UserComponent implements OnInit {
       .subscribe(
         (data: Assignment) => {
           this.task = data;
+          this.taskStarted = new Date();
 
         },
         (error: any) => {

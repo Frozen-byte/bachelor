@@ -46,8 +46,6 @@ export class EditScriptComponent implements OnInit {
 
   testcount = 1;
 
-  hovered: HelperFunction;
-
   selectChanged(newValue: string) {
 
     if (newValue != '') {

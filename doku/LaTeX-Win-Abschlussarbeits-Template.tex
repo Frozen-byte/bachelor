@@ -374,12 +374,16 @@ Nachdem nun die initiale Prozedur der Team-Auswahl beendet ist kommt der Student
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/NoTask} 
-\caption[Login für den Nutzer / Teamauswahl]{Team Auswahl für den Nutzer}
+\caption[Ansicht bei nicht geladener Aufgabe]{Ansicht bei nicht geladener Aufgabe}
 \end{figure} 
 
 Sollte dieser Knopf betätigt werden wird eine Anfrage an den Server gesendet, welche entweder mit dem Erhalt einer Aufgabe oder der Information, dass momentan kein Generator vorhanden ist beendet wird. \\
 
-NoTaskRunning Graphic here \\
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/NoTaskRunning} 
+\caption[Information über keine laufende Aufgabe]{Information über keinen laufende Aufgabe}
+\end{figure} 
 
 Sollte eine Aufgabe erhalten worden beginnt nun die Bearbeitung der Aufgabe. Der erhaltene Inhalt wird als mathematische Formel dargestellt, hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein gibt er diese in das dafür vorgesehene Feld ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet welcher diese validiert. Für den Studenten gibt es nun drei Fälle. \\
 \begin{enumerate}
@@ -388,8 +392,17 @@ Sollte eine Aufgabe erhalten worden beginnt nun die Bearbeitung der Aufgabe. Der
 \item Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben
 \end{enumerate} 
 
+Um die Effizienz für den Studenten während der Nutzung des Studenten zu steigern wurden zwei weitere Features eingebaut. Bei dem Ersten handelt es sich um eine kleine Informationsanzeige wie lange die durchschnittliche Zeit beträgt bis eine Aufgabe korrekt gelöst wurde. Dies soll dem Studenten helfen seine Leistungen zu überprüfen und sich vielleicht auch mit anderen zu vergleichen. \\
+Bei dem zweiten handelt es sich um die Eingabeformulare. Eine Sache die alle gemeinsam haben ist die Validierung ob die momentane Antwort des Nutzers korrekt sein könnte und das graphische Darstellen davon (grün / rot- Färbung des Antwort Textes). Wie genau diese Validierung aussieht und welche weiteren Funktionalitäten das Formular bietet ist allerdings von Formular zu Formular unterschiedlich.
 
-GRAFIKEN EINBINDEN \\
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/TotalClient} 
+\caption[Beispiel für eine komplette Seite zur Bearbeitungszeit]{Beispiel für eine komplette Seite zur Bearbeitungszeit}
+\end{figure} 
+
+
+\subsection{Die Eingabeformulare}
 
 
 
@@ -431,7 +444,6 @@ Sollte die Zeit der Bearbeitung auslaufen ändert sich die Ansicht auf der Seite
 \includegraphics[width=1\textwidth]{bilder/TaskOver} 
 \caption[Übersicht nach Ende der Aufgabe]{Übersicht nach Ende der Aufgabe}
 \end{figure} 
-
 
 
 \subsection{Starten eines neuen Aufgaben-Generators}

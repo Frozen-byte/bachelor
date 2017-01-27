@@ -92,6 +92,15 @@ public class GameStatusServiceImpl implements GameStatusService{
 		}
 		this.runTime = runTime;
 	}
+	
+	@Override
+	public void stop() {
+		if(gameRunning) {
+			timer.cancel();
+			timer=null;
+			gameRunning = false;
+		}
+	}
 
 	public String[] getTeams() {
 		return teams;

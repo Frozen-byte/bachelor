@@ -1,1 +1,14 @@
-<p>Matrixform</p>
+
+<div *ngFor="let arr of answerArray; let i= index" class="row">
+  <or-matrix-row [(row)]="answerArray[i]" (updated)="update()"></or-matrix-row>
+</div>
+<div class="row">
+  <button class="btn" (click)="addRow()">Reihe hinzufügen</button>
+  <button class="btn" (click)="removeRow()">Reihe entfernen</button>
+</div>
+<div class="row">
+  <button class="btn" (click)="addCol()">Spalte hinzufügen</button>
+  <button class="btn" (click)="removeCol()">Spalte entfernen</button>
+</div>
+
+

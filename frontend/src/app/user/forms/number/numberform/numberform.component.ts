@@ -55,7 +55,7 @@ export class NumberformComponent implements OnInit {
   }
 
   isInt(value: string) : boolean {
-    return !isNaN(value) && value.length>0 && value%1==0
+    return !isNaN(Number(value)) && value.length>0 && value%1 ==0
   }
 
   update() {

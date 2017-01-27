@@ -163,3 +163,5 @@ export class EdithelperComponent implements OnInit {
   }
 
 }
+
+declare var ft;

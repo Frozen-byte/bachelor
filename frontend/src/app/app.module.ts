@@ -9,7 +9,6 @@ import { AppComponent }  from './app.component';
 import {LoginComponent} from './login/login.component'
 import {EditScriptComponent} from './admin/edit-script/edit-script.component'
 import {AdminComponent} from './admin/admin.component'
-import { EditScriptComponent } from './admin/edit-script/edit-script.component'
 
 import {HttpService} from './service/httpservice.service'
 import {ConfigService} from './service/config.service';
@@ -31,9 +30,19 @@ import { NumberformComponent } from './user/forms/number/numberform/numberform.c
 import { DezimalformComponent } from './user/forms/dezimalform/dezimalform.component';
 import { FractureformComponent } from './user/forms/fractureform/fractureform.component';
 import { TextformComponent } from './user/forms/textform/textform.component';
+import { MatrixRowComponent } from './user/forms/matrix/matrix-row/matrix-row.component';
+import {NumberedJsonPipe} from "./pipes/NumberedJson";
 const appRoutes: Routes = [
   {
     path: 'admin/:type',
+    component: AdminComponent,
+    data: {
+      title: 'Admin'
+    },
+
+  },
+  {
+    path: 'admin',
     component: AdminComponent,
     data: {
       title: 'Admin'
@@ -46,8 +55,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule,ReactiveFormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
-  declarations: [ AppComponent,LoginComponent, AdminComponent,EditScriptComponent, EditScriptComponent, MathjaxComponent,
-    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent, DezimalformComponent, FractureformComponent, TextformComponent],
+  declarations: [ AppComponent,LoginComponent, AdminComponent,EditScriptComponent, EditScriptComponent, MathjaxComponent, NumberedJsonPipe,
+    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent, DezimalformComponent, FractureformComponent, TextformComponent, MatrixRowComponent],
   bootstrap:    [ AppComponent ],
   providers: [ConfigService,  HttpService, GeneratorService, GeneratedcodeService, SecurityService]
 })

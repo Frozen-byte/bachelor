@@ -20,4 +20,5 @@ public interface GameStatusService {
 	public boolean isGameRunning();
 	public RuntimeInformation generateRuntimeInformation();
 	public Date getEndTime();
+	public void stop();
 }

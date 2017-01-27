@@ -12,7 +12,8 @@
     <div *ngIf="task">
       <or-mathjax class="row panel panel-default" [MathJax]="task.mathjax"></or-mathjax>
       <div class="row">
-        <label for="answer" [ngClass]="valid? 'correct':'false'">Antwort: {{answer}}</label>
+        <or-mathjax [MathJax]="answer"></or-mathjax>
+
       </div>
 
       <div class="row" *ngIf="task.formType=='Text'">
@@ -35,6 +36,7 @@
 
       <div class="row spaced">
         <or-progressbar [max]="tasksCorrect+tasksWrong" [actual]="tasksCorrect"></or-progressbar>
+        <div *ngIf="averageTime">Die durchschnittliche Bearbeitungszeit beträgt {{averageTime | number: '1.2-2'}} Sekunden</div>
       </div>
       <button type="button" class="btn btn-primary" (click)="send()">Send</button>
     </div>
@@ -42,6 +44,7 @@
     <div *ngIf="!task" class="row">Keine Aufgabe gefunden..</div>
 
     <button type="button" class="btn btn-danger" (click)="getTask()">Refresh</button>
+
     <div class="row">
       <h3 align="center" [ngClass]="messageRed? 'false':'correct'" [class.show]="message" class="step">{{message}}</h3>
 

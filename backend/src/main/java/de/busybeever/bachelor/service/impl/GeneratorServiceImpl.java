@@ -72,6 +72,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 	public boolean stopGenerator() {
 		if (scriptWrapper != null) {
 			scriptWrapper = null;
+			gameStatusService.stop();
 			return true;
 		}
 		return false;

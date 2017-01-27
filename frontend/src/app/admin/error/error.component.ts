@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../service/httpservice.service";
 import {ConfigService} from "../../service/config.service";
+import {Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -18,7 +19,7 @@ export class ErrorComponent implements OnInit {
     this.httpService.doGet(this.config.errors)
       .map((response: Response) => response.json())
       .subscribe(
-        (data:String[]) => {
+        (data:string[]) => {
           this.errors = data;
         }
       )
