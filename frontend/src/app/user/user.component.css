@@ -19,3 +19,15 @@
 .spaced {
   margin-top: 20px;
 }
+
+.min-sized {
+  min-height: 1000px;
+}
+
+
+hr {
+  border-top: 1px dotted #000000 !important;
+  margin-bottom:5px !important;
+  margin-top:5px !important;
+  height: 10px!important;
+}

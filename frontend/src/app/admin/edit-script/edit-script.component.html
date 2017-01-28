@@ -44,7 +44,7 @@
     <span>Testsolution</span>
   </div>
   <div class="row">
-    <textarea autosize cols="100" id="solution" spellcheck="false" [(ngModel)]="generator.solutionScript"></textarea>
+    <textarea autosize cols="100" id="solution" spellcheck="false" [(ngModel)]="generator.solutionScript" (focus)="focusVariable=true" (blur)="focusVariable=false" ></textarea>
   </div>
 
 

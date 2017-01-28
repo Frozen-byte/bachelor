@@ -3,12 +3,22 @@
   <or-matrix-row [(row)]="answerArray[i]" (updated)="update()"></or-matrix-row>
 </div>
 <div class="row">
-  <button class="btn" (click)="addRow()">Reihe hinzufügen</button>
-  <button class="btn" (click)="removeRow()">Reihe entfernen</button>
+  <div class="col-xs-6 col-sm-4 nopadding">
+    <button class="btn btn-block" (click)="addRow()">Reihe hinzufügen</button>
+  </div>
+  <div class="col-xs-6 col-sm-4 nopadding" >
+    <button class="btn btn-block" (click)="removeRow()">Reihe entfernen</button>
+  </div>
 </div>
 <div class="row">
-  <button class="btn" (click)="addCol()">Spalte hinzufügen</button>
-  <button class="btn" (click)="removeCol()">Spalte entfernen</button>
+  <div class="col-xs-6 col-sm-4 nopadding">
+    <button class="btn btn-block" (click)="addCol()">Spalte hinzufügen</button>
+  </div>
+  <div class="col-xs-6 col-sm-4 nopadding">
+    <button class="btn btn-block" (click)="removeCol()">Spalte entfernen</button>
+  </div>
+
+
 </div>
 
 

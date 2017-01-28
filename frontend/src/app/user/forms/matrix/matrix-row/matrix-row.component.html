@@ -1,5 +1,5 @@
 
 <form [formGroup]="formGroup">
   <input *ngFor="let control of formGroup.controls['values'].controls; let i=index"
-         type="text" [formControl]="control" [(ngModel)]="row[i]" (ngModelChange)="update(i)" [ngClass]="cssClass"  />
+         type="text" [formControl]="control" [(ngModel)]="row[i]" (ngModelChange)="update(i)" [ngClass]="cssClass" (keydown)="updateKey($event)"  />
 </form>

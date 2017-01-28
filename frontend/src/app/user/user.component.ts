@@ -24,6 +24,7 @@ export class UserComponent implements OnInit {
 
   taskStarted:Date;
   averageTime:number;
+  totalTime:number = 0;
 
   valid:boolean;
 
@@ -51,14 +52,11 @@ export class UserComponent implements OnInit {
             } else {
               this.task = data;
               this.setMessage("Richtige Antwort", false)
-
+              this.tasksCorrect++;
               let timeTaken = new Date().getSeconds()-this.taskStarted.getSeconds();
-              if(this.averageTime) {
-                this.averageTime = (this.averageTime*this.tasksCorrect+timeTaken)/++this.tasksCorrect
-              } else {
-                this.averageTime = timeTaken;
-                this.tasksCorrect++;
-              }
+              this.totalTime+=timeTaken;
+              this.averageTime = this.totalTime / this.tasksCorrect;
+              console.log(this.totalTime+ " "+this.tasksCorrect)
             }
 
           }, (error: any) => {
@@ -69,10 +67,6 @@ export class UserComponent implements OnInit {
             else if(error.status==400) {
               alert("Es läuft keine Aufgabe");
               this.endTime = null;
-            } else {
-              // Workaround. Fix this!
-              this.setMessage("Falsche Antwort", true)
-              this.tasksWrong++;
             }
           }
         )

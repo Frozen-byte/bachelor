@@ -13,6 +13,9 @@ export class FractureformComponent implements OnInit {
   @Output() answerChange:any = new EventEmitter()
   @Output() validChange:any = new EventEmitter()
 
+  denominator:number
+  numerator:number;
+
   constructor() { }
 
   ngOnInit() {
@@ -26,6 +29,24 @@ export class FractureformComponent implements OnInit {
   updateValid(value) {
     this.valid = value;
     this.validChange.emit(value)
+  }
+
+  update() {
+    let result = this.numerator/this.denominator;
+    result = result.toFixed(4);
+    result = String(result);
+
+    if(this.isFloat(result)) {
+      this.updateAnswer(result);
+      this.updateValid(true);
+    } else {
+      this.updateValid(false);
+    }
+  }
+
+  isFloat(value: string) : boolean {
+
+    return !isNaN(Number(value)) && value.length>0
   }
 
 }

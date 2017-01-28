@@ -115,8 +115,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 					return new ResponseEntity<>(new Assignment(newTask.getMathjax(), newTask.getFormType()),
 							HttpStatus.OK);
 				} else {
+					
 					gameStatusService.incrementWrongAnswer(team);
-					return new ResponseEntity<>(HttpStatus.OK);
+					return new ResponseEntity<>(new Assignment("", FormType.Bruch), HttpStatus.OK);
 				}
 			} catch (ScriptException e) {
 				e.printStackTrace();

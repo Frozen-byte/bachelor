@@ -28,7 +28,7 @@ export class MatrixRowComponent implements OnInit, OnChanges {
   ngOnChanges() {
     let size = (12/this.row.length)
     size = size-size%1;
-    this.cssClass="col-sm-"+size;
+    this.cssClass="col-xs-"+size;
     let formArray = new FormArray([]);
     for(let i=0; i<this.row.length;i++) {
       formArray.push(new FormControl(this.row[i]))
@@ -47,6 +47,12 @@ export class MatrixRowComponent implements OnInit, OnChanges {
 
     this.updated.emit();
 
+  }
+
+  updateKey(event) {
+    if(event.keyCode==13) {
+      console.log(1)
+    }
   }
 
 

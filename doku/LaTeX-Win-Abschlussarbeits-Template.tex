@@ -40,6 +40,9 @@
 \begin{document}
 \selectlanguage{ngerman}
 \maketitle           % Titelseite erzeugen
+\setcounter{secnumdepth}{5} 
+\setcounter{tocdepth}{5} 
+
 \tableofcontents % Inhaltsverzeichnis erzeugen
 \clearpage          % Seitenumbruch
 
@@ -404,6 +407,66 @@ Bei dem zweiten handelt es sich um die Eingabeformulare. Eine Sache die alle gem
 
 \subsection{Die Eingabeformulare}
 
+Insgesamt existieren fünf Eingabeformulare.
+\begin{enumerate}
+\item Das Textformular
+\item Das Zahlenformular
+\item Das Dezimalformular
+\item Das Matrixformular
+\item Das Bruchformular
+\end{description}
+
+In diesem Kapitel werden diese genauer unter die Lupe genommen und darüber gesprochen wie genau ihre graphische Darstellung ist, sowie die Validierung ob eine Antwort korrekt sein kann und abgeschickt werden darf. \\
+Die Antwort die sich am Ende von dem Formular ergibt wird zusätzlich immer über dem Formular noch einmal angezeigt, so kann der Nutzer überprüfen, dass seine Antwort dem gewünschten entspricht. \\
+Welches Formular angezeigt wird wird immer von dem Administrator der Anwendung angezeigt, für weitere Informationen bitte im Kapitel \ref{EditGenerator} Bearbeitung der Generatoren und ihrer Hilfsmittel nachlesen.
+
+
+\subsubsection{Das Textformular}
+
+Bei dem Textformular handelt es sich um das wohl einfachste aller Formulare. Die graphische Darstellung besteht lediglich aus einer Textbox. \\
+Ähnlich simpel ist ebenfalls die Validierung, es wird lediglich überprüft, dass die Antwort eine Länge von mindestens einem Zeichen hat, sodass keine leeren Antworten abgegeben werden können.
+
+\subsubsection{Das Zahlen / Dezimalformular}
+
+Da sich das Zahlen und das Dezimal-Formular sehr ähnelt werden sie hier gemeinsam behandelt. Da es sich bei den Nutzern von OpenTasks zu großen Teilen um mobile Endgeräte nutzen wird wurde dieses Formular mit einem speziellen Fokus auf diese entworfen.
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/DezimalForm} 
+\caption[Das Dezimalformular]{Das Dezimalformular}
+\end{figure} 
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/NumberForm} 
+\caption[Das Zahlenformular]{Das Zahlenformular}
+\end{figure} 
+
+Die Eingabe kann über zwei Wege erfolgen. Bei dem ersten handelt es sich um die Eingabe der Lösung über das Textfeld. Dies ist besonders für die Nutzer von Laptops gut, da hier eine Tastatur zur Verfügung steht. \\
+Für die mobilen Endgeräte wurden Knöpfe implementiert, welche bei Druck die abgebildete Zahl der Antwort hinzufügen. Außerdem gibt es noch zwei weitere Knöpfe, einen um die letzte Eingabe zu entfernen (C) und einen um das gesamte Eingabefeld zu leeren (CE).Ein Unterschied zwischen den beiden Formularen ist, dass das Dezimalformular zusätzlich einen Knopf besitzt welcher einen Punkt einfügt und es so ermöglicht Kommazahlen einzugeben. \\
+Der zweite Unterschied liegt in der Validierung der Eingaben. Während bei dem Zahlenformular nur Ganze Zahlen erlaubt sind werden bei dem Dezimalformular alle reellen Zahlen angenommen.
+
+\subsubsection{Das Matrixformular}
+
+Für einige Aufgabentypen war es notwendig, dass der Nutzer in der Lage ist eine Matrix als Antwort einzugeben. Da dies in einem Textfeld sehr schwer ist wurde das Matrixformular entwickelt
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/MatrixForm} 
+\caption[Das Matrixformular]{Das Matrixformular}
+
+Bei dem Matrixformular handelt es sich um Textfelder im $ m\times n$ Format, genau wie die Matrix die erzeugt werden soll. Dabei wird die produzierte Matrix immer über dem Formular angezeigt, dabei hilft wieder die MathJax Bibliothek das Ganze optisch ansprechend aufzubereiten. \\
+
+Ein weiterer wichtiger Einfluss bei der Erstellung des Formulars war die Tatsache, dass die Größe der Matrix nicht am Anfang bekannt ist. Zum einen liegt dies daran, dass dies ein Tipp für den Studenten sein kann (da nicht unbedingt direkt bekannt ist welche Größe die Matrix hat die am Ende herauskommen soll). Andererseits liegt dies auch daran, dass es ein größerer Aufwand wäre direkt bei der Generierung festzulegen wie groß die Matrix sein soll. \\
+
+Ein weiteres Feature welche in diesem Formular implementiert wurde ist eine automatische Korrektur der Eingabe des Nutzers. Sollte der Nutzer sich vertippen und zum Beispiel aus Versehen einen Buchstaben in eines der Felder eintippen so wird dies automatisch korrigiert indem der Buchstabe entfernt und nicht in der Lösung angezeigt wird.
+
+
+\end{figure} 
+
+
+
+\subsubsection{Das Bruchformular}
 
 
 
@@ -478,7 +541,7 @@ Bei der Auswahl welcher Generator gestartet werden soll wurde wieder ein Drop-Do
 Sollte aber bereits ein Generator gestartet sein wird eine andere Sicht gezeigt. Der Nutzer wird darüber informiert, dass bereits Aufgaben generiert werden. Er erhält zudem den Namen des Generators und die Möglichkeit ihn vorzeitig abzubrechen (zum Beispiel bei Start des falschen oder vorzeitigem Abbruch der Aufgabe)
 
 
-\subsection{Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln}
+\subsection{Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln} \label{EditGenerator}
 \subsection{Der Fehler-Log}
 
 Eine wichtige Frage bei der Entwicklung einer Anwendung ist immer die Frage was alles schief gehen kann. Welche Fehler können auftreten und wie können sie behandelt oder sogar umgangen werden? \\
@@ -486,7 +549,7 @@ Einer der Hauptfehler der bei OpenTasks auftreten kann sind Fehler während der 
 
 Was ist nun aber die Lösung für dieses Problem? In der Implementierung wird so vorgegangen, dass immer eine Aufgabe erzeugt wird. Sollte dieser Prozess fehlschlagen wird ein Fehler produziert. Dieser Fehler wird zum einen an den Nutzer (den Studenten) weitergeleitet und auf seiner Seite angezeigt. Zusätzlich wird jeder Fehler der registriert wird auf Server-Seite abgespeichert. Der Administrator hat nun die Möglichkeit in der Webanwendung auf den Tab ``Fehler-Log'' zu gehen. Sobald diese Seite besucht wird wird eine Anfrage an den Server gesendet. Dieser antwortet mit einem Datensatz der alle Fehler enthält die während der Laufzeit produziert wurden. Daraufhin könnnen diese evaluiert und der entsprechende Generator korrigiert werden, sodass dieser Fehler in Zukunft vermieden werden kann. \\
 
-Die zweite Fehlerquelle ist die Validierung der Skripte. Da auf Server-Seite ebenfalls eine Validierung der Skripte statt findet (siehe \pageref{GenerateTaskChapter}) müssen die Fehler die hier entdeckt werden für den Administrator sichtbar sein. Diese werden ebenfalls in dem Fehler-Log angezeigt und können dort nachgelesen werden.
+Die zweite Fehlerquelle ist die Validierung der Skripte. Da auf Server-Seite ebenfalls eine Validierung der Skripte statt findet (siehe Kapitel \ref{GenerateTaskChapter} Die Sicherung der Aufgaben-Generierung) müssen die Fehler die hier entdeckt werden für den Administrator sichtbar sein. Diese werden ebenfalls in dem Fehler-Log angezeigt und können dort nachgelesen werden.
 
 %REPLACE WITH ERROR LOG GRAPHIC
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
