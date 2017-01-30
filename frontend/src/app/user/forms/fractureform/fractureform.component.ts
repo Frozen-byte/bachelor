@@ -45,8 +45,8 @@ export class FractureformComponent implements OnInit {
   }
 
   isFloat(value: string) : boolean {
-
-    return !isNaN(Number(value)) && value.length>0
+    let numVal = Number(value)
+    return !isNaN(numVal) && value.length>0 && numVal != Number.POSITIVE_INFINITY && numVal!= Number.NEGATIVE_INFINITY;
   }
 
 }

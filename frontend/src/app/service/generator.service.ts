@@ -173,7 +173,7 @@ export class GeneratorService {
 
 
     mathjax = 'return "$$ ' + mathjax + ' $$"'
-
+    console.log(mathjax)
     return mathjax
 
   }

@@ -34,6 +34,7 @@ export class GeneratedcodeService {
         (data:Response) => {
           try {
             eval(data.text())
+            console.log(data.text())
           } catch(e) {
             console.log(e)
             console.log(data.text())

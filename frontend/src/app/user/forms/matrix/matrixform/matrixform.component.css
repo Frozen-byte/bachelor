@@ -9,3 +9,7 @@ button {
   padding-right: 0px!important;
   padding-left: 0px !important;;
 }
+
+.spaced {
+  margin-bottom: 20px;
+}

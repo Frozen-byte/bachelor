@@ -212,7 +212,7 @@ Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung v
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/SpringLayers} 
-\caption[Der Grafik \url{http://image.slidesharecdn.com/springsourceusi2009v3-0-090702135517-phpapp01/95/developing-modular-java-applications-13-728.jpg?cb=1246543977}]{Konzept einer Spring-Anwendung}
+\caption[Der Grafik \url{http://image.slidesharecdn.com/springsourceusi2009v3-0-090702135517-phpapp01/95/developing-modular-java-applications-13-728.jpg?cb=1246543977} nachempfunden]{Konzept einer Spring-Anwendung}
 \end{figure} 
 
 Gleichzeit stellt Spring-Boot auch direkt einen Container für die Webapplikation zur Verfügung. Das bedeutet, dass die Programmierung sich komplett mit der REST-API und ihren Funktionalitäten beschäftigen kann und nur sehr wenig Zeit für die Konfiguration des Web-Servers verbraucht wird.
@@ -352,6 +352,8 @@ Zwei Ansätze die sich relativ ähneln sind Token und Cookie Authentication. Bei
 
 Am Ende ist die Wahl auf JSON Web Tokens(JWT) gefallen. Zusätzlich zu den Authentifizierungsmöglichkeiten beinhaltet JWT die Möglichkeit Nutzdaten im Token mitzuschicken. Das bedeutet, dass der Nutzer nach der Authentifizierung Daten erhalten kann welche für die gesamte Nutzung der Anwendung wichtig sind, wie zum Beispiel welche Rolle er erhalten hat und welche Rechte damit verbunden sind. 
 
+\subsection{MathJax}
+
 \chapter{Ein Rundgang durch das Frontend}
 
 Das Frontend ist im wesentlichen in zwei große Abschnitte geteilt - Die Ansicht des Nutzers (Also die Anwendung wie sie von den Studenten gesehen wird die dort ihre Aufgaben erhalten und bearbeiten können) und die Ansicht des Administrators, welche hauptsächlich die Aufgabe hat die Anwendung zu verwalten und Einstellungen zu ändern. Daher werden diese beiden Sichten im Nachfolgenden getrennt voneinander behandelt, beziehungsweise ein Einblick in die Funktionsweise gewährt.
@@ -414,7 +416,7 @@ Insgesamt existieren fünf Eingabeformulare.
 \item Das Dezimalformular
 \item Das Matrixformular
 \item Das Bruchformular
-\end{description}
+\end{enumerate}
 
 In diesem Kapitel werden diese genauer unter die Lupe genommen und darüber gesprochen wie genau ihre graphische Darstellung ist, sowie die Validierung ob eine Antwort korrekt sein kann und abgeschickt werden darf. \\
 Die Antwort die sich am Ende von dem Formular ergibt wird zusätzlich immer über dem Formular noch einmal angezeigt, so kann der Nutzer überprüfen, dass seine Antwort dem gewünschten entspricht. \\
@@ -448,26 +450,40 @@ Der zweite Unterschied liegt in der Validierung der Eingaben. Während bei dem Z
 
 \subsubsection{Das Matrixformular}
 
-Für einige Aufgabentypen war es notwendig, dass der Nutzer in der Lage ist eine Matrix als Antwort einzugeben. Da dies in einem Textfeld sehr schwer ist wurde das Matrixformular entwickelt
+Für einige Aufgabentypen war es notwendig, dass der Nutzer in der Lage ist eine Matrix als Antwort einzugeben. Da dies in einem Textfeld sehr schwer ist wurde das Matrixformular entwickelt. \\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/MatrixForm} 
 \caption[Das Matrixformular]{Das Matrixformular}
-
+\end{figure} 
 Bei dem Matrixformular handelt es sich um Textfelder im $ m\times n$ Format, genau wie die Matrix die erzeugt werden soll. Dabei wird die produzierte Matrix immer über dem Formular angezeigt, dabei hilft wieder die MathJax Bibliothek das Ganze optisch ansprechend aufzubereiten. \\
 
-Ein weiterer wichtiger Einfluss bei der Erstellung des Formulars war die Tatsache, dass die Größe der Matrix nicht am Anfang bekannt ist. Zum einen liegt dies daran, dass dies ein Tipp für den Studenten sein kann (da nicht unbedingt direkt bekannt ist welche Größe die Matrix hat die am Ende herauskommen soll). Andererseits liegt dies auch daran, dass es ein größerer Aufwand wäre direkt bei der Generierung festzulegen wie groß die Matrix sein soll. \\
+Ein weiterer wichtiger Einfluss bei der Erstellung des Formulars war die Tatsache, dass die Größe der Matrix nicht am Anfang bekannt ist. Zum einen liegt dies daran, dass dies ein Tipp für den Studenten sein kann (da nicht unbedingt direkt bekannt ist welche Größe die Matrix hat die am Ende herauskommen soll). Andererseits liegt dies auch daran, dass es ein größerer Aufwand wäre direkt bei der Generierung festzulegen wie groß die Matrix sein soll. Dieses Problem wurde über vier Knöpfe gelöst, welche die Manipulation der Größe der Matrix erlauben. \\
 
-Ein weiteres Feature welche in diesem Formular implementiert wurde ist eine automatische Korrektur der Eingabe des Nutzers. Sollte der Nutzer sich vertippen und zum Beispiel aus Versehen einen Buchstaben in eines der Felder eintippen so wird dies automatisch korrigiert indem der Buchstabe entfernt und nicht in der Lösung angezeigt wird.
+Ein weiteres Feature welche in diesem Formular implementiert wurde ist eine automatische Korrektur der Eingabe des Nutzers. Sollte der Nutzer sich vertippen und zum Beispiel aus Versehen einen Buchstaben in eines der Felder eintippen so wird dies automatisch korrigiert indem der Buchstabe entfernt und nicht in der Lösung angezeigt wird. \\
+
+Für die mobilen Nutzer wurde ein Knopf implementiert welcher auf eine alternative, für mobile Nutzer angepasste Sicht umschaltet. Diese ähnelt sehr der Ansicht von dem Nummernformular. Der Nutzer wählt über Knopfdruck aus welches Feld er bearbeiten will. Daraufhin wird dieses durch blaue dickere Schrift markiert. Sollte der Nutzen nun einen der nummerierten Knöpfe drücken wird der Text des Knopfes der Eingabe hinzugefügt.
 
 
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/MatrixMobile} 
+\caption[Das Matrixformular]{Das Matrixformular}
 \end{figure} 
-
 
 
 \subsubsection{Das Bruchformular}
 
+Als letztes Formular ist das Bruchformular zu erwähnen. Dies sollte jederzeit genutzt werden wenn von dem Nutzer erwartet wird einen Bruch einzugeben.
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/FractureForm} 
+\caption[Das Bruchformular]{Das Bruchformular}
+\end{figure} 
+
+Es unterstützt den Nutzer dabei indem die Eingabe über zwei Textfelder erfolgt. Eines für den Zähler und eines für den Nenner. Sobald der Nutzer in beide Felder einen Wert eingegeben hat wird die daraus resultierende Zahl berechnet. Wenn es sich hierbei um eine Zahl aus dem Raum der rationalen Zahlen handelt wird die Lösung als valide eingestuft und kann abgeschickt werden.
 
 
 \section{Die Sicht des Administrators}
@@ -541,7 +557,115 @@ Bei der Auswahl welcher Generator gestartet werden soll wurde wieder ein Drop-Do
 Sollte aber bereits ein Generator gestartet sein wird eine andere Sicht gezeigt. Der Nutzer wird darüber informiert, dass bereits Aufgaben generiert werden. Er erhält zudem den Namen des Generators und die Möglichkeit ihn vorzeitig abzubrechen (zum Beispiel bei Start des falschen oder vorzeitigem Abbruch der Aufgabe)
 
 
-\subsection{Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln} \label{EditGenerator}
+\subsection{Bearbeitung der Helper-Funktionen} \label{EditGenerator}
+
+Es war von Anfang an klar, dass es Funktionalität gab die für viele Aufgaben-Generatoren benötigt werden würde. Daher wurden die Helper Funktionen eingeführt. Bei diesen handelt es sich um Funktionen welche erstellt werden und dann global verfügbar sind. Dadurch wird die Menge an überflüssigem Code der in jedem Generator erzeugt wird reduziert.
+
+Bei den Helper-Funktionen handelt es sich um Funktionen, welche über den Tab ``Helper-Funktionen bearbeiten'' erstellt und bearbeitet werden können. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/EditHelper} 
+\caption[Ansicht zur Bearbeitung einer Helper-Funktion]{Ansicht zur Bearbeitung einer Helper-Funktion}
+\end{figure} 
+
+Bevor man mit der Bearbeitung beginnt muss festgelegt werden ob es sich bei dem Skript um ein ``Variablen'' oder ein ``MathJax'' Skript handelt. Der Unterschied besteht darin, dass Variablen-Skripte dafür genutzt werden Variablen zu erzeugen, während MathJax-Skripte dabei helfen Variablen in MathJax umzuwandeln.
+
+Um mit der Bearbeitung zu beginnen muss entweder eine zu bearbeitende Entität über das Dropdown-Menü ausgewählt oder ein Name eingegeben werden. Sobald dies erledigt ist müssen die anderen Felder ausgefüllt werden. Pflicht ist hierbei nur das Skript, sowie die Argumente die das Skript benötigt. Es wird allerdings empfohlen eine Beschreibung hinzuzufügen. Dies hilft dabei sich an die Funktionalität des Skriptes zu erinnern sollte man dies in Zukunft vergessen. \\
+
+Sollte das Skript Konstanten benötigen können diese ebenfalls in der dafür vorgesehenen Spalte eingetragen. 
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/ConstantExample} 
+\caption[Beispiel zur Erstellung einer Konstanten]{Beispiel zur Erstellung einer Konstanten}
+\end{figure} 
+
+Sollte die Erstellung des Skriptes fertig sein kann getestet werden ob die erwarteten Ergebnisse produziert werden. Dafür muss der Administrator eingeben mit welchen Argumenten die Funktion aufgerufen werden soll und daraufhin den Test-Knopf betätigen. Dies stößt einen Prozess an der die Funktion in validen Javascript-kompiliert. \\
+
+\emph{Beispiel für eine transpilierte Funktion}
+\begin{lstlisting}
+
+gcd:function(a,b){
+if ( ! b) {
+        return a;
+    }
+
+    return this.gcd(b, a % b);}, 
+}
+\end{lstlisting}
+
+Diese Funktion wird an die global verfügbaren Objekte gehängt, Funktionen die bei der Erstellung von Variablen helfen an das ``vf''-Objekt, Funktionen die die Erstellung von MathJax erleichtern an das ``mj''-Objekt. Auf diese Objekte wird bei der Bearbeitung der Aufgaben-Generatoren noch einmal näher eingegangen. \\
+
+Sobald der Transpilierungs-Prozess abgeschlossen ist wird die gerade erstellte Funktion mit den eingegeben Argumenten aufgerufen. Das Ergebnis wird daraufhin auf der Seite angezeigt um sich zu vergewissern, dass es den Erwartungen entspricht. \\
+
+Wenn nun alle Tests den Erwartungen entsprechen und das Ergebnis zufrieden stellend ist besteht die letzte Aufgabe darin es zu persistieren. Dafür wurde ein Knopf neben dem Test-Knopf eingefügt welcher die Anfrage an den REST-Server stellt. \\
+
+\subsection{Bearbeitung der Aufgaben-Generatoren}
+
+Nachdem die Helper-Funktionen bearbeitet und erstellt werden können kann man sich nun dem Hauptpunkt zuwenden: Den Aufgaben-Generatoren. Die Bearbeitung wird über den Tab ``Generator bearbeiten'' gestartet. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/EditScript} 
+\caption[Ansicht zur Bearbeitung einer Helper-Funktion]{Ansicht zur Bearbeitung einer Helper-Funktion}
+\end{figure} 
+
+Ähnlich wie bei den Helper-Funktionen kann entweder ein bestehendes Skript über das Dropdown-Menü gewählt und editiert werden, ansonsten kann direkt mit der Editierung angefangen werden. \\
+
+Bevor allerdings näher auf die Erstellung der drei verschiedenen Skripte eingegangen wird sollte zuerst die Nutzung der Helper-Funktionen näher erläutert werden. \\
+Jede dieser Funktionen wurde einem bestimmten Objekt zugeordnet, entweder dem ``vf''(Variable-Functions) oder dem ``mj'' (MathJax) Objekt, je nachdem für welche Kategorie von Aufgabe sie erstellt wurden. Je nachdem welches der Felder nun ausgewählt wurde wird  neben den Textfeldern angezeigt welche Funktionen vorhanden sind, so wie welche Parameter benötigt werden. Wenn nähere Informationen benötigt werden so lässt sich durch Bewegung der Maus über den Namen der Funktion die Beschreibung lesen.\\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/MouseOver} 
+\caption[Popup bei Bewegen der Maus über einen Funktionsnamen]{Popup bei Bewegen der Maus über einen Funktionsnamen}
+\end{figure} 
+
+Bei der Erstellung eines Aufgaben-Generators existieren drei Felder von denen alle Pflicht sind. \\
+
+Bei dem Variablen-Skript handelt es sich um das Skript welches die Variablen erzeugt. Dadurch, dass in diesem Skript Funktionen genutzt werden können welche in der Lage sind zufällig Werte zu generieren wird gewährleistet, dass verschiedene Aufgaben erzeugt werden (auch wenn die Chance besteht, dass zwei generierte Aufgaben sich gleichen, diese Chance sinkt jedoch je größer der Zahlenraum der generierten Werte ist). Dieses Skript muss ein JSON-Objekt zurück geben welches alle Werte enthält die für die graphische Darstellung, sowie die Validierung der Lösung von Nöten sind. \\
+Um die Erstellung von diesem Skript zu erleichtern wurde ein Transpiler-Feature eingebaut. Dieses sorgt dafür, dass jeder Code der von zwei Prozent-Zeichen umgeben wird zu einem Funktionsblock umgesetzt wird. Dies hilft dabei Code zu schreiben bei dem Funktionen aufgerufen werden die wiederum Funktionen als Parameter benötigen.\\
+
+\emph{Code vor der Transpilierung}
+\begin{lstlisting}
+var mod1 = vf.prime(5)
+var mod2= vf.dif(%vf.prime(5)%, mod1)
+\end{lstlisting}
+
+
+\emph{Code nach der Transpilierung}
+\begin{lstlisting}
+var mod1 = vf.prime(5)
+var mod2= vf.dif(function(){return vf.prime(5)}, mod1)
+\end{lstlisting}
+
+
+Bei dem zweiten Kategorie handelt es sich um die graphische Darstellung. Der hier erzeugte Wert wird nachher von der MathJax-Bibliothek interpretiert und muss daher dessen Syntax folgen. Um die von dem ersten Skript erzeugten Werte zu nutzen werden diese über Dollar-Zeichen referenziert. So wird \$a immer durch den Wert ersetzt der für a errechnet wurde.  Wenn hier Funktionen aufgerufen werden müssen, so sind diese immer durch Prozent-Zeichen von dem Rest des MathJax-Strings zu trennen. Der Transpiler erkennt diese und kann so den Code in gültigen JavaScript-Code übersetzen \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/MathJaxPreTrans} 
+\caption[MathJax-Skript vor der Transpilierung]{MathJax-Skript vor der Transpilierung}
+\end{figure} 
+
+
+\emph{Skript nach der Transpilierung}
+\begin{lstlisting}
+return "$$ "+mj.bmatrix(variables['matrix'])+" $$"
+\end{lstlisting}
+Das von dem ersten Skript erzeugte JSON-Objekt ist im Code unter dem Namen ``variables'' referenzierbar. \\
+
+Als letztes Skript wird die Validierung der Antworten des Nutzers benötigt. Diese Skript muss als Rückgabe einen Boolean Wert produzieren, welcher für die Korrektheit der übergebenen Antwort steht (also true bei korrekt und false bei falsch). \\
+Während der Validierung der Antwort stehen dem Skript zwei Variablen zur Verfügung.\\
+\begin{enumerate}
+\item Das Variablen-Skript erzeugte JSON-Objekt, unter dem Namen ``variables''
+\item Die vom Nutzer eingegebene Antwort, ein String unter dem Namen userinput''
+\end{enumerate}
+
+Diese können nun dafür genutzt werden um die Nutzereingabe zu validieren und den korrekten Wert zurück zugeben. Für diese Skript gelten die selben Transpilierungs-Regeln wie für das Variablen-Skript.
+
+
 \subsection{Der Fehler-Log}
 
 Eine wichtige Frage bei der Entwicklung einer Anwendung ist immer die Frage was alles schief gehen kann. Welche Fehler können auftreten und wie können sie behandelt oder sogar umgangen werden? \\

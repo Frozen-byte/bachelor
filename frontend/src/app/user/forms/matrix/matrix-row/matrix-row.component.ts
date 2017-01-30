@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import {FormBuilder, FormGroup, FormArray, FormControl} from '@angular/forms'
+import {Point} from "../../../../data/point";
 
 @Component({
   selector: 'or-matrix-row',
@@ -12,9 +13,19 @@ export class MatrixRowComponent implements OnInit, OnChanges {
 
   @Input('row') row : number[];
 
-  @Output() rowChange:any = new EventEmitter()
+  @Input('rowIndex') rowIndex: number;
+
+  @Output() rowChange = new EventEmitter()
+
+  @Output() btnClicked = new EventEmitter()
+
+  @Input('mobile') mobile:boolean;
 
   @Output('updated') updated = new EventEmitter()
+
+  @Input('selected') selectedButton: Point;
+
+  selectedCol:number = null;
 
   cssClass:string;
 
@@ -25,15 +36,28 @@ export class MatrixRowComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges() {
-    let size = (12/this.row.length)
-    size = size-size%1;
-    this.cssClass="col-xs-"+size;
-    let formArray = new FormArray([]);
-    for(let i=0; i<this.row.length;i++) {
-      formArray.push(new FormControl(this.row[i]))
+  ngOnChanges(changes:SimpleChanges) {
+    if(changes.row) {
+      let formArray = new FormArray([]);
+      for(let i=0; i<this.row.length;i++) {
+        formArray.push(new FormControl(this.row[i]))
+      }
+      let size = (12/this.row.length)
+      size = size-size%1;
+      this.cssClass="col-xs-"+size;
+      this.formGroup = this.formBuilder.group({values:formArray});
     }
-    this.formGroup = this.formBuilder.group({values:formArray});
+    if(changes.selectedButton) {
+      if(this.selectedButton && this.selectedButton.row==this.rowIndex) {
+        this.selectedCol = this.selectedButton.col
+      } else {
+        this.selectedCol = null;
+      }
+    }
+
+
+
+
   }
 
   update(index:number) {

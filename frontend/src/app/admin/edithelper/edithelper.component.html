@@ -4,7 +4,7 @@
 
   </div>
   <div class="row">
-    <span>Edit an existing function: </span>
+    <span>Bearbeiten einer bereits existierenden Helper-Funktion: </span>
     <select id="edit" (change)="selectChanged($event.target.value)" [(ngModel)]="select">
       <option></option>
       <option *ngFor="let function of functions" [value]="function">{{function}}</option>

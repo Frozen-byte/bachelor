@@ -38,7 +38,6 @@ export class SecurityService {
         let toTest = match[1];
         let testArr = toTest.split(".");
         toTest = testArr[testArr.length-1];
-
         if(toTest.length>1 && this.allowedFunctions.indexOf(toTest)==-1) {
           result.valid = false;
           console.log("Found invalid item: "+match[1])

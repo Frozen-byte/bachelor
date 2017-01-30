@@ -1,6 +1,6 @@
 <div class="col-sm-8">
   <div class="row">
-    <span>Edit an existing script: </span>
+    <span>Bearbeiten eines bereits existierenden Generators: </span>
     <select id="edit" (change)="selectChanged($event.target.value)">
       <option></option>
       <option *ngFor="let generator of generators" [value]="generator">{{generator}}</option>
@@ -24,7 +24,7 @@
 
 
   <div class="row">
-    <span>Variable Script</span>
+    <span>Variablen Skript</span>
   </div>
   <div class="row">
     <textarea autosize id="variable" spellcheck="false" (focus)="focusVariable=true"
@@ -33,7 +33,7 @@
 
 
   <div class="row">
-    <span>Mathjax Script</span>
+    <span>Mathjax Skript</span>
   </div>
   <div class="row">
     <textarea autosize cols="100" id="mathjax" spellcheck="false" (focus)="focusMathjax=true"
@@ -41,7 +41,7 @@
   </div>
 
   <div class="row">
-    <span>Testsolution</span>
+    <span>Test Solution</span>
   </div>
   <div class="row">
     <textarea autosize cols="100" id="solution" spellcheck="false" [(ngModel)]="generator.solutionScript" (focus)="focusVariable=true" (blur)="focusVariable=false" ></textarea>

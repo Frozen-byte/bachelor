@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
+import {Point} from "../../../../data/point";
 
 @Component({
   selector: 'or-matrixform',
@@ -15,8 +16,11 @@ export class MatrixformComponent implements OnInit {
   @Output() answerChange:any = new EventEmitter()
   @Output() validChange:any = new EventEmitter()
 
+  mobileMode:boolean = false;
   rowCount: number = 3;
   colCount: number = 3;
+
+  selectedButton : Point
 
   answerArray: number[][];
 
@@ -131,8 +135,30 @@ export class MatrixformComponent implements OnInit {
         this.answerArray[y] = arr;
 
       }
-
     }
+  }
+
+  handleButtonClick($event:Point) {
+    this.selectedButton = $event;
+  }
+
+  addValue(value) {
+    if(this.selectedButton) {
+      this.answerArray[this.selectedButton.row][this.selectedButton.col]=Number(this.answerArray[this.selectedButton.row][this.selectedButton.col]+String(value));
+      this.update();
+    }
+  }
+
+  clearLast() {
+    this.answerArray[this.selectedButton.row][this.selectedButton.col]=Number(String(this.answerArray[this.selectedButton.row][this.selectedButton.col]).slice(0,-1));
+  }
+
+  clearAll() {
+    this.answerArray[this.selectedButton.row][this.selectedButton.col]=0;
+  }
+
+  changeMode() {
+    this.mobileMode = !this.mobileMode;
   }
 
 

@@ -115,6 +115,10 @@ export class EditScriptComponent implements OnInit {
       this.message = "Bitte wählen sie den Formular Typen aus"
       return;
     }
+    if (!this.generator.name) {
+      this.message="Bitte geben sie einen Namen ein"
+      return;
+    }
     this.generatedCodeService.loadCode(false)
     this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result: SecurityResult) => {
       this.securityResult = result;

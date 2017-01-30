@@ -1,5 +1,9 @@
 
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" *ngIf="!mobile">
   <input *ngFor="let control of formGroup.controls['values'].controls; let i=index"
          type="text" [formControl]="control" [(ngModel)]="row[i]" (ngModelChange)="update(i)" [ngClass]="cssClass" (keydown)="updateKey($event)"  />
 </form>
+<div *ngIf="mobile" >
+  <button class="" [ngClass]="cssClass+(i==selectedCol?' selected':'')" [innerHTML]="row[i]" *ngFor="let item of row; let i=index" (click)="btnClicked.emit({row:rowIndex,col:i})"></button>
+
+</div>

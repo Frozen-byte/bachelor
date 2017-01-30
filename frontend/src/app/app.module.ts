@@ -32,6 +32,9 @@ import { FractureformComponent } from './user/forms/fractureform/fractureform.co
 import { TextformComponent } from './user/forms/textform/textform.component';
 import { MatrixRowComponent } from './user/forms/matrix/matrix-row/matrix-row.component';
 import {NumberedJsonPipe} from "./pipes/NumberedJson";
+import {enableProdMode} from '@angular/core'
+
+enableProdMode();
 const appRoutes: Routes = [
   {
     path: 'admin/:type',

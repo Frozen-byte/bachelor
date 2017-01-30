@@ -11,11 +11,6 @@
     </div>
     <div *ngIf="task">
       <or-mathjax class="row panel panel-default min-sized" [MathJax]="task.mathjax"></or-mathjax>
-      <div class="row" *ngIf="!answer || answer==''">-</div>
-      <div class="row">
-        <or-mathjax [MathJax]="answer" [ngClass]="valid? 'correct':'false'"></or-mathjax>
-
-      </div>
 
       <div class="row" *ngIf="task.formType=='Text'">
         <input type="text" id="answer" class="form-control" [(ngModel)]="answer">
@@ -33,7 +28,10 @@
         <or-fractureform [(answer)]="answer" [(valid)]="valid"></or-fractureform>
       </div>
 
-
+      <div class="row" *ngIf="!answer || answer==''">-</div>
+      <div class="row">
+        <or-mathjax [MathJax]="answer" [ngClass]="valid? 'correct':'false'"></or-mathjax>
+      </div>
 
       <div class="row spaced">
         <or-progressbar [max]="tasksCorrect+tasksWrong" [actual]="tasksCorrect"></or-progressbar>

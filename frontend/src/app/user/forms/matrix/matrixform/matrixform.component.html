@@ -1,24 +1,45 @@
-
-<div *ngFor="let arr of answerArray; let i= index" class="row">
-  <or-matrix-row [(row)]="answerArray[i]" (updated)="update()"></or-matrix-row>
+<div class="row">
+  <button class="col-xs-6 col-sm-4" (click)="changeMode()">Mobilen Modus umschalten</button>
 </div>
 <div class="row">
   <div class="col-xs-6 col-sm-4 nopadding">
-    <button class="btn btn-block" (click)="addRow()">Reihe hinzufügen</button>
+    <button class="btn-block btn-success" (click)="addRow()">Reihe hinzufügen</button>
   </div>
   <div class="col-xs-6 col-sm-4 nopadding" >
-    <button class="btn btn-block" (click)="removeRow()">Reihe entfernen</button>
+    <button class="btn-block btn-success" (click)="removeRow()">Reihe entfernen</button>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-6 col-sm-4 nopadding">
-    <button class="btn btn-block" (click)="addCol()">Spalte hinzufügen</button>
+    <button class="btn-block btn-success" (click)="addCol()">Spalte hinzufügen</button>
   </div>
   <div class="col-xs-6 col-sm-4 nopadding">
-    <button class="btn btn-block" (click)="removeCol()">Spalte entfernen</button>
+    <button class="btn-block btn-success" (click)="removeCol()">Spalte entfernen</button>
   </div>
-
-
 </div>
+
+<div *ngIf="mobileMode" class="row spaced">
+  <button (click)="addValue(1)" class="col-xs-4 btn-primary">1</button>
+  <button (click)="addValue(2)" class="col-xs-4 btn-primary">2</button>
+  <button (click)="addValue(3)" class="col-xs-4 btn-primary">3</button>
+  <button (click)="addValue(4)" class="col-xs-4 btn-primary">4</button>
+  <button (click)="addValue(5)" class="col-xs-4 btn-primary">5</button>
+  <button (click)="addValue(6)" class="col-xs-4 btn-primary">6</button>
+  <button (click)="addValue(7)" class="col-xs-4 btn-primary">7</button>
+  <button (click)="addValue(8)" class="col-xs-4 btn-primary">8</button>
+  <button (click)="addValue(9)" class="col-xs-4 btn-primary">9</button>
+  <button (click)="clearLast()" class="col-xs-4 btn-primary">C</button>
+  <button (click)="addValue(0)" class="col-xs-4 btn-primary">0</button>
+  <button (click)="clearAll()" class="col-xs-4 btn-primary">CE</button>
+</div>
+
+<div *ngFor="let arr of answerArray; let i= index" class="row">
+  <or-matrix-row [(row)]="answerArray[i]" [mobile]="mobileMode" [rowIndex]="i" (updated)="update()" (btnClicked)="handleButtonClick($event)" [selected]="selectedButton"></or-matrix-row>
+</div>
+
+
+
+
+
 
 
