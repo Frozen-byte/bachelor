@@ -52,37 +52,37 @@
 \section{Zielsetzung}
 
 Das Ziel dieser Arbeit ist es eine Webapplikation zu erstellen, welche bei der Gestaltung einer Mathematik-Vorlesung helfen soll. Dabei werden von der Anwendung Aufgaben generiert und an den Nutzer gesendet. Dieser kann diese nun lösen und seine Antwort abschicken. Nach der Validierung bekommt er ein Feedback und bei dem korrekten Lösen eine neue Aufgabe, sowie einige Punkte für sein Team. Der Administrator kann dabei den ganzen Vorgang überwachen und den aktuellen Punktestand einsehen. \\
-Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er jedes mal eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommen aber doch jedes mal unterschiedliche Variablen beinhalten und so ein erneutes Berechnen erfordern.
+Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er jedes mal eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommt aber jedes mal unterschiedliche Variablen beinhaltet und so ein erneutes Berechnen erfordert.
 
 
 \section{Bereits existierende Software}
 
-Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut stößt man auf sehr viele Programme die sich mit dem Vertiefen von Stoff befassen. Allerdings setzen diese lediglich darauf den Nutzer Aufgaben zu stellen und die Aufgaben zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen. Ebenfalls als Nachteil aufzufassen ist hier die Tatsache, dass es sich bei fast allen Lösungen um Programme handelt welche käuflich zu erwerben sind\\
+Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut stößt man auf sehr viele Programme die sich mit dem Vertiefen von Stoff befassen. Bei dem Großteil dieser Programme ist es Allerdings so, dass diese lediglich darauf setzen dem Nutzer Aufgaben zu stellen und die Aufgaben zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen. Ebenfalls als Nachteil aufzufassen ist hier die Tatsache, dass es sich bei fast allen Lösungen um Programme handelt welche käuflich zu erwerben sind.\\
 
 Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Webanwendung ``MARS'' (Minimal Audience Response System). Dieses ist sehr gut dafür geeignet statische Fragen zu stellen und zu validieren. Allerdings ist es hier nicht möglich dynamisch Aufgaben zu erstellen. Zusätzlich kann nur ein einziges Mal eine Antwort abgegeben werden, es ist also nicht möglich mehrere Fragen des selben Bereiches zu beantworten und so sein Wissen intensiver zu testen. \\
 
 Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben aus verschiedenen Themenbereichen kümmern, zum Beispiel RegexGolf ( \url{https://alf.nu/RegexGolf} ). Hierbei handelt es sich um eine Anwendung bei der dem Nutzer eine Liste von Wörtern gegeben wird. Die Aufgabe besteht nun darin einen regulären Ausdruck zu finden welcher für einen Teil der Liste matcht und bei der anderen nicht. \\
 
 Es gibt allerdings auch Projekte welche sich in der Kategorie aufhalten in die OpenTasks fallen wird. Darunter fallen zum Beispiel Maple TA \footnote{http://www.maplesoft.com/products/mapleta/}, WebWork \footnote{http://webwork.maa.org} und Moodle \footnote{https://moodle.de/} \\
-Bei Maple TA handelt es sich um ein System welches alle Funktionalitäten abdeckt die gewünscht sind und dazu noch von einem vollwertigen Linear Algebra System unterstützt wird das für Berechnungen und Aufgabenstellungen zur Verfügung steht. Durch den großen Umfang an Funktionalität steigert allerdings auch die Komplexität des Programms enorm. Zusätzlich handelt es sich bei Maple TA um kostenpflichtige Software.\\
-Auf WeBwork und Moodle wird hier nicht näher eingegangen, gesagt sei lediglich, dass es sich bei WebWork um FreeWare handelt (die allerdings selber gehostet werden muss), während Moodle kostenpflichtig sind. \\
+Bei Maple TA handelt es sich um ein System welches alle Funktionalitäten abdeckt die gewünscht sind und dazu noch von einem vollwertigen Linear Algebra System unterstützt wird, das für Berechnungen und Aufgabenstellungen zur Verfügung steht. Durch den großen Umfang an Funktionalität steigt allerdings auch die Komplexität des Programms enorm. Zusätzlich handelt es sich bei Maple TA um kostenpflichtige Software.\\
+Auf WeBwork und Moodle wird hier nicht näher eingegangen, gesagt sei lediglich, dass es sich bei WebWork um Freeware handelt (die allerdings selber gehostet werden muss), während Moodle kostenpflichtig ist. \\
 Bei WeBWork, Maple TA, sowie Moodle handelt es sich um Anwendungen mit relativ hohem Lernaufwand für den Administrator, was eine schnelle Nutzung nur schwer möglich macht.
 
 
 \section{Vorteile der neuen Lösung}
 
-Bei der neuen Anwendung soll es sich um ein Projekt handelt welches alle Vorteile existierender Programme vereint, während es die Nachteile auslässt. Das bedeutet, dass die Anwendung viel Wert darauf legt erweiterbar zu sein, ein möglichst großes Spektrum an Aufgaben abdecken zu können und dynamisch Aufgaben zu generieren können. \\
+Bei der neuen Anwendung soll es sich um ein Projekt handelt welches alle Vorteile existierender Programme vereint, während es die Nachteile auslässt. Das bedeutet, dass die Anwendung viel Wert darauf legt erweiterbar zu sein, ein möglichst großes Spektrum an Aufgaben abdecken und dynamisch Aufgaben zu generieren können. \\
 Dabei ist es wichtig, dass die Anwendung nicht zu komplex wird. Sie soll für einen neuen Nutzer so intuitiv wie möglich verständlich sein. Zusätzlich soll die Installation sehr einfach sein. Im Zentrum steht die Idee des "Herunterladen und direkt starten".
-Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source handeln, das heißt der Quellcode ist frei verfügbar und kostenlos, ebenso wie die Webapplikation selbst.
+Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source handeln, das heißt der Quellcode ist frei verfügbar und kostenlos, ebenso wie die Webapplikation selbst. Zzusätzlich bedeutet dies, dass wenn das Projekt an irgendeinem Punkt um ein Feature erweitert werden soll dies von jeder Person die sich mit den verwendeten Technologien auskennt möglich ist.
 
 \chapter{Konzeption der Anwendung}
 
 \section{Analyse des Anwendungsfeldes}
 
 Bevor man sich nun an die Entwicklung der Anwendung macht bleibt eine Frage offen: Für wen ist sie eigentlich gemacht und wie soll sie eingesetzt werden? \\
-Als grobe Eingrenzung lässt sich sagen, dass diese Anwendung für die Lehre geschaffen wird, um genau zu sein für den Teilbereich der Mathematik. Wichtig ist hierbei zu beachten, dass sich die Applikation nach dem momentanen Konzept nur während der Vorlesung / des Unterrichts benutzen lässt. Dies liegt daran, dass die Idee Teams vorsieht, welche zusammenarbeiten und so Punkte sammeln. Die Arbeit als einzelne Person ist nicht vorgesehen. \\
+Als grobe Eingrenzung lässt sich sagen, dass diese Anwendung für die Lehre geschaffen wird, um genau zu sein für die Fächer Mathematik, Informatik und Physik. Wichtig ist hierbei zu beachten, dass sich die Applikation nach dem momentanen Konzept nur während der Vorlesung / des Unterrichts benutzen lässt. Dies liegt daran, dass die Idee Teams vorsieht, welche zusammenarbeiten und so Punkte sammeln. Die Arbeit als einzelne Person ist nicht vorgesehen. \\
 Da die Anwendung vorsieht, dass jeder Nutzer einen eigenen Zugang zum Internet hat verlagert sich das Hauptnutzungsfeld in höhere Bildungsstufen, zum Beispiel Universität und Fachhochschule, da dort jeder ein eigenes Smartphone oder sogar einen Laptop benutzt. \\
-Zusammenfassend lässt sich also sagen, dass die Anwendung hauptsächlich im Bereich der Lehre der Mathematik in Universitäten und Fachhochschulen zum Einsatz kommen wird.
+Zusammenfassend lässt sich also sagen, dass die Anwendung hauptsächlich im Bereich der Lehre der Mathematik/Informatik in Universitäten und Fachhochschulen zum Einsatz kommen wird, wobei es durchaus denkbar ist, dass auch andere Fächer davon profitieren können.
 
 \section{Was ist eine Aufgabe}
 
@@ -90,37 +90,40 @@ Als letzten Schritt ist nun noch zu definieren was genau eine Aufgabe eigentlich
 Für diese Arbeit werden wir Aufgaben immer in drei Teilen betrachten:
 \begin{enumerate}
 \item Die Variablen \\
-Als erstes betrachten wir die Variablen. Sie werden für jede Aufgabe neu generiert. Dadurch, dass diese dynamisch generiert wird jedes mal wenn eine Aufgabe angefragt wird.
+Als Erstes betrachten wir die Variablen. Bei den Variablen handelt es sich um den Teil der Aufgabe der dafür sorgt, dass eine Aufgabe dynamisch bleibt. Diese werden für jede generierte Aufgabe, nach festgelegten Regeln, neu generiert. Dadurch werden die Aufgaben dynamisch und gleichen sich nicht alle.
 \item Die Darstellung \\
 An zweiter Stelle befassen wir uns mit der Darstellung der Aufgabe. Um die vorher generierten Variablen für den menschlichen Nutzer angemessen darzustellen wird hier eine Zeichenkette generiert, welche die Aufgabe repräsentiert, in die dann die Variablen eingesetzt werden.
 \item Die Lösung \\
-Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache übrig. Die Validierung der Aufgabe. Es wird die Lösung des Nutzers übergeben und festgestellt ob diese korrekt gelöst wurde oder nicht.
+Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache übrig. Die Validierung der Aufgabe. Jedesmal wenn der Nutzer seine Antwort zur Validierung übergibt wird durch diesen Teil überprüft ob die Antwort korrekt ist. Um dies korrekt tun zu können werden neben der Antwort des Nutzers noch die vorher generierten Variablen benötigt.
 \end{enumerate}
 
 \section{Verwendete Technologien}
 
-Für die Anwendung ist nun bereits klar, dass es sich um eine Webanwendung handeln wird. Doch stehen noch einige Fragen zu dieser offen. Wie sieht das Frontend aus? Welcher Technologie wird zum Ausliefern der Backend Daten genutzt? Diese Fragen werden nachfolgend geklärt.
+Für die Anwendung ist nun bereits klar, dass es sich um eine Webanwendung handeln wird. Doch stehen noch einige Fragen zu dieser offen. Wie sieht das Frontend aus? Welcher Technologie wird zum Ausliefern der Backend-Daten genutzt? Diese Fragen werden nachfolgend geklärt.
 
 
 \subsection{MariaDB}
 
-Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Accounts von Administratoren über mehrere Sitzungen hinweg persistiert werden müssen. Ebenfalls stand die Idee im Raum die durchschnittlichen Ergebnisse von Aufgaben zu speichern um so langfristige Beobachtungen durchführen zu können. Daher war recht früh klar, dass auf eine Datenbank kein Verzicht sein kann. \\
+
+Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Accounts von Administratoren über mehrere Sitzungen hinweg persistiert werden müssen. Zusätzlich musste eine Möglichkeit geschaffen werden die erstellten Aufgaben-Generatoren zu persistieren und bei Bedarf laden zu können. Daher war recht früh klar, dass auf eine Datenbank kein Verzicht sein kann. \\
 
 Wenn man sich nun aber überlegt was für eine Datenbank in einem Projekt eingesetzt werden sollte landet man vor einer großen Frage: Dokument-basiert oder doch lieber relational? \\
-Bei relationalen Datenbanken besteht einer der Hauptvorteile liegt in ihrer Struktur. Ihr Aufbau in mehrere Tabellen erlaubt es,dass es sehr leicht ist Duplikate von Daten zu vermeiden (auch bekannt unter dem Begriff ``Normalisierung''). Dadurch bleibt die Datenbank kleiner und leichter zu durchsuchen, was gut für die Performanz ist. \\
+Bei relationalen Datenbanken liegt einer der Hauptvorteile in ihrer Struktur. Ihr Aufbau in mehrere Tabellen erlaubt es,dass es sehr leicht ist Duplikate von Daten zu vermeiden (auch bekannt unter dem Begriff ``Normalisierung''). Dadurch bleibt die Datenbank kleiner und leichter zu durchsuchen, was gut für die Performanz ist. \\
 
 Sollte man allerdings Flexibilität benötigen so sind Dokument-basierte Datenbanken die richtige Wahl. Dadurch, dass die Daten einfach in ein Dokument abgelegt werden und nicht an ein Schema gebunden sind an das sich gehalten werden muss können die einzelnen Dokumente ohne Probleme sehr voneinander abweichen. Am ehesten vergleichbar ist dies mit einem normalen JSON-Objekt. Da die Daten hier nicht über mehrere Tabellen verteilt sind lässt sich ein Dokument jederzeit mit einem einzelnen Query aus der Datenbank extrahieren. Daher sind Dokument-basierte Datenbanken immer dann die richtige Wahl wenn viele Datensätze existieren, welche allerdings keine Beziehung zu einander haben (nicht-relationale Datensätze) \\
 
 Da in dem Projekt die Notwendigkeit war eine Relation zwischen Nutzern und ihren Rolen (Administrator / Nutzer) herzustellen ist die Wahl auf eine relationale Datenbank gefallen. \\
 
+
+TODO: WRITE MORE!\\
 Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen : MariaDB oder MySQL. Hier die Wahl zu treffen ging recht schnell, da es sich bei MariaDB um nicht viel mehr als einen Fork von MySQL handelt, welcher auf einer performanteren Engine und einer intensiveren Betreeung durch das Entwickler-Team basiert.
 
 \subsection{H2}
 
-Ein wichtiger Punkt der Anwendung war allerdings auch, dass der Installationsprozess der Anwendung möglichst unkompliziert sein sollte. Dies ist leider nicht der Fall wenn es notwendig ist, dass eine Datenbank installiert und initialisiert wird. Daher wird bei OpenTasks die Alternative angeboten durch eine kleine Änderung der Konfiguration eine ``in-memory-database''(IMDB) zu benutzen. Dabei handelt es sich um eine Datenbank die lediglich im Arbeitsspeicher der Maschine existiert und keinerlei Lese und Schreibzugriffe auf die Festplatte ausführt, während eine normale Datenbank den Großteil der Daten auf der Festplatte speichert. Dadurch wird der Installationsaufwand reduziert. \\
+Ein wichtiger Punkt der Anwendung war allerdings auch, dass der Installationsprozess der Anwendung möglichst unkompliziert sein sollte. Dies ist leider nicht der Fall wenn es notwendig ist, dass eine Datenbank installiert und initialisiert wird. Daher wird bei OpenTasks die Alternative angeboten durch eine kleine Änderung der Konfiguration eine ``in-memory-database''(IMDB) zu benutzen. Dabei handelt es sich um eine Datenbank die lediglich im Arbeitsspeicher der Maschine existiert und fast keine Lese und Schreibzugriffe auf die Festplatte ausführt, während eine normale Datenbank den Großteil der Daten auf der Festplatte speichert. Dadurch wird der Installationsaufwand reduziert. \\
 
-Einer der Hauptvorteile einer solchen Datenbank liegt in der schnellen Zugriffszeit, da Arbeitsspeicher erheblich performanter ist als Festplattenspeicher. Allerdings hat eine IMDB nicht nur Vorteile. Arbeitsspeicher ist erheblich teurer als regulärer Festplattenspeicher, daher sind die Kosten nicht zu vernachlässigen. Da es sich bei OpenTasks nur um kleine Datenmengen handelt ist dies in dieser Anwendung zu vernachlässigen. \\
-Ein viel größeres Problem ist hingegen die Persistenz der Daten. Da bei einer IMDB alle Daten im Arbeitsspeicher gehalten werden sind sie im Falle eines Absturzes alle verloren. Viele moderne Datenbanken nutzen daher das Prinzip von ``Snapshots''. Dabei wird in regelmäßigen Abständen (oder bei ordnungsgemäßem herunterfahren der Datenbank) der aktuelle Stand der Datenbank auf der Festplatte gespeichert um den Datenverlust zu reduzieren. Trotzdem sind diese Daten niemals so sicher wie bei einer Datenbank, welche ihre Daten auf der Festplatte speichert. \\
+Einer der Hauptvorteile einer solchen Datenbank liegt in der bessseren Zugriffszeit, da Arbeitsspeicher erheblich schneller ist als Festplattenspeicher. Allerdings hat eine IMDB nicht nur Vorteile. Arbeitsspeicher ist erheblich teurer als regulärer Festplattenspeicher, daher sind die Kosten nicht zu vernachlässigen. Da es sich bei OpenTasks nur um kleine Datenmengen handelt ist dies in dieser Anwendung zu vernachlässigen. \\
+Ein viel größeres Problem ist hingegen die Persistenz der Daten. Da bei einer IMDB alle Daten im Arbeitsspeicher gehalten werden sind sie im Falle eines Absturzes alle verloren. Viele moderne Datenbanken nutzen daher das Prinzip von ``Snapshots''. Dabei wird in regelmäßigen Abständen (oder bei ordnungsgemäßem herunterfahren der Datenbank) der aktuelle Stand der Datenbank auf der Festplatte gespeichert um den Datenverlust zu reduzieren. Trotzdem sind diese Daten niemals so sicher wie bei einer Datenbank, welche ihre Daten komplett auf der Festplatte speichert. \\
 
 Daher ist es, für eine dauerhafte Installation, immmer besser eine Festplatten-basierte Datenbank zu benutzen. Für eine kurze Testphase ist allerdings eine IMDB eine angenehme Alternative.
 
@@ -163,9 +166,9 @@ Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Busi
 Geschäftslogik (englisch business logic, auch Anwendungslogik) ist ein abstrakter Begriff in der Softwaretechnik, der eine Abgrenzung der durch die Aufgabenstellung selbst motivierten Logik eines Softwaresystems von der technischen Implementierung zum Ziel hat.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Geschäftslogik} \\
 
-Ebenfalls zu erwähnen ist die Verbesserung des Verständnisses von Programmcode, insbesondere wenn man nicht den gesamten Kontext der Anwendung kennt. Dies liegt daran, dass jeder Service immer für einen Satz an Aufgaben steht welche logisch zusammenhängen (zum Beispiel das Verwalten der Punktzahl von Nutzern). Sollte ein Service ebenfalls Abhängigkeiten haben werden diese ebenfalls über den Dependency-Injectior eingefügt. \\
+Ebenfalls zu erwähnen ist die Verbesserung des Verständnisses von Programmcode, insbesondere wenn man nicht den gesamten Kontext der Anwendung kennt. Dies liegt daran, dass jeder Service immer für einen Satz an Aufgaben steht welche logisch zusammenhängen (zum Beispiel das Verwalten der Punktzahl von Nutzern). Sollte ein Service Abhängigkeiten haben werden diese ebenfalls über den Dependency-Injectior eingefügt. \\
 
-Als letzter Punkt steht die Verbesserung der Testbarkeit. Dadurch, dass die einzelnen Komponenten ihre Abhängigkeiten an einer zentralen Stellle anfragen anstatt sie selber zu erzeugen können an dieser simplere Versionen der Abhängigkeiten hinterlegt werden (sogennante Mock's), wodurch die Funktionen der zu testenden Komponente steigt da Fehler durch die Abhängigkeiten in dieser Umgebung nicht auftreten können. \\
+Als letzter Punkt steht die Verbesserung der Testbarkeit. Dadurch, dass die einzelnen Komponenten ihre Abhängigkeiten an einer zentralen Stelle anfragen anstatt sie selber zu erzeugen können an dieser simplere Versionen der Abhängigkeiten hinterlegt werden (sogennante Mock's), wodurch die Testbarkeit der zu testenden Komponente steigt da Fehler durch die Abhängigkeiten in dieser Umgebung nicht auftreten können. \\
 
 \textbf{Mock} \\
 \emph{\glqq   
@@ -180,34 +183,28 @@ Das Pattern der Dependency-Injection wird von denn im Nachhinein folgenden Frame
 
 \subsection{Spring(-Boot)}
 
-
-Auf der Suche nach einem Framework für die Programmierung des REST-Backends stolpert man oft über drei die sich wiederholen. Express-JS, Sinatra und Spring-Boot. \\
-
+Wenn man sich auf die Suche nach einem Framework für die Programmierung eines REST-Backends macht, so findet man drei große Frameworks: Express-JS, Sinatra und Spring-Boot. Im folgenden wird darauf eingegangen welche Vor- und Nachteile diese haben und wie dies die Wahl des Frameworks beeinflusst hat.
 
 \emph{\glqq   
 Express ist ein einfaches und flexibles Node.js-Framework von Webanwendungen, das zahlreiche leistungsfähige Features und Funktionen für Webanwendungen und mobile Anwendungen bereitstellt.
 \grqq} \footnote{http://expressjs.com/de/)} \\
 
-Schaut man sich als erstes Express an stößt man auf leichtes Package-Managment (dank NPM), eine Sprache die exzellent für das Bearbeiten und Manipulieren von JSON gemacht ist. Gleichzeitig ist das Problem, dass viele Bibliotheken unterschiedliche Standards benutzen was der Übersicht in größeren Projekten schadet. Zusätzlich kommt das Problem, dass Javascript durch fehlende starke Typisierung eine Sprache ist die bei wachsenden Code-Mengen immer unübersichtlicher wird, während nicht für alle Bibliotheken eine Typescript Implementation vorhanden ist die die Arbeit erleichtern würde. Dazu kommt, dass die Nutzung mehrerer Kerne (und so die Handhabung vieler Anfragen an den Server) nur mittels Prozess-Managern möglich ist, welche ebenfalls wieder Konfiguration und Testaufwand bedeuten. Als letztes ist zu sagen, dass Express-JS eine relativ kleine Entwickler-Basis besitzt, was zu weniger Möglichkeiten für Hilfestellungen bei Problemen führt \\
+Schaut man sich als erstes Express an stößt man auf leichtes Package-Managment (dank NPM) sowie eine Sprache die exzellent für das Bearbeiten und Manipulieren von JSON gemacht ist. Gleichzeitig ist das Problem, dass viele Bibliotheken unterschiedliche Standards benutzen was der Übersicht in größeren Projekten schadet. Zusätzlich kommt das Problem, dass Javascript durch fehlende starke Typisierung eine Sprache ist die bei wachsenden Code-Mengen immer unübersichtlicher wird.
+Abhilfe sorgt dafür TypeScript, ein Transpiler der es erlaubt stark typisierten Code zu schreiben der in JavaScript übersetzt wird. Das Problem ist, dass nicht für alle Bibliotheken TypeScript Implementationen existieren. Dazu kommt, dass die Nutzung mehrerer Kerne (und so die Handhabung vieler Anfragen an den Server) nur mittels Prozess-Managern möglich ist, welche ebenfalls wieder Konfiguration und Testaufwand bedeuten. Abschließend ist zu sagen, dass Express-JS eine relativ kleine Entwickler-Basis besitzt, was zu weniger Möglichkeiten für Hilfestellungen bei Problemen führt \\
 
+TODO: SINATRA
 
 \emph{\glqq   
 Das Spring Framework (kurz Spring) ist ein quelloffenes Framework für die Java-Plattform. Ziel des Spring Frameworks ist es, die Entwicklung mit Java/Java EE zu vereinfachen und gute Programmierpraktiken zu fördern. Spring bietet mit einem breiten Spektrum an Funktionalität eine ganzheitliche Lösung zur Entwicklung von Anwendungen und deren Geschäftslogiken; dabei steht die Entkopplung der Applikationskomponenten im Vordergrund.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Spring\_(Framework)} \\
 
-Schaut man sich als letztes das Spring-Framework an stößt man auf ein System welches über ein inzwischen gigantisches Ökosystem an Erweiterungen verfügt. Seit März 2004 hat es immer mehr an Popularität und an Features dazu gewonnen. Doch ein wirklich großer Sprung war der Release von Spring-Boot. Dieses übernahm ein Großteil der Konfiguration einer Anwendung und kam bereits mit integriertem Webcontainer mit. Einer der vielen Vorteile die Spring mitbrachte war die Dependency-Injection, welche von Haus aus implementiert war und direkt verwendet werden konnte. Die Absicherung einer Anwendung wird durch Spring-Security ebenfalls erheblich vereinfacht, welches direkt Schutz gegen einige Angriffe bietet, sowie einige Authentifizierungsverfahren erheblich vereinfacht. Eines der Probleme ist allerdings, dass es sich bei Spring (und all seinen Erweiterungen) inzwischen um ein immens großes Projekt handelt, was es sehr schwer machen kann mit Spring anzufangen und die erste Webanwendung zu schreiben.
-
-
-Alternative : Express-JS, Sinatra
+Schaut man sich als letztes das Spring-Framework an stößt man auf ein System welches über ein inzwischen gigantisches Ökosystem an Erweiterungen verfügt. Seit März 2004 hat es immer mehr an Popularität und an Features dazu gewonnen. Doch ein wirklich großer Sprung war der Release von Spring-Boot. Dieses übernahm ein Großteil der Konfiguration einer Anwendung und kam bereits mit integriertem Webcontainer mit. Einer der vielen Vorteile die Spring mitbrachte war die Dependency-Injection, welche von Haus aus implementiert war und direkt verwendet werden konnte. Die Absicherung einer Anwendung wird durch Spring-Security ebenfalls erheblich vereinfacht, welches direkt Schutz gegen einige Angriffe bietet, sowie einige Authentifizierungsverfahren erheblich vereinfacht. Eines der Probleme ist allerdings, dass es sich bei Spring (und all seinen Erweiterungen) inzwischen um ein immens großes Projekt handelt, was es sehr schwer machen kann mit Spring anzufangen und die erste Webanwendung zu schreiben. \\
 
 Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht. \\
-
-
-
-Kurz gesagt hilft das Framework dabei eine Anwendung modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte die dabei besonders wichtig sind sind die Controller, sowie die bereits erklärten Services und die Dependency-Injection \\
+Kurz gesagt hilft das Framework dabei eine Anwendung modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte die dabei besonders wichtig sind sind die Controller, die bereits erklärten Services und die Dependency-Injection. \\
 
 \textbf{Controller}\\
-Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Das Ergebnis von diesem wird dann über den Controller zurück an den Sender der Anfrage gesendet \\
+Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Dieser greift dann, wenn nötig, noch auf die Datenbankschicht zu, bevor das Ergebnis dann über den Controller zurück an den Sender der Anfrage gesendet wird.\\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -217,7 +214,7 @@ Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung v
 
 Gleichzeit stellt Spring-Boot auch direkt einen Container für die Webapplikation zur Verfügung. Das bedeutet, dass die Programmierung sich komplett mit der REST-API und ihren Funktionalitäten beschäftigen kann und nur sehr wenig Zeit für die Konfiguration des Web-Servers verbraucht wird.
 
-Ein großer Teil der Konfiguration findet außerhalb des Codes statt. In dem Projekt kann eine Datei mit dem Namen ``application.properties'' hinterlegt werden. Hier können dann mehrere Sachen eingestellt werden, wie zum Beispiel der Port unter dem der Server laufen soll.
+Sollte Konfiguration nötig sein so findet diese zu großen Teilen außerhalb des Codes statt. In dem Projekt kann eine Datei mit dem Namen ``application.properties'' hinterlegt werden. Hier können dann mehrere Sachen eingestellt werden, wie zum Beispiel der Port unter dem der Server laufen soll.\\
 
 \begin{minipage}{\textwidth}
 \emph{Konfiguration des Server-Ports}
@@ -232,8 +229,9 @@ spring.server.port=8080
 Implementing a data access layer of an application has been cumbersome for quite a while. Too much boilerplate code has to be written to execute simple queries as well as perform pagination, and auditing. Spring Data JPA aims to significantly improve the implementation of data access layers by reducing the effort to the amount that’s actually needed. As a developer you write your repository interfaces, including custom finder methods, and Spring will provide the implementation automatically.
 \grqq} \footnote{http://projects.spring.io/spring-data-jpa/} \\
 
-Bei Spring Data JPA (im nachfolgenden nur noch als JPA bezeichnet) handelt es sich um eines der Projekte aus dem Spring-Ökosystem welches in wahrscheinlich jedem Spring Projekt heutzutage genutzt wird. Das Hauptziel des Projektes ist es, dass überflüssiger Code der jedes mal geschrieben wird automatisch generiert werden kann und so dem Entwickler viel Arbeit abnimmt. Der Zugriff auf eine Datenbank wird enorm erleichtert, indem die Verbindung automatisch aufgebaut und die Querys automatisch aus Interfaces generiert werden. \\
-Als erstes muss JPA also die Information erlangen wie die Datenbank erreichbar ist und wie die Zugangsdaten lauten. Dies wird in der application.properties angegeben \\
+Bei Spring Data JPA (im nachfolgenden nur noch als JPA bezeichnet) handelt es sich um eines der Projekte aus dem Spring-Ökosystem welches in beinahe jedem Spring Projekt heutzutage genutzt wird. Das Hauptziel des Projektes ist die Reduktion von redundantem Code welcher in beinahe jedem Projekt für den Zugriff auf Datenbanken benötigt wird. Zusätzlich werden benötigte Querys zur Abfrage von Daten automatisch generiert, der Nutzer muss lediglich ein Interface mit vorgegebenen Methodennamen erzeugen. \\
+
+Um mit dem Aufbau der Datenbankverbindung zu beginnen benötigt JPA als erstes die Information unter welcher Adresse die Datenbank erreichbar ist. Dies wird in der application.properties angegeben \\
 
 \begin{minipage}{\textwidth}
 \emph{Konfiguration der Datenbankverbindung}
@@ -244,7 +242,7 @@ spring.datasource.password=root
 \end{lstlisting} 
 \end{minipage}
 
-Nach dem JPA nun die Verbindung mit der Datenbank aufbauen kann muss definiert werden wie die Datenbank-Entitäten in Java-Objekte umgewandelt werden und in welchen Tabellen sie sich befinden. In JPA wird dies dadurch umgesetzt, dass für jede Entität eine Klasse angelegt wird in der durch Annotationen festgelegt wird wie die Daten in das Objekt gelegt werden. \\
+Nach dem JPA nun die Verbindung mit der Datenbank aufbauen kann muss definiert werden wie die Datenbank-Entitäten in Java-Objekte umgewandelt werden und in welchen Tabellen sie sich befinden. In JPA wird dies dadurch umgesetzt, dass für jede Entität eine Klasse angelegt wird in der durch Annotationen festgelegt wird wie die Daten in das Objekt geladen werden. \\
 
 \begin{minipage}{\textwidth}
 \emph{Beispiel für eine Datenbank-Entität}
@@ -290,16 +288,33 @@ public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> 
 \end{lstlisting}
 \end{minipage}
 
-\subsection{Bootstrap}
+Nachdem das Interface deklariert wurde kann es jederzeit über den Dependency-Injektor geholt und genutzt werden.
 
-Gegenstück : Material
+\begin{minipage}{\textwidth}
+\emph{Beispiel für eigene Querys}
+\begin{lstlisting}
+
+	@Autowired
+	private ScriptRepository scriptRepository;
+	
+	public List<ScriptEntity> getAllScriptEntities() {
+		return scriptRepository.findAll();
+	}
+	
+}
+\end{lstlisting}
+\end{minipage}
+
+\subsection{Bootstrap}
 
 \emph{\glqq   
 Bootstrap ist ein anpassungsfähiges und zuerst für mobile Geräte entwickeltes Framework. Egal, wie gut du dich auskennst, kannst du damit einfacher und schneller kleine wie große Projekte entwickeln, die auf Geräten in allen erdenklichen Formen funktionieren.
 \grqq} \footnote{http://holdirbootstrap.de//} \\
 
 Aus der heutigen Welt der Webentwicklung ist Bootstrap kaum wegzudenken. Durch die leichte Entwicklung für alle vorhandenen Formate und Endgeräte hat es sich als äußerst robust herausgestellt wenn es um die schnelle Entwicklung von Webseiten geht. \\
-Gleichzeitig bietet es ein großes Repertoire an CSS-Klassen für alle Elemente der HTML-Entwicklung was es sogar Personen mit wenig Erfahrung im Design-Bereich ermöglicht spektakuläre Ergebnisse mit wenig Arbeit zu erzielen.
+Gleichzeitig bietet es ein großes Repertoire an CSS-Klassen für alle Elemente der HTML-Entwicklung was es sogar Personen mit wenig Erfahrung im Design-Bereich ermöglicht spektakuläre Ergebnisse mit wenig Arbeit zu erzielen. \\
+
+Da bei OpenTasks bereits durch die technische Implementation ein hoher Grad an Komplexität gegeben war konnte nicht viel Zeit für das Einarbeiten in ein komplexes CSS-Framework investiert werden, daher ist die Wahl recht schnell auf Bootstrap gefallen. Als Alternative hätte sonst Material zur Auswahl gestanden. //TODO: Material Link
 
 
 
