@@ -14,7 +14,7 @@ import {RunningInfo} from "../../data/runninginfo";
 export class StartnewComponent implements OnInit {
 
   selected: string;
-  time: number;
+  time: string;
   generators: string[] = [];
   message: string;
   runningGenerator: String;
@@ -81,7 +81,7 @@ export class StartnewComponent implements OnInit {
       this.message = "Bite wählen sie einen Generator aus"
       start = false;
     }
-    if (typeof this.time === 'number' || this.time == undefined) {
+    if (this.time ==='' || this.time == undefined ||isNaN(Number(this.time))) {
       this.message = "Bitte geben sie eine gültige Zeit an"
       start = false;
     }
@@ -89,7 +89,7 @@ export class StartnewComponent implements OnInit {
       this.message = "Starting"
       let msg: StartGenerator = {
         name: this.selected,
-        time: this.time
+        time: Number(this.time)
       }
       this.httpService.doPost(this.configService.startgenerator, msg)
         .subscribe(

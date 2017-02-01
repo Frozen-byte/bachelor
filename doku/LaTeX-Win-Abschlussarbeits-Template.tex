@@ -57,23 +57,23 @@ Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generie
 
 \section{Bereits existierende Software}
 
-Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut stößt man auf sehr viele Programme die sich mit dem Vertiefen von Stoff befassen. Bei dem Großteil dieser Programme ist es Allerdings so, dass diese lediglich darauf setzen dem Nutzer Aufgaben zu stellen und die Aufgaben zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen. Ebenfalls als Nachteil aufzufassen ist hier die Tatsache, dass es sich bei fast allen Lösungen um Programme handelt welche käuflich zu erwerben sind.\\
+Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut stößt man auf sehr viele Programme die sich mit dem Vertiefen von Stoff befassen. Bei dem Großteil dieser Programme ist es allerdings so, dass diese lediglich darauf setzen dem Nutzer Aufgaben zu stellen und die Antworten zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen. Ebenfalls als Nachteil aufzufassen ist hier die Tatsache, dass es sich bei fast allen Lösungen um Programme handelt welche käuflich zu erwerben sind.\\
 
-Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Webanwendung ``MARS'' (Minimal Audience Response System). Dieses ist sehr gut dafür geeignet statische Fragen zu stellen und zu validieren. Allerdings ist es hier nicht möglich dynamisch Aufgaben zu erstellen. Zusätzlich kann nur ein einziges Mal eine Antwort abgegeben werden, es ist also nicht möglich mehrere Fragen des selben Bereiches zu beantworten und so sein Wissen intensiver zu testen. \\
+Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Webanwendung ``MARS'' (Minimal Audience Response System). Diese ist sehr gut dafür geeignet statische Fragen zu stellen und zu validieren. Allerdings ist es hier nicht möglich dynamisch Aufgaben zu erstellen. Zusätzlich kann nur ein einziges Mal eine Antwort abgegeben werden, es ist also nicht möglich mehrere Fragen des selben Bereiches zu beantworten und so sein Wissen intensiver zu testen. \\
 
 Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben aus verschiedenen Themenbereichen kümmern, zum Beispiel RegexGolf ( \url{https://alf.nu/RegexGolf} ). Hierbei handelt es sich um eine Anwendung bei der dem Nutzer eine Liste von Wörtern gegeben wird. Die Aufgabe besteht nun darin einen regulären Ausdruck zu finden welcher für einen Teil der Liste matcht und bei der anderen nicht. \\
 
 Es gibt allerdings auch Projekte welche sich in der Kategorie aufhalten in die OpenTasks fallen wird. Darunter fallen zum Beispiel Maple TA \footnote{http://www.maplesoft.com/products/mapleta/}, WebWork \footnote{http://webwork.maa.org} und Moodle \footnote{https://moodle.de/} \\
-Bei Maple TA handelt es sich um ein System welches alle Funktionalitäten abdeckt die gewünscht sind und dazu noch von einem vollwertigen Linear Algebra System unterstützt wird, das für Berechnungen und Aufgabenstellungen zur Verfügung steht. Durch den großen Umfang an Funktionalität steigt allerdings auch die Komplexität des Programms enorm. Zusätzlich handelt es sich bei Maple TA um kostenpflichtige Software.\\
+Bei Maple TA handelt es sich um ein System welches alle Funktionalitäten abdeckt die gewünscht sind und dazu noch von einem vollwertigen Linear Algebra System unterstützt wird, das für Berechnungen zur Verfügung steht. Durch den großen Umfang an Funktionalität steigt allerdings auch die Komplexität des Programms enorm. Zusätzlich handelt es sich bei Maple TA um kostenpflichtige Software.\\
 Auf WeBwork und Moodle wird hier nicht näher eingegangen, gesagt sei lediglich, dass es sich bei WebWork um Freeware handelt (die allerdings selber gehostet werden muss), während Moodle kostenpflichtig ist. \\
 Bei WeBWork, Maple TA, sowie Moodle handelt es sich um Anwendungen mit relativ hohem Lernaufwand für den Administrator, was eine schnelle Nutzung nur schwer möglich macht.
 
 
 \section{Vorteile der neuen Lösung}
 
-Bei der neuen Anwendung soll es sich um ein Projekt handelt welches alle Vorteile existierender Programme vereint, während es die Nachteile auslässt. Das bedeutet, dass die Anwendung viel Wert darauf legt erweiterbar zu sein, ein möglichst großes Spektrum an Aufgaben abdecken und dynamisch Aufgaben zu generieren können. \\
+Bei der neuen Anwendung soll es sich um ein Projekt handelt welches so viele Vorteile existierender Programme vereint wie möglich, während es versucht die negativen Punkte zu reduzieren. Das bedeutet, dass die Anwendung viel Wert darauf legt erweiterbar zu sein, ein möglichst großes Spektrum an Aufgaben abdecken und dynamisch Aufgaben zu generieren können. \\
 Dabei ist es wichtig, dass die Anwendung nicht zu komplex wird. Sie soll für einen neuen Nutzer so intuitiv wie möglich verständlich sein. Zusätzlich soll die Installation sehr einfach sein. Im Zentrum steht die Idee des "Herunterladen und direkt starten".
-Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source handeln, das heißt der Quellcode ist frei verfügbar und kostenlos, ebenso wie die Webapplikation selbst. Zzusätzlich bedeutet dies, dass wenn das Projekt an irgendeinem Punkt um ein Feature erweitert werden soll dies von jeder Person die sich mit den verwendeten Technologien auskennt möglich ist.
+Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source handeln, das heißt der Quellcode ist frei verfügbar und kostenlos, ebenso wie die Webapplikation selbst. Zusätzlich bedeutet dies, dass wenn das Projekt an irgendeinem Punkt um ein Feature erweitert werden soll dies von jeder Person die sich mit den verwendeten Technologien auskennt möglich ist.
 
 \chapter{Konzeption der Anwendung}
 
@@ -81,7 +81,7 @@ Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source h
 
 Bevor man sich nun an die Entwicklung der Anwendung macht bleibt eine Frage offen: Für wen ist sie eigentlich gemacht und wie soll sie eingesetzt werden? \\
 Als grobe Eingrenzung lässt sich sagen, dass diese Anwendung für die Lehre geschaffen wird, um genau zu sein für die Fächer Mathematik, Informatik und Physik. Wichtig ist hierbei zu beachten, dass sich die Applikation nach dem momentanen Konzept nur während der Vorlesung / des Unterrichts benutzen lässt. Dies liegt daran, dass die Idee Teams vorsieht, welche zusammenarbeiten und so Punkte sammeln. Die Arbeit als einzelne Person ist nicht vorgesehen. \\
-Da die Anwendung vorsieht, dass jeder Nutzer einen eigenen Zugang zum Internet hat verlagert sich das Hauptnutzungsfeld in höhere Bildungsstufen, zum Beispiel Universität und Fachhochschule, da dort jeder ein eigenes Smartphone oder sogar einen Laptop benutzt. \\
+Da die Anwendung voraussetzt, dass jeder Nutzer einen eigenen Zugang zum Internet hat verlagert sich das Hauptnutzungsfeld in höhere Bildungsstufen, zum Beispiel Universität und Fachhochschule, da dort jeder ein eigenes Smartphone oder sogar einen Laptop benutzt. \\
 Zusammenfassend lässt sich also sagen, dass die Anwendung hauptsächlich im Bereich der Lehre der Mathematik/Informatik in Universitäten und Fachhochschulen zum Einsatz kommen wird, wobei es durchaus denkbar ist, dass auch andere Fächer davon profitieren können.
 
 \section{Was ist eine Aufgabe}
@@ -90,7 +90,7 @@ Als letzten Schritt ist nun noch zu definieren was genau eine Aufgabe eigentlich
 Für diese Arbeit werden wir Aufgaben immer in drei Teilen betrachten:
 \begin{enumerate}
 \item Die Variablen \\
-Als Erstes betrachten wir die Variablen. Bei den Variablen handelt es sich um den Teil der Aufgabe der dafür sorgt, dass eine Aufgabe dynamisch bleibt. Diese werden für jede generierte Aufgabe, nach festgelegten Regeln, neu generiert. Dadurch werden die Aufgaben dynamisch und gleichen sich nicht alle.
+Als Erstes betrachten wir die Variablen. Bei den Variablen handelt es sich um den Teil der Aufgabe der dafür sorgt, dass eine Aufgabe dynamisch bleibt. Diese werden für jede generierte Aufgabe, nach festgelegten Regeln, neu generiert. Durch diesen Teil wird gewährleistet, dass sich die generierten Aufgaben unterscheiden.
 \item Die Darstellung \\
 An zweiter Stelle befassen wir uns mit der Darstellung der Aufgabe. Um die vorher generierten Variablen für den menschlichen Nutzer angemessen darzustellen wird hier eine Zeichenkette generiert, welche die Aufgabe repräsentiert, in die dann die Variablen eingesetzt werden.
 \item Die Lösung \\
@@ -110,13 +110,14 @@ Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Account
 Wenn man sich nun aber überlegt was für eine Datenbank in einem Projekt eingesetzt werden sollte landet man vor einer großen Frage: Dokument-basiert oder doch lieber relational? \\
 Bei relationalen Datenbanken liegt einer der Hauptvorteile in ihrer Struktur. Ihr Aufbau in mehrere Tabellen erlaubt es,dass es sehr leicht ist Duplikate von Daten zu vermeiden (auch bekannt unter dem Begriff ``Normalisierung''). Dadurch bleibt die Datenbank kleiner und leichter zu durchsuchen, was gut für die Performanz ist. \\
 
-Sollte man allerdings Flexibilität benötigen so sind Dokument-basierte Datenbanken die richtige Wahl. Dadurch, dass die Daten einfach in ein Dokument abgelegt werden und nicht an ein Schema gebunden sind an das sich gehalten werden muss können die einzelnen Dokumente ohne Probleme sehr voneinander abweichen. Am ehesten vergleichbar ist dies mit einem normalen JSON-Objekt. Da die Daten hier nicht über mehrere Tabellen verteilt sind lässt sich ein Dokument jederzeit mit einem einzelnen Query aus der Datenbank extrahieren. Daher sind Dokument-basierte Datenbanken immer dann die richtige Wahl wenn viele Datensätze existieren, welche allerdings keine Beziehung zu einander haben (nicht-relationale Datensätze) \\
+Sollte man allerdings Flexibilität benötigen so sind Dokument-basierte Datenbanken die richtige Wahl. Bei diesen werden die Daten in einem Dokument abgespeichert, welches weder Form noch Schema besitzen muss. Dadurch ist es möglich, dass die gespeicherten Daten sehr voneinander abweichen. Am ehesten vergleichbar ist dies mit einem normalen JSON-Objekt. Da die Daten hier nicht über mehrere Tabellen verteilt sind lässt sich ein Dokument jederzeit mit einem einzelnen Query aus der Datenbank extrahieren. Daher sind Dokument-basierte Datenbanken immer dann die richtige Wahl wenn viele Datensätze existieren, welche allerdings keine Beziehung zu einander haben (nicht-relationale Datensätze). \\
 
 Da in dem Projekt die Notwendigkeit war eine Relation zwischen Nutzern und ihren Rolen (Administrator / Nutzer) herzustellen ist die Wahl auf eine relationale Datenbank gefallen. \\
 
+Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen: MariaDB oder MySQL. Bei MySQL handelt es sich um eine der bekanntesten Datenbank-Engines die in der heutigen Welt existieren. 1994 gegründet und 2008 von Sun Microsystems übernommen kann dieses Projekt auf eine lange Geschichte und viel Erfahrung zurück blicken, was den Standpunkt als Platzhirsch unter den Datenbanken nur festigt. \\
+2009 ist aus dem MySQL-Projekt allerdings ein neues entstanden. Einige der Entwickler haben sich von dem alten Team ab gekapselt und ein neues gegründet, sowie ein neues Produkt hervorgebracht: MariaDB. Als Fork von MySQL gibt es heutzutage viele Personen die MariaDB für die bessere der beiden Lösungen handeln. Dies liegt zum einen daran, dass MariaDB OpenSource ist, andererseits darin, dass MariaDB in den meisten Use-Cases performanter ist als MySQL. Zusätzlich bietet es Verschlüsselung auf Datenbank-Ebene an, während die Daten selber in einem großen Spektrum an Speicher-Engines die für verschiedene Zwecke optimiert wurden abgelegt werden können. \\
 
-TODO: WRITE MORE!\\
-Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen : MariaDB oder MySQL. Hier die Wahl zu treffen ging recht schnell, da es sich bei MariaDB um nicht viel mehr als einen Fork von MySQL handelt, welcher auf einer performanteren Engine und einer intensiveren Betreeung durch das Entwickler-Team basiert.
+Alles in allem lässt sich zusammenfassen, dass es sich bei MariaDB um die moderne Variante handelt an der immer noch erheblich mehr gearbeitet wird als dies bei MySQL der Fall ist. Daher ist die Wahl auf MariaDB gefallen. Da beide Datenbanken über die gleiche Sprache ansprechbar sind ist es allerdings kein Problem jederzeit die Datenbank hinter OpenTasks auszutauschen.
 
 \subsection{H2}
 
@@ -132,7 +133,7 @@ Daher ist es, für eine dauerhafte Installation, immmer besser eine Festplatten-
 \emph{\glqq   
 Als Dependency Injection (englisch dependency ‚Abhängigkeit‘ und injection ‚Injektion‘; Abkürzung DI) wird in der objektorientierten Programmierung ein Entwurfsmuster bezeichnet, welches die Abhängigkeiten eines Objekts zur Laufzeit reglementiert: Benötigt ein Objekt beispielsweise bei seiner Initialisierung ein anderes Objekt, ist diese Abhängigkeit an einem zentralen Ort hinterlegt – es wird also nicht vom initialisierten Objekt selbst erzeugt. \grqq} \footnote{https://de.wikipedia.org/wiki/Dependency\_Injection} \\ 
 
-Bei der Dependency-Injection handelt es sich um ein Pattern welches aus der heutigen Welt der Programmierung kaum wegzudenken ist. Anstatt das einzelne Komponenten ihre Abhängigkeiten selber erzeugen geben sie lediglich an, dass sie eine Abhängigkeit benötigen welche einen bestimmten Satz an Aufgaben erfüllen kann (oft durch ein Interface definiert). Daraufhin sucht der Dependency-Injector nach einer Komponente (in den meisten Frameworks als ``Service'' bezeichnet) die diese Anforderungen erfüllt und fügt sie in den Anfragenden ein (bei diesem Prozess handelt es sich dann um die ``Injection'') \\
+Bei der Dependency-Injection handelt es sich um ein Pattern welches aus der heutigen Welt der Programmierung kaum wegzudenken ist. Anstatt das einzelne Komponenten ihre Abhängigkeiten selber erzeugen geben sie lediglich an, dass sie eine Abhängigkeit benötigen welche einen bestimmten Satz an Aufgaben erfüllen kann (oft durch ein Interface definiert). Daraufhin sucht der Dependency-Injector nach einer Komponente (in den meisten Frameworks als ``Service'' bezeichnet) die diese Anforderungen erfüllt und fügt sie in den Anfragenden ein (bei diesem Prozess handelt es sich dann um die ``Injection''). \\
 
 \begin{minipage}{\textwidth}
 \emph{Beispiel für eine Komponente zur Abfragung von Daten (Datenbankzugriff)}
@@ -158,7 +159,7 @@ public interface GlobalErrorService {
 \end{lstlisting}
 \end{minipage}
 
-Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Business-Logik'' und der technischen Implementation stark getrennt. Dies fördert die Nachvollziehbarkeit von Programmabschnitten. Ebenfalls wird dank der loseren Kopplung die Wiederverwertbarkeit von Code verbessert. Daher wird Dependency-Injection immer dann verwendet wenn auf Modularität Wert gelegt wird \\
+Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Business-Logik'' und der technischen Implementation stark getrennt. Dies fördert die Nachvollziehbarkeit von Programmabschnitten. Ebenfalls wird dank der loseren Kopplung die Wiederverwertbarkeit von Code verbessert. Daher wird Dependency-Injection immer dann verwendet wenn auf Modularität Wert gelegt wird. \\
 
 
 \textbf{Geschäftslogik} \\
@@ -166,7 +167,7 @@ Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Busi
 Geschäftslogik (englisch business logic, auch Anwendungslogik) ist ein abstrakter Begriff in der Softwaretechnik, der eine Abgrenzung der durch die Aufgabenstellung selbst motivierten Logik eines Softwaresystems von der technischen Implementierung zum Ziel hat.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Geschäftslogik} \\
 
-Ebenfalls zu erwähnen ist die Verbesserung des Verständnisses von Programmcode, insbesondere wenn man nicht den gesamten Kontext der Anwendung kennt. Dies liegt daran, dass jeder Service immer für einen Satz an Aufgaben steht welche logisch zusammenhängen (zum Beispiel das Verwalten der Punktzahl von Nutzern). Sollte ein Service Abhängigkeiten haben werden diese ebenfalls über den Dependency-Injectior eingefügt. \\
+Ebenfalls zu erwähnen ist die Verbesserung des Verständnisses von Programmcode, insbesondere wenn man nicht den gesamten Kontext der Anwendung kennt. Dies liegt daran, dass jeder Service immer für einen Satz an Aufgaben steht welche logisch zusammenhängen (zum Beispiel das Verwalten der Punktzahl von Nutzern). Daher kann man sich immer darauf konzentrieren einen bestimmten Aspekt der Anwendung zu verstehen, ohne die anderen ausführlich zu kennen. Sollte ein Service Abhängigkeiten haben werden diese ebenfalls über den Dependency-Injectior eingefügt. \\
 
 Als letzter Punkt steht die Verbesserung der Testbarkeit. Dadurch, dass die einzelnen Komponenten ihre Abhängigkeiten an einer zentralen Stelle anfragen anstatt sie selber zu erzeugen können an dieser simplere Versionen der Abhängigkeiten hinterlegt werden (sogennante Mock's), wodurch die Testbarkeit der zu testenden Komponente steigt da Fehler durch die Abhängigkeiten in dieser Umgebung nicht auftreten können. \\
 
@@ -183,25 +184,25 @@ Das Pattern der Dependency-Injection wird von denn im Nachhinein folgenden Frame
 
 \subsection{Spring(-Boot)}
 
-Wenn man sich auf die Suche nach einem Framework für die Programmierung eines REST-Backends macht, so findet man drei große Frameworks: Express-JS, Sinatra und Spring-Boot. Im folgenden wird darauf eingegangen welche Vor- und Nachteile diese haben und wie dies die Wahl des Frameworks beeinflusst hat.
+Wenn man sich auf die Suche nach einem Framework für die Programmierung eines REST-Backends macht, so findet man drei große Frameworks: Express-JS, Sinatra, Ruby on Rails und Spring-Boot. Im Folgenden wird darauf eingegangen welche Vor- und Nachteile diese haben und wie dies die Wahl des Frameworks beeinflusst hat. \\
 
 \emph{\glqq   
 Express ist ein einfaches und flexibles Node.js-Framework von Webanwendungen, das zahlreiche leistungsfähige Features und Funktionen für Webanwendungen und mobile Anwendungen bereitstellt.
 \grqq} \footnote{http://expressjs.com/de/)} \\
 
 Schaut man sich als erstes Express an stößt man auf leichtes Package-Managment (dank NPM) sowie eine Sprache die exzellent für das Bearbeiten und Manipulieren von JSON gemacht ist. Gleichzeitig ist das Problem, dass viele Bibliotheken unterschiedliche Standards benutzen was der Übersicht in größeren Projekten schadet. Zusätzlich kommt das Problem, dass Javascript durch fehlende starke Typisierung eine Sprache ist die bei wachsenden Code-Mengen immer unübersichtlicher wird.
-Abhilfe sorgt dafür TypeScript, ein Transpiler der es erlaubt stark typisierten Code zu schreiben der in JavaScript übersetzt wird. Das Problem ist, dass nicht für alle Bibliotheken TypeScript Implementationen existieren. Dazu kommt, dass die Nutzung mehrerer Kerne (und so die Handhabung vieler Anfragen an den Server) nur mittels Prozess-Managern möglich ist, welche ebenfalls wieder Konfiguration und Testaufwand bedeuten. Abschließend ist zu sagen, dass Express-JS eine relativ kleine Entwickler-Basis besitzt, was zu weniger Möglichkeiten für Hilfestellungen bei Problemen führt \\
+Abhilfe sorgt dafür TypeScript(siehe Kapitel \ref{TS_NG2}), ein Transpiler der es erlaubt stark typisierten Code zu schreiben der in JavaScript übersetzt wird. Das Problem ist, dass nicht für alle Bibliotheken TypeScript Implementationen existieren. Dazu kommt, dass die Nutzung mehrerer Kerne (und so die Handhabung vieler Anfragen an den Server) nur mittels Prozess-Managern möglich ist, welche ebenfalls wieder Konfiguration und Testaufwand bedeuten. Abschließend ist zu sagen, dass Express-JS eine relativ kleine Entwickler-Basis besitzt, was zu weniger Möglichkeiten für Hilfestellungen bei Problemen führt \\
 
-TODO: SINATRA
+Zu Sinatra \footnote{http://www.sinatrarb.com/} sei lediglich gesagt, dass es sich um eines der populärsten Frameworks der Sprache Ruby handelt, wahrscheinlich zusammen mit ``Ruby On Rails''\footnote{http://rubyonrails.org/}. Da es sich bei Ruby allerdings um eine Sprache handelt mit der ich keine guten Erfahrungen gemacht habe war dies das KO-Kriterium für diese beiden Frameworks. \\
 
 \emph{\glqq   
 Das Spring Framework (kurz Spring) ist ein quelloffenes Framework für die Java-Plattform. Ziel des Spring Frameworks ist es, die Entwicklung mit Java/Java EE zu vereinfachen und gute Programmierpraktiken zu fördern. Spring bietet mit einem breiten Spektrum an Funktionalität eine ganzheitliche Lösung zur Entwicklung von Anwendungen und deren Geschäftslogiken; dabei steht die Entkopplung der Applikationskomponenten im Vordergrund.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Spring\_(Framework)} \\
 
-Schaut man sich als letztes das Spring-Framework an stößt man auf ein System welches über ein inzwischen gigantisches Ökosystem an Erweiterungen verfügt. Seit März 2004 hat es immer mehr an Popularität und an Features dazu gewonnen. Doch ein wirklich großer Sprung war der Release von Spring-Boot. Dieses übernahm ein Großteil der Konfiguration einer Anwendung und kam bereits mit integriertem Webcontainer mit. Einer der vielen Vorteile die Spring mitbrachte war die Dependency-Injection, welche von Haus aus implementiert war und direkt verwendet werden konnte. Die Absicherung einer Anwendung wird durch Spring-Security ebenfalls erheblich vereinfacht, welches direkt Schutz gegen einige Angriffe bietet, sowie einige Authentifizierungsverfahren erheblich vereinfacht. Eines der Probleme ist allerdings, dass es sich bei Spring (und all seinen Erweiterungen) inzwischen um ein immens großes Projekt handelt, was es sehr schwer machen kann mit Spring anzufangen und die erste Webanwendung zu schreiben. \\
+Schaut man sich als letztes das Spring-Framework an stößt man auf ein System welches über ein inzwischen gigantisches Ökosystem an Erweiterungen verfügt. Seit März 2004 hat es immer mehr an Popularität und an Features dazu gewonnen. Einer der vielen Vorteile die Spring mit brachte war die Dependency-Injection, welche von Haus aus implementiert war und direkt verwendet werden konnte. Die Absicherung einer Anwendung wird durch Spring-Security ebenfalls erheblich vereinfacht, welches direkt Schutz gegen einige Angriffe bietet, sowie einige Authentifizierungsverfahren erheblich vereinfacht. Eines der Probleme ist allerdings, dass es sich bei Spring (und all seinen Erweiterungen) inzwischen um ein immens großes Projekt handelt, was es sehr schwer machen kann mit Spring anzufangen und die erste Webanwendung zu schreiben. \\
 
-Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht. \\
-Kurz gesagt hilft das Framework dabei eine Anwendung modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte die dabei besonders wichtig sind sind die Controller, die bereits erklärten Services und die Dependency-Injection. \\
+Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht.\\
+Kurz gesagt hilft das Framework dabei ein Projekt modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte die dabei besonders wichtig sind sind die Controller, die bereits erklärten Services und die Dependency-Injection. \\
 
 \textbf{Controller}\\
 Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Dieser greift dann, wenn nötig, noch auf die Datenbankschicht zu, bevor das Ergebnis dann über den Controller zurück an den Sender der Anfrage gesendet wird.\\
@@ -273,7 +274,7 @@ public class ScriptEntity implements Serializable{
 \end{minipage}
 
 Zu guter Letzt muss ein Interface erzeugt werden, welches definiert was für Querys zur Verfügung stehen. Um das zu realisieren wird ein Interface erzeugt, welches die Querys erzeugt indem es bei der Benennung der Methoden bestimmten Konventionen folgt. Wichtig ist hierbei, dass es das bereits gegebene Interface CrudRepository erweitern muss. Dadurch wird es von JPA erkannt und einige Funktionalität direkt gegeben (wie zum Beispiel findAll, save und delete).
-Um nun eigene Querys hinzufügen gibt es zwei Möglichkeiten. Entweder über eine Annotation oder über die Benennung der Funktion
+Um nun eigene Querys hinzufügen gibt es zwei Möglichkeiten. Entweder über eine Annotation oder über die Benennung der Funktion. \\
 
 \begin{minipage}{\textwidth}
 \emph{Beispiel für eigene Querys}
@@ -288,10 +289,10 @@ public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> 
 \end{lstlisting}
 \end{minipage}
 
-Nachdem das Interface deklariert wurde kann es jederzeit über den Dependency-Injektor geholt und genutzt werden.
+Nachdem das Interface deklariert wurde kann es jederzeit über den Dependency-Injektor geholt und genutzt werden.\\
 
 \begin{minipage}{\textwidth}
-\emph{Beispiel für eigene Querys}
+\emph{Beispiel für die Nutzung des Repositorys}
 \begin{lstlisting}
 
 	@Autowired
@@ -314,11 +315,11 @@ Bootstrap ist ein anpassungsfähiges und zuerst für mobile Geräte entwickeltes
 Aus der heutigen Welt der Webentwicklung ist Bootstrap kaum wegzudenken. Durch die leichte Entwicklung für alle vorhandenen Formate und Endgeräte hat es sich als äußerst robust herausgestellt wenn es um die schnelle Entwicklung von Webseiten geht. \\
 Gleichzeitig bietet es ein großes Repertoire an CSS-Klassen für alle Elemente der HTML-Entwicklung was es sogar Personen mit wenig Erfahrung im Design-Bereich ermöglicht spektakuläre Ergebnisse mit wenig Arbeit zu erzielen. \\
 
-Da bei OpenTasks bereits durch die technische Implementation ein hoher Grad an Komplexität gegeben war konnte nicht viel Zeit für das Einarbeiten in ein komplexes CSS-Framework investiert werden, daher ist die Wahl recht schnell auf Bootstrap gefallen. Als Alternative hätte sonst Material zur Auswahl gestanden. //TODO: Material Link
+Da bei OpenTasks bereits durch die technische Implementation ein hoher Grad an Komplexität gegeben war konnte nicht viel Zeit für das Einarbeiten in ein komplexes CSS-Framework investiert werden, daher ist die Wahl recht schnell auf Bootstrap gefallen. Als Alternative hätte sonst Material \footnote{http://materializecss.com/} zur Auswahl gestanden. \\
 
 
 
-\subsection{Typescript / Angular 2}
+\subsection{Typescript / Angular 2} \label{TS_NG2}
 
 Bevor man sich mit der Technologie beschäftigt die benutzt wurde um das Frontend zu bauen muss man sich vorher mit einer anderen Errungenschaft der Webentwicklung auseinander setzen. Typescript. \\
 
@@ -328,7 +329,7 @@ TypeScript is designed for development of large applications and transcompiles t
 \grqq} \footnote{https://en.wikipedia.org/wiki/TypeScript} \\
 
 Besonders für Entwickler welche aus der Welt der stark-typisierten Programmierwelt kamen war TypeScript ein großer Fortschritt. Durch die Möglichkeit Variablen stark zu typisieren entstand die Möglichkeit Schnittstellen klarer zu definieren. Gleichzeitig wurden die bestehenden Möglichkeiten Entwicklungsumgebungen mit Auto-Vervollständigung auszustatten verbessert. \\
-Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Beschleunigung der Entwicklung, während die Testbarkeit vereinfacht wird und Fehler besser vermieden werden können. Kurz gesagt: Bessere Software in weniger Zeit.
+Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Beschleunigung der Entwicklung, während die Testbarkeit vereinfacht wird und Fehler besser vermieden werden können. Kurz gesagt: Bessere Software in weniger Zeit. \\
 
 Was für die Anwendung relativ früh klar war war, dass es sich um eine Single Page Application (kurz SPA) handeln sollte. Doch was genau ist das und wieso sollte es verwendet werden? \\
 
@@ -337,12 +338,13 @@ Was für die Anwendung relativ früh klar war war, dass es sich um eine Single P
 Als Single-Page-Webanwendung (englisch single-page application, kurz SPA) oder Einzelseiten-Webanwendung wird eine Webanwendung bezeichnet, die aus einem einzigen HTML-Dokument besteht und deren Inhalte dynamisch nachgeladen werden. Diese Art von Web-Architektur steht im Gegensatz zu klassischen Webanwendungen, die aus mehreren, untereinander verlinkten HTML-Dokumenten bestehen. Hierdurch wird allerdings die Grundlage geschaffen, eine Webanwendung in Form einer Rich-Client- bzw. Fat-Client-Verteilung zu entwickeln. Eine verstärkte clientseitige Ausführung der Webanwendung ermöglicht eine Reduzierung der Serverlast sowie die Umsetzung von selbstständigen Webclients, die beispielsweise eine Offline-Unterstützung anbieten.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Single-Page-Webanwendung} \\
 
-Warum also eine Single-Page-Application? Der Hauptvorteil liegt darin, dass bei dem Initialisieren der Seite fast alle benötigten Informationen geladen werden, somit fallen die Ladezeiten nach der ersten Initialisierung sehr gering aus. Das sorgt insbesondere bei Nutzern von mobilen Endgeräten für eine bessere User-Experience, da bei diesen (bedingt durch schwächere Prozessoren) die Ladezeiten besonders ins Gewicht fallen. Gleichzeitig reduzieren sich die Anforderungen an den Webserver, da der Content nur ein einziges mal ausgeliefert werden muss. Lediglich durch die Abfragung einiger Daten zur Laufzeit (wie zum Beispiel das Erhalten einer neuen Aufgabe) wird der Server nach dem Ausliefern der Webseite kontaktiert.\\
+Warum also eine Single-Page-Application? Der Hauptvorteil liegt darin, dass bei dem Initialisieren der Seite fast alle benötigten Informationen geladen werden, somit fallen die Ladezeiten nach der ersten Initialisierung sehr gering aus. Das sorgt insbesondere bei Nutzern von mobilen Endgeräten für eine bessere User-Experience, da bei diesen (bedingt durch schwächere Prozessoren) die Ladezeiten besonders ins Gewicht fallen. Gleichzeitig reduzieren sich die Anforderungen an den Webserver, da der Content nur ein einziges Mal ausgeliefert werden muss. Lediglich durch das Abfragen einiger Daten zur Laufzeit (wie zum Beispiel das Erhalten einer neuen Aufgabe) wird der Server nach dem Ausliefern der Webseite kontaktiert.\\
 
-Nachdem nun evaluiert wurde, dass eine SPA ein Gewinn ist also die Frage nach dem Framework / der Library um das umzusetzen. Im Raum stehen zwei Varianten. Zum einen ReactJS (welches seit längerem existiert und weit bekannt ist) oder das gerade in der Beta angekommene Angular 2. \\
-Direkt zu sagen ist, dass Angular 2 von Haus aus mit Typescript gebaut ist. Das bedeutet bester Typescript bei der Entwicklung von Angular 2, was bei ReactJS nur teilweise ist und viele Varianten wie man am besten mit ReactJS und Typescript arbeitet sich widersprechen da keine klare Konvention herrscht. \\
+Nachdem nun evaluiert wurde, dass eine SPA ein Gewinn ist also die Frage nach dem Framework / der Library um das umzusetzen. Im Raum stehen zwei Varianten. Zum einen ReactJS (welches seit längerem existiert und weit bekannt ist) oder das vor kurzem aus der Beta gekommene Angular2. \\
+Direkt zu sagen ist, dass Angular 2 von Haus aus mit TypeScript gebaut ist. Das bedeutet bester TypeScript-Support bei der Entwicklung von Angular 2, was bei ReactJS nur teilweise der Fall ist und viele Varianten wie man am besten mit ReactJS und Typescript arbeitet sich widersprechen da keine klare Konvention herrscht. \\
 Zusätzlich implementiert Angular 2 eine bessere Trennung der verschiedenen Komponenten. Während in ReactJS HTML und Javascript Code in der selben Klasse stehen werden in Angular 2 klare Mechanismen aufgezeigt wie diese sauber zu trennen und in verschiedenen Dateien abzulegen sind. Was gleichzeitig auch einer der Nachteile von Angular 2 ist. Dadurch, dass HTML und Script sauber getrennt werden ist es schwerer die Script-Variablen im HTML zu referenzieren und alle Namen im Kopf zu behalten ohne die zweite Datei irgendwo geöffnet zu haben. \\
-Bei Angular 2, sowie ReactJS handelt es sich standardmäßig um Technologien bei denen ``Client-Side Rendering'' betrieben wird. Das beudetet, dass vom Server alle Dateien ausgeliefert werden die benötigt werden. Der Client nimmt diese entgegen und rendert die einzelnen HTML-Komponenten und fügt diese korrekt zusammen. Das bedeutet, dass die Last des Rendering auf den Client übertragen wird. Das bedeutet weniger Aufwand für den Server, gleichzeitig aber eine bessere Performanz für den Server (da dieser nicht selber rendern muss). Was bei Angular2 aber auch unterstützt wird ist die Möglichkeit auf der Seite des Server zu rendern. Das bedeutet wenn man  die Ladezeiten auf dem Client reduzieren will und einen performanten Server zur Hand hat ist dies die korrekte Lösung. Möglich ist dies durch eine kürzlich herausgekommene Erweiterung für Angular 2 \url{https://universal.angular.io/}. \\
+
+Bei Angular 2, sowie ReactJS handelt es sich standardmäßig um Technologien bei denen ``Client-Side Rendering'' betrieben wird. Das beudetet, dass vom Server alle Dateien ausgeliefert werden die benötigt werden. Der Client nimmt diese entgegen, rendert die einzelnen Komponenten und fügt diese korrekt zusammen. Das bedeutet, dass die Last des Rendering auf den Client übertragen wird. Das bedeutet weniger Aufwand für den Server, gleichzeitig aber eine bessere Performanz für den Server (da dieser nicht selber rendern muss). Was bei Angular 2 aber auch unterstützt wird ist die Möglichkeit auf der Seite des Server zu rendern. Das bedeutet wenn man  die Ladezeiten auf dem Client reduzieren will und einen performanten Server zur Hand hat ist dies die korrekte Lösung. Möglich ist dies durch eine die kürzlich heraus gekommene Bibliothek Angular Universal  \footnote{https://universal.angular.io/}. \\
 
 Ein Feature welches ebenfalls beide Bibliotheken implementieren ist das sogenannte ``Two-Way-Binding''. Bei dem Two-Way-Binding wird eine Variable, welche in der View genutzt wird mit einer Variable aus dem Model verknüpft. Ein klassisches Beispiel dafür sind Textfelder. Wenn der Nutzer eine Eingabe betätigt wird dies ebenfalls an das Model weitergeleitet, welches daraufhin die zugehörige Variable erneuert. Gleichzeitig wird bei Veränderung der Variable im Model die View geupdatet. So kann man zum Beispiel ein Knopf der für einen Reset des Textfeldes verantwortlich ist einfach die Variable im Model ändern, die View wird automatisch erneuert. \\
 
@@ -369,12 +371,20 @@ Am Ende ist die Wahl auf JSON Web Tokens(JWT) gefallen. Zusätzlich zu den Authe
 
 \subsection{MathJax}
 
+Da innerhalb der folgenden Seiten der Begriff MathJax mehrfach verwendet wird, wird hier einmal darauf eingegangen was genau damit gemeint ist. \\
+
+Bei MathJax \footnote{https://www.mathjax.org/} handelt es sich um eine JavaScript-Bibliothek die im Jahre 2004 von Davide Cervone ins Leben gerufen wurde. Das Ziel dieser Bibliothek ist die Darstellung von mathematischen Formeln in jedem Browser ohne sich Sorgen um Kompatibilität zu machen. \\
+Dies funktioniert indem auf der Webseite innerhalb eines HTML-Elements ein Text eingetragen wird, welcher einer von mehreren Syntaxen folgt. Daraufhin wird der Bibliothek mitgeteilt, dass es die Seite scannen soll. Sollte sie Elemente finden, bei denen es sich um mathematische Formeln handelt werden diese in HTML-Elemente umgewandelt welche die Formel korrekt darstellen. \\
+
+Innerhalb von OpenTasks wird ausschließlich die LaTex-Syntax \footnote{https://en.wikibooks.org/wiki/LaTeX/Mathematics} verwendet um mathematische Formeln darzustellen.
+
 \chapter{Ein Rundgang durch das Frontend}
 
-Das Frontend ist im wesentlichen in zwei große Abschnitte geteilt - Die Ansicht des Nutzers (Also die Anwendung wie sie von den Studenten gesehen wird die dort ihre Aufgaben erhalten und bearbeiten können) und die Ansicht des Administrators, welche hauptsächlich die Aufgabe hat die Anwendung zu verwalten und Einstellungen zu ändern. Daher werden diese beiden Sichten im Nachfolgenden getrennt voneinander behandelt, beziehungsweise ein Einblick in die Funktionsweise gewährt.
+Das Frontend ist im Wesentlichen in zwei große Abschnitte geteilt - Die Ansicht des Nutzers (also die Anwendung wie sie von den Studenten gesehen wird) und die Ansicht des Administrators, welche hauptsächlich die Aufgabe hat die Anwendung zu verwalten und Einstellungen zu ändern. Daher werden diese beiden Sichten im Nachfolgenden getrennt voneinander behandelt.
 
 \section{Die Ansicht des Nutzers}
 
+Für den Nutzer gibt es im wesentlichen nur zwei Prozesse die wichtig sind. Die Auswahl eines Teams und die Bearbeitung der Aufgaben. Daher gibt es für diesen lediglich zwei Ansichten die für eben diese Zwecke gebaut wurden.
 
 \subsection{Die Auswahl des Teams}
 
@@ -386,11 +396,11 @@ Bevor mit der Bearbeitung der Aufgaben beginnen kann ist vorher der Login-Prozes
 \caption[Login für den Nutzer / Teamauswahl]{Team Auswahl für den Nutzer}
 \end{figure} 
 
-Sobald der Login Knopf betätigt wurde werden mehrere Pakete an den Server geschickt. Bei dem ersten handelt es sich um das Erhalten des Tokens welches in Zukunft für die eindeutige Identifizierung und Authentifizierung zur Nutzung der REST-API genutzt wird. Sobald dieser Prozess beendet wurde wird die Auswahl des Teams übermittelt. Sind alle diese Prozesse erfolgreich wird auf die Bearbeitung der Aufgaben weitergeleitet. 
+Sobald der Login Knopf betätigt wurde werden mehrere Pakete an den Server geschickt. Bei dem Ersten handelt es sich um das Erhalten des Tokens welches in Zukunft für die eindeutige Identifizierung und Authentifizierung zur Nutzung der REST-API genutzt wird. Sobald dieser Prozess beendet wurde wird die Auswahl des Teams übermittelt. Sind alle diese Prozesse erfolgreich wird auf die Bearbeitung der Aufgaben weitergeleitet. 
 
 \subsection{Erhalten und bearbeiten der Aufgaben}
 
-Nachdem nun die initiale Prozedur der Team-Auswahl beendet ist kommt der Student zu dem Hauptteil der Anwendung. Die Erhaltung und Bearbeitung der Aufgaben. Nach der Einwahl erscheint ein Hinweis, dass bisher keine Aufgabe gefunden wurde, mit einem Knopf, welcher das Anfragen einer Aufgabe ermgölicht. \\
+Nachdem nun die initiale Prozedur der Team-Auswahl beendet ist kommt der Student zu dem Hauptteil der Anwendung. Die Erhaltung und Bearbeitung der Aufgaben. Nach der Einwahl erscheint ein Hinweis, dass bisher keine Aufgabe gefunden wurde. Durch das Betätigen des Refresh-Button kann allerdings eine Aufgabe angefordert werden. \\
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/NoTask} 
@@ -405,15 +415,15 @@ Sollte dieser Knopf betätigt werden wird eine Anfrage an den Server gesendet, w
 \caption[Information über keine laufende Aufgabe]{Information über keinen laufende Aufgabe}
 \end{figure} 
 
-Sollte eine Aufgabe erhalten worden beginnt nun die Bearbeitung der Aufgabe. Der erhaltene Inhalt wird als mathematische Formel dargestellt, hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein gibt er diese in das dafür vorgesehene Feld ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet welcher diese validiert. Für den Studenten gibt es nun drei Fälle. \\
+Nach dem Erhalt einer Aufgabe beginnt die Bearbeitung. Der erhaltene Inhalt wird als mathematische Formel dargestellt, hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein gibt er diese über das entsprechende Formular ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet welcher diese validiert. Für den Studenten gibt es nun drei Fälle: \\
 \begin{enumerate}
-\item Die Bearbeitungszeit für die Aufgabe ist abgelaufen. Der Nutzer erhält eine Informationsanzeige über den Ablauf der Zeit. Die momentan angezeigte Aufgabe wird entfernt
-\item Die Aufgabe wurde korrekt gelöst. Der Nutzer erhält eine neue Aufgabe, sowie eine Notifikation über die korrekte Lösung
-\item Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben
+\item Die Bearbeitungszeit für die Aufgabe ist abgelaufen. Der Nutzer erhält eine Informationsanzeige über den Ablauf der Zeit. Die momentan angezeigte Aufgabe wird entfernt.
+\item Die Aufgabe wurde korrekt gelöst. Der Nutzer erhält eine neue Aufgabe, sowie eine Notifikation über die Korrektheit der Lösung.
+\item Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben.
 \end{enumerate} 
 
-Um die Effizienz für den Studenten während der Nutzung des Studenten zu steigern wurden zwei weitere Features eingebaut. Bei dem Ersten handelt es sich um eine kleine Informationsanzeige wie lange die durchschnittliche Zeit beträgt bis eine Aufgabe korrekt gelöst wurde. Dies soll dem Studenten helfen seine Leistungen zu überprüfen und sich vielleicht auch mit anderen zu vergleichen. \\
-Bei dem zweiten handelt es sich um die Eingabeformulare. Eine Sache die alle gemeinsam haben ist die Validierung ob die momentane Antwort des Nutzers korrekt sein könnte und das graphische Darstellen davon (grün / rot- Färbung des Antwort Textes). Wie genau diese Validierung aussieht und welche weiteren Funktionalitäten das Formular bietet ist allerdings von Formular zu Formular unterschiedlich.
+Um die Effizienz für den Studenten während der Nutzung von Open Tasks zu steigern wurden zwei weitere Features eingebaut. Bei dem Ersten handelt es sich um eine kleine Informationsanzeige wie lange die durchschnittliche Zeit beträgt bis eine Aufgabe korrekt gelöst wurde. Dies soll dem Studenten helfen seine Leistungen zu überprüfen und sich vielleicht auch mit anderen zu vergleichen. \\
+Bei dem Zweiten handelt es sich um die Eingabeformulare. Je nachdem was für eine Aufgabe bearbeitet wird wird ein Formular angezeigt, welches darauf ausgelegt ist die Lösung einfach einzugeben. Eine Sache die alle gemeinsam haben ist die Validierung ob die momentane Antwort des Nutzers korrekt sein könnte und die graphische Darstellung davon (grün / rot- Färbung des Antwort Textes). Wie genau diese Validierung aussieht und welche weiteren Funktionalitäten das Formular bietet ist allerdings von Formular zu Formular unterschiedlich.
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -434,8 +444,8 @@ Insgesamt existieren fünf Eingabeformulare.
 \end{enumerate}
 
 In diesem Kapitel werden diese genauer unter die Lupe genommen und darüber gesprochen wie genau ihre graphische Darstellung ist, sowie die Validierung ob eine Antwort korrekt sein kann und abgeschickt werden darf. \\
-Die Antwort die sich am Ende von dem Formular ergibt wird zusätzlich immer über dem Formular noch einmal angezeigt, so kann der Nutzer überprüfen, dass seine Antwort dem gewünschten entspricht. \\
-Welches Formular angezeigt wird wird immer von dem Administrator der Anwendung angezeigt, für weitere Informationen bitte im Kapitel \ref{EditGenerator} Bearbeitung der Generatoren und ihrer Hilfsmittel nachlesen.
+Die Antwort die sich am Ende von dem Formular ergibt wird zusätzlich immer über dem Formular noch einmal angezeigt. So kann der Nutzer überprüfen, dass seine Antwort dem Gewünschten entspricht. \\
+Welches Formular angezeigt wird wird immer von dem Administrator der Anwendung ausgewählt, für weitere Informationen bitte im Kapitel \ref{EditGenerator} Bearbeitung der Generatoren und ihrer Hilfsmittel nachlesen.
 
 
 \subsubsection{Das Textformular}
@@ -445,7 +455,7 @@ Bei dem Textformular handelt es sich um das wohl einfachste aller Formulare. Die
 
 \subsubsection{Das Zahlen / Dezimalformular}
 
-Da sich das Zahlen und das Dezimal-Formular sehr ähnelt werden sie hier gemeinsam behandelt. Da es sich bei den Nutzern von OpenTasks zu großen Teilen um mobile Endgeräte nutzen wird wurde dieses Formular mit einem speziellen Fokus auf diese entworfen.
+Da sich das Zahlen und das Dezimal-Formular sehr ähnelt werden sie hier gemeinsam behandelt. Da es sich bei den Nutzern von Open Tasks zu großen Teilen um mobile Endgeräte nutzen wird wurde dieses Formular mit einem speziellen Fokus auf diese entworfen.
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -459,8 +469,8 @@ Da sich das Zahlen und das Dezimal-Formular sehr ähnelt werden sie hier gemeins
 \caption[Das Zahlenformular]{Das Zahlenformular}
 \end{figure} 
 
-Die Eingabe kann über zwei Wege erfolgen. Bei dem ersten handelt es sich um die Eingabe der Lösung über das Textfeld. Dies ist besonders für die Nutzer von Laptops gut, da hier eine Tastatur zur Verfügung steht. \\
-Für die mobilen Endgeräte wurden Knöpfe implementiert, welche bei Druck die abgebildete Zahl der Antwort hinzufügen. Außerdem gibt es noch zwei weitere Knöpfe, einen um die letzte Eingabe zu entfernen (C) und einen um das gesamte Eingabefeld zu leeren (CE).Ein Unterschied zwischen den beiden Formularen ist, dass das Dezimalformular zusätzlich einen Knopf besitzt welcher einen Punkt einfügt und es so ermöglicht Kommazahlen einzugeben. \\
+Die Eingabe kann über zwei Wege erfolgen. Bei dem Ersten handelt es sich um die Eingabe der Lösung über das Textfeld. Dies ist besonders für die Nutzer von Laptops gut, da hier eine Tastatur zur Verfügung steht. \\
+Für die mobilen Endgeräte wurden Knöpfe implementiert, welche bei Druck die abgebildete Zahl der Antwort hinzufügen. Außerdem gibt es noch zwei weitere Knöpfe, einen um die letzte Eingabe zu entfernen (C) und einen um das gesamte Eingabefeld zu leeren (CE). Ein Unterschied zwischen den beiden Formularen ist, dass das Dezimalformular zusätzlich einen Knopf besitzt welcher einen Punkt einfügt und es so ermöglicht Kommazahlen einzugeben. \\
 Der zweite Unterschied liegt in der Validierung der Eingaben. Während bei dem Zahlenformular nur Ganze Zahlen erlaubt sind werden bei dem Dezimalformular alle reellen Zahlen angenommen.
 
 \subsubsection{Das Matrixformular}
@@ -472,13 +482,14 @@ Für einige Aufgabentypen war es notwendig, dass der Nutzer in der Lage ist eine
 \includegraphics[width=1\textwidth]{bilder/MatrixForm} 
 \caption[Das Matrixformular]{Das Matrixformular}
 \end{figure} 
+
 Bei dem Matrixformular handelt es sich um Textfelder im $ m\times n$ Format, genau wie die Matrix die erzeugt werden soll. Dabei wird die produzierte Matrix immer über dem Formular angezeigt, dabei hilft wieder die MathJax Bibliothek das Ganze optisch ansprechend aufzubereiten. \\
 
-Ein weiterer wichtiger Einfluss bei der Erstellung des Formulars war die Tatsache, dass die Größe der Matrix nicht am Anfang bekannt ist. Zum einen liegt dies daran, dass dies ein Tipp für den Studenten sein kann (da nicht unbedingt direkt bekannt ist welche Größe die Matrix hat die am Ende herauskommen soll). Andererseits liegt dies auch daran, dass es ein größerer Aufwand wäre direkt bei der Generierung festzulegen wie groß die Matrix sein soll. Dieses Problem wurde über vier Knöpfe gelöst, welche die Manipulation der Größe der Matrix erlauben. \\
+Ein weiterer wichtiger Einfluss bei der Erstellung des Formulars war die Tatsache, dass die Größe der Matrix nicht am Anfang bekannt ist. Zum einen liegt dies daran, dass dies ein Tipp für den Studenten sein kann (da die Größe der entstehenden Matrix unter Umständen berechnet werden muss). Andererseits liegt dies auch daran, dass es ein größerer Aufwand wäre direkt bei der Generierung festzulegen wie groß die Matrix sein soll. Dieses Problem wurde über vier Knöpfe gelöst, welche die Manipulation der Größe der Matrix erlauben, jeweils zwei für Spalten und Reihen. \\
 
-Ein weiteres Feature welche in diesem Formular implementiert wurde ist eine automatische Korrektur der Eingabe des Nutzers. Sollte der Nutzer sich vertippen und zum Beispiel aus Versehen einen Buchstaben in eines der Felder eintippen so wird dies automatisch korrigiert indem der Buchstabe entfernt und nicht in der Lösung angezeigt wird. \\
+Ein weiteres Feature welches in diesem Formular implementiert wurde ist eine automatische Korrektur der Eingabe des Nutzers. Sollte der Nutzer sich vertippen und zum Beispiel aus Versehen einen Buchstaben in eines der Felder eintippen so wird dies automatisch korrigiert indem der Buchstabe entfernt und nicht in der Lösung angezeigt wird. \\
 
-Für die mobilen Nutzer wurde ein Knopf implementiert welcher auf eine alternative, für mobile Nutzer angepasste Sicht umschaltet. Diese ähnelt sehr der Ansicht von dem Nummernformular. Der Nutzer wählt über Knopfdruck aus welches Feld er bearbeiten will. Daraufhin wird dieses durch blaue dickere Schrift markiert. Sollte der Nutzen nun einen der nummerierten Knöpfe drücken wird der Text des Knopfes der Eingabe hinzugefügt.
+Für die mobilen Nutzer wurde ein Knopf implementiert welcher auf eine alternative, für mobile Nutzer angepasste Sicht umschaltet. Diese ähnelt sehr der Ansicht von dem Nummernformular. Der Nutzer wählt über Knopfdruck aus welches Feld er bearbeiten will. Daraufhin wird dieses durch blaue dickere Schrift markiert. Sollte der Nutzer nun einen der nummerierten Knöpfe drücken wird der Text des Knopfes der Eingabe hinzugefügt.
 
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
@@ -498,13 +509,17 @@ Als letztes Formular ist das Bruchformular zu erwähnen. Dies sollte jederzeit g
 \caption[Das Bruchformular]{Das Bruchformular}
 \end{figure} 
 
-Es unterstützt den Nutzer dabei indem die Eingabe über zwei Textfelder erfolgt. Eines für den Zähler und eines für den Nenner. Sobald der Nutzer in beide Felder einen Wert eingegeben hat wird die daraus resultierende Zahl berechnet. Wenn es sich hierbei um eine Zahl aus dem Raum der rationalen Zahlen handelt wird die Lösung als valide eingestuft und kann abgeschickt werden.
+Bei der graphischen Darstellung handelt es sich um zwei Textfelder, welche übereinander angeordnet sind. In dem oberen Feld sollte der Zähler eingetragen werden, während das untere für den Nenner vorgesehen ist. \\
+Wenn der Student in beide Felder eine Zahl eingeben hat wird der Wert des Bruches berechnet. Dieser wird über den beiden Textfeldern angezeigt. \\
+
+Die Validierung erfolgt durch ein Überprüfen des Resultats der Rechnung Zähler/Nenner. Wenn hierbei eine valide Zahl herauskommt wird dies als mögliche Antwort akzeptiert und der Antwort-Text in grün gefärbt.
 
 
 \section{Die Sicht des Administrators}
 
-Ein weiterer wichtiger Punkt der Anwendung war die Verwaltung und Übersicht über die Aufgaben und die Lösungen die von den Studenten abgegeben wurden. Nicht zu vergessen ist allerdings auch, dass die Aufgaben in diesem Abschnitt verwaltet und erweitert werden müssen. \\
-Daher wurde diese Sektion in die Verwaltung von laufenden Aufgaben (Übersicht / Starten eines neuen Aufgaben-Generators), die Verwaltung und Erweiterung von Aufgaben (Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln) und das Evaluieren von Fehlerzuständen aufgeteilt (Der Fehler-Log). Die Navigation innerhalb diesem Teil der Anwendung funktioniert über eine Navigationsleiste \\
+Der zweite große Punkt der Anwendung war die Verwaltung und Übersicht über die Aufgaben und die Lösungen die von den Studenten abgegeben wurden. Nicht zu vergessen ist allerdings auch, dass die Aufgaben in diesem Abschnitt verwaltet und erweitert werden müssen. \\
+
+Daher wurde diese Sektion in die Verwaltung von laufenden Aufgaben (Übersicht / Starten eines neuen Aufgaben-Generators), die Verwaltung und Erweiterung von Aufgaben (Bearbeitung der Aufgaben-Generatoren und ihren Hilfsmitteln) und das Evaluieren von Fehlerzuständen aufgeteilt (Der Fehler-Log). Die Navigation innerhalb diesem Teil der Anwendung funktioniert über die Leiste im oberen Bereich des Bildschirms. \\
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/NavBar} 
@@ -513,13 +528,13 @@ Daher wurde diese Sektion in die Verwaltung von laufenden Aufgaben (Übersicht /
 
 \subsection{Übersicht über die laufende und letzte Aufgabe}
 
-Die während der Laufzeit wahrscheinlich am meisten genutzte Seite : Die Übersicht. Hier wird eine Oberfläche dargestellt, welche optisch aufbereitet die Daten anzeigt die von der Anwendung erzeugt werden: Die Zeit wie lange eine Aufgabe noch läuft, sowie den aktuellen Stand an richtig / falsch gelösten Aufgaben der verschiedenen Teams \\
+Die während der Laufzeit wahrscheinlich am meisten genutzte Seite: Die Übersicht. Hier wird eine Oberfläche dargestellt, welche optisch aufbereitet die Daten anzeigt die von der Anwendung erzeugt werden: Die Zeit wie lange eine Aufgabe noch läuft, sowie den aktuellen Stand an richtig / falsch gelösten Aufgaben der verschiedenen Teams \\
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/Overview} 
 \caption[Übersicht Seite während einer laufenden Aufgabe]{Übersicht Seite während einer laufenden Aufgabe}
 \end{figure} 
-In der obersten Zeile ist immer zu sehen welcher Generator momentan läuft.
+In der obersten Zeile ist immer zu sehen welcher Generator momentan läuft (in Sekunden).
 
 Um die Zeit die noch verbleibt darzustellen wurde die Bibliothek jQuery-Knob \footnote{https://github.com/aterrien/jQuery-Knob} verwendet, welche in Eigenarbeit in eine Angular 2 Komponente umgewandelt wurde um sie dann in die Übersicht Seite einzubetten. \\
 
@@ -545,6 +560,7 @@ Sollte die Zeit der Bearbeitung auslaufen ändert sich die Ansicht auf der Seite
 Damit das Programm in der Vorlesung genutzt werden kann reicht es allerdings nicht nur den Stand der laufenden Aufgabe anzuzeigen. Es ist ebenfalls notwendig einen neuen Generator starten zu können. \\
 Dafür wurde ein Tab eingerichtet welcher unter dem Namen ``Neuen Generator starten'' erreichbar ist.
 Auf dieser Seite gibt es zwei verschiedene Ansichten, die je nach Status des Programmes gezeigt werden. \\
+
 Bei der ersten Ansicht handelt es sich um die Ansicht die gezeigt wird wenn aktuell kein Generator am Laufen ist. \\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
@@ -561,20 +577,30 @@ Die Ansicht besteht aus zwei Teilen. Der untere Teil besteht aus der Benennung d
 \caption[Auswahl-Menü für den zu startenden Generator]{Auswahl-Menü für den zu startenden Generator}
 \end{figure} 
 
-Bei der Auswahl welcher Generator gestartet werden soll wurde wieder ein Drop-Down zur Auswahl des Generators gewählt. Die Daten die vom Server geholt werden, werden als Optionen zum Auswählen dargestellt, sollte der Start Knopf gedrückt werden ohne, dass ein Option ausgewählt wurde so erscheint eine Benachrichtigung für den Nutzer dies bitte zu korrigieren, selbiges geschieht bei einer ungültigen Angabe für die Laufzeit des Generators. \\
+Bei der Auswahl welcher Generator gestartet werden soll wurde ein Drop-Down zur Auswahl des Generators gewählt. Die Namen aller erstellten Generatoren wird vom Server geholt und dann für die Befüllung der einzelnen Optionen genutzt.\\
+Sollte der Start Knopf gedrückt werden ohne, dass ein Option ausgewählt wurde so erscheint eine Benachrichtigung für den Nutzer dies bitte zu korrigieren, selbiges geschieht bei einer ungültigen Angabe für die Laufzeit des Generators. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/InvalidTime} 
+\caption[Anzeige nach Drücken Start-Knopfes bei invalider Zeitangabe]{Anzeige nach Drücken Start-Knopfes bei invalider Zeitangabe}
+\end{figure} 
+ 
+
+Sollte aber bereits ein Generator gestartet sein wird eine andere Sicht gezeigt. Der Nutzer wird darüber informiert, dass bereits Aufgaben generiert werden. Zusätzlich wird der Name des momentan laufenden Generator angezeigt.\\
+Wenn der Administrator sich nun entscheiden sollte die Aufgabe vorzeitig zu beenden (zum Beispiel weil es sich um den falschen Generator handelt oder er entschieden hat, dass die Bearbeitungszeit früher beendet wird) kann er dies durch das Drücken des ``Anhalten''-Knopfes tun.
+
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/TaskRunning} 
 \caption[Anzeige bei bereits laufendem Generator]{Anzeige bei bereits laufendem Generator}
-\end{figure} 
-
-Sollte aber bereits ein Generator gestartet sein wird eine andere Sicht gezeigt. Der Nutzer wird darüber informiert, dass bereits Aufgaben generiert werden. Er erhält zudem den Namen des Generators und die Möglichkeit ihn vorzeitig abzubrechen (zum Beispiel bei Start des falschen oder vorzeitigem Abbruch der Aufgabe)
+\end{figure}
 
 
 \subsection{Bearbeitung der Helper-Funktionen} \label{EditGenerator}
 
-Es war von Anfang an klar, dass es Funktionalität gab die für viele Aufgaben-Generatoren benötigt werden würde. Daher wurden die Helper Funktionen eingeführt. Bei diesen handelt es sich um Funktionen welche erstellt werden und dann global verfügbar sind. Dadurch wird die Menge an überflüssigem Code der in jedem Generator erzeugt wird reduziert.
+Es war von Anfang an klar, dass es Funktionalität gab die für mehrere Aufgaben-Generatoren benötigt werden würde. Daher wurden die Helper-Funktionen eingeführt. Bei diesen handelt es sich um Funktionen welche erstellt werden und dann global verfügbar sind. Dadurch wird die Menge an überflüssigem Code der in jedem Generator erzeugt wird reduziert.
 
 Bei den Helper-Funktionen handelt es sich um Funktionen, welche über den Tab ``Helper-Funktionen bearbeiten'' erstellt und bearbeitet werden können. \\
 
@@ -584,11 +610,11 @@ Bei den Helper-Funktionen handelt es sich um Funktionen, welche über den Tab ``
 \caption[Ansicht zur Bearbeitung einer Helper-Funktion]{Ansicht zur Bearbeitung einer Helper-Funktion}
 \end{figure} 
 
-Bevor man mit der Bearbeitung beginnt muss festgelegt werden ob es sich bei dem Skript um ein ``Variablen'' oder ein ``MathJax'' Skript handelt. Der Unterschied besteht darin, dass Variablen-Skripte dafür genutzt werden Variablen zu erzeugen, während MathJax-Skripte dabei helfen Variablen in MathJax umzuwandeln.
+Bevor man mit der Bearbeitung beginnt muss festgelegt werden ob es sich bei dem Skript um ein ``Variablen'' oder ein ``MathJax'' Skript handelt. Der Unterschied besteht darin, dass Variablen-Skripte dafür genutzt werden Variablen zu erzeugen, während MathJax-Skripte dabei helfen Variablen in valide MathJax-Syntax umzuwandeln.
 
 Um mit der Bearbeitung zu beginnen muss entweder eine zu bearbeitende Entität über das Dropdown-Menü ausgewählt oder ein Name eingegeben werden. Sobald dies erledigt ist müssen die anderen Felder ausgefüllt werden. Pflicht ist hierbei nur das Skript, sowie die Argumente die das Skript benötigt. Es wird allerdings empfohlen eine Beschreibung hinzuzufügen. Dies hilft dabei sich an die Funktionalität des Skriptes zu erinnern sollte man dies in Zukunft vergessen. \\
 
-Sollte das Skript Konstanten benötigen können diese ebenfalls in der dafür vorgesehenen Spalte eingetragen. 
+Sollte das Skript Konstanten benötigen können diese ebenfalls in der dafür vorgesehenen Spalte eingetragen, allerdings ist hier darauf zu achten, dass die Namen der Konstante nicht mit den Konstanten von anderen Helper-Funktionen kolidieren.
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -612,7 +638,7 @@ if ( ! b) {
 
 Diese Funktion wird an die global verfügbaren Objekte gehängt, Funktionen die bei der Erstellung von Variablen helfen an das ``vf''-Objekt, Funktionen die die Erstellung von MathJax erleichtern an das ``mj''-Objekt. Auf diese Objekte wird bei der Bearbeitung der Aufgaben-Generatoren noch einmal näher eingegangen. \\
 
-Sobald der Transpilierungs-Prozess abgeschlossen ist wird die gerade erstellte Funktion mit den eingegeben Argumenten aufgerufen. Das Ergebnis wird daraufhin auf der Seite angezeigt um sich zu vergewissern, dass es den Erwartungen entspricht. \\
+Sobald der Transpilierungs-Prozess abgeschlossen ist wird die gerade erstellte Funktion mit den eingegeben Argumenten aufgerufen. Das Ergebnis wird daraufhin auf der Seite angezeigt um sich zu vergewissern, dass es den Erwartungen entspricht.  Wenn das Skript einen zufälligen Faktor besitzt ist es möglich den Test mehrere Male laufen zu lassen. Die genaue Anzahl kann in dem Feld ``TestCount'' angegeben werden. \\
 
 Wenn nun alle Tests den Erwartungen entsprechen und das Ergebnis zufrieden stellend ist besteht die letzte Aufgabe darin es zu persistieren. Dafür wurde ein Knopf neben dem Test-Knopf eingefügt welcher die Anfrage an den REST-Server stellt. \\
 
@@ -629,7 +655,8 @@ Nachdem die Helper-Funktionen bearbeitet und erstellt werden können kann man si
 Ähnlich wie bei den Helper-Funktionen kann entweder ein bestehendes Skript über das Dropdown-Menü gewählt und editiert werden, ansonsten kann direkt mit der Editierung angefangen werden. \\
 
 Bevor allerdings näher auf die Erstellung der drei verschiedenen Skripte eingegangen wird sollte zuerst die Nutzung der Helper-Funktionen näher erläutert werden. \\
-Jede dieser Funktionen wurde einem bestimmten Objekt zugeordnet, entweder dem ``vf''(Variable-Functions) oder dem ``mj'' (MathJax) Objekt, je nachdem für welche Kategorie von Aufgabe sie erstellt wurden. Je nachdem welches der Felder nun ausgewählt wurde wird  neben den Textfeldern angezeigt welche Funktionen vorhanden sind, so wie welche Parameter benötigt werden. Wenn nähere Informationen benötigt werden so lässt sich durch Bewegung der Maus über den Namen der Funktion die Beschreibung lesen.\\
+
+Jede dieser Funktionen wurde einem bestimmten Objekt zugeordnet, entweder dem ``vf''(Variable-Functions) oder dem ``mj'' (MathJax) Objekt, je nachdem für welche Kategorie von Aufgabe sie erstellt wurden. Je nachdem welches der Textfelder nun fokussiert wird wird  neben ihnen angezeigt welche Funktionen vorhanden sind, sowie welche Parameter benötigt werden. Wenn nähere Informationen benötigt werden so lässt sich durch Bewegung der Maus über den Namen der Funktion die Beschreibung lesen.\\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -639,15 +666,15 @@ Jede dieser Funktionen wurde einem bestimmten Objekt zugeordnet, entweder dem ``
 
 Bei der Erstellung eines Aufgaben-Generators existieren drei Felder von denen alle Pflicht sind. \\
 
-Bei dem Variablen-Skript handelt es sich um das Skript welches die Variablen erzeugt. Dadurch, dass in diesem Skript Funktionen genutzt werden können welche in der Lage sind zufällig Werte zu generieren wird gewährleistet, dass verschiedene Aufgaben erzeugt werden (auch wenn die Chance besteht, dass zwei generierte Aufgaben sich gleichen, diese Chance sinkt jedoch je größer der Zahlenraum der generierten Werte ist). Dieses Skript muss ein JSON-Objekt zurück geben welches alle Werte enthält die für die graphische Darstellung, sowie die Validierung der Lösung von Nöten sind. \\
+Bei dem Variablen-Skript handelt es sich um das Skript welches die Variablen erzeugt. Dadurch, dass in diesem Skript Funktionen genutzt werden können, welche in der Lage sind zufällig Werte zu generieren wird gewährleistet, dass verschiedene Aufgaben erzeugt werden (auch wenn die Chance besteht, dass zwei generierte Aufgaben sich gleichen, diese Chance sinkt jedoch je größer der Zahlenraum der generierten Werte ist). Dieses Skript muss ein JSON-Objekt zurück geben welches alle Werte enthält die für die graphische Darstellung, sowie die Validierung der Lösung von Nöten sind. \\
 Um die Erstellung von diesem Skript zu erleichtern wurde ein Transpiler-Feature eingebaut. Dieses sorgt dafür, dass jeder Code der von zwei Prozent-Zeichen umgeben wird zu einem Funktionsblock umgesetzt wird. Dies hilft dabei Code zu schreiben bei dem Funktionen aufgerufen werden die wiederum Funktionen als Parameter benötigen.\\
+
 
 \emph{Code vor der Transpilierung}
 \begin{lstlisting}
 var mod1 = vf.prime(5)
 var mod2= vf.dif(%vf.prime(5)%, mod1)
 \end{lstlisting}
-
 
 \emph{Code nach der Transpilierung}
 \begin{lstlisting}
@@ -656,14 +683,13 @@ var mod2= vf.dif(function(){return vf.prime(5)}, mod1)
 \end{lstlisting}
 
 
-Bei dem zweiten Kategorie handelt es sich um die graphische Darstellung. Der hier erzeugte Wert wird nachher von der MathJax-Bibliothek interpretiert und muss daher dessen Syntax folgen. Um die von dem ersten Skript erzeugten Werte zu nutzen werden diese über Dollar-Zeichen referenziert. So wird \$a immer durch den Wert ersetzt der für a errechnet wurde.  Wenn hier Funktionen aufgerufen werden müssen, so sind diese immer durch Prozent-Zeichen von dem Rest des MathJax-Strings zu trennen. Der Transpiler erkennt diese und kann so den Code in gültigen JavaScript-Code übersetzen \\
+Bei der zweiten Kategorie handelt es sich um die graphische Darstellung. Der hier erzeugte Wert wird nachher von der MathJax-Bibliothek interpretiert und muss daher dessen Syntax folgen. Um die von dem ersten Skript erzeugten Werte zu nutzen werden diese über Dollar-Zeichen referenziert. So wird \$a immer durch den Wert ersetzt der für a errechnet wurde.  Wenn hier Funktionen aufgerufen werden müssen, so sind diese immer durch Prozent-Zeichen von dem Rest des MathJax-Strings zu trennen. Der Transpiler erkennt diese und kann so den Code in gültigen JavaScript-Code übersetzen \\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/MathJaxPreTrans} 
 \caption[MathJax-Skript vor der Transpilierung]{MathJax-Skript vor der Transpilierung}
 \end{figure} 
-
 
 \emph{Skript nach der Transpilierung}
 \begin{lstlisting}
@@ -674,8 +700,8 @@ Das von dem ersten Skript erzeugte JSON-Objekt ist im Code unter dem Namen ``var
 Als letztes Skript wird die Validierung der Antworten des Nutzers benötigt. Diese Skript muss als Rückgabe einen Boolean Wert produzieren, welcher für die Korrektheit der übergebenen Antwort steht (also true bei korrekt und false bei falsch). \\
 Während der Validierung der Antwort stehen dem Skript zwei Variablen zur Verfügung.\\
 \begin{enumerate}
-\item Das Variablen-Skript erzeugte JSON-Objekt, unter dem Namen ``variables''
-\item Die vom Nutzer eingegebene Antwort, ein String unter dem Namen userinput''
+\item Das Variablen-Skript erzeugte JSON-Objekt, unter dem Namen ``variables''.
+\item Die vom Nutzer eingegebene Antwort, ein String unter dem Namen userinput''.
 \end{enumerate}
 
 Diese können nun dafür genutzt werden um die Nutzereingabe zu validieren und den korrekten Wert zurück zugeben. Für diese Skript gelten die selben Transpilierungs-Regeln wie für das Variablen-Skript.
@@ -713,16 +739,24 @@ Eine der grundlegenden Fragen wenn es um Sicherheit geht ist die Authentifizieru
 In der Implementation bedeutet dies, dass bevor der erste Austausch von Nutzdaten erfolgen kann als erstes der Austausch des Tokens erfolgen muss. Von der Seite des Nutzers wird eine Anfrage gesendet welche Nutzername und Passwort beinhaltet. Dieses wird mit der Datenbank abgeglichen. Wird der Nutzer gefunden und ist das Passwort korrekt wird ein Token generiert und an den Anfrage-Steller zurück gesendet. Wichtig ist hierbei zu erwähnen, dass die Passwörter nur in kodierter Form in der Datenbank vorliegen (für diese Anwendung wurde als Kodierung der Algorithmus MD5 gewählt) und so gewährleistet wird, dass wenn ein fremder Lesezugriff auf die Datenbank auftreten sollte die Passwörter schwerer zu entschlüsseln sind. \\
 Jedes mal wenn nun Daten abgefragt werden sollen schickt der Nutzer sein Token mit. Der Server überprüft die Validität des Tokens und wenn diese gewährleistet wurde erhält der Nutzer die angefragten Daten. \\
 
-Allerdings ist dies nicht der einzige Mechanismus der in der REST-API eingebaut wurde. Jeder Nutzer hat eine Rolle welche in der Datenbank eingespeichert ist. Bei der Authentifizierung wird ebenfalls die Rolle dieses Nutzers ausgelesen. Jede Rolle hat einen fest zugewiesenen Satz an Befugnissen, welche diesem Nutzer angehängt werden. \\
-Der Großteil der Controller hat als Voraussetzung um die Daten abfragen zu dürfen vorher eine Abfrage ob die Person die aktuell die Daten anfragt die benötigte Befugnis besitzt diese zu lesen. Ist diese Abfrage erfolgreich werden die Daten ausgeliefert, ansonsten kommt als Antwort lediglich ein 403 - Forbidden.
+Allerdings ist dies nicht der einzige Mechanismus der in der REST-API eingebaut wurde. Jeder Nutzer hat eine Rolle welche in der Datenbank eingespeichert ist. Bei der Authentifizierung wird ebenfalls die Rolle dieses Nutzers ausgelesen. Jede Rolle hat einen fest zugewiesenen Satz an Befugnissen, welche bei dem Authentifizierungsprozess aus der Datenbank geladen und dem Nutzer angehängt werden. \\
+Der Großteil der Controller hat als Voraussetzung um die Daten abfragen zu dürfen vorher eine Abfrage ob die Person die aktuell die Daten anfragt die benötigte Befugnis besitzt diese zu lesen. Ist diese Abfrage erfolgreich werden die Daten ausgeliefert, ansonsten kommt als Antwort lediglich ein 403 - Forbidden. \\
+
+Für den Studenten wurde hierbei ein Account eingerichtet, welcher von allen benutzt wird und nur die Rechte besitzt um auf alle Endpunkte zuzugreifen die für Erhalt und Bearbeitung der Aufgaben von Nöten sind. \\
+
+Für den Administrator kann es allerdings beliebig viele Accounts geben. Diese können alle in der Datenbank eingetragen und genutzt wurden. Dies muss allerdings alles direkt auf der Datenbank-Ebene geschehen, da es keine Seite gibt die diese Funktion abdeckt.
 
 \subsection{Die Sicherung der Aufgaben-Generierung}\label{GenerateTaskChapter}
 
 Neben der Sicherung der Rest-API an sich ist natürlich ein weiterer wichtiger Aspekt die Sicherung der Aufgaben-Generierung. Einerseits muss darauf geachtet werden, dass sich kein unerlaubter Code auf der Seite des Servers befindet und hier Schaden anrichten kann, andererseits ist es ebenfalls wichtig, dass keine Entitäten an den Administrator ausgeliefert werden die schadhaften Code enthalten (wenn er die Generatoren editiert und dabei auch testet). \\
 
-Um dies zu bewerkstelligen wurde der selbe Ansatz wie im Frontend gewählt. Jeder Generator, sowie jede Helper-Funktion, wird bei Ankunft im Backend getestet. Dabei wird darauf geachtet welche Funktionsaufrufe getätigt wurden. Jeder einzelne wird mit der Liste von erlaubten Funktionen abgeglichen, sollte eine gefunden werden die nicht erlaubt ist wird das Speichern der Entität abgebrochen und ein Fehler an den Sender der Anfrage zurück geschickt. \\
+Um dies zu bewerkstelligen wurde ein Ansatz gewählt, welcher in der selben Implementation im Frontend existiert.. Jeder Generator, sowie jede Helper-Funktion, wird an verschiedenen Stellen getestet. Bei dem Backend ist dies der Fall wenn der Administrator eine Entität bearbeitet hat und persistieren will, auf der Seite des Frontends wird jedes Mal getestet bevor der Code validiert und in den Arbeitsspeicher geladen wird. Dabei wird darauf geachtet welche Funktionsaufrufe getätigt wurden. \\
 
-Gleichzeitig wirft dieser Prozess eine Frage auf: Welchen Mehrwert hat es Code zweimal zu testen, beide Male mit der selben Methode? Um diese Frage zu beantworten ist es wichtig sich folgendes bewusst zu machen: Der Code auf der Client-Seite kann korrumpiert werden. Ein Nutzer mit dem Ziel Schaden zuzufügen könnte ihn editieren und so Anfragen schicken, welche normalerweise direkt auf Client Seite abgefangen und verboten werden würden. Sollte der Code allerdings nicht korrumpiert sein, so ist gute Praxis einen Generator bevor er abgeschickt wird zu testen, so wird der unnötige Austausch von Daten vermieden und dem Nutzer insgesamt eine flüssigere Erfahrung geboten.
+Für die Validierung existiert eine Liste von erlaubten Funktionen auf der Server-Seite. Um diese Liste zu erstellen werden als erstes alle existierenden Helper-Funktionen aus der Datenbank geladen. Der Name von jeder wird der Liste von erlaubten Funktionen hinzugefügt. Abschließend gibt es in der Konfiguration der Anwendung noch die Möglichkeit über die application.properties Funktionen einzutragen welche zusätzlich erlaubt werden sollen. \\
+
+Nachdem diese Liste erstellt wurde wird sie mit den Namen aller in dem Skript aufgerufenen Funktionen verglichen. Sollte eine Funktion gefunden werden, welche nicht erlaubt ist führt dies zu einem Fehler. Auf Seite des Servers bedeutet dies, dass die Entität nicht gespeichert wird und dem Sender der Speicher-Anfrage ein Fehler zurück gegeben wird. In dem Frontend wird dem Nutzer angezeigt, dass nicht erlaubte Funktionen gefunden wurden, sowie die Namen dieser angezeigt. \\
+
+Gleichzeitig wirft dieser Prozess eine Frage auf: Welchen Mehrwert hat es Code zweimal zu testen, beide Male mit der selben Methode? Um diese Frage zu beantworten ist es wichtig sich folgendes bewusst zu machen: Der Code auf der Client-Seite kann korrumpiert werden. Ein Nutzer mit dem Ziel Schaden zuzufügen könnte ihn editieren und so Anfragen schicken, welche normalerweise direkt auf Client Seite abgefangen und verboten werden würden. Sollte der Code allerdings nicht korrumpiert sein, so ist gute Praxis einen Generator bevor er abgeschickt wird zu testen, so wird der unnötige Austausch von Daten vermieden und dem Nutzer insgesamt eine flüssigere Erfahrung geboten. Zusätzlich wird die Server-Last reduziert da dieser weniger testen muss.
 
 
 \section{Dokumentation der REST-Schnittstellen}
@@ -753,15 +787,27 @@ Rückgabe: \begin{lstlisting}
 }
 \end{lstlisting}
 
+\section{Die Kommunikation mit den Administratoren}
+
+
+
 
 \section{Die Generierung und Validierung der Aufgaben}
 
-Kommen wir zu dem Hauptpunkt der Anwendung. Die Generierung und Validierung der Aufgaben. Jedes Mal wenn ein Generator angefragt wird wird dieser aus der Datenbank geladen. Die hier geladene Entität enthält allerdings nur Bruchstücke des Codes zur Generierung, wobei diese eindeutig reichen um den Generator eindeutig zu rekonstruieren. Sobald die Rekonstruktion abgeschlossen ist wird eine virtuelle Machine gestartet innerhalb der Code ausgeführt und die Aufgaben generiert werden. Um die virtuelle Machine(VM) zu starten und die Kommunikation zwischen Java und Javascript Code zu ermöglichen wird die --NAME EINFÜGEN-- API genutzt, auf die hier nicht weiter eingangen wird. \\
+Kommen wir zu dem Hauptpunkt der Anwendung. Die Generierung und Validierung der Aufgaben. Jedes Mal wenn ein Generator angefragt wird wird dieser aus der Datenbank geladen. Die hier geladene Entität enthält allerdings nur Bruchstücke des Codes zur Generierung, wobei diese reichen um den Generator eindeutig zu rekonstruieren.\\
+Sobald die Rekonstruktion abgeschlossen ist wird eine virtuelle Machine gestartet innerhalb der Code ausgeführt und die Aufgaben generiert werden. Um die virtuelle Machine(VM) zu starten und die Kommunikation zwischen Java und Javascript Code zu ermöglichen wird die Java Scripting API\footnote{https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/prog_guide/api.html} genutzt, auf die hier nicht weiter eingangen wird. \\
 
-Sobald der Generator geladen wurde wird eine Rückmeldung an die Routine gegeben die ihn gestartet hat. Kommt nun eine Anfrage an den Server eine Aufgabe zu generieren wird dies an die Javascript-VM weitergeleitet. Der dafür benötigte Kontext wird hierbei der eindeutigen ID des Nutzers zugeordnet und abgespeichert. Bei erfolgreicher Generierung wird diese zurück gegeben, damit sie vom Nutzer bearbeitet werden kann, bei einem Fehler wird dieser Fehler in den Fehler-Log geschrieben und dem Nutzer die Meldung zurück gegeben, dass ein Fehler aufgetreten ist. \\
+Sobald der Generator geladen wurde wird eine Rückmeldung an die Routine gegeben die ihn gestartet hat. Kommt nun eine Anfrage an den Server eine Aufgabe zu generieren wird dies an die Javascript-VM weitergeleitet. Der dafür benötigte Kontext wird hierbei der eindeutigen ID des Nutzers zugeordnet und abgespeichert. Bei erfolgreicher Generierung wird die generierte Aufgabe zurück gegeben, damit sie vom Nutzer bearbeitet werden kann. Sollte während der Generierung ein Fehler auftreten so wird dieser in den Fehler-Log geschrieben, damit er vom Administrator eingesehen werden kann. Der Nutzer bekommt in dem Falle lediglich die Rückmeldung, dass während der Generierung seiner Aufgabe ein Fehler aufgetreten ist. Sollte es sein Wunsch sein kann er daraufhin ein weiteres Mal eine Aufgabe anfordern. \\
 
-Wenn die Aufgabe bearbeitet wurde und die Lösung ankommt wird als erstes der korrekte Kontext vom Java-Code gesucht. Dafür wird geguckt ob eine Aufgabe mit der eindeutigen ID des Users verknüpft wurde. Wird keiner gefunden so wird ein Fehler ausgegeben. Sollte allerdings ein Kontext gefunden werden (was immer der Fall ist außer im Client-Seitigen Code liegt ein Fehler vor, außer die Bearbeitungszeit ist abgelaufeb) so wird der Javascript-VM die Lösung, sowie der Kontext (Variablen welche bei der Generierung erzeugt und für die Lösung benötigt werden) übergeben. Diese validiert die Lösung, sollte sie korrekt sein wird ein true zurück geben, ansonsten false. Der Java-Code nimmt diesen Wert nun an, verarbeitet ihn und gibt dem Nutzer die entsprechende Rückmeldung.
+Sobald die Aufgabe bearbeitet und die Lösung zum Server geschickt wurde wird als erstes überprüft ob überhaupt ein Generator aktiv ist. Sollte keiner aktiv sein wird dem Nutzer zurückgemeldet, dass die Bearbeitungszeit bereits abgelaufen ist. Ansonsten wird die eindeutige ID des Nutzers aus dem Token, welches er zur Authentifizierung genutzt hat ausgelesen. Diese ID wird nun genutzt um den Kontext der Aufgabe zu finden. Hier bestehen nun zwei Fälle. \\
 
+1. Es wurde kein Kontext für die ID des Nutzers gefunden.\\
+Dies ist immer dann der Fall wenn seit dem Erhalt der Aufgabe ein neuer Generator gestartet wurde. Sobald ein neuer Generator gestartet wird wird jedes Mal die Liste von allen momentan gespeicherten Kontexten gelöscht und eine neue angelegt. \\
+
+2. Der Kontext wurde gefunden.\\
+In diesem Fall kann mit der Validierung der Aufgabe begonnen werden. Der JavaScript-VM wird der Kontext(die Variablen, welche bei der Generierung genutzt wurden), sowie die Antwort des Nutzers übergeben. Diese validiert nun die Korrektheit der Antwort und gibt entsprechend true oder false an den Java-Teil der Anwendung zurück. \\
+Wenn die Antwort als korrekt befunden wurde wird eine neue Aufgabe generiert, der Kontext wieder unter der ID des Nutzers abgespeichert und die Aufgabe zurück gesendet. Zusätzlich wird seinem Team eine korrekt gelöste Aufgabe zugeschrieben und alle verbundenen Administratoren über den neuen Punktestand informiert. \\
+Sollte die Aufgabe allerdings falsch gelöst worden sein wird keine neue Aufgabe generiert. Stattdessen wird dem Team des Nutzers eine falsch gelöste Aufgabe zugeschrieben (und alle verbundenen Administratoren informiert). An den Nutzer kommt lediglich die Rückmeldung, dass die Antwort falsch war.
 
 \chapter{Fazit}
 
@@ -771,7 +817,15 @@ Wenn die Aufgabe bearbeitet wurde und die Lösung ankommt wird als erstes der ko
 \section{Das Ergebnis}
 
 
+
+
 \section{Wie kann die Anwendung verbessert / erweitert werden}
+
+-Sicherheit \\
+-Testlayer \\
+-RoleLayer \\
+-Graphic-Interface \\
+-Generator-Editor \\
 
 \listoffigures
 \begin{thebibliography}{}
@@ -800,7 +854,7 @@ Blu-ray Disc Association:
 
 
 
-
+https://www.informatik-aktuell.de/betrieb/datenbanken/mariadb-und-mysql-vergleich-der-features.html
 % Formatierung für Aufsatz / Paper: Titel in Anführungszeichen, Zeitschriftentitel kursiv
 \bibitem[Dooley \& Streicher(1982)]{dooley_streicher} 
 Dooley, Wesley L.  \& Streicher, Ronald D.:
