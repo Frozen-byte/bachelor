@@ -354,6 +354,8 @@ Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusä
 
 Es stand bereits sehr früh klar, dass Daten vom Server zum Client übertragen werden müssen um den aktuellen Stand der Aufgaben für die Übersicht des Administrators aktuell zu halten. Früher hätte man dafür Long Polling verwendet, doch heute gibt es eine Technologie, welche erheblich besser für diesen Zweck geeignet ist: Websockets. \\
 
+TODO: Mehr Long Polling erklären
+
 \emph{\glqq   
 WebSockets ist eine fortschrittliche Technologie welche es möglich macht eine interaktive Kommunikations-Session zwischen dem Browser des Benutzers und dem Server herzustellen. Mit dieser API können Sie Nachrichten zum Server senden und ereignisorientierte Antworten erhalten ohne beim Server die Antwort abzufragen.
 \grqq} \footnote{https://developer.mozilla.org/de/docs/WebSockets} \\
@@ -733,6 +735,102 @@ Die zweite Fehlerquelle ist die Validierung der Skripte. Da auf Server-Seite ebe
 Ein wichtiger Punkt bei der Entwicklung eines Backends ist immer die Sicherheit. Daher wird in diesem Kapitel darauf eingegangen wie in dieser Applikation die Sicherheit der REST-API, sowie die zusätzliche Sicherheit die auf dieser Seite für den Nutzer eingebaut wurde, erreicht wurde. \\
 
 
+\subsection{Die JavaScript-VM}
+
+Bevor auf die Frage eingegangen wird wie die Nutzung von JavaScript-Code in einem Java-Server umgesetzt wurde ist zuerst eine andere Frage offen: Warum muss eigentlich JavaScript-Code ausgeführt werden? \\
+
+Es stand fest, dass der Administrator in der Lage sein muss eigene Skripte zu schreiben. Dadurch konnte gewährleistet werden, dass auch Aufgaben generiert werden können an die bei der Erstellung des Programmes nicht gedacht werden konnte. \\
+Damit der Administrator Skripte schreiben konnte musste also eine Sprache gefunden werden, die folgende Bedingungen erfüllt:
+\begin{enumerate}
+\item Die Sprache sollte möglichst weit verbreitet sein. So wird kein Zwang erzeugt nur für diese Anwendung eine Sprache zu lernen.
+\item Die Sprache sollte entweder Java selbst sein oder innerhalb von Java ohne großen Aufwand ausgeführt werden können.
+\end{enumerate}
+
+Bei der Recherche hat sich gezeigt, dass sich JavaScript zu einer äußerst populären Sprache entwickelt hat. Da es sich bei JavaScript zusätzlich um eine Sprache mit sehr leichter Syntax handelt und sie sich zusätzlich sehr leicht in Java-Code integrieren lässt ist die Wahl auf JavaScript gefallen. \\
+
+Die Skripte selber werden aus den Skript-Entitäten erzeugt. Ein fertiges Skript besteht immer aus vier Funktionen. Die ersten drei sind vom Administrator geschrieben und sind für die Erzeugung der Variablen/des MathJax und der Validierung der Lösung zuständig. Als vierte Funktion existiert die Funktion die im MathJax die Variablen einsetzen.\\
+
+\emph{Java-Code zur Erstellung eines Generator-Skripts}
+\begin{lstlisting}
+public String constructScript(ScriptEntity entity) {
+	StringBuilder builder = new StringBuilder();
+	builder.append("function generateVariables() {");
+	builder.append(entity.getVariableScript());
+	builder.append("}");
+	builder.append("function generateMathjax(variables){");
+	builder.append(entity.getMathjaxScript());
+	builder.append("}");
+	builder.append("function testSolution(variables, userinput) {");
+	builder.append(entity.getSolutionScript());
+	builder.append("}");
+	builder.append("function getComputedMathjax(variables){");
+	builder.append("var mathjax= generateMathjax(variables);");
+	builder.append("for (var key in variables) {");
+	builder.append("var replacer = \"$\" + key;");
+	builder.append("mathjax = mathjax.split(replacer).join(variables[key]);");
+	builder.append("}");
+	builder.append("return mathjax");
+	builder.append("}");	
+	String script = builder.toString();
+	return script;
+}
+\end{lstlisting}
+
+Das Generator-Skript ist allerdings nicht der einzige Code der geladen werden muss. Die Helper-Methoden müssen ebenfalls geladen werden, da die Generatoren ansonsten nicht funktionieren können. \\
+
+\emph{Java-Code zur Erstellung der Helper-Funktionen}
+\begin{lstlisting}
+public String getMathjaxScript() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("mj= { \n");
+	appendScript(mjRepo.findAll(), builder);
+	builder.append("\n}");
+	return builder.toString();
+}
+
+public String getVariableScript() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("vf= { \n");
+	appendScript(vfRepo.findAll(), builder);
+	builder.append("\n}");
+	return builder.toString();
+}
+
+private void appendScript(Iterable<? extends FunctionEntity>entities, StringBuilder builder) {
+	boolean appendComma=false;
+	for (FunctionEntity entity : entities) {
+		if(appendComma) {
+			builder.append(", \n");
+		}
+		if(entity.getConstants()!=null) {
+			builder.append(entity.getConstants());
+			builder.append(",\n");
+		}
+		builder.append(entity.getName()+":function(");
+		builder.append(entity.getParams());
+		builder.append("){\n");
+		builder.append(entity.getCode());
+		builder.append("}");
+		appendComma=true;
+	}
+}
+
+\end{lstlisting}
+
+Die hier erstellten Code-Schnipsel werden zusammengefügt und bilden so das gesamte Skript, welches in die virtuelle Maschine geladen wird. Dafür wurde ein Service erstellt, welcher die virtuelle Maschine verwaltet und die Schnittstelle zwischen Java und JavaScript bildet. Jede Anfrage die an die JavaScript-VM geht wird über den Service gestellt, welcher diese weiter an die VM stellt.\\
+
+\emph{Beispiel für die Validierung einer Aufgabe}
+\begin{lstlisting}
+public boolean validateAnswer(Bindings variables, String answer) throws ScriptException {
+	try {
+		return (boolean) invocable.invokeFunction("testSolution", variables, answer);
+	} catch (NoSuchMethodException e) {
+		throw new RuntimeException(e);
+	}
+}
+\end{lstlisting}
+
+
 \subsection{Authentifizierung und Rollen-System}
 
 Eine der grundlegenden Fragen wenn es um Sicherheit geht ist die Authentifizierung. Für diese Anwendung wurden \hyperref[JWT]{JSON Web Tokens} gewählt um eine Authentifizierung zu gewährleisten. \\
@@ -789,7 +887,13 @@ Rückgabe: \begin{lstlisting}
 
 \section{Die Kommunikation mit den Administratoren}
 
+Wenn man über die Features im Frontend nachdenkt bleibt man an einer Sache hängen: Die Übersicht über die laufende Aufgabe. Auf dieser Seite erhält der Administrator jederzeit den aktuellen Stand über die Punktzahl der verschiedenen Teams. Doch wie wurde dies umgesetzt? \\
 
+Für die Implementation wurde auf die in der Einleitung erklärten Websockets zugegriffen. Sobald der Administrator auf die Übersicht Seite wechselt sendet er automatisch eine Anfrage an den Server gesendet um eine Websocket-Verbindung zu öffnen. Der Server nimmt automatisch jede Anfrage an. \\
+Sobald der Client die Rückmeldung bekommt, dass die Authentifizierung erfolgreich war sendet er seine Daten zum einloggen. Für den Administrator sind das die selben Daten die zum erhalten des Tokens genutzt wurden. Diese werden beim Login-Prozess zwischengespeichert und für diesen Zweck wieder verwendet. \\
+Sobald der Server diese Login-Anfrage erhält überprüft er in der Datenbank ob es sich hierbei um eine gültigen Account handelt. Ist dies der Fall wird der Socket in der Liste der autorisierten Administratoren gespeichert. \\
+
+Sobald ein neuer Generator gestartet wird wird gleichzeitig auch eine andere Routine gestartet. Diese wird jede Sekunde ausgeführt und hat nur eine Aufgabe: Die Administratoren über den aktuellen Punktestand informieren. Bei dem ausführen wird der aktuelle Stand in ein Objekt verpackt, welches über den Websocket verschickt wird. Der Administrator analysiert dieses Packet bei Erhalt und aktualisiert die Ansicht entsprechend.
 
 
 \section{Die Generierung und Validierung der Aufgaben}
@@ -852,7 +956,8 @@ Blu-ray Disc Association:
 \emph{White paper Blu-ray Disc Format 2.B Audio Visual Application, Format Specifications for BD-ROM}, 
 \url{http://www.blu-raydisc.com/Assets/downloadablefile/2b_bdrom_audiovisualapplication_0305-12955-15269.pdf}, 2005, letzter Zugriff: 1. 10. 2012
 
-
+https://www.heise.de/developer/meldung/Programmiersprachen-Ranking-JavaScript-und-Java-weiter-an-der-Spitze-3113468.html?view=zoom;zoom=1
+https://jaxenter.de/programmiersprachen-rankings-49399
 
 https://www.informatik-aktuell.de/betrieb/datenbanken/mariadb-und-mysql-vergleich-der-features.html
 % Formatierung für Aufsatz / Paper: Titel in Anführungszeichen, Zeitschriftentitel kursiv

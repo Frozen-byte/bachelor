@@ -21,7 +21,7 @@ public class JavaScriptWrapper {
 
 	public JavaScriptWrapper(String name, String generatorScript, String variableScript, String mathjaxScript) throws ScriptException {
 		engine = new ScriptEngineManager().getEngineByName("nashorn");
-		engine.eval(variableScript+"\n"+mathjaxScript+"\n"+generatorScript+"\n"+mathjs);
+		engine.eval(variableScript+"\n"+mathjaxScript+"\n"+generatorScript+"\n");
 		this.invocable = (Invocable) engine;
 		this.name = name;
 
@@ -49,7 +49,6 @@ public class JavaScriptWrapper {
 		} catch (NoSuchMethodException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	public String getName() {

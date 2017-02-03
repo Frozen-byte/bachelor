@@ -23,20 +23,15 @@ public class ScriptServiceImpl implements ScriptService{
 	private ScriptRepository scriptRepository;
 
 	public String getMathjaxScript() {
-
 		StringBuilder builder = new StringBuilder();
-
 		builder.append("mj= { \n");
 		appendScript(mjRepo.findAll(), builder);
 		builder.append("\n}");
-		
-
 		return builder.toString();
 	}
 
 	public String getVariableScript() {
 		StringBuilder builder = new StringBuilder();
-
 		builder.append("vf= { \n");
 		appendScript(vfRepo.findAll(), builder);
 		builder.append("\n}");
@@ -60,11 +55,9 @@ public class ScriptServiceImpl implements ScriptService{
 			builder.append("}");
 			appendComma=true;
 		}
-
 	}
 	
 	public String constructScript(ScriptEntity entity) {
-		
 		StringBuilder builder = new StringBuilder();
 		builder.append("function generateVariables() {");
 		builder.append(entity.getVariableScript());
@@ -84,9 +77,9 @@ public class ScriptServiceImpl implements ScriptService{
 		builder.append("return mathjax");
 		builder.append("}");	
 		String script = builder.toString();
-
 		return script;
 	}
+	
 	@Override
 	public String constructHelperScript(FunctionEntity entity) {
 		StringBuilder builder = new StringBuilder();
