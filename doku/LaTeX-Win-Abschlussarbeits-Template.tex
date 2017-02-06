@@ -730,12 +730,10 @@ Die zweite Fehlerquelle ist die Validierung der Skripte. Da auf Server-Seite ebe
 
 \chapter{Ein Blick unter die Haube - das Backend}
 
-\section{Die Sicherung der REST-API}
-
-Ein wichtiger Punkt bei der Entwicklung eines Backends ist immer die Sicherheit. Daher wird in diesem Kapitel darauf eingegangen wie in dieser Applikation die Sicherheit der REST-API, sowie die zusätzliche Sicherheit die auf dieser Seite für den Nutzer eingebaut wurde, erreicht wurde. \\
 
 
-\subsection{Die JavaScript-VM}
+
+\section{Die JavaScript-VM}
 
 Bevor auf die Frage eingegangen wird wie die Nutzung von JavaScript-Code in einem Java-Server umgesetzt wurde ist zuerst eine andere Frage offen: Warum muss eigentlich JavaScript-Code ausgeführt werden? \\
 
@@ -830,8 +828,14 @@ public boolean validateAnswer(Bindings variables, String answer) throws ScriptEx
 }
 \end{lstlisting}
 
+\section{Die Sicherung der REST-API}
+
+Ein wichtiger Punkt bei der Entwicklung eines Backends ist immer die Sicherheit. Daher wird in diesem Kapitel darauf eingegangen wie in dieser Applikation die Sicherheit der REST-API, sowie die zusätzliche Sicherheit die auf dieser Seite für den Nutzer eingebaut wurde, erreicht wurde. \\
+
 
 \subsection{Authentifizierung und Rollen-System}
+
+TODO: Rollen und zugehörige Authorities beschreiben
 
 Eine der grundlegenden Fragen wenn es um Sicherheit geht ist die Authentifizierung. Für diese Anwendung wurden \hyperref[JWT]{JSON Web Tokens} gewählt um eine Authentifizierung zu gewährleisten. \\
 In der Implementation bedeutet dies, dass bevor der erste Austausch von Nutzdaten erfolgen kann als erstes der Austausch des Tokens erfolgen muss. Von der Seite des Nutzers wird eine Anfrage gesendet welche Nutzername und Passwort beinhaltet. Dieses wird mit der Datenbank abgeglichen. Wird der Nutzer gefunden und ist das Passwort korrekt wird ein Token generiert und an den Anfrage-Steller zurück gesendet. Wichtig ist hierbei zu erwähnen, dass die Passwörter nur in kodierter Form in der Datenbank vorliegen (für diese Anwendung wurde als Kodierung der Algorithmus MD5 gewählt) und so gewährleistet wird, dass wenn ein fremder Lesezugriff auf die Datenbank auftreten sollte die Passwörter schwerer zu entschlüsseln sind. \\
@@ -925,11 +929,27 @@ Sollte die Aufgabe allerdings falsch gelöst worden sein wird keine neue Aufgabe
 
 \section{Wie kann die Anwendung verbessert / erweitert werden}
 
--Sicherheit \\
--Testlayer \\
--RoleLayer \\
--Graphic-Interface \\
--Generator-Editor \\
+Doch so viele gute Punkte es bei Open Tasks auch gibt, einige Sachen sind nicht optimal und könnten in einer weiteren Iteration der Entwicklung verbessert werden. \\
+
+Einer der großen Punkte ist das optische Auftreten der Webapplikation. Es wurde bereits relativ viel Arbeit darin gesteckt die Anwendung graphisch ansprechend zu gestalten, doch ist das Ergebnis nicht das Ende aller Möglichkeiten in diesem Bereich. \\
+Eine Option in diesem Bereich wäre es einen Grafiker zu engagieren, welcher ein ausführliches Konzept für das Design der Seite erstellt. Sobald es dieses gibt sollte es ein leichtes sein dieses auf der Seite umzusetzen, insbesondere da Angular 2-Anwendungen durch ihre Modularität leicht in einzelnen Abschnitten zu überarbeiten sind.\\
+Sollte dies umgesetzt werden würde dies die User-Experience merklich verbessern. \\
+
+Doch nicht nur die Ansicht des normalen Nutzers könnte eine Überarbeitung vertragen. Auch auf der Seite des Administrators gibt es einige Möglichkeiten zur Erweiterung.\\
+Eine der wichtigsten Sachen auf dieser Seite ist wohl der Code-Editor. Mit viel Aufwand wäre es möglich hier eine Online-Entwicklungsumgebung einzurichten, folgende Features sind als Vorschläge zu sehen:
+\begin{description}
+
+\item -Code-Vervollständigung
+\item -Überprüfung von Fehlern zur Übersetzungszeit
+\item -Code-Highlighting
+\end{enumerate}
+
+
+Neben den Änderungen am Interface gibt es allerdings auch mehrere Dinge die im Code geändert werden könnten und keinen direkt ersichtlichen Einfluss auf Open Tasks hätten.\\
+
+Zuallererst ist die Test-Ebene zu nennen. Momentan besitzt Open Tasks keine Tests. Dabei ist dies für das Backend, sowie das Frontend der Fall. Angular 2, sowie Spring-Boot bieten ausgezeichnete Möglichkeiten Unit-Tests zu schreiben, doch auch für Integration-Tests gibt es gut dokumentierte Möglichkeiten. \\
+
+Abschließend ist noch das Rollen-System zu nennen. Momentan sind die Rollen und zugehörigen Zugriffsrechte ziemlich hart im Code definiert und nicht ohne Änderung des Codes zu ändern. Sollte die Applikation wachsen könnte sich dies zu einem Hindernis entwickeln. Daher steht es zur Option die Rechte die jeder Rolle zustehen nicht im Code, sondern in der Datenbank zu definieren und dynamisch auszulesen.
 
 \listoffigures
 \begin{thebibliography}{}
