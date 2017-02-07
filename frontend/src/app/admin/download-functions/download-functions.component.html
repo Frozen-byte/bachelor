@@ -1,0 +1,28 @@
+<div class="col-sm-12">
+  Willkommen bei der Download-Seite. Bitte wählen sie die Entitäten aus die sie herunterladen wollen und bestätigen sie
+  ihre Auswahl.
+</div>
+<div class="col-sm-4">
+  <div class="row">Generatoren</div>
+  <div class="row" *ngFor="let generator of generators">
+    <span><input type="checkbox" text="generator" (change)="generatorChange(generator,$event)">{{generator}}</span>
+  </div>
+</div>
+<div class="col-sm-4">
+  <div class="row">MathJax-Funktionen</div>
+  <div class="row" *ngFor="let mj of mathjaxFunctions">
+    <span><input type="checkbox" (change)="mathjaxChange(mj,$event)">{{mj}}</span>
+  </div>
+</div>
+<div class="col-sm-4">
+  <div class="row">Variablen-Funktionen</div>
+  <div class="row" *ngFor="let vf of variableFunctions">
+    <span><input type="checkbox" (change)="variableChange(vf,$event)">{{vf}}</span>
+  </div>
+</div>
+<div class="col-sm-12">
+  <button class="btn" (click)="download()">Herunterladen</button>
+</div>
+
+
+

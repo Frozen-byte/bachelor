@@ -6,15 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.busybeever.bachelor.data.entity.FunctionEntity;
+import de.busybeever.bachelor.data.entity.MathjaxFunctionEntity;
+import de.busybeever.bachelor.data.entity.ScriptEntity;
+import de.busybeever.bachelor.data.entity.VariableFunctionEntity;
 import de.busybeever.bachelor.data.enums.PostResult;
 import de.busybeever.bachelor.data.repository.FunctionRepository;
+import de.busybeever.bachelor.data.repository.MathjaxFunctionRepository;
+import de.busybeever.bachelor.data.repository.ScriptRepository;
+import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
 import de.busybeever.bachelor.presentation.UpdateDatabaseResponse;
+import de.busybeever.bachelor.presentation.admin.DownloadGenerator;
 import de.busybeever.bachelor.service.AdminService;
 import de.busybeever.bachelor.service.ValidationService;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
+
+	
+	@Autowired
+	private ScriptRepository scriptRepository;
+	
+	@Autowired
+	private VariableFunctionRepository variableFunctionRepository;
+	
+	@Autowired
+	private MathjaxFunctionRepository mathjaxFunctionRepository;
+	
 	@Autowired
 	private ValidationService validationService;
 	
@@ -64,4 +82,25 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return res;
 	}
+	
+
+	@Override
+	public DownloadGenerator downloadGenerator(String[] generatorNames, String[] vf, String[] mj) {
+		
+		ScriptEntity[] generators = new ScriptEntity[generatorNames.length];
+		for (int i = 0; i < generators.length; i++) {
+			generators[i] = scriptRepository.findByName(generatorNames[i]);
+		}
+		VariableFunctionEntity[] vfe = new VariableFunctionEntity[vf.length];
+		for (int i = 0; i < vf.length; i++) {
+			vfe[i] = variableFunctionRepository.findByName(vf[i]);
+		}
+		MathjaxFunctionEntity[] mje = new MathjaxFunctionEntity[mj.length];
+		for (int i = 0; i < mj.length; i++) {
+			mje[i] = mathjaxFunctionRepository.findByName(mj[i]);
+		}
+		
+		return new DownloadGenerator(generators, mje, vfe);
+	}
+	
 }

@@ -9,6 +9,8 @@
           <li [ngClass]="{active: type=='generator'}"><a routerLink="/admin/generator">Generator bearbeiten</a></li>
           <li [ngClass]="{active: type=='function'}"><a routerLink="/admin/function">Helper-Funktionen bearbeiten</a></li>
           <li [ngClass]="{active: type=='error'}"><a routerLink="/admin/error">Fehler-Log begutachten</a></li>
+          <li [ngClass]="{active: type=='download'}"><a routerLink="/admin/download">Entitäten runterladen</a></li>
+
         </ul>
       </div>
     </nav>
@@ -28,9 +30,11 @@
     <div *ngIf="type=='error'">
       <or-admin-error></or-admin-error>
     </div>
+    <div *ngIf="type=='download'">
+      <or-admin-download-functions></or-admin-download-functions>
+    </div>
   </div>
   <div *ngIf="!http.isAuthenticated()">
-
     <or-admin-login></or-admin-login>
   </div>
 </div>
