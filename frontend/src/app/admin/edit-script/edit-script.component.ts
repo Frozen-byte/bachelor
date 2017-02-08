@@ -130,7 +130,6 @@ export class EditScriptComponent implements OnInit {
         .map((response: Response) => response.json())
         .subscribe(
           (data: UpdateDataBaseReponse) => {
-            console.log(data.result)
             if (data.result == "NOT_ALLOWED") {
               this.message = 'Nicht erlaubte Funktion gefunden'
             } else if (data.result == "SAVED_NEW") {
@@ -159,7 +158,8 @@ export class EditScriptComponent implements OnInit {
     this.httpService.doDelete(this.configService.generator + '?id=' + this.generator.id)
       .subscribe(
         (data: Response) => {
-          this.generators.splice(this.generators.indexOf(this.generator.name))
+
+          this.generators.splice(this.generators.indexOf(this.generator.name),1)
           this.generator = new Generator()
         },
         (error: any) => {

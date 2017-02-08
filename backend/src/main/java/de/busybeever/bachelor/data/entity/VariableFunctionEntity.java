@@ -96,6 +96,14 @@ public class VariableFunctionEntity implements FunctionEntity, Serializable  {
 	public void setTestCode(String testCode) {
 		this.testCode = testCode;
 	}
+
+	@Override
+	public String toString() {
+		return "VariableFunctionEntity [id=" + id + ", name=" + name + ", code=" + code + ", description=" + description
+				+ ", params=" + params + ", constants=" + constants + ", testCode=" + testCode + "]";
+	}
+	
+	
 	
 	
 	

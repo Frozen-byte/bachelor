@@ -101,6 +101,10 @@ public class ScriptEntity implements Serializable{
 		this.formType = formType;
 	}
 	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	
 
 	

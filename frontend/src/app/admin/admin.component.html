@@ -10,6 +10,7 @@
           <li [ngClass]="{active: type=='function'}"><a routerLink="/admin/function">Helper-Funktionen bearbeiten</a></li>
           <li [ngClass]="{active: type=='error'}"><a routerLink="/admin/error">Fehler-Log begutachten</a></li>
           <li [ngClass]="{active: type=='download'}"><a routerLink="/admin/download">Entitäten runterladen</a></li>
+          <li [ngClass]="{active: type=='upload'}"><a routerLink="/admin/upload">Entitäten hochladen</a></li>
 
         </ul>
       </div>
@@ -33,8 +34,13 @@
     <div *ngIf="type=='download'">
       <or-admin-download-functions></or-admin-download-functions>
     </div>
+    <div *ngIf="type=='upload'">
+      <admin-or-upload-functions></admin-or-upload-functions>
+    </div>
   </div>
   <div *ngIf="!http.isAuthenticated()">
     <or-admin-login></or-admin-login>
   </div>
+
+
 </div>

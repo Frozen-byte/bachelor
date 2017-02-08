@@ -1,0 +1,94 @@
+<div class="col-sm-12">
+  Willkommen auf der Upload Seite. Um mit dem hochladen externer Skripte zu beginnen laden sie bitte eine Datei hoch.
+</div>
+<div class="col-sm-12">
+  <input type="file" (change)="fileChange($event)" placeholder="Datei auswählen" accept=".json">
+</div>
+<div *ngIf="fileUploaded">
+  <div class="col-sm-12">
+    Hochgeladene Datei entdeckt..
+  </div>
+  <div *ngIf="valid">
+    <div *ngIf="duplicates>0">
+      <div class="col-sm-12">
+        Es wurden insgesamt {{duplicates}} Duplikate gefunden.
+      </div>
+      <div *ngIf="duplicateGenerators.length>0 || skippedGenerators.length>0">
+        <div class="bold col-sm-12 bordered spaced">
+          Generatoren:
+        </div>
+        <div class="col-sm-6">
+          Generatoren die äquivalent in der Datenbank existieren und übersprungen werden
+          <div *ngFor="let generator of skippedGenerators">
+            {{generator.name}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          Generatoren die den gleichen Namen tragen, aber nicht dem Datenbank-Eintrag ähneln
+          <div *ngFor="let generator of duplicateGenerators">
+            {{generator.name}}
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="duplicateVariableFunctions.length>0 || skippedVariableFunctions.length>0">
+        <div class="bold col-sm-12 bordered spaced">
+          Variablen-Funktionen:
+        </div>
+        <div class="col-sm-6">
+          Variablen-Funktionen die äquivalent in der Datenbank existieren und übersprungen werden
+          <div *ngFor="let generator of skippedVariableFunctions">
+            {{generator.name}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          Variablen-Funktionen die den gleichen Namen tragen, aber nicht dem Datenbank-Eintrag ähneln
+          <div *ngFor="let generator of duplicateVariableFunctions">
+            {{generator.name}}
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="duplicateMathjaxFunctions.length>0 || skippedMathjaxFunctions.length>0">
+        <div class="bold col-sm-12 bordered spaced">
+          MathJax-Funktionen:
+        </div>
+        <div class="col-sm-6">
+          MathJax-Funktionen die äquivalent in der Datenbank existieren und übersprungen werden
+          <div *ngFor="let generator of skippedMathjaxFunctions">
+            {{generator.name}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          MathJax-Funktionen die den gleichen Namen tragen, aber nicht dem Datenbank-Eintrag ähneln
+          <div *ngFor="let generator of duplicateMathjaxFunctions">
+            {{generator.name}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-12 top-bordered" *ngIf="canUpload">
+      Bereit zum hochladen! Insgesamt werden {{obj.entity.length}} Generatoren, {{obj.mj.length}} MathJax-Funktionen und {{obj.vf.length}} Variablen-Funktionen hochgeladen.
+      <button class="btn" (click)="upload()">Hochladen</button>
+    </div>
+    <div class="col-sm-12 top-bordered" *ngIf="!canUpload">
+      {{msg}}
+    </div>
+
+
+  </div>
+  <div *ngIf="!valid">
+    <div class="col-sm-12">
+      Ungültige Funktion gefunden
+    </div>
+    <div *ngFor="let result of invalidResults">
+      <div *ngFor="let value of result.results">
+        <div class="col-sm-12 invalid" *ngIf="!value.allowed">
+          {{value.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

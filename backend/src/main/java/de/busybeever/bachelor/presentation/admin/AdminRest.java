@@ -147,7 +147,15 @@ public class AdminRest {
 	@GetMapping("downloadGenerator")
 	public DownloadGenerator downloadGenerator(@RequestParam("generator") String[] generatorNames, @RequestParam("mj")String[] mj,
 			@RequestParam("vf")String[] vf) {
-		return adminService.downloadGenerator(generatorNames, mj, vf);
+
+		return adminService.downloadGenerator(generatorNames, vf, mj);
+	}
+	
+	@PostMapping("uploadGenerator")
+	public void uploadGenerator(@RequestBody DownloadGenerator data) {
+		adminService.uploadGenerator(data);
+		
+		
 	}
 	
 	

@@ -4,11 +4,13 @@
 
 
 export class HelperFunction {
-  name:string;
-  id:number;
-  code:string;
-  description:string
-  params:string
-  constants:string
-  testCode:string;
+  name: string;
+  id: number;
+  code: string;
+  description: string
+  params: string
+  constants: string
+  testCode: string;
+
+
 }

@@ -102,6 +102,12 @@ public class MathjaxFunctionEntity implements FunctionEntity, Serializable {
 		this.testCode = testCode;
 	}
 	
+	@Override
+	public String toString() {
+		return "MathJaxFunctionEntity [id=" + id + ", name=" + name + ", code=" + code + ", description=" + description
+				+ ", params=" + params + ", constants=" + constants + ", testCode=" + testCode + "]";
+	}
+	
 	
 
 }

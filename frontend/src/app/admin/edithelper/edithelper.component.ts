@@ -55,6 +55,7 @@ export class EdithelperComponent implements OnInit {
 
   ngOnInit() {
     this.fetchData()
+    this.function.params ='';
   }
 
 
@@ -128,7 +129,7 @@ export class EdithelperComponent implements OnInit {
     this.httpService.doDelete(url)
       .subscribe(
         (data: Response) => {
-          this.functions.splice(this.functions.indexOf(this.function.name))
+          this.functions.splice(this.functions.indexOf(this.function.name),1)
           this.function = new HelperFunction();
         },
         (error: any) => {

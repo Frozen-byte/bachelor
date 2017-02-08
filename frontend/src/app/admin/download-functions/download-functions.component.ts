@@ -72,14 +72,11 @@ export class DownloadFunctionsComponent implements OnInit {
   }
 
   download() {
-    var data = {
-      generatorNames: this.selectedGenerators,
-      mj: this.selectedMathjax,
-      vf: this.selectedVariables
-    }
+
     let url = this.config.backend + "admin/downloadGenerator?generator=" + this.selectedGenerators;
     url += '&mj=' + this.selectedMathjax
     url += '&vf=' + this.selectedVariables
+    url = encodeURI(url);
     this.http.doGet(url).map((response: Response) => response.json())
       .subscribe(
         (data: any) => {

@@ -17,6 +17,7 @@ import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
 import de.busybeever.bachelor.presentation.UpdateDatabaseResponse;
 import de.busybeever.bachelor.presentation.admin.DownloadGenerator;
 import de.busybeever.bachelor.service.AdminService;
+import de.busybeever.bachelor.service.GlobalErrorService;
 import de.busybeever.bachelor.service.ValidationService;
 
 @Service
@@ -35,6 +36,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private ValidationService validationService;
+	
+	@Autowired
+	private GlobalErrorService globalErrorService;
 	
 	public <T extends FunctionEntity> String[] getRefactoredFunctionEntities(FunctionRepository<T> repo) {
 		List<T> entites = repo.findAll();
@@ -90,17 +94,76 @@ public class AdminServiceImpl implements AdminService {
 		ScriptEntity[] generators = new ScriptEntity[generatorNames.length];
 		for (int i = 0; i < generators.length; i++) {
 			generators[i] = scriptRepository.findByName(generatorNames[i]);
+			generators[i].setId(null);
 		}
 		VariableFunctionEntity[] vfe = new VariableFunctionEntity[vf.length];
 		for (int i = 0; i < vf.length; i++) {
 			vfe[i] = variableFunctionRepository.findByName(vf[i]);
+			System.out.println(vf[i]);
+			System.out.println(vfe[i]);
+			
+			vfe[i].setId(null);
 		}
 		MathjaxFunctionEntity[] mje = new MathjaxFunctionEntity[mj.length];
 		for (int i = 0; i < mj.length; i++) {
 			mje[i] = mathjaxFunctionRepository.findByName(mj[i]);
+			mje[i].setId(null);
+		}
+
+		return new DownloadGenerator(generators, mje, vfe);
+	}
+	
+	@Override
+	public String uploadGenerator(DownloadGenerator data) {
+		
+		boolean valid = true;
+		StringBuilder log = new StringBuilder("Beginne Upload-Prozess \n");
+		
+		for (VariableFunctionEntity vfe : data.getVf()) {
+			valid = valid && !validationService.containsNotAllowedFunctions(vfe);
 		}
 		
-		return new DownloadGenerator(generators, mje, vfe);
+		for (MathjaxFunctionEntity mje : data.getMj()) {
+			valid = valid && !validationService.containsNotAllowedFunctions(mje);
+		}
+		
+		for (ScriptEntity se: data.getEntity()) {
+			valid = valid && !validationService.containsNotAllowedFunctions(se);
+		}
+		if(valid) {
+			
+			for (VariableFunctionEntity vfe : data.getVf()) {
+				if(variableFunctionRepository.findByName(vfe.getName()) == null) {
+					variableFunctionRepository.save(vfe);
+				}else {
+					log.append("Variablen-Funktion "+vfe.getName()+" existiert bereits in der Datenbank. Überspringe.\n");
+				}
+			}
+			
+			for (MathjaxFunctionEntity mje : data.getMj()) {
+				if(mathjaxFunctionRepository.findByName(mje.getName()) == null) {
+					mathjaxFunctionRepository.save(mje);
+				}else {
+					log.append("MathJax-Funktion "+mje.getName()+" existiert bereits in der Datenbank. Überspringe.\n");
+				}
+			}
+			
+			for (ScriptEntity se: data.getEntity()) {
+				if(scriptRepository.findByName(se.getName()) == null) {
+					scriptRepository.save(se);
+				}else {
+					log.append("Generator "+se.getName()+" existiert bereits in der Datenbank. Überspringe.\n");
+				}
+			}
+			log.append("Upload-Prozess erfolgreich beendet");
+			
+		} else {
+			log.append("Es wurden invalide Skripte gefunden. Breche Upload-Prozess ab.");
+		}
+		String result = log.toString();
+		globalErrorService.appendError(result);
+		return result;
+		
 	}
 	
 }

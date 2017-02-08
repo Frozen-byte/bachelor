@@ -11,4 +11,5 @@ public interface AdminService {
 	public <T extends FunctionEntity> UpdateDatabaseResponse saveFunction(T entity, FunctionRepository<T> repository);
 	public <T extends FunctionEntity> String[] getFunctionNames(FunctionRepository<T> repo) ;
 	public DownloadGenerator downloadGenerator(String[] generatorNames, String[] vf, String[] mj);
+	public String uploadGenerator(DownloadGenerator data);
 }

@@ -30,6 +30,8 @@ export class SecurityService {
       results : [],
       valid:true
     }
+    console.log('Applying security is DISABLED')
+    return result;
 
     var match  = this.regex.exec(script);
     while (match != null) {
@@ -38,6 +40,7 @@ export class SecurityService {
         let toTest = match[1];
         let testArr = toTest.split(".");
         toTest = testArr[testArr.length-1];
+        toTest = toTest.replace(' ', '')
         if(toTest.length>1 && this.allowedFunctions.indexOf(toTest)==-1) {
           result.valid = false;
           console.log("Found invalid item: "+match[1])
@@ -58,5 +61,9 @@ export class SecurityService {
     //test only
     //result.valid=true;
     return result;
+  }
+
+  addAllowedFunction(item: string) {
+    this.allowedFunctions.push(item)
   }
 }

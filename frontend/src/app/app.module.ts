@@ -33,7 +33,8 @@ import { TextformComponent } from './user/forms/textform/textform.component';
 import { MatrixRowComponent } from './user/forms/matrix/matrix-row/matrix-row.component';
 import {NumberedJsonPipe} from "./pipes/NumberedJson";
 import {enableProdMode} from '@angular/core';
-import { DownloadFunctionsComponent } from './admin/download-functions/download-functions.component'
+import { DownloadFunctionsComponent } from './admin/download-functions/download-functions.component';
+import { UploadFunctionsComponent } from './admin/upload-functions/upload-functions.component'
 
 enableProdMode();
 const appRoutes: Routes = [
@@ -60,7 +61,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports:      [ BrowserModule, FormsModule,ReactiveFormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
   declarations: [ AppComponent,LoginComponent, AdminComponent,EditScriptComponent, EditScriptComponent, MathjaxComponent, NumberedJsonPipe,
-    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent, DezimalformComponent, FractureformComponent, TextformComponent, MatrixRowComponent, DownloadFunctionsComponent],
+    EdithelperComponent, OverviewComponent, StartnewComponent, UserComponent, KnobComponent, MatrixformComponent, ProgressbarComponent, UserloginComponent, AdminLoginComponent, Autosize, ErrorComponent, NumberformComponent, DezimalformComponent, FractureformComponent, TextformComponent, MatrixRowComponent, DownloadFunctionsComponent, UploadFunctionsComponent],
   bootstrap:    [ AppComponent ],
   providers: [ConfigService,  HttpService, GeneratorService, GeneratedcodeService, SecurityService]
 })

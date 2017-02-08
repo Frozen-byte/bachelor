@@ -1,0 +1,20 @@
+.invalid {
+  color:red;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.spaced {
+  margin-top: 20px;
+}
+
+.bordered {
+  border-bottom: 1px solid black;
+}
+
+.top-bordered {
+  border-top: 1px solid black;
+
+}

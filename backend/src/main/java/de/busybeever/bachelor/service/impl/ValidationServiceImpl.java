@@ -56,15 +56,20 @@ public class ValidationServiceImpl implements ValidationService {
 	
 	@Override
 	public boolean containsNotAllowedFunctions(FunctionEntity entity) {
-		return validateScript(entity.getCode(), "Helper-Funktion", entity.getId());
+		System.out.println("Applying security is DISABLED!");
+		return false;
+		//return validateScript(entity.getCode(), "Helper-Funktion", entity.getId());
 	}
 	
 	@Override
 	public boolean containsNotAllowedFunctions(ScriptEntity entity) {
-		
+		System.out.println("Applying security is DISABLED!");
+		return false;
+		/*
 		return validateScript(entity.getMathjaxScript(), "Skript", entity.getId()) |
 				validateScript(entity.getSolutionScript(), "Skript", entity.getId()) |
 				validateScript(entity.getVariableScript(), "Skript", entity.getId());
+		*/
 		
 	}
 	
