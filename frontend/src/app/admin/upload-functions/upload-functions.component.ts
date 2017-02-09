@@ -40,6 +40,8 @@ export class UploadFunctionsComponent implements OnInit {
   private duplicateChecksRunning: number;
   private duplicates: number;
 
+  private log:string[];
+
   constructor(private security: SecurityService, private http: HttpService, private config:ConfigService) { }
 
   ngOnInit() {
@@ -67,11 +69,12 @@ export class UploadFunctionsComponent implements OnInit {
         this.obj.vf.forEach(value => {
           this.security.addAllowedFunction('vf.'+value.name)
         })
-
+        console.log(this.obj.entity)
         this.obj.entity.forEach(value => {
           results.push(this.security.applySecurity(value.mathjaxScript))
           results.push(this.security.applySecurity(value.variableScript))
           results.push(this.security.applySecurity(value.solutionScript))
+
           if(this.generators.indexOf(value.name)!=-1) {
             this.duplicateGenerators.push(value);
           }
@@ -132,9 +135,9 @@ export class UploadFunctionsComponent implements OnInit {
         .subscribe(
           (data:Generator) => {
             if (this.generatorEqualToIgnoreId(value,data)) {
-              this.duplicateGenerators.splice(this.duplicateGenerators.indexOf(value))
+              this.duplicateGenerators.splice(this.duplicateGenerators.indexOf(value),1)
               this.skippedGenerators.push(value)
-              this.obj.entity.splice(this.obj.entity.indexOf(value))
+              this.obj.entity.splice(this.obj.entity.indexOf(value),1)
             }
             this.finishedDuplicateCheck();
 
@@ -148,9 +151,9 @@ export class UploadFunctionsComponent implements OnInit {
         .subscribe(
           (data:HelperFunction) => {
             if (this.helperEqualToIgnoreId(value,data)) {
-              this.duplicateVariableFunctions.splice(this.duplicateVariableFunctions.indexOf(value))
+              this.duplicateVariableFunctions.splice(this.duplicateVariableFunctions.indexOf(value),1)
               this.skippedVariableFunctions.push(value)
-              this.obj.vf.splice(this.obj.vf.indexOf(value))
+              this.obj.vf.splice(this.obj.vf.indexOf(value),1)
             }
             this.finishedDuplicateCheck();
 
@@ -164,9 +167,9 @@ export class UploadFunctionsComponent implements OnInit {
         .subscribe(
           (data:HelperFunction) => {
             if (this.helperEqualToIgnoreId(value,data)) {
-              this.duplicateMathjaxFunctions.splice(this.duplicateMathjaxFunctions.indexOf(value))
+              this.duplicateMathjaxFunctions.splice(this.duplicateMathjaxFunctions.indexOf(value),1)
               this.skippedMathjaxFunctions.push(value)
-              this.obj.mj.splice(this.obj.mj.indexOf(value))
+              this.obj.mj.splice(this.obj.mj.indexOf(value),1)
             }
             this.finishedDuplicateCheck();
 
@@ -180,7 +183,7 @@ export class UploadFunctionsComponent implements OnInit {
     if(this.duplicateChecksRunning==0) {
       //Finished all checks
       if(this.duplicateMathjaxFunctions.length === 0 && this.duplicateGenerators.length === 0 && this.duplicateVariableFunctions.length === 0) {
-        if(this.obj.entity.length>0 && this.obj.mj.length>0 && this.obj.vf.length>0) {
+        if(this.obj.entity.length>0 || this.obj.mj.length>0 || this.obj.vf.length>0) {
           this.canUpload = true
         } else {
           this.msg = 'Die Datei enthält keine Neuerungen für die Datenbank. Daher ist ein Upload nicht notwendig.'
@@ -194,9 +197,10 @@ export class UploadFunctionsComponent implements OnInit {
 
   upload() {
     this.http.doPost(this.config.backend+'admin/uploadGenerator', this.obj)
+      .map((response:Response) => response.json())
       .subscribe(
-        (data:Response) => {
-
+        (data:String[]) => {
+          this.log = data;
         }
       )
 

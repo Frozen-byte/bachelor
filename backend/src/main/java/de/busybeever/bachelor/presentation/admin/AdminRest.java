@@ -152,8 +152,8 @@ public class AdminRest {
 	}
 	
 	@PostMapping("uploadGenerator")
-	public void uploadGenerator(@RequestBody DownloadGenerator data) {
-		adminService.uploadGenerator(data);
+	public String[] uploadGenerator(@RequestBody DownloadGenerator data) {
+		return adminService.uploadGenerator(data);
 		
 		
 	}

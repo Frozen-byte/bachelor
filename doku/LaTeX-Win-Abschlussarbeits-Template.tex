@@ -709,6 +709,67 @@ Während der Validierung der Antwort stehen dem Skript zwei Variablen zur Verfü
 Diese können nun dafür genutzt werden um die Nutzereingabe zu validieren und den korrekten Wert zurück zugeben. Für diese Skript gelten die selben Transpilierungs-Regeln wie für das Variablen-Skript.
 
 
+\subsection{Das Teilen von Aufgaben}
+
+Es ist nun also möglich Aufgaben-Generatoren, sowie unterstützende Funktionalität zu erzeugen. Doch was ist wenn man keinen Generator selber schreiben will, oder ihn von einer Instanz von Open Tasks auf eine andere übertragen will? \\
+Bisher war dies nur möglich indem man Teile der Datenbank manuell kopiert, doch konnte dies keine dauerhafte Lösung sein. Daher wurde das hoch und runter laden von Entitäten eingeführt.
+\subsubsection{Entitäten runterladen}
+
+
+Wenn man die Seite betritt sieht man ein recht simples Interface. Man wird über die Funktionsweise der Seite informiert. Danach sieht man alle Generatoren / MathJax-, sowie Variablen-Funktionen aufgelistet. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/DownloadEntities} 
+\caption[Seite zum herunterladen von Entitäten]{Seite zum herunterladen von Entitäten}
+\end{figure} 
+
+
+Will man eine Entität zum Download auswählen muss man lediglich auf die zugehörige Checkbox oder den Text neben ihr drücken. Sobald die Auswahl beendet ist und der Herunterladen Knopf betätigt wurde wird eine Datei heruntergeladen. Diese Datei enthält alle eben gewählten Entitäten. Als Speicherformat wurde hierfür JSON gewählt, da dies nativ von JavaScript unterstützt wird und ohne Probleme gelesen und manipuliert werden kann. Diese Datei kann nun auf jedem gewünschten Weg verteilt und genutzt werden.
+
+
+\subsubsection{Entitäten hochladen}
+
+Doch wenn es möglich ist die Entitäten herunterzuladen muss es auch einen Weg geben diese wieder hoch zu laden und so in das Repertoire von Open Tasks zu integrieren. Dies wird über den Tab ``Entitäten hochladen'' getan. \\
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/UploadNoSelect} 
+\caption[Seite zum hochladen von Entitäten vor Auswahl einer Datei]{Seite zum hochladen von Entitäten vor Auswahl einer Datei}
+\end{figure} 
+
+Diese Seite sieht bei Betreten sehr leer aus. Lediglich die Bitte eine Datei über den zugehörigen Knopf auszuwählen, sowie ein kleiner Info-Text sind zu sehen. Auf Knopfdruck öffnet sich ein Dialog zum Selektieren einer Datei. \\
+Sobald eine Datei ausgewählt wurde wird diese analysiert. Bei diesem Prozess werden alle Generatoren, sowie alle Helper-Funktionen nach unerlaubten Funktionen durchsucht. Sollten welche vorhanden sein wird der Prozess mit der Warnung, dass unerlaubte Funktionen gefunden wurden abgebrochen. \\
+
+Sollten allerdings nur erlaubte Funktionen entdeckt werden wird der Prozess fortgesetzt. Die entdeckten Entitäten werden mit denen die in der Datenbank existieren abgeglichen. Dies läuft in zwei Schritten ab.\\
+
+1. Die Namen der neuen Entitäten werden mit denen der Datenbank verglichen. Sollte eine gefunden werden welche den selben Namen wie eine Datenbank-Entität besitzt wird diese vorgemerkt.\\
+
+2. Die vorgemerkten Entitäten werden im Detail verglichen. Während vorher nur die Namen abgeglichen wurden, werden jetzt alle fraglichen Entitäten komplett aus der Datenbank geladen und an den Client geschickt. Dieser vergleicht nun die beiden Datensätze ins Detail ob sie komplett identisch sind. Sollte hierbei ein Unterschied entdeckt werden wird die Entität als ``Konflikt mit der Datenbank'' markiert. Ansonsten werden sie als äquivalent mit dem Datenbank-Eintrag markiert. \\
+
+Wenn dieser Prozess abgeschlossen ist wird dem Nutzer das Ergebnis angezeigt.
+
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/UploadEntities} 
+\caption[Ergebnis der Analyse einer Datei]{Ergebnis der Analyse einer Datei}
+\end{figure} 
+
+Die Ansicht ist in drei Zeilen aufgespalten, eine für die Generatoren, eine für die Variablen- und eine für die MathJax-Funktionen. Auf der linken Seite werden dem Nutzer alle Datensätze angezeigt, welche äquivalent in der Datenbank existieren und daher nicht hochgeladen werden müssen. Die Mitte dient der Anzeige aller Entitäten die mit der Datenbank in Konflikt treten, während die rechte Seite der Anzeige der Entitäten dient, welche hochgeladen werden können. \\
+
+Für die Anzeige dieser Seite gibt es drei Fälle.\\
+
+\noindent \textbf{1.Es wurden keine Einträge in der Datenbank gefunden die nicht bereits existieren } \\
+In diesem Fall werden lediglich die Duplikate in der linken Spalte angezeigt. Am unteren Ende der Seite erscheint ein Info-Text, dass die Datei keine Neuerungen enthält. \\
+
+\noindent \textbf{2.Eine oder mehrere Entitäten kollidiert mit einem bereits existierenden Eintrag in der Datenbank } \\
+Der Info-Text zeigt eine Information an, dass der Upload-Prozess nicht fortgesetzt werden kann, da ein Konflikt mit der Datenbank besteht. \\
+
+\noindent \textbf{3.Es wurde kein Konflikt festgestellt und die Datei enthält nicht ausschließlich Duplikate} \\
+Bei diesem handelt es sich um den Fall der für den Nutzer wünschenswert ist. Er bekommt die Information, dass der Upload bereit ist, sowie die Zusammenfassung wie viele Generatoren / Mathjax-Funktionen und Variablen-Funktionen bei Starten des Prozesses hochgeladen werden. Der Knopf zum Starten des Upload-Prozesses wird dargestellt. Sobald dieser gedrückt wird, wird ein Datensatz mit allen Entitäten die in die Datenbank aufgenommen werden abgeschickt. Wichtig ist hierbei zu sagen, dass keine doppelten Entitäten abgeschickt werden.\\
+
+
+
 \subsection{Der Fehler-Log}
 
 Eine wichtige Frage bei der Entwicklung einer Anwendung ist immer die Frage was alles schief gehen kann. Welche Fehler können auftreten und wie können sie behandelt oder sogar umgangen werden? \\
@@ -718,7 +779,6 @@ Was ist nun aber die Lösung für dieses Problem? In der Implementierung wird so
 
 Die zweite Fehlerquelle ist die Validierung der Skripte. Da auf Server-Seite ebenfalls eine Validierung der Skripte statt findet (siehe Kapitel \ref{GenerateTaskChapter} Die Sicherung der Aufgaben-Generierung) müssen die Fehler die hier entdeckt werden für den Administrator sichtbar sein. Diese werden ebenfalls in dem Fehler-Log angezeigt und können dort nachgelesen werden.
 
-%REPLACE WITH ERROR LOG GRAPHIC
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/ErrorLog} 
@@ -924,6 +984,14 @@ Sollte die Aufgabe allerdings falsch gelöst worden sein wird keine neue Aufgabe
 
 \section{Das Ergebnis}
 
+Rückblickend lassen sich mehrere Erkenntnis aus der Entwicklung und dem Produkt das Open Tasks geworden ist ziehen. \\
+
+Eine der größten Erkenntnisse ist wie schwer es ist zu verhindern, dass schadhafter Code in ein Programm eingeschleust wird in dem es dem Nutzer erlaubt wird selber Skripte zu schreiben. Immer wieder sind große Hindernisse in den Weg gekommen oder große Lücken aufgefallen durch die sich doch etwas einschleusen lässt, die allerdings nicht ohne weiteres zu beheben waren. Daher ist es in der Endversion von Open Tasks so, dass die vom Administrator erzeugten Skripte nicht auf unerlaubte Funktionen überprüft werden. Die alte Funktionalität ist noch da, da sie allerdings der vollen Funktionalität von Open Tasks schadet wurde sie zeitweise deaktiviert. \\
+Das bedeutet, dass die einzige Sicherheit die momentan existiert darin besteht, dass nur der Administrator einen gesicherten Zugriff auf die Editierung der Skripte erhält. \\
+
+Ein weiterer großer Punkt war die Zerteilung des Programmes in mehrere logische Einheiten um die Komplexität zu senken. Es stellte sich als nicht trivial heraus dies zu tun ohne, dass mehr Kommunikation zwischen diesen logischen Einheiten notwendig war als gewollt, da es viele Einheiten gab die nicht eindeutig zugeordnet werden konnten und sich so teilweise in zwei verschiedenen Abschnitten(Services) des Programmes befanden. \\
+
+Was allerdings erstaunlich gut geklappt hat war die Validierung und Erzeugung der Aufgaben. Als mit der Programmierung von Open Tasks begonnen wurde gab es viele Abschnitte in denen unklar war ob sie funktionieren würden wie sie sollten und dies war ein großer Knackpunkt in der Entwicklung. Tatsächlich ist allerdings ein gut funktionierendes Konstrukt entstanden, welches im Fehlerfall ausführlich Feedback an den Administrator sendet. \\
 
 
 

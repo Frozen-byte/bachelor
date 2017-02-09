@@ -5,19 +5,19 @@
 <div class="col-sm-4">
   <div class="row">Generatoren</div>
   <div class="row" *ngFor="let generator of generators">
-    <span><input type="checkbox" text="generator" (change)="generatorChange(generator,$event)">{{generator}}</span>
+    <label [for]="'g'+generator"><input type="checkbox" (change)="generatorChange(generator,$event)" [id]="'g'+generator">{{generator}}</label>
   </div>
 </div>
 <div class="col-sm-4">
   <div class="row">MathJax-Funktionen</div>
   <div class="row" *ngFor="let mj of mathjaxFunctions">
-    <span><input type="checkbox" (change)="mathjaxChange(mj,$event)">{{mj}}</span>
+    <label [for]="'mj'+mj"><input type="checkbox" (change)="mathjaxChange(mj,$event)" [id]="'mj'+mj">{{mj}}</label>
   </div>
 </div>
 <div class="col-sm-4">
   <div class="row">Variablen-Funktionen</div>
   <div class="row" *ngFor="let vf of variableFunctions">
-    <span><input type="checkbox" (change)="variableChange(vf,$event)">{{vf}}</span>
+    <label [for]="'vf'+vf"><input type="checkbox" (change)="variableChange(vf,$event)" [id]="'vf'+vf">{{vf}}</label>
   </div>
 </div>
 <div class="col-sm-12">

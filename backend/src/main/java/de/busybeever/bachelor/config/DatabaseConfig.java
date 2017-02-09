@@ -37,7 +37,7 @@ public class DatabaseConfig {
 			EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 			EmbeddedDatabase db = builder
 					.setType(EmbeddedDatabaseType.H2)
-					//.addScript("db.sql")
+					.addScript("db.sql")
 					.build();
 			return db;
 		} else {

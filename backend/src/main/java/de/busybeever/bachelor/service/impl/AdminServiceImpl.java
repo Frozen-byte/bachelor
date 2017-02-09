@@ -1,5 +1,6 @@
 package de.busybeever.bachelor.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,9 +100,6 @@ public class AdminServiceImpl implements AdminService {
 		VariableFunctionEntity[] vfe = new VariableFunctionEntity[vf.length];
 		for (int i = 0; i < vf.length; i++) {
 			vfe[i] = variableFunctionRepository.findByName(vf[i]);
-			System.out.println(vf[i]);
-			System.out.println(vfe[i]);
-			
 			vfe[i].setId(null);
 		}
 		MathjaxFunctionEntity[] mje = new MathjaxFunctionEntity[mj.length];
@@ -114,10 +112,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public String uploadGenerator(DownloadGenerator data) {
+	public String[] uploadGenerator(DownloadGenerator data) {
 		
 		boolean valid = true;
-		StringBuilder log = new StringBuilder("Beginne Upload-Prozess \n");
+		List<String> log = new ArrayList<>();
+		log.add("Beginne Upload-Prozess \n");
 		
 		for (VariableFunctionEntity vfe : data.getVf()) {
 			valid = valid && !validationService.containsNotAllowedFunctions(vfe);
@@ -136,7 +135,7 @@ public class AdminServiceImpl implements AdminService {
 				if(variableFunctionRepository.findByName(vfe.getName()) == null) {
 					variableFunctionRepository.save(vfe);
 				}else {
-					log.append("Variablen-Funktion "+vfe.getName()+" existiert bereits in der Datenbank. Überspringe.\n");
+					log.add("Variablen-Funktion "+vfe.getName()+" existiert bereits in der Datenbank. Überspringe.");
 				}
 			}
 			
@@ -144,7 +143,7 @@ public class AdminServiceImpl implements AdminService {
 				if(mathjaxFunctionRepository.findByName(mje.getName()) == null) {
 					mathjaxFunctionRepository.save(mje);
 				}else {
-					log.append("MathJax-Funktion "+mje.getName()+" existiert bereits in der Datenbank. Überspringe.\n");
+					log.add("MathJax-Funktion "+mje.getName()+" existiert bereits in der Datenbank. Überspringe.");
 				}
 			}
 			
@@ -152,17 +151,17 @@ public class AdminServiceImpl implements AdminService {
 				if(scriptRepository.findByName(se.getName()) == null) {
 					scriptRepository.save(se);
 				}else {
-					log.append("Generator "+se.getName()+" existiert bereits in der Datenbank. Überspringe.\n");
+					log.add("Generator "+se.getName()+" existiert bereits in der Datenbank. Überspringe.");
 				}
 			}
-			log.append("Upload-Prozess erfolgreich beendet");
+			log.add("Upload-Prozess erfolgreich beendet");
 			
 		} else {
-			log.append("Es wurden invalide Skripte gefunden. Breche Upload-Prozess ab.");
+			log.add("Es wurden invalide Skripte gefunden. Breche Upload-Prozess ab.");
 		}
-		String result = log.toString();
-		globalErrorService.appendError(result);
-		return result;
+		log.forEach((e) -> globalErrorService.appendError(e));
+		String[] arr = log.toArray(new String[0]);
+		return arr;
 		
 	}
 	

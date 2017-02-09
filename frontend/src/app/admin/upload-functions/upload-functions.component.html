@@ -17,17 +17,23 @@
         <div class="bold col-sm-12 bordered spaced">
           Generatoren:
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           Generatoren die äquivalent in der Datenbank existieren und übersprungen werden
           <div *ngFor="let generator of skippedGenerators">
             {{generator.name}}
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           Generatoren die den gleichen Namen tragen, aber nicht dem Datenbank-Eintrag ähneln
           <div *ngFor="let generator of duplicateGenerators">
             {{generator.name}}
           </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        Generatoren die in die Datenbank übertragen werden können
+        <div *ngFor="let generator of obj.entity">
+          {{generator.name}}
         </div>
       </div>
 
@@ -35,17 +41,23 @@
         <div class="bold col-sm-12 bordered spaced">
           Variablen-Funktionen:
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           Variablen-Funktionen die äquivalent in der Datenbank existieren und übersprungen werden
           <div *ngFor="let generator of skippedVariableFunctions">
             {{generator.name}}
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           Variablen-Funktionen die den gleichen Namen tragen, aber nicht dem Datenbank-Eintrag ähneln
           <div *ngFor="let generator of duplicateVariableFunctions">
             {{generator.name}}
           </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        Variablen-Funktionen die in die Datenbank übertragen werden können
+        <div *ngFor="let vf of obj.vf">
+          {{vf.name}}
         </div>
       </div>
 
@@ -53,17 +65,23 @@
         <div class="bold col-sm-12 bordered spaced">
           MathJax-Funktionen:
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           MathJax-Funktionen die äquivalent in der Datenbank existieren und übersprungen werden
           <div *ngFor="let generator of skippedMathjaxFunctions">
             {{generator.name}}
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           MathJax-Funktionen die den gleichen Namen tragen, aber nicht dem Datenbank-Eintrag ähneln
           <div *ngFor="let generator of duplicateMathjaxFunctions">
             {{generator.name}}
           </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        MathJax-Funktionen die in die Datenbank übertragen werden können
+        <div *ngFor="let mj of obj.mj">
+          {{mj.name}}
         </div>
       </div>
 
@@ -89,6 +107,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-sm-12" *ngFor="let item of log">
+    {{item}}
   </div>
 
 </div>

@@ -47,24 +47,24 @@ export class DownloadFunctionsComponent implements OnInit {
       )
   }
 
-  generatorChange(name: string, value: boolean) {
-    if (value) {
+  generatorChange(name: string, event: any) {
+    if (event.srcElement.checked) {
       this.selectedGenerators.push(name);
     } else {
       this.selectedGenerators.splice(this.selectedGenerators.indexOf(name))
     }
   }
 
-  mathjaxChange(name: string, value: boolean) {
-    if (value) {
+  mathjaxChange(name: string, event: any) {
+    if (event.srcElement.checked) {
       this.selectedMathjax.push(name);
     } else {
       this.selectedMathjax.splice(this.selectedMathjax.indexOf(name))
     }
   }
 
-  variableChange(name: string, value: boolean) {
-    if (value) {
+  variableChange(name: string, event: any) {
+    if (event.srcElement.checked) {
       this.selectedVariables.push(name);
     } else {
       this.selectedVariables.splice(this.selectedVariables.indexOf(name))
