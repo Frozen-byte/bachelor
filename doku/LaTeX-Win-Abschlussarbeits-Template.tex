@@ -893,7 +893,7 @@ public boolean validateAnswer(Bindings variables, String answer) throws ScriptEx
 Ein wichtiger Punkt bei der Entwicklung eines Backends ist immer die Sicherheit. Daher wird in diesem Kapitel darauf eingegangen wie in dieser Applikation die Sicherheit der REST-API, sowie die zusätzliche Sicherheit die auf dieser Seite für den Nutzer eingebaut wurde, erreicht wurde. \\
 
 
-\subsection{Authentifizierung und Rollen-System}
+\subsection{Authentifizierung und Rollen-System} \label{RechteSystem}
 
 TODO: Rollen und zugehörige Authorities beschreiben
 
@@ -906,7 +906,13 @@ Der Großteil der Controller hat als Voraussetzung um die Daten abfragen zu dür
 
 Für den Studenten wurde hierbei ein Account eingerichtet, welcher von allen benutzt wird und nur die Rechte besitzt um auf alle Endpunkte zuzugreifen die für Erhalt und Bearbeitung der Aufgaben von Nöten sind. \\
 
-Für den Administrator kann es allerdings beliebig viele Accounts geben. Diese können alle in der Datenbank eingetragen und genutzt wurden. Dies muss allerdings alles direkt auf der Datenbank-Ebene geschehen, da es keine Seite gibt die diese Funktion abdeckt.
+Für den Administrator kann es allerdings beliebig viele Accounts geben. Diese können alle in der Datenbank eingetragen und genutzt wurden. Dies muss allerdings alles direkt auf der Datenbank-Ebene geschehen, da es keine Seite gibt die diese Funktion abdeckt. \\
+
+Insgesamt gibt es drei Rechte. Generator, Admin, und Game. \\
+
+Admin erlaubt das Editieren der Generatoren, MathJax- und Variablen-Funktionen. Das Game-Recht erlaubt das Abfragen des aktuellen Spielstandes, sowie die Editierung der Team-Namen. Für das Starten und Stoppen der Generatoren ist das Generator-Recht erforderlich. \\
+
+TOOD: Rollen => Rechte. Rechte im Backend fixxen
 
 \subsection{Die Sicherung der Aufgaben-Generierung}\label{GenerateTaskChapter}
 
@@ -923,7 +929,17 @@ Gleichzeitig wirft dieser Prozess eine Frage auf: Welchen Mehrwert hat es Code z
 
 \section{Dokumentation der REST-Schnittstellen}
 
-\subsection{Admin}
+Die REST-API von Open Tasks ist mit der Zeit gewachsen und besitzt im Endprodukt recht viel Funktionalität. Die komplette Dokumentation ist im Anhang einzusehen, hier wird lediglich kurz die Art und Weise der Dokumentation beschrieben damit sie im Anhang verständlich ist. \\
+
+Die Dokumentation ist in Kapitel unterteilt. Dabei ist immer ein Controller, beziehungsweise eine Sub-Domäne, in ein Kapitel unterteilt. Jedes Kapitel beginnt mit dem Recht, welches benötigt wird um darauf zuzugreifen. Für die Dokumentation der Rollen und Rechte lesen sie bitte im Kapitel \ref{RechteSystem} Authentifizierung und Rollen-System nach. \\
+
+Als zweites Folgt der Pfad unter dem dieser Endpoint erreichbar ist, Endpoints aus dem selben Controller beginnen immer mit der selben Subdomäne. \\
+
+Der dritte Teil eines Endpoints ist seine Beschreibung. Hier folgt ein kurzer Text welcher den Endpoint und seine Rückgabewerte beschreibt. \\
+
+Als letztes folgt schließlich ein Beispiel für die Rückgabe. Prinzipiell gibt es drei mögliche Rückgabewerte. Ein JSON-Objekt, ein einzelner String oder ein Array. \\
+
+Nachfolgend sind zwei Beispiele für die Dokumentation eines Endpoints zu sehen. \\
 
 Benötigte Befugnis : ADMIN \\
 

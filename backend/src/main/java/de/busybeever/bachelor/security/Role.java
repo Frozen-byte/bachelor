@@ -3,8 +3,9 @@ package de.busybeever.bachelor.security;
 public enum Role {
 	
 	
-	Admin(Authority.GENERATOR, Authority.ADMIN, Authority.CLIENT, Authority.GAME),
-	User(Authority.CLIENT);
+	Database-Admin(Authority.GENERATOR, Authority.ADMIN, Authority.CLIENT, Authority.GAME),
+	User(Authority.CLIENT),
+	Admin(Authority.GAME, Authority.GENERATOR)
 	
 	private Authority[] authorities;
 	
