@@ -46,14 +46,17 @@
 \tableofcontents % Inhaltsverzeichnis erzeugen
 \clearpage          % Seitenumbruch
 
-
-\chapter{Einleitung}
-
-\section{Zielsetzung}
+\begin{abstract}
 
 Das Ziel dieser Arbeit ist es eine Webapplikation zu erstellen, welche bei der Gestaltung einer Mathematik-Vorlesung helfen soll. Dabei werden von der Anwendung Aufgaben generiert und an den Nutzer gesendet. Dieser kann diese nun lösen und seine Antwort abschicken. Nach der Validierung bekommt er ein Feedback und bei dem korrekten Lösen eine neue Aufgabe, sowie einige Punkte für sein Team. Der Administrator kann dabei den ganzen Vorgang überwachen und den aktuellen Punktestand einsehen. \\
-Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er jedes mal eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommt aber jedes mal unterschiedliche Variablen beinhaltet und so ein erneutes Berechnen erfordert.
+Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er jedes mal eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommt aber jedes mal unterschiedliche Variablen beinhaltet und so ein erneutes Berechnen erfordert. \\
 
+The target of this project is the creation of a web-application to support a math lecture. The application will be creating tasking and sending them to the users. He can now solve the task and send his answer. He will be receiving feedback and some points for his team, if the answer was correct. The administrator can supervise this and view the current scores. \\
+One of the core-aspects of the application will be the dynamic creation of tasks. That means a user request multiple tasks that will be different each time, even if they belong to the same topic. Thus the user will be need to recalculate the answer each time.
+
+\end{abstract}
+
+\chapter{Einleitung}
 
 \section{Bereits existierende Software}
 
@@ -1103,15 +1106,7 @@ Rückgabe: Update-Response \\
 Methode: DELETE \\
 Beschreibung: Löscht den Generator mit der übergebenen ID \\
 URL-Parameter: id : Die ID des Generators\\
-Rückgabe: \begin{lstlisting} 
-{
-  "id": 19,
-  "name": "Einfache Addition",
-  "variableScript": "var a = vf.int(10,20)\nvar b = vf.int(10,20)\nvar solution = a+b\nreturn {a:a, b:b, solution:solution}",
-  "solutionScript": "return variables.a + variables.b = solution",
-  "mathjaxScript": "return \"$$ $a + $b $$\"",
-  "formType": "Numbers"
-}
+Rückgabe: HTTP-Code 200 bei Erfolg, TODO: Code
 \end{lstlisting}
 
 \section{Client}
