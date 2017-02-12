@@ -89,6 +89,7 @@ Zusammenfassend lässt sich also sagen, dass die Anwendung hauptsächlich im Ber
 Als letzten Schritt ist nun noch zu definieren was genau eine Aufgabe eigentlich ist, beziehungsweise wie sie im Sinne dieser Anwendung gesehen wird. \\
 Für diese Arbeit werden wir Aufgaben immer in drei Teilen betrachten:
 \begin{enumerate}
+\itemsep0em
 \item Die Variablen \\
 Als Erstes betrachten wir die Variablen. Bei den Variablen handelt es sich um den Teil der Aufgabe der dafür sorgt, dass eine Aufgabe dynamisch bleibt. Diese werden für jede generierte Aufgabe, nach festgelegten Regeln, neu generiert. Durch diesen Teil wird gewährleistet, dass sich die generierten Aufgaben unterscheiden.
 \item Die Darstellung \\
@@ -419,6 +420,7 @@ Sollte dieser Knopf betätigt werden wird eine Anfrage an den Server gesendet, w
 
 Nach dem Erhalt einer Aufgabe beginnt die Bearbeitung. Der erhaltene Inhalt wird als mathematische Formel dargestellt, hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein gibt er diese über das entsprechende Formular ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet welcher diese validiert. Für den Studenten gibt es nun drei Fälle: \\
 \begin{enumerate}
+\itemsep0em
 \item Die Bearbeitungszeit für die Aufgabe ist abgelaufen. Der Nutzer erhält eine Informationsanzeige über den Ablauf der Zeit. Die momentan angezeigte Aufgabe wird entfernt.
 \item Die Aufgabe wurde korrekt gelöst. Der Nutzer erhält eine neue Aufgabe, sowie eine Notifikation über die Korrektheit der Lösung.
 \item Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben.
@@ -438,6 +440,7 @@ Bei dem Zweiten handelt es sich um die Eingabeformulare. Je nachdem was für ein
 
 Insgesamt existieren fünf Eingabeformulare.
 \begin{enumerate}
+\itemsep0em
 \item Das Textformular
 \item Das Zahlenformular
 \item Das Dezimalformular
@@ -702,6 +705,7 @@ Das von dem ersten Skript erzeugte JSON-Objekt ist im Code unter dem Namen ``var
 Als letztes Skript wird die Validierung der Antworten des Nutzers benötigt. Diese Skript muss als Rückgabe einen Boolean Wert produzieren, welcher für die Korrektheit der übergebenen Antwort steht (also true bei korrekt und false bei falsch). \\
 Während der Validierung der Antwort stehen dem Skript zwei Variablen zur Verfügung.\\
 \begin{enumerate}
+\itemsep0em
 \item Das Variablen-Skript erzeugte JSON-Objekt, unter dem Namen ``variables''.
 \item Die vom Nutzer eingegebene Antwort, ein String unter dem Namen userinput''.
 \end{enumerate}
@@ -800,6 +804,7 @@ Bevor auf die Frage eingegangen wird wie die Nutzung von JavaScript-Code in eine
 Es stand fest, dass der Administrator in der Lage sein muss eigene Skripte zu schreiben. Dadurch konnte gewährleistet werden, dass auch Aufgaben generiert werden können an die bei der Erstellung des Programmes nicht gedacht werden konnte. \\
 Damit der Administrator Skripte schreiben konnte musste also eine Sprache gefunden werden, die folgende Bedingungen erfüllt:
 \begin{enumerate}
+\itemsep0em
 \item Die Sprache sollte möglichst weit verbreitet sein. So wird kein Zwang erzeugt nur für diese Anwendung eine Sprache zu lernen.
 \item Die Sprache sollte entweder Java selbst sein oder innerhalb von Java ohne großen Aufwand ausgeführt werden können.
 \end{enumerate}
@@ -927,7 +932,7 @@ Nachdem diese Liste erstellt wurde wird sie mit den Namen aller in dem Skript au
 Gleichzeitig wirft dieser Prozess eine Frage auf: Welchen Mehrwert hat es Code zweimal zu testen, beide Male mit der selben Methode? Um diese Frage zu beantworten ist es wichtig sich folgendes bewusst zu machen: Der Code auf der Client-Seite kann korrumpiert werden. Ein Nutzer mit dem Ziel Schaden zuzufügen könnte ihn editieren und so Anfragen schicken, welche normalerweise direkt auf Client Seite abgefangen und verboten werden würden. Sollte der Code allerdings nicht korrumpiert sein, so ist gute Praxis einen Generator bevor er abgeschickt wird zu testen, so wird der unnötige Austausch von Daten vermieden und dem Nutzer insgesamt eine flüssigere Erfahrung geboten. Zusätzlich wird die Server-Last reduziert da dieser weniger testen muss.
 
 
-\section{Dokumentation der REST-Schnittstellen}
+\section{Die REST-Schnittstelle}
 
 Die REST-API von Open Tasks ist mit der Zeit gewachsen und besitzt im Endprodukt recht viel Funktionalität. Die komplette Dokumentation ist im Anhang einzusehen, hier wird lediglich kurz die Art und Weise der Dokumentation beschrieben damit sie im Anhang verständlich ist. \\
 
@@ -964,6 +969,28 @@ Rückgabe: \begin{lstlisting}
   "formType": "Numbers"
 }
 \end{lstlisting}
+
+In der Dokumentation der REST-Schnittstelle werden zwei Begriffe verwendet welche an diesem Punkt erklärt werden. \\
+
+Bei dem ersten handelt es sich um die Generatoren. Ein Generator besteht immer aus den folgenden Argumenten: \\
+\begin{description}
+\itemsep0em
+\item id - Die eindeutige ID des Generators, wenn eine existiert
+\item name - Der eindeutige Name des Generators
+\item variableScript Das Variablen-Skript des Generators
+\item solutionScript Das Skript zum Testen der Lösung
+\item mathjaxScript Das Skript zum Generieren des MathJax
+\item formType Der Formular-Typ des Generators [0=Text, 1=Zahlen, 2=Matrix, 3=Dezimal, 4=Bruch]
+\end{description}
+
+Bei dem zweiten handelt es sich um die Antwort die zurück gegeben wird wenn eine Entität in der Datenbank persistiert wird, in Zukunft als ``Update-Response'' bezeichnet. Diese kann drei Werte haben. \\
+\begin{enumerate}
+\itemsep0em
+\item NOT\_ALLOWED - Die Entität enthält nicht erlaubten Code \\
+\item UPDATED - Die bestehende Entität in der Datenbank wurde erneuert \\
+\item SAVED\_NEW - Für die Entität wurde ein neuer Datenbank-Eintrag erstellt \\
+\end{enumerate}
+
 
 \section{Die Kommunikation mit den Administratoren}
 
@@ -1022,11 +1049,11 @@ Sollte dies umgesetzt werden würde dies die User-Experience merklich verbessern
 Doch nicht nur die Ansicht des normalen Nutzers könnte eine Überarbeitung vertragen. Auch auf der Seite des Administrators gibt es einige Möglichkeiten zur Erweiterung.\\
 Eine der wichtigsten Sachen auf dieser Seite ist wohl der Code-Editor. Mit viel Aufwand wäre es möglich hier eine Online-Entwicklungsumgebung einzurichten, folgende Features sind als Vorschläge zu sehen:
 \begin{description}
-
+\itemsep0em
 \item -Code-Vervollständigung
 \item -Überprüfung von Fehlern zur Übersetzungszeit
 \item -Code-Highlighting
-\end{enumerate}
+\end{description}
 
 
 Neben den Änderungen am Interface gibt es allerdings auch mehrere Dinge die im Code geändert werden könnten und keinen direkt ersichtlichen Einfluss auf Open Tasks hätten.\\
@@ -1034,6 +1061,71 @@ Neben den Änderungen am Interface gibt es allerdings auch mehrere Dinge die im 
 Zuallererst ist die Test-Ebene zu nennen. Momentan besitzt Open Tasks keine Tests. Dabei ist dies für das Backend, sowie das Frontend der Fall. Angular 2, sowie Spring-Boot bieten ausgezeichnete Möglichkeiten Unit-Tests zu schreiben, doch auch für Integration-Tests gibt es gut dokumentierte Möglichkeiten. \\
 
 Abschließend ist noch das Rollen-System zu nennen. Momentan sind die Rollen und zugehörigen Zugriffsrechte ziemlich hart im Code definiert und nicht ohne Änderung des Codes zu ändern. Sollte die Applikation wachsen könnte sich dies zu einem Hindernis entwickeln. Daher steht es zur Option die Rechte die jeder Rolle zustehen nicht im Code, sondern in der Datenbank zu definieren und dynamisch auszulesen.
+
+\appendix
+\chapter{Dokumentation der REST-Schnittstellen}
+
+\section{Admin}
+
+TODO: Beschreiben was ein valider Generator ist
+
+Benötigte Befugnis : ADMIN \\
+
+\noindent Pfad: admin/generators \\
+Methode: GET \\
+Beschreibung: Sucht alle Generatoren und gibt ihre Namen zurück \\
+Rückgabe: \begin{lstlisting} 
+["Euklidischer Algorithmus", "Matritzenmultiplikation"]
+\end{lstlisting}
+
+\noindent Pfad: admin/generator \\
+Methode: GET \\
+Beschreibung: Sucht den Generator mit dem angegebenen Namen und gibt ihn zurück \\
+URL-Parameter: name : Der Name des Generators \\
+Rückgabe: \begin{lstlisting} 
+{
+  "id": 19,
+  "name": "Einfache Addition",
+  "variableScript": "var a = vf.int(10,20)\nvar b = vf.int(10,20)\nvar solution = a+b\nreturn {a:a, b:b, solution:solution}",
+  "solutionScript": "return variables.a + variables.b = solution",
+  "mathjaxScript": "return \"$$ $a + $b $$\"",
+  "formType": "Numbers"
+}
+\end{lstlisting}
+
+\noindent Pfad: admin/generator \\
+Methode: POST \\
+Beschreibung: Persistiert den übergebenen Generator in der Datenbank wenn er nur erlaubten Code enthält. Der Rückgabe-Parameter beschreibt das Resultat er Operation \\
+Body-Parameter: Der Generator \\
+Rückgabe: Update-Response \\
+
+\noindent Pfad: admin/generator \\
+Methode: DELETE \\
+Beschreibung: Löscht den Generator mit der übergebenen ID \\
+URL-Parameter: id : Die ID des Generators\\
+Rückgabe: \begin{lstlisting} 
+{
+  "id": 19,
+  "name": "Einfache Addition",
+  "variableScript": "var a = vf.int(10,20)\nvar b = vf.int(10,20)\nvar solution = a+b\nreturn {a:a, b:b, solution:solution}",
+  "solutionScript": "return variables.a + variables.b = solution",
+  "mathjaxScript": "return \"$$ $a + $b $$\"",
+  "formType": "Numbers"
+}
+\end{lstlisting}
+
+\section{Client}
+
+\section{Error}
+
+\section{Game}
+
+\section{Generated}
+
+\section{Generator}
+
+\section{Validator}
+
 
 \listoffigures
 \begin{thebibliography}{}
