@@ -3,6 +3,7 @@ package de.busybeever.bachelor.presentation.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,11 +87,12 @@ public class AdminRest {
 	}
 	
 	@DeleteMapping("/generator")
-	public void deleteGenerator(@RequestParam Integer id) {
+	public ResponseEntity<?> deleteGenerator(@RequestParam Integer id) {
 		if(id==null) {
-			throw new IllegalArgumentException();
+			return ResponseEntity.notFound().build();
 		}
 		scriptRepository.delete(id);
+		return ResponseEntity.ok().build();
 	}
 	
 	@GetMapping("/variablefunctions")
@@ -125,13 +127,21 @@ public class AdminRest {
 	}
 	
 	@DeleteMapping("/mathjaxfunction")
-	public void deleteMathjaxFunction(@RequestParam Integer id) {
-		mathjaxFunctionRepository.delete(id);
+	public ResponseEntity<?> deleteMathjaxFunction(@RequestParam Integer id) {
+		if(mathjaxFunctionRepository.findOne(id) != null) {
+			mathjaxFunctionRepository.delete(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/variablefunction")
-	public void deleteVariableFunction(@RequestParam Integer id) {
-		variableFunctionRepository.delete(id);
+	public ResponseEntity<?> deleteVariableFunction(@RequestParam Integer id) {
+		if(variableFunctionRepository.findOne(id) != null) {
+			variableFunctionRepository.delete(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 	@GetMapping("/rmathjaxfunction")
 	public List<MathjaxFunctionEntity> getRefactoredMathjaxFunctions() {
@@ -140,14 +150,12 @@ public class AdminRest {
 	
 	@GetMapping("rvariablefunction")
 	public List<VariableFunctionEntity> getRefactoredVariableFunctions() {
-		return variableFunctionRepository.findAll();
-		
+		return variableFunctionRepository.findAll();	
 	}
 	
 	@GetMapping("downloadGenerator")
 	public DownloadGenerator downloadGenerator(@RequestParam("generator") String[] generatorNames, @RequestParam("mj")String[] mj,
 			@RequestParam("vf")String[] vf) {
-
 		return adminService.downloadGenerator(generatorNames, vf, mj);
 	}
 	

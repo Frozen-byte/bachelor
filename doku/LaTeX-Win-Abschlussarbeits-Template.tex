@@ -46,15 +46,18 @@
 \tableofcontents % Inhaltsverzeichnis erzeugen
 \clearpage          % Seitenumbruch
 
-\begin{abstract}
+\selectlanguage{ngerman}
+\section*{\centering\abstractname}
 
 Das Ziel dieser Arbeit ist es eine Webapplikation zu erstellen, welche bei der Gestaltung einer Mathematik-Vorlesung helfen soll. Dabei werden von der Anwendung Aufgaben generiert und an den Nutzer gesendet. Dieser kann diese nun lösen und seine Antwort abschicken. Nach der Validierung bekommt er ein Feedback und bei dem korrekten Lösen eine neue Aufgabe, sowie einige Punkte für sein Team. Der Administrator kann dabei den ganzen Vorgang überwachen und den aktuellen Punktestand einsehen. \\
 Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er jedes mal eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommt aber jedes mal unterschiedliche Variablen beinhaltet und so ein erneutes Berechnen erfordert. \\
 
+\section*{\centering\abstractname}
+
 The target of this project is the creation of a web-application to support a math lecture. The application will be creating tasking and sending them to the users. He can now solve the task and send his answer. He will be receiving feedback and some points for his team, if the answer was correct. The administrator can supervise this and view the current scores. \\
 One of the core-aspects of the application will be the dynamic creation of tasks. That means a user request multiple tasks that will be different each time, even if they belong to the same topic. Thus the user will be need to recalculate the answer each time.
 
-\end{abstract}
+
 
 \chapter{Einleitung}
 
@@ -973,7 +976,7 @@ Rückgabe: \begin{lstlisting}
 }
 \end{lstlisting}
 
-In der Dokumentation der REST-Schnittstelle werden zwei Begriffe verwendet welche an diesem Punkt erklärt werden. \\
+In der Dokumentation der REST-Schnittstelle werden drei Begriffe verwendet welche an diesem Punkt erklärt werden. \\
 
 Bei dem ersten handelt es sich um die Generatoren. Ein Generator besteht immer aus den folgenden Argumenten: \\
 \begin{description}
@@ -993,6 +996,17 @@ Bei dem zweiten handelt es sich um die Antwort die zurück gegeben wird wenn ein
 \item UPDATED - Die bestehende Entität in der Datenbank wurde erneuert \\
 \item SAVED\_NEW - Für die Entität wurde ein neuer Datenbank-Eintrag erstellt \\
 \end{enumerate}
+
+Abschließend sind noch die Helper-Funktionen zu nennen. Bei den Helper-Funktionen handelt es sich um den Sammel-Begriff für MathJax und Funktions-Entitäten, welche von der Signatur exakt gleich sind. \\
+\begin{description}
+\itemsep0em
+\item id - Die eindeutige ID der Funktion, wenn eine existiert
+\item code - Der Code der Funktion
+\item description - Die Beschreibung der Funktion
+\item params - Die Argumente die die Funktion entgegen nimmt.
+\item constants - Die Konstanten die die Funktion benötigt
+\item testCode - Der Code der benutzt wird um die Funktion zu testen
+\end{description}
 
 
 \section{Die Kommunikation mit den Administratoren}
@@ -1070,7 +1084,6 @@ Abschließend ist noch das Rollen-System zu nennen. Momentan sind die Rollen und
 
 \section{Admin}
 
-TODO: Beschreiben was ein valider Generator ist
 
 Benötigte Befugnis : ADMIN \\
 
@@ -1085,16 +1098,7 @@ Rückgabe: \begin{lstlisting}
 Methode: GET \\
 Beschreibung: Sucht den Generator mit dem angegebenen Namen und gibt ihn zurück \\
 URL-Parameter: name : Der Name des Generators \\
-Rückgabe: \begin{lstlisting} 
-{
-  "id": 19,
-  "name": "Einfache Addition",
-  "variableScript": "var a = vf.int(10,20)\nvar b = vf.int(10,20)\nvar solution = a+b\nreturn {a:a, b:b, solution:solution}",
-  "solutionScript": "return variables.a + variables.b = solution",
-  "mathjaxScript": "return \"$$ $a + $b $$\"",
-  "formType": "Numbers"
-}
-\end{lstlisting}
+Rückgabe: Der gesuchte Generator, oder HTTP-Code 500 wenn er nicht gefunden werden konnte \\
 
 \noindent Pfad: admin/generator \\
 Methode: POST \\
@@ -1106,20 +1110,244 @@ Rückgabe: Update-Response \\
 Methode: DELETE \\
 Beschreibung: Löscht den Generator mit der übergebenen ID \\
 URL-Parameter: id : Die ID des Generators\\
-Rückgabe: HTTP-Code 200 bei Erfolg, TODO: Code
+Rückgabe: HTTP-Code 200 bei Erfolg, 404 sollte der Generator nicht gefunden werden \\
+
+\noindent Pfad: admin/variablefunctions \\
+Methode: GET \\
+Beschreibung: Gibt ein Array mit den Namen aller Variablen-Funktionen und gibt sie zurück \\
+Rückgabe: \begin{lstlisting}  \\
+["int", "prime", "mat"]
 \end{lstlisting}
+
+\noindent Pfad: admin/mathjaxfunctions \\
+Methode: GET \\
+Beschreibung: Gibt ein Array mit den Namen aller MathJax-Funktionen und gibt sie zurück \\
+Rückgabe: \begin{lstlisting} 
+["bmatrix", "fraction"]
+\end{lstlisting}
+
+\noindent Pfad: admin/variablefunction \\
+Methode: GET \\
+Beschreibung: Sucht die Variablen-Funktion mit dem übergebenen Name und gibt sie zurück \\
+URL-Parameter: name - Der Name des Generators \\
+Rückgabe: Die Variablen-Funktion oder HTTP-500 wenn der Generator nicht gefunden werden konnte \\
+
+\noindent Pfad: admin/mathjaxfunction \\
+Methode: GET \\
+Beschreibung: Sucht die MathJax-Funktion mit dem übergebenen Name und gibt sie zurück \\
+URL-Parameter: name - Der Name des Generators
+Rückgabe: Die MathJax-Funktion oder HTTP-500 wenn der Generator nicht gefunden werden konnte \\
+
+\noindent Pfad: admin/variablefunction \\
+Methode: POST \\
+Beschreibung: Persistiert die übergebenen Variablen-Funktion in der Datenbank wenn sie nur erlaubten Code enthält. Der Rückgabe-Parameter beschreibt das Resultat er Operation \\
+Body-Parameter: Die Variablen-Funktion
+Rückgabe: Update-Reponse \\
+
+\noindent Pfad: admin/mathjaxfunction \\
+Methode: POST \\
+Beschreibung: Persistiert die übergebenen MathJax-Funktion in der Datenbank wenn sie nur erlaubten Code enthält. Der Rückgabe-Parameter beschreibt das Resultat er Operation \\
+Body-Parameter: Die MathJax-Funktion
+Rückgabe: Update-Reponse \\
+
+\noindent Pfad: admin/variablefunction \\
+Methode: DELETE \\
+Beschreibung: Löscht die Variablen-Funktion mit der übergebenen ID \\
+URL-Parameter: id : Die ID der Variablen-Funktion
+Rückgabe: HTTP-Code 200 bei Erfolg, 404 sollte die Variablen-Funktion nicht gefunden werden \\
+
+\noindent Pfad: admin/mathjaxfunction \\
+Methode: DELETE \\
+Beschreibung: Löscht die MathJax-Funktion mit der übergebenen ID \\
+URL-Parameter: id : Die ID der MathJax-Funktion
+Rückgabe: HTTP-Code 200 bei Erfolg, 404 sollte die MathJax-Funktion nicht gefunden werden \\
+
+\noindent Pfad: admin/rvariablefunction \\
+Methode: GET \\
+Beschreibung: Findet alle Variablen-Funktionen und gibt sie zurück \\
+Rückgabe: Ein Array von Variablen-Funktionen \\
+
+\noindent Pfad: admin/rmathjaxfunction \\
+Methode: GET \\
+Beschreibung: Findet alle MathJax-Funktionen und gibt sie zurück \\
+Rückgabe: Ein Array von MathJax-Funktionen \\
+
+\noindent Pfad: admin/downloadGenerator \\
+Methode: GET \\
+Beschreibung: Nimmt die Namen von Generatoren und Helper-Funktionen entgegen, sucht sie in der Datenbank und gibt sie in einem JSON-Objekt zurück \\
+URL-Parameter: generator: string[] - Die Namen alle Generatoren die heruntergeladen werden sollen \\
+vf: string[] - Die Namen aller Variablen-Funktionen die heruntergeladen werden sollen \\
+mj: string[] - Die Namen aller MathJax-Funktionen die heruntergeladen werden sollen \\
+Rückgabe: \begin{lstlisting}  \\
+{
+	entity: Das Array von gesuchten Generatoren,
+	vf: Das Array von gesuchten Variablen-Funktionen,
+	mj: Das Array von gesuchten MathJax-Funktionen
+}
+\end{lstlisting}
+
+\noindent Pfad: admin/uploadGenerator \\
+Methode: POST \\
+Beschreibung: Nimmt ein JSON-Objekt von Generatoren und Helper-Funktionen entgegen und persistiert sie in der Datenbank, wenn sie keine verbotenen Funktionen enthalten. \\
+Body-Parameter:\begin{lstlisting}  \\
+{
+	entity: Das Array von hochzuladenden Generatoren,
+	vf: Das Array von hochzuladenden Variablen-Funktionen,
+	mj: Das Array von hochzuladenden MathJax-Funktionen
+}
+\end{lstlisting}
+Rückgabe: Der von dem Prozess erzeugte Log, als String-Array \\
 
 \section{Client}
 
+Benötigte Befugnis : Keine \\
+
+\noindent Pfad: client/teams \\
+Methode: GET \\
+Beschreibung: Gibt die Namen der Teams zurück. \\
+Rückgabe: Ein String-Array, welches die Namen der Teams enthält. \\
+
+\noindent Pfad: client/task \\
+Methode: GET \\
+Beschreibung: Gibt die Aufgabe für den sendenden Nutzer zurück. \\
+Rückgabe: HTTP-400 wenn gerade kein Generator läuft \\
+HTTP-500 wenn der Generator fehlerhaft ist \\
+Ansonsten: \begin{lstlisting}  \\
+{
+	mathjax: Die Aufgabe als MathJax-String
+	formType: Der empfohlene Formular-Typ für diese Aufgabe
+}
+\end{lstlisting}
+
+\noindent Pfad: client/task \\
+Methode: POST \\
+Beschreibung: Nimmt die gesendete Lösung entgegen, validiert sie und gibt dem Nutzer Rückmeldung. \\
+URL-Parameter: solution - Die Antwort des Nutzers.
+Rückgabe: HTTP-400 wenn kein Generator läuft. \\
+HTTP-404 wenn der Nutzer keinem Team zugeordnet ist. \\
+HTTP-500 wenn der Generator beim validieren einen Fehler wirft. \\
+Wenn die Lösung falsch ist \begin{lstlisting}  \\
+{
+	mathjax: Ein leerer String
+	formType: 4
+}
+\end{lstlisting}
+Wenn die Lösung richtig ist \begin{lstlisting}  \\
+{
+	mathjax: Die Aufgabe als MathJax-String
+	formType: Der empfohlene Formular-Typ für diese Aufgabe
+}
+\end{lstlisting}
+
+
 \section{Error}
 
-\section{Game}
+Benötigte Befugnis : Keine \\
+
+\noindent Pfad: errors/all\\
+Methode: GET \\
+Beschreibung: Gibt den Fehler-Log zurück. \\
+Rückgabe: Ein String-Array, welches die Nachrichten des Logs enthält. \\
+
+\noindent Pfad: errors/clear\\
+Methode: POST \\
+Beschreibung: Leert den Fehler-Log. \\
 
 \section{Generated}
 
+Benötigte Befugnis : Keine \\
+
+\noindent Pfad: generated/variables.js\\
+Methode: GET \\
+Beschreibung: Erzeugt ein gültiges JavaScript, welches alle Variablen-Funktionen enthält. \\
+Rückgabe: Ein String, welcher gültigen JavaScript-Code enthält. \\
+
+\noindent Pfad: generated/mathjax.js\\
+Methode: GET \\
+Beschreibung: Erzeugt ein gültiges JavaScript, welches alle MathJax-Funktionen enthält. \\
+Rückgabe: Ein String, welcher gültigen JavaScript-Code enthält. \\
+
+\noindent Pfad: generated/constructHelper\\
+Methode: POST \\
+Beschreibung: Konstruiert aus der übergebenen Helper-Funktion gültigen JavaScript-Code und gibt ihn zurück.  \\
+Rückgabe: Ein String, welcher gültigen JavaScript-Code enthält. \\
+
+
 \section{Generator}
 
+Benötigte Befugnis : GENERATOR \\
+
+\noindent Pfad: generator/running \\
+Methode: GET \\
+Beschreibung: Gibt den Namen des aktuell laufenden Generators zurück.  \\
+Rückgabe: Den Namen des Generators oder null wenn keiner läuft \\
+
+\noindent Pfad: generator/stop \\
+Methode: POST \\
+Beschreibung: Stoppt den aktuell laufenden Generator.  \\
+Rückgabe: HTTP-200 wenn der Generator gestoppt wurde\\
+HTTP-404 wenn kein Generator läuft\\
+
+\noindent Pfad: generator/start \\
+Methode: POST \\
+Beschreibung: Startet den selektierten Generator  \\
+Body-Parameter:
+\begin{lstlisting}  \\
+{
+	time: Die Zeit die der Generator laufen soll.
+	name: Der Name des Generators der gestartet werden soll.
+}
+\end{lstlisting}
+Rückgabe: HTTP-404 wenn der Generator nicht gefunden werden konnte. \\
+HTTP-400 wenn bereits ein Generator läuft. \\
+HTTP-500 wenn beim Konstruieren des Generators ein Fehler auftritt.\\
+HTTP-200 wenn der Generator erfolgreich gestartet wurde.
+
+\noindent Pfad: generator/status \\
+Methode: GET \\
+Beschreibung: Erzeugt ein Objekt, welches die Laufdauer des Generators beschreibt und gibt es zurück  \\
+Rückgabe:
+\begin{lstlisting}  \\
+{
+	answers: {
+		"TeamEins": {
+			"correct": 3,
+			"wrong": 4
+		},
+		"TeamZwei": {
+			"correct": 1,
+			"wrong":2
+		}
+	}
+}
+\end{lstlisting}
+
+\noindent Pfad: generator/runtime \\
+Methode: GET \\
+Beschreibung: Erzeugt einen Datensatz, welcher den aktuellen Punktestand der Teams beschreibt  \\
+Rückgabe:
+\begin{lstlisting}  \\
+{
+	endDate: Der Zeitpunkt zu dem der Generator endet.
+	runTime: Die gesamte Laufzeit des Generators.
+}
+\end{lstlisting}
+
+\noindent Pfad: generator/names \\
+Mehtode: POST \\
+Beschreibung: Setzt die übergebenen Namen als mögliche Team-Namen für die Nutzer.\\
+Body-Parameter: Das String-Array der Namen. \\
+
+
 \section{Validator}
+
+Benötigte Befugnis : GENERATOR \\
+
+\noindent Pfad: validation/allowed\\
+Mehtode: GET \\
+Beschreibung: Sucht die Namen aller erlaubten Methoden und gibt sie zurück\\
+Body-Parameter: Das String-Array der erlaubten Methoden. \\
+
 
 
 \listoffigures

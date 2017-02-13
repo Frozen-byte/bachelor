@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.busybeever.bachelor.presentation.game.RuntimeInformation;
+import de.busybeever.bachelor.service.GameStatusService;
 import de.busybeever.bachelor.service.GeneratorService;
 
 @RestController
@@ -19,6 +21,9 @@ public class GeneratorRest {
 
 	@Autowired
 	private GeneratorService generatorService;
+	
+	@Autowired
+	private GameStatusService gameStatusService;
 
 	@GetMapping("running")
 	public String getRunningGenerator() {
@@ -42,6 +47,16 @@ public class GeneratorRest {
 	@GetMapping("status")
 	public UpdateOverviewObject getStatus() {
 		return generatorService.getStatus();
+	}
+	
+	@GetMapping("runtime")
+	public RuntimeInformation getRuntime() {
+		return gameStatusService.generateRuntimeInformation();
+	}
+	
+	@PostMapping("names")
+	public void changeTeamNames(@RequestBody String[] names) {
+		gameStatusService.setTeams(names);
 	}
 
 }

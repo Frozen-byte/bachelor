@@ -74,10 +74,6 @@ public class MathjaxFunctionEntity implements FunctionEntity, Serializable {
 		this.constants = constants;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}

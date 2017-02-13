@@ -24,7 +24,7 @@
 		"task":"client/task",
 		"clientlogin":"client/login",
 		"teamnames":"client/teams",
-		"runtimeinfo":"game/runtime",
+		"runtimeinfo":"generator/runtime",
 		"errors":"errors/all"
 		
 	

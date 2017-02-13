@@ -55,6 +55,7 @@ public class AdminNamespace {
 	public void onRegister(AuthenticationRequest auth, SocketIOClient client) {
 		
 		UserEntity user = userRepository.findByUserName(auth.getUsername());	
+		
 		String encodedPass = encoder.encodePassword(auth.getPassword(),null);
 		if (user!=null && user.getPassword().equals(encodedPass) &&!authenticatedAdmins.contains(client)) {
 			authenticatedAdmins.add(client);
