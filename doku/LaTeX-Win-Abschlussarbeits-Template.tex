@@ -24,7 +24,7 @@
 \newcommand{\matrikelnummer}{2203656}
 
 \newcommand{\titel}{OpenTasks\\[0.2ex] 
-				\Large Eine Team-basierte Web-Applikation zur Stoff-Vertiefung}
+				\Large Eine Team-basierte Web-Applikation zur Stoffvertiefung}
 
 \newcommand{\erstpruef}{Prof. Dr. Edmund Weitz}
 \newcommand{\zweitpruef}{Prof. Dr Torsten Edeler}
@@ -49,8 +49,8 @@
 \selectlanguage{ngerman}
 \section*{\centering\abstractname}
 
-Das Ziel dieser Arbeit ist es eine Webapplikation zu erstellen, welche bei der Gestaltung einer Mathematik-Vorlesung helfen soll. Dabei werden von der Anwendung Aufgaben generiert und an den Nutzer gesendet. Dieser kann diese nun lösen und seine Antwort abschicken. Nach der Validierung bekommt er ein Feedback und bei dem korrekten Lösen eine neue Aufgabe, sowie einige Punkte für sein Team. Der Administrator kann dabei den ganzen Vorgang überwachen und den aktuellen Punktestand einsehen. \\
-Einer der Kernpunkte der Anwendung wird es sein, dass dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er jedes mal eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommt aber jedes mal unterschiedliche Variablen beinhaltet und so ein erneutes Berechnen erfordert. \\
+Das Ziel dieser Arbeit ist eine Webapplikation, welche bei der Gestaltung einer Mathematik-Vorlesung helfen soll. Dabei werden von der Anwendung Aufgaben generiert und an den Nutzer gesendet. Dieser kann diese nun lösen und seine Antwort abschicken. Nach der Validierung bekommt er ein Feedback und bei dem korrekten Lösen eine neue Aufgabe, sowie einige Punkte für sein Team. Der Administrator kann dabei den ganzen Vorgang überwachen und den aktuellen Punktestand einsehen. \\
+Einer der Kernpunkte der Anwendung wird es sein, dynamisch Aufgaben generiert werden. Das bedeutet, dass wenn der Nutzer mehrere Aufgaben anfordert er eine Aufgabe bekommt welche zwar aus dem selben Themenbereich kommt, allerdings unterschiedliche Variablen beinhaltet und so ein erneutes Berechnen erfordert. \\
 
 \section*{\centering\abstractname}
 
@@ -63,75 +63,75 @@ One of the core-aspects of the application will be the dynamic creation of tasks
 
 \section{Bereits existierende Software}
 
-Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut stößt man auf sehr viele Programme die sich mit dem Vertiefen von Stoff befassen. Bei dem Großteil dieser Programme ist es allerdings so, dass diese lediglich darauf setzen dem Nutzer Aufgaben zu stellen und die Antworten zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen. Ebenfalls als Nachteil aufzufassen ist hier die Tatsache, dass es sich bei fast allen Lösungen um Programme handelt welche käuflich zu erwerben sind.\\
+Wenn man sich die bereits existierenden Lösungen für dieses Problem anschaut, stößt man auf sehr viele Programme, die sich mit dem Vertiefen des Stoffes befassen. Bei dem Großteil dieser Programme ist es allerdings so, dass diese lediglich darauf setzen dem Nutzer Aufgaben zu stellen und die Antworten zu validieren. Es gibt keinerlei Möglichkeit die vorhandenen Aufgaben zu erweitern oder die Ergebnisse mit anderen Leuten zu teilen, geschweige denn automatisch eine Übersicht über die Ergebnisse eines ganzen Kurses zu erschaffen. Ebenfalls als Nachteil aufzufassen ist hier die Tatsache, dass es sich bei fast allen Lösungen um Programme handelt, welche käuflich zu erwerben sind.\\
 
 Als Variante zur Validierung der Ergebnisse eines ganzen Kurses besteht die Webanwendung ``MARS'' (Minimal Audience Response System). Diese ist sehr gut dafür geeignet statische Fragen zu stellen und zu validieren. Allerdings ist es hier nicht möglich dynamisch Aufgaben zu erstellen. Zusätzlich kann nur ein einziges Mal eine Antwort abgegeben werden, es ist also nicht möglich mehrere Fragen des selben Bereiches zu beantworten und so sein Wissen intensiver zu testen. \\
 
-Ansonsten gibt es bereits viele Webseiten die sich mit dem Stellen von Aufgaben aus verschiedenen Themenbereichen kümmern, zum Beispiel RegexGolf ( \url{https://alf.nu/RegexGolf} ). Hierbei handelt es sich um eine Anwendung bei der dem Nutzer eine Liste von Wörtern gegeben wird. Die Aufgabe besteht nun darin einen regulären Ausdruck zu finden welcher für einen Teil der Liste matcht und bei der anderen nicht. \\
+Ansonsten gibt es bereits viele Webseiten, die sich mit dem Stellen von Aufgaben aus verschiedenen Themenbereichen beschäftigen, zum Beispiel RegexGolf ( \url{https://alf.nu/RegexGolf} ). Hierbei handelt es sich um eine Anwendung, bei der dem Nutzer eine Liste von Wörtern gegeben wird. Die Aufgabe besteht nun darin einen regulären Ausdruck zu finden, welcher für einen Teil der Liste matcht und bei der anderen nicht. \\
 
-Es gibt allerdings auch Projekte welche sich in der Kategorie aufhalten in die OpenTasks fallen wird. Darunter fallen zum Beispiel Maple TA \footnote{http://www.maplesoft.com/products/mapleta/}, WebWork \footnote{http://webwork.maa.org} und Moodle \footnote{https://moodle.de/} \\
+Es gibt allerdings auch Projekte, welche sich in der Kategorie aufhalten, in die OpenTasks fallen wird. So zum Beispiel Maple TA \footnote{http://www.maplesoft.com/products/mapleta/}, WebWork \footnote{http://webwork.maa.org} und Moodle \footnote{https://moodle.de/} \\
 Bei Maple TA handelt es sich um ein System welches alle Funktionalitäten abdeckt die gewünscht sind und dazu noch von einem vollwertigen Linear Algebra System unterstützt wird, das für Berechnungen zur Verfügung steht. Durch den großen Umfang an Funktionalität steigt allerdings auch die Komplexität des Programms enorm. Zusätzlich handelt es sich bei Maple TA um kostenpflichtige Software.\\
-Auf WeBwork und Moodle wird hier nicht näher eingegangen, gesagt sei lediglich, dass es sich bei WebWork um Freeware handelt (die allerdings selber gehostet werden muss), während Moodle kostenpflichtig ist. \\
+Auf WeBwork und Moodle wird hier nicht näher eingegangen. Gesagt sei lediglich, dass es sich bei WebWork um Freeware handelt (die allerdings selber gehostet werden muss), während Moodle kostenpflichtig ist. \\
 Bei WeBWork, Maple TA, sowie Moodle handelt es sich um Anwendungen mit relativ hohem Lernaufwand für den Administrator, was eine schnelle Nutzung nur schwer möglich macht.
 
 
 \section{Vorteile der neuen Lösung}
 
-Bei der neuen Anwendung soll es sich um ein Projekt handelt welches so viele Vorteile existierender Programme vereint wie möglich, während es versucht die negativen Punkte zu reduzieren. Das bedeutet, dass die Anwendung viel Wert darauf legt erweiterbar zu sein, ein möglichst großes Spektrum an Aufgaben abdecken und dynamisch Aufgaben zu generieren können. \\
-Dabei ist es wichtig, dass die Anwendung nicht zu komplex wird. Sie soll für einen neuen Nutzer so intuitiv wie möglich verständlich sein. Zusätzlich soll die Installation sehr einfach sein. Im Zentrum steht die Idee des "Herunterladen und direkt starten".
-Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source handeln, das heißt der Quellcode ist frei verfügbar und kostenlos, ebenso wie die Webapplikation selbst. Zusätzlich bedeutet dies, dass wenn das Projekt an irgendeinem Punkt um ein Feature erweitert werden soll dies von jeder Person die sich mit den verwendeten Technologien auskennt möglich ist.
+Bei der neuen Anwendung soll es sich um ein Projekt handeln, welches so viele Vorteile existierender Programme vereint wie möglich, während es versucht die negativen Punkte zu reduzieren. Das bedeutet, dass die Anwendung viel Wert darauf legt erweiterbar zu sein, ein möglichst großes Spektrum an Aufgaben abdecken und dynamisch Aufgaben zu generieren können. \\
+Dabei ist es wichtig, dass die Anwendung nicht zu komplex wird. Sie soll für einen neuen Nutzer so intuitiv wie möglich verständlich sein. Zusätzlich soll die Installation sehr einfach sein. Im Zentrum steht die Idee des "Herunterladen und direkt starten". \\
+Gleichzeitig wird es sich bei der resultierenden Webapplikation um Open Source handeln, das heißt der Quellcode ist frei verfügbar und kostenlos, ebenso wie die Webapplikation selbst. Zusätzlich bedeutet dies, dass wenn das Projekt an irgendeinem Punkt um ein Feature erweitert werden soll, dies von jeder Person, die sich mit den verwendeten Technologien auskennt, möglich ist.
 
 \chapter{Konzeption der Anwendung}
 
 \section{Analyse des Anwendungsfeldes}
 
-Bevor man sich nun an die Entwicklung der Anwendung macht bleibt eine Frage offen: Für wen ist sie eigentlich gemacht und wie soll sie eingesetzt werden? \\
-Als grobe Eingrenzung lässt sich sagen, dass diese Anwendung für die Lehre geschaffen wird, um genau zu sein für die Fächer Mathematik, Informatik und Physik. Wichtig ist hierbei zu beachten, dass sich die Applikation nach dem momentanen Konzept nur während der Vorlesung / des Unterrichts benutzen lässt. Dies liegt daran, dass die Idee Teams vorsieht, welche zusammenarbeiten und so Punkte sammeln. Die Arbeit als einzelne Person ist nicht vorgesehen. \\
-Da die Anwendung voraussetzt, dass jeder Nutzer einen eigenen Zugang zum Internet hat verlagert sich das Hauptnutzungsfeld in höhere Bildungsstufen, zum Beispiel Universität und Fachhochschule, da dort jeder ein eigenes Smartphone oder sogar einen Laptop benutzt. \\
+Bevor man sich nun an die Entwicklung der Anwendung macht, bleibt eine Frage offen: Für wen ist sie eigentlich gemacht und wie soll sie eingesetzt werden? \\
+Als grobe Eingrenzung lässt sich sagen, dass diese Anwendung für die Lehre geschaffen wird, um genau zu sein für die Fächer Mathematik, Informatik und Physik. Wichtig beachten ist, dass sich die Applikation nach dem momentanen Konzept nur während der Vorlesung / des Unterrichts benutzen lässt. Dies liegt daran, dass die Idee Teams vorsieht, welche zusammenarbeiten und so Punkte sammeln. Die Arbeit als einzelne Person ist nicht vorgesehen. \\
+Da die Anwendung voraussetzt, dass jeder Nutzer einen eigenen Zugang zum Internet hat, verlagert sich das Hauptnutzungsfeld in höhere Bildungsstufen, zum Beispiel Universität und Fachhochschule, da dort jeder ein eigenes Smartphone oder sogar einen Laptop benutzt. \\
 Zusammenfassend lässt sich also sagen, dass die Anwendung hauptsächlich im Bereich der Lehre der Mathematik/Informatik in Universitäten und Fachhochschulen zum Einsatz kommen wird, wobei es durchaus denkbar ist, dass auch andere Fächer davon profitieren können.
 
 \section{Was ist eine Aufgabe}
 
-Als letzten Schritt ist nun noch zu definieren was genau eine Aufgabe eigentlich ist, beziehungsweise wie sie im Sinne dieser Anwendung gesehen wird. \\
+Als letzten Schritt bleibt zu definieren, was genau eine Aufgabe eigentlich ist, beziehungsweise wie sie im Sinne dieser Anwendung gesehen wird. \\
 Für diese Arbeit werden wir Aufgaben immer in drei Teilen betrachten:
 \begin{enumerate}
 \itemsep0em
 \item Die Variablen \\
-Als Erstes betrachten wir die Variablen. Bei den Variablen handelt es sich um den Teil der Aufgabe der dafür sorgt, dass eine Aufgabe dynamisch bleibt. Diese werden für jede generierte Aufgabe, nach festgelegten Regeln, neu generiert. Durch diesen Teil wird gewährleistet, dass sich die generierten Aufgaben unterscheiden.
+Als Erstes betrachten wir die Variablen. Bei den Variablen handelt es sich um den Teil der Aufgabe, der dafür sorgt, dass eine Aufgabe dynamisch bleibt. Diese werden für jede generierte Aufgabe, nach festgelegten Regeln, neu generiert. Durch diesen Teil wird gewährleistet, dass sich die generierten Aufgaben unterscheiden.
 \item Die Darstellung \\
-An zweiter Stelle befassen wir uns mit der Darstellung der Aufgabe. Um die vorher generierten Variablen für den menschlichen Nutzer angemessen darzustellen wird hier eine Zeichenkette generiert, welche die Aufgabe repräsentiert, in die dann die Variablen eingesetzt werden.
+An zweiter Stelle befassen wir uns mit der Darstellung der Aufgabe. Um die vorher generierten Variablen für den menschlichen Nutzer angemessen darzustellen, wird hier eine Zeichenkette generiert, welche die Aufgabe repräsentiert, in die dann die Variablen eingesetzt werden.
 \item Die Lösung \\
-Nachdem die Aufgaben generiert und dargestellt wurden bleibt noch eine Sache übrig. Die Validierung der Aufgabe. Jedesmal wenn der Nutzer seine Antwort zur Validierung übergibt wird durch diesen Teil überprüft ob die Antwort korrekt ist. Um dies korrekt tun zu können werden neben der Antwort des Nutzers noch die vorher generierten Variablen benötigt.
+Nachdem die Aufgaben generiert und dargestellt wurden, bleibt noch eine Sache übrig. Die Validierung der Aufgabe. Jedesmal, wenn der Nutzer seine Antwort zur Validierung übergibt, wird durch diesen Teil überprüft, ob die Antwort korrekt ist. Um dies korrekt tun zu können, werden neben der Antwort des Nutzers noch die vorher generierten Variablen benötigt.
 \end{enumerate}
 
 \section{Verwendete Technologien}
 
-Für die Anwendung ist nun bereits klar, dass es sich um eine Webanwendung handeln wird. Doch stehen noch einige Fragen zu dieser offen. Wie sieht das Frontend aus? Welcher Technologie wird zum Ausliefern der Backend-Daten genutzt? Diese Fragen werden nachfolgend geklärt.
+Für die Anwendung ist nun bereits klar, dass es sich um eine Webanwendung handeln wird. Doch stehen noch einige Fragen zu dieser offen. Wie sieht das Frontend aus? Welche Technologie wird zum Ausliefern der Backend-Daten genutzt? Diese Fragen werden nachfolgend geklärt.
 
 
 \subsection{MariaDB}
 
 
-Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Accounts von Administratoren über mehrere Sitzungen hinweg persistiert werden müssen. Zusätzlich musste eine Möglichkeit geschaffen werden die erstellten Aufgaben-Generatoren zu persistieren und bei Bedarf laden zu können. Daher war recht früh klar, dass auf eine Datenbank kein Verzicht sein kann. \\
+Bereits am Anfang der Entwicklung stand fest, dass viele Daten sowie die Accounts von Administratoren über mehrere Sitzungen hinweg persistiert werden müssen. Zusätzlich musste eine Möglichkeit geschaffen werden die erstellten Aufgaben-Generatoren zu speichern und bei Bedarf laden zu können. Daher war recht früh klar, dass auf eine Datenbank kein Verzicht sein kann. \\
 
-Wenn man sich nun aber überlegt was für eine Datenbank in einem Projekt eingesetzt werden sollte landet man vor einer großen Frage: Dokument-basiert oder doch lieber relational? \\
+Wenn man sich nun aber überlegt was für eine Datenbank in einem Projekt eingesetzt werden sollte, landet man vor einer großen Frage: Dokument-basiert oder doch lieber relational? \\
 Bei relationalen Datenbanken liegt einer der Hauptvorteile in ihrer Struktur. Ihr Aufbau in mehrere Tabellen erlaubt es,dass es sehr leicht ist Duplikate von Daten zu vermeiden (auch bekannt unter dem Begriff ``Normalisierung''). Dadurch bleibt die Datenbank kleiner und leichter zu durchsuchen, was gut für die Performanz ist. \\
 
-Sollte man allerdings Flexibilität benötigen so sind Dokument-basierte Datenbanken die richtige Wahl. Bei diesen werden die Daten in einem Dokument abgespeichert, welches weder Form noch Schema besitzen muss. Dadurch ist es möglich, dass die gespeicherten Daten sehr voneinander abweichen. Am ehesten vergleichbar ist dies mit einem normalen JSON-Objekt. Da die Daten hier nicht über mehrere Tabellen verteilt sind lässt sich ein Dokument jederzeit mit einem einzelnen Query aus der Datenbank extrahieren. Daher sind Dokument-basierte Datenbanken immer dann die richtige Wahl wenn viele Datensätze existieren, welche allerdings keine Beziehung zu einander haben (nicht-relationale Datensätze). \\
+Sollte man allerdings Flexibilität benötigen, so sind Dokument-basierte Datenbanken die richtige Wahl. Bei diesen werden die Daten in einem Dokument abgespeichert, welches weder Form noch Schema besitzen muss. Dadurch ist es möglich, dass die gespeicherten Daten sehr voneinander abweichen. Am ehesten vergleichbar ist dies mit einem normalen JSON-Objekt. Da die Daten hier nicht über mehrere Tabellen verteilt sind, lässt sich ein Dokument jederzeit mit einem einzelnen Query aus der Datenbank extrahieren. Daher sind Dokument-basierte Datenbanken immer dann die richtige Wahl, wenn viele Datensätze existieren, welche allerdings keine Beziehung zu einander haben (nicht-relationale Datensätze). \\
 
-Da in dem Projekt die Notwendigkeit war eine Relation zwischen Nutzern und ihren Rolen (Administrator / Nutzer) herzustellen ist die Wahl auf eine relationale Datenbank gefallen. \\
+Da in dem Projekt die Notwendigkeit war eine Relation zwischen Nutzern und ihren Rollen (Administrator / Nutzer) herzustellen, ist die Wahl auf eine relationale Datenbank gefallen. \\
 
-Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen: MariaDB oder MySQL. Bei MySQL handelt es sich um eine der bekanntesten Datenbank-Engines die in der heutigen Welt existieren. 1994 gegründet und 2008 von Sun Microsystems übernommen kann dieses Projekt auf eine lange Geschichte und viel Erfahrung zurück blicken, was den Standpunkt als Platzhirsch unter den Datenbanken nur festigt. \\
-2009 ist aus dem MySQL-Projekt allerdings ein neues entstanden. Einige der Entwickler haben sich von dem alten Team ab gekapselt und ein neues gegründet, sowie ein neues Produkt hervorgebracht: MariaDB. Als Fork von MySQL gibt es heutzutage viele Personen die MariaDB für die bessere der beiden Lösungen handeln. Dies liegt zum einen daran, dass MariaDB OpenSource ist, andererseits darin, dass MariaDB in den meisten Use-Cases performanter ist als MySQL. Zusätzlich bietet es Verschlüsselung auf Datenbank-Ebene an, während die Daten selber in einem großen Spektrum an Speicher-Engines die für verschiedene Zwecke optimiert wurden abgelegt werden können. \\
+Bei der Suche nach einer passenden Datenbank sind zwei in Frage gekommen: MariaDB oder MySQL. Bei MySQL handelt es sich um eine der bekanntesten Datenbank-Engines, die in der heutigen Welt existieren. 1994 gegründet und 2008 von Sun Microsystems übernommen, kann dieses Projekt auf eine lange Geschichte und viel Erfahrung zurückblicken, was den Standpunkt als Platzhirsch unter den Datenbanken nur festigt. \\
+2009 ist aus dem MySQL-Projekt allerdings ein Neues entstanden. Einige der Entwickler haben sich von dem alten Team getrennt und ein Neues gegründet sowie ein neues Produkt hervorgebracht: MariaDB. Als Fork von MySQL gibt es heutzutage viele Personen die MariaDB für die bessere der beiden Lösungen halten. Dies liegt zum einen daran, dass MariaDB OpenSource ist, andererseits darin, dass MariaDB in den meisten Use-Cases performanter ist als MySQL. Zusätzlich bietet es Verschlüsselung auf Datenbank-Ebene an, während die Daten selber in einem großen Spektrum an Speicher-Engines, die für verschiedene Zwecke optimiert wurden, abgelegt werden können. \\
 
-Alles in allem lässt sich zusammenfassen, dass es sich bei MariaDB um die moderne Variante handelt an der immer noch erheblich mehr gearbeitet wird als dies bei MySQL der Fall ist. Daher ist die Wahl auf MariaDB gefallen. Da beide Datenbanken über die gleiche Sprache ansprechbar sind ist es allerdings kein Problem jederzeit die Datenbank hinter OpenTasks auszutauschen.
+Alles in allem lässt sich zusammenfassen, dass es sich bei MariaDB um die moderne Variante handelt, an der immer noch erheblich mehr gearbeitet wird, als dies bei MySQL der Fall ist. Daher ist die Wahl auf MariaDB gefallen. Da beide Datenbanken über die gleiche Sprache ansprechbar sind, ist es allerdings kein Problem jederzeit die Datenbank hinter OpenTasks auszutauschen.
 
 \subsection{H2}
 
-Ein wichtiger Punkt der Anwendung war allerdings auch, dass der Installationsprozess der Anwendung möglichst unkompliziert sein sollte. Dies ist leider nicht der Fall wenn es notwendig ist, dass eine Datenbank installiert und initialisiert wird. Daher wird bei OpenTasks die Alternative angeboten durch eine kleine Änderung der Konfiguration eine ``in-memory-database''(IMDB) zu benutzen. Dabei handelt es sich um eine Datenbank die lediglich im Arbeitsspeicher der Maschine existiert und fast keine Lese und Schreibzugriffe auf die Festplatte ausführt, während eine normale Datenbank den Großteil der Daten auf der Festplatte speichert. Dadurch wird der Installationsaufwand reduziert. \\
+Ein wichtiger Punkt der Anwendung war allerdings auch, dass der Installationsprozess der Anwendung möglichst unkompliziert sein sollte. Dies ist leider nicht der Fall, wenn es notwendig ist, dass eine Datenbank installiert und initialisiert wird. Daher wird bei OpenTasks die Alternative angeboten durch eine kleine Änderung der Konfiguration eine ``in-memory-database''(IMDB) zu benutzen. Dabei handelt es sich um eine Datenbank, die lediglich im Arbeitsspeicher der Maschine existiert und fast keine Lese- und Schreibzugriffe auf die Festplatte ausführt, während eine normale Datenbank den Großteil der Daten auf der Festplatte speichert. Dadurch wird der Installationsaufwand reduziert. \\
 
-Einer der Hauptvorteile einer solchen Datenbank liegt in der bessseren Zugriffszeit, da Arbeitsspeicher erheblich schneller ist als Festplattenspeicher. Allerdings hat eine IMDB nicht nur Vorteile. Arbeitsspeicher ist erheblich teurer als regulärer Festplattenspeicher, daher sind die Kosten nicht zu vernachlässigen. Da es sich bei OpenTasks nur um kleine Datenmengen handelt ist dies in dieser Anwendung zu vernachlässigen. \\
-Ein viel größeres Problem ist hingegen die Persistenz der Daten. Da bei einer IMDB alle Daten im Arbeitsspeicher gehalten werden sind sie im Falle eines Absturzes alle verloren. Viele moderne Datenbanken nutzen daher das Prinzip von ``Snapshots''. Dabei wird in regelmäßigen Abständen (oder bei ordnungsgemäßem herunterfahren der Datenbank) der aktuelle Stand der Datenbank auf der Festplatte gespeichert um den Datenverlust zu reduzieren. Trotzdem sind diese Daten niemals so sicher wie bei einer Datenbank, welche ihre Daten komplett auf der Festplatte speichert. \\
+Einer der Hauptvorteile einer solchen Datenbank liegt in der bessseren Zugriffszeit, da Arbeitsspeicher erheblich schneller ist als Festplattenspeicher. Allerdings hat eine IMDB nicht nur Vorteile. Arbeitsspeicher ist erheblich teurer als regulärer Festplattenspeicher, daher sind die Kosten nicht zu vernachlässigen. Da es sich bei OpenTasks nur um kleine Datenmengen handelt, ist dies in dieser Anwendung zu vernachlässigen. \\
+Ein viel größeres Problem ist hingegen die Persistenz der Daten. Da bei einer IMDB alle Daten im Arbeitsspeicher gehalten werden, sind sie im Falle eines Absturzes alle verloren. Viele moderne Datenbanken nutzen daher das Prinzip von ``Snapshots''. Dabei wird in regelmäßigen Abständen (oder bei ordnungsgemäßem Herunterfahren der Datenbank) der aktuelle Stand der Datenbank auf der Festplatte gespeichert um den Datenverlust zu reduzieren. Trotzdem sind diese Daten niemals so sicher wie bei einer Datenbank, welche ihre Daten komplett auf der Festplatte speichert. \\
 
 Daher ist es, für eine dauerhafte Installation, immmer besser eine Festplatten-basierte Datenbank zu benutzen. Für eine kurze Testphase ist allerdings eine IMDB eine angenehme Alternative.
 
