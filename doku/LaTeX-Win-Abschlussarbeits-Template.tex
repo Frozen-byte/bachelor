@@ -140,7 +140,7 @@ Daher ist es, für eine dauerhafte Installation, immmer besser eine Festplatten-
 \emph{\glqq   
 Als Dependency Injection (englisch dependency ‚Abhängigkeit‘ und injection ‚Injektion‘; Abkürzung DI) wird in der objektorientierten Programmierung ein Entwurfsmuster bezeichnet, welches die Abhängigkeiten eines Objekts zur Laufzeit reglementiert: Benötigt ein Objekt beispielsweise bei seiner Initialisierung ein anderes Objekt, ist diese Abhängigkeit an einem zentralen Ort hinterlegt – es wird also nicht vom initialisierten Objekt selbst erzeugt. \grqq} \footnote{https://de.wikipedia.org/wiki/Dependency\_Injection} \\ 
 
-Bei der Dependency-Injection handelt es sich um ein Pattern welches aus der heutigen Welt der Programmierung kaum wegzudenken ist. Anstatt das einzelne Komponenten ihre Abhängigkeiten selber erzeugen geben sie lediglich an, dass sie eine Abhängigkeit benötigen welche einen bestimmten Satz an Aufgaben erfüllen kann (oft durch ein Interface definiert). Daraufhin sucht der Dependency-Injector nach einer Komponente (in den meisten Frameworks als ``Service'' bezeichnet) die diese Anforderungen erfüllt und fügt sie in den Anfragenden ein (bei diesem Prozess handelt es sich dann um die ``Injection''). \\
+Bei der Dependency-Injection handelt es sich um ein Pattern, welches aus der heutigen Welt der Programmierung kaum wegzudenken ist. Anstatt das einzelne Komponenten ihre Abhängigkeiten selber erzeugen geben sie lediglich an, dass sie eine Abhängigkeit benötigen, welche einen bestimmten Satz an Aufgaben erfüllen kann (oft durch ein Interface definiert). Daraufhin sucht der Dependency-Injector nach einer Komponente (in den meisten Frameworks als ``Service'' bezeichnet), die diese Anforderungen erfüllt, und fügt sie in den Anfragenden ein (bei diesem Prozess handelt es sich dann um die ``Injection''). \\
 
 \begin{minipage}{\textwidth}
 \emph{Beispiel für eine Komponente zur Abfragung von Daten (Datenbankzugriff)}
@@ -152,7 +152,7 @@ public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> 
 \end{lstlisting} 
 \end{minipage}
 
-
+\newpage
 \textbf{Service}\\
 Der Begriff Dienst (auch Service oder Daemon) beschreibt in der Informatik allgemein eine technische, autarke Einheit, die zusammenhängende Funktionalitäten zu einem Themenkomplex bündelt und über eine klar definierte Schnittstelle zur Verfügung stellt.\\
  
@@ -166,7 +166,7 @@ public interface GlobalErrorService {
 \end{lstlisting}
 \end{minipage}
 
-Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Business-Logik'' und der technischen Implementation stark getrennt. Dies fördert die Nachvollziehbarkeit von Programmabschnitten. Ebenfalls wird dank der loseren Kopplung die Wiederverwertbarkeit von Code verbessert. Daher wird Dependency-Injection immer dann verwendet wenn auf Modularität Wert gelegt wird. \\
+Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Business-Logik'' und der technischen Implementation stark getrennt. Dies fördert die Nachvollziehbarkeit von Programmabschnitten. Ebenfalls wird dank der loseren Kopplung die Wiederverwertbarkeit des Codes verbessert. Daher wird Dependency-Injection immer dann verwendet, wenn auf Modularität Wert gelegt wird. \\
 
 
 \textbf{Geschäftslogik} \\
@@ -174,10 +174,11 @@ Durch das Pattern der Dependency-Injection wird die Trennung zwischen der ``Busi
 Geschäftslogik (englisch business logic, auch Anwendungslogik) ist ein abstrakter Begriff in der Softwaretechnik, der eine Abgrenzung der durch die Aufgabenstellung selbst motivierten Logik eines Softwaresystems von der technischen Implementierung zum Ziel hat.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Geschäftslogik} \\
 
-Ebenfalls zu erwähnen ist die Verbesserung des Verständnisses von Programmcode, insbesondere wenn man nicht den gesamten Kontext der Anwendung kennt. Dies liegt daran, dass jeder Service immer für einen Satz an Aufgaben steht welche logisch zusammenhängen (zum Beispiel das Verwalten der Punktzahl von Nutzern). Daher kann man sich immer darauf konzentrieren einen bestimmten Aspekt der Anwendung zu verstehen, ohne die anderen ausführlich zu kennen. Sollte ein Service Abhängigkeiten haben werden diese ebenfalls über den Dependency-Injectior eingefügt. \\
+Ebenfalls zu erwähnen ist die Verbesserung des Verständnisses von Programmcode, insbesondere wenn man nicht den gesamten Kontext der Anwendung kennt. Dies liegt daran, dass jeder Service immer für einen Satz an Aufgaben steht, welche logisch zusammenhängen (zum Beispiel das Verwalten der Punktzahl von Nutzern). Daher kann man sich immer darauf konzentrieren einen bestimmten Aspekt der Anwendung zu verstehen ohne die anderen ausführlich zu kennen. Sollte ein Service Abhängigkeiten haben, werden diese ebenfalls über den Dependency-Injectior eingefügt. \\
 
 Als letzter Punkt steht die Verbesserung der Testbarkeit. Dadurch, dass die einzelnen Komponenten ihre Abhängigkeiten an einer zentralen Stelle anfragen anstatt sie selber zu erzeugen können an dieser simplere Versionen der Abhängigkeiten hinterlegt werden (sogennante Mock's), wodurch die Testbarkeit der zu testenden Komponente steigt da Fehler durch die Abhängigkeiten in dieser Umgebung nicht auftreten können. \\
 
+\newpage
 \textbf{Mock} \\
 \emph{\glqq   
 Mock-Objekte (auch Attrappe, von englisch to mock ‚etwas vortäuschen‘) sind in der Softwareentwicklung Objekte, die als Platzhalter für echte Objekte innerhalb von Modultests verwendet werden. Diese werden umgangssprachlich auch Mocks genannt.
@@ -185,34 +186,30 @@ Mock-Objekte (auch Attrappe, von englisch to mock ‚etwas vortäuschen‘) sind
 
 Das Pattern der Dependency-Injection wird von denn im Nachhinein folgenden Frameworks Spring(-Boot) sowie Angular 2 implementiert und intensiv genutzt.
 
-
-
-
-
 \subsection{Spring(-Boot)}
 
-Wenn man sich auf die Suche nach einem Framework für die Programmierung eines REST-Backends macht, so findet man drei große Frameworks: Express-JS, Sinatra, Ruby on Rails und Spring-Boot. Im Folgenden wird darauf eingegangen welche Vor- und Nachteile diese haben und wie dies die Wahl des Frameworks beeinflusst hat. \\
+Wenn man sich auf die Suche nach einem Framework für die Programmierung eines REST-Backends macht, so findet man drei große Frameworks: Express-JS, Sinatra, Ruby on Rails und Spring-Boot. Im Folgenden wird darauf eingegangen, welche Vor- und Nachteile diese haben und wie dies die Wahl des Frameworks beeinflusst hat. \\
 
 \emph{\glqq   
 Express ist ein einfaches und flexibles Node.js-Framework von Webanwendungen, das zahlreiche leistungsfähige Features und Funktionen für Webanwendungen und mobile Anwendungen bereitstellt.
 \grqq} \footnote{http://expressjs.com/de/)} \\
 
-Schaut man sich als erstes Express an stößt man auf leichtes Package-Managment (dank NPM) sowie eine Sprache die exzellent für das Bearbeiten und Manipulieren von JSON gemacht ist. Gleichzeitig ist das Problem, dass viele Bibliotheken unterschiedliche Standards benutzen was der Übersicht in größeren Projekten schadet. Zusätzlich kommt das Problem, dass Javascript durch fehlende starke Typisierung eine Sprache ist die bei wachsenden Code-Mengen immer unübersichtlicher wird.
-Abhilfe sorgt dafür TypeScript(siehe Kapitel \ref{TS_NG2}), ein Transpiler der es erlaubt stark typisierten Code zu schreiben der in JavaScript übersetzt wird. Das Problem ist, dass nicht für alle Bibliotheken TypeScript Implementationen existieren. Dazu kommt, dass die Nutzung mehrerer Kerne (und so die Handhabung vieler Anfragen an den Server) nur mittels Prozess-Managern möglich ist, welche ebenfalls wieder Konfiguration und Testaufwand bedeuten. Abschließend ist zu sagen, dass Express-JS eine relativ kleine Entwickler-Basis besitzt, was zu weniger Möglichkeiten für Hilfestellungen bei Problemen führt \\
+Schaut man sich als erstes Express an, stößt man auf leichtes Package-Managment (dank NPM) sowie eine Sprache die exzellent für das Bearbeiten und Manipulieren von JSON gemacht ist. Gleichzeitig ist das Problem, dass viele Bibliotheken unterschiedliche Standards benutzen, was der Übersicht in größeren Projekten schadet. Zusätzlich kommt das Problem, dass Javascript durch fehlende starke Typisierung eine Sprache ist, die bei wachsenden Code-Mengen immer unübersichtlicher wird.
+Abhilfe sorgt dafür TypeScript(siehe Kapitel \ref{TS_NG2}), ein Transpiler, der es erlaubt stark typisierten Code zu schreiben, welcher in JavaScript übersetzt wird. Das Problem ist, dass nicht für alle Bibliotheken TypeScript Implementationen existieren. Dazu kommt, dass die Nutzung mehrerer Kerne (und so die Handhabung vieler Anfragen an den Server) nur mittels Prozess-Managern möglich ist, welche ebenfalls wieder Konfiguration und Testaufwand bedeuten. Abschließend ist zu sagen, dass Express-JS eine relativ kleine Entwickler-Basis besitzt, was zu weniger Möglichkeiten für Hilfestellungen bei Problemen führt \\
 
-Zu Sinatra \footnote{http://www.sinatrarb.com/} sei lediglich gesagt, dass es sich um eines der populärsten Frameworks der Sprache Ruby handelt, wahrscheinlich zusammen mit ``Ruby On Rails''\footnote{http://rubyonrails.org/}. Da es sich bei Ruby allerdings um eine Sprache handelt mit der ich keine guten Erfahrungen gemacht habe war dies das KO-Kriterium für diese beiden Frameworks. \\
+Zu Sinatra \footnote{http://www.sinatrarb.com/} sei lediglich gesagt, dass es sich um eines der populärsten Frameworks der Sprache Ruby handelt, wahrscheinlich zusammen mit ``Ruby On Rails''\footnote{http://rubyonrails.org/}. Da es sich bei Ruby allerdings um eine Sprache handelt, mit der ich keine guten Erfahrungen gemacht habe, war dies das KO-Kriterium für diese beiden Frameworks. \\
 
 \emph{\glqq   
 Das Spring Framework (kurz Spring) ist ein quelloffenes Framework für die Java-Plattform. Ziel des Spring Frameworks ist es, die Entwicklung mit Java/Java EE zu vereinfachen und gute Programmierpraktiken zu fördern. Spring bietet mit einem breiten Spektrum an Funktionalität eine ganzheitliche Lösung zur Entwicklung von Anwendungen und deren Geschäftslogiken; dabei steht die Entkopplung der Applikationskomponenten im Vordergrund.
 \grqq} \footnote{https://de.wikipedia.org/wiki/Spring\_(Framework)} \\
 
-Schaut man sich als letztes das Spring-Framework an stößt man auf ein System welches über ein inzwischen gigantisches Ökosystem an Erweiterungen verfügt. Seit März 2004 hat es immer mehr an Popularität und an Features dazu gewonnen. Einer der vielen Vorteile die Spring mit brachte war die Dependency-Injection, welche von Haus aus implementiert war und direkt verwendet werden konnte. Die Absicherung einer Anwendung wird durch Spring-Security ebenfalls erheblich vereinfacht, welches direkt Schutz gegen einige Angriffe bietet, sowie einige Authentifizierungsverfahren erheblich vereinfacht. Eines der Probleme ist allerdings, dass es sich bei Spring (und all seinen Erweiterungen) inzwischen um ein immens großes Projekt handelt, was es sehr schwer machen kann mit Spring anzufangen und die erste Webanwendung zu schreiben. \\
+Schaut man sich als Letztes das Spring-Framework an, stößt man auf ein System, welches über ein inzwischen gigantisches Ökosystem an Erweiterungen verfügt. Seit März 2004 hat es immer mehr an Popularität und an Features dazu gewonnen. Einer der vielen Vorteile, die Spring mitbrachte, war die Dependency-Injection, welche von Haus aus implementiert war und direkt verwendet werden konnte. Die Absicherung einer Anwendung wird durch Spring-Security ebenfalls erheblich vereinfacht. Es bietet direkten Schutz gegen einige Angriffe sowie einige Authentifizierungsverfahren erheblich vereinfacht.  Eines der Probleme ist allerdings, dass es sich bei Spring (und all seinen Erweiterungen) inzwischen um ein immens großes Projekt handelt, was es sehr schwer machen kann mit Spring anzufangen und die erste Webanwendung zu schreiben. \\
 
 Für das Backend ist die Wahl auf Spring-Boot gefallen. Bei Spring-Boot handelt es sich um eine Erweiterung des bekannten Java-Frameworks Spring, welches den Großteil der Konfiguration automatisiert, beziehungsweise vereinfacht.\\
-Kurz gesagt hilft das Framework dabei ein Projekt modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte die dabei besonders wichtig sind sind die Controller, die bereits erklärten Services und die Dependency-Injection. \\
+Kurz gesagt hilft das Framework dabei ein Projekt modular aufzubauen, was insbesondere bei großen Anwendungen sehr hilfreich ist, da diese übersichtlich bleiben. Drei Kernkonzepte, die dabei besonders wichtig sind, sind die Controller, die bereits erklärten Services und die Dependency-Injection. \\
 
 \textbf{Controller}\\
-Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Dieser greift dann, wenn nötig, noch auf die Datenbankschicht zu, bevor das Ergebnis dann über den Controller zurück an den Sender der Anfrage gesendet wird.\\
+Bei einem Controller handelt es sich um eine Klasse, welche für die Verwaltung von Anfragen zuständig ist. Jede Anfrage kommt immer bei einem Controller an, von wo die Anfrage an den zuständigen Service weitergeleitet wird. Dieser greift dann, wenn nötig, noch auf die Datenbankschicht zu, bevor das Ergebnis dann über den Controller zurück an den Sender der Anfrage gesendet wird.\\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -222,7 +219,7 @@ Bei einem Controller handelt es sich um eine Klasse welche für die Verwaltung v
 
 Gleichzeit stellt Spring-Boot auch direkt einen Container für die Webapplikation zur Verfügung. Das bedeutet, dass die Programmierung sich komplett mit der REST-API und ihren Funktionalitäten beschäftigen kann und nur sehr wenig Zeit für die Konfiguration des Web-Servers verbraucht wird.
 
-Sollte Konfiguration nötig sein so findet diese zu großen Teilen außerhalb des Codes statt. In dem Projekt kann eine Datei mit dem Namen ``application.properties'' hinterlegt werden. Hier können dann mehrere Sachen eingestellt werden, wie zum Beispiel der Port unter dem der Server laufen soll.\\
+Sollte Konfiguration nötig sein, so findet diese zu großen Teilen außerhalb des Codes statt. In dem Projekt kann eine Datei mit dem Namen ``application.properties'' hinterlegt werden. Hier können dann mehrere Sachen eingestellt werden, wie zum Beispiel der Port, unter dem der Server laufen soll.\\
 
 \begin{minipage}{\textwidth}
 \emph{Konfiguration des Server-Ports}
@@ -237,9 +234,9 @@ spring.server.port=8080
 Implementing a data access layer of an application has been cumbersome for quite a while. Too much boilerplate code has to be written to execute simple queries as well as perform pagination, and auditing. Spring Data JPA aims to significantly improve the implementation of data access layers by reducing the effort to the amount that’s actually needed. As a developer you write your repository interfaces, including custom finder methods, and Spring will provide the implementation automatically.
 \grqq} \footnote{http://projects.spring.io/spring-data-jpa/} \\
 
-Bei Spring Data JPA (im nachfolgenden nur noch als JPA bezeichnet) handelt es sich um eines der Projekte aus dem Spring-Ökosystem welches in beinahe jedem Spring Projekt heutzutage genutzt wird. Das Hauptziel des Projektes ist die Reduktion von redundantem Code welcher in beinahe jedem Projekt für den Zugriff auf Datenbanken benötigt wird. Zusätzlich werden benötigte Querys zur Abfrage von Daten automatisch generiert, der Nutzer muss lediglich ein Interface mit vorgegebenen Methodennamen erzeugen. \\
+Bei Spring Data JPA (im Nachfolgenden nur noch als JPA bezeichnet) handelt es sich um eines der Projekte aus dem Spring-Ökosystem, welches in beinahe jedem Spring Projekt heutzutage genutzt wird. Das Hauptziel des Projektes ist die Reduktion von redundantem Code, welcher in beinahe jedem Projekt für den Zugriff auf Datenbanken benötigt wird. Zusätzlich werden benötigte Querys zur Abfrage von Daten automatisch generiert. Der Nutzer muss lediglich ein Interface mit vorgegebenen Methodennamen erzeugen. \\
 
-Um mit dem Aufbau der Datenbankverbindung zu beginnen benötigt JPA als erstes die Information unter welcher Adresse die Datenbank erreichbar ist. Dies wird in der application.properties angegeben \\
+Um mit dem Aufbau der Datenbankverbindung zu beginnen, benötigt JPA als Erstes die Information unter welcher Adresse die Datenbank erreichbar ist. Dies wird in der application.properties angegeben. \\
 
 \begin{minipage}{\textwidth}
 \emph{Konfiguration der Datenbankverbindung}
@@ -250,7 +247,7 @@ spring.datasource.password=root
 \end{lstlisting} 
 \end{minipage}
 
-Nach dem JPA nun die Verbindung mit der Datenbank aufbauen kann muss definiert werden wie die Datenbank-Entitäten in Java-Objekte umgewandelt werden und in welchen Tabellen sie sich befinden. In JPA wird dies dadurch umgesetzt, dass für jede Entität eine Klasse angelegt wird in der durch Annotationen festgelegt wird wie die Daten in das Objekt geladen werden. \\
+Nach dem JPA nun die Verbindung mit der Datenbank aufbauen kann, muss definiert werden, wie die Datenbank-Entitäten in Java-Objekte umgewandelt werden und in welchen Tabellen sie sich befinden. In JPA wird dies dadurch umgesetzt, dass für jede Entität eine Klasse angelegt wird, in der durch Annotationen festgelegt wird, wie die Daten in das Objekt geladen werden. \\
 
 \begin{minipage}{\textwidth}
 \emph{Beispiel für eine Datenbank-Entität}
@@ -280,8 +277,8 @@ public class ScriptEntity implements Serializable{
 \end{lstlisting}
 \end{minipage}
 
-Zu guter Letzt muss ein Interface erzeugt werden, welches definiert was für Querys zur Verfügung stehen. Um das zu realisieren wird ein Interface erzeugt, welches die Querys erzeugt indem es bei der Benennung der Methoden bestimmten Konventionen folgt. Wichtig ist hierbei, dass es das bereits gegebene Interface CrudRepository erweitern muss. Dadurch wird es von JPA erkannt und einige Funktionalität direkt gegeben (wie zum Beispiel findAll, save und delete).
-Um nun eigene Querys hinzufügen gibt es zwei Möglichkeiten. Entweder über eine Annotation oder über die Benennung der Funktion. \\
+Zu guter Letzt muss ein Interface erzeugt werden, welches definiert, was für Querys zur Verfügung stehen. Um das zu realisieren, wird ein Interface erzeugt, welches die Querys erzeugt, indem es bei der Benennung der Methoden bestimmten Konventionen folgt. Wichtig ist hierbei, dass es das bereits gegebene Interface CrudRepository erweitern muss. Dadurch wird es von JPA erkannt und einige Funktionalität direkt gegeben (wie zum Beispiel findAll, save und delete).
+Um nun eigene Querys hinzufügen, gibt es zwei Möglichkeiten. Entweder über eine Annotation oder über die Benennung der Funktion. \\
 
 \begin{minipage}{\textwidth}
 \emph{Beispiel für eigene Querys}
@@ -296,7 +293,7 @@ public interface ScriptRepository extends CrudRepository<ScriptEntity, Integer> 
 \end{lstlisting}
 \end{minipage}
 
-Nachdem das Interface deklariert wurde kann es jederzeit über den Dependency-Injektor geholt und genutzt werden.\\
+Nachdem das Interface deklariert wurde, kann es jederzeit über den Dependency-Injektor geholt und genutzt werden.\\
 
 \begin{minipage}{\textwidth}
 \emph{Beispiel für die Nutzung des Repositorys}
@@ -319,26 +316,26 @@ Nachdem das Interface deklariert wurde kann es jederzeit über den Dependency-In
 Bootstrap ist ein anpassungsfähiges und zuerst für mobile Geräte entwickeltes Framework. Egal, wie gut du dich auskennst, kannst du damit einfacher und schneller kleine wie große Projekte entwickeln, die auf Geräten in allen erdenklichen Formen funktionieren.
 \grqq} \footnote{http://holdirbootstrap.de//} \\
 
-Aus der heutigen Welt der Webentwicklung ist Bootstrap kaum wegzudenken. Durch die leichte Entwicklung für alle vorhandenen Formate und Endgeräte hat es sich als äußerst robust herausgestellt wenn es um die schnelle Entwicklung von Webseiten geht. \\
-Gleichzeitig bietet es ein großes Repertoire an CSS-Klassen für alle Elemente der HTML-Entwicklung was es sogar Personen mit wenig Erfahrung im Design-Bereich ermöglicht spektakuläre Ergebnisse mit wenig Arbeit zu erzielen. \\
+Aus der heutigen Welt der Webentwicklung ist Bootstrap kaum wegzudenken. Durch die leichte Entwicklung für alle vorhandenen Formate und Endgeräte hat es sich als äußerst robust herausgestellt, wenn es um die schnelle Entwicklung von Webseiten geht. \\
+Gleichzeitig bietet es ein großes Repertoire an CSS-Klassen für alle Elemente der HTML-Entwicklung, was es sogar Personen mit wenig Erfahrung im Design-Bereich ermöglicht spektakuläre Ergebnisse mit wenig Arbeit zu erzielen. \\
 
-Da bei OpenTasks bereits durch die technische Implementation ein hoher Grad an Komplexität gegeben war konnte nicht viel Zeit für das Einarbeiten in ein komplexes CSS-Framework investiert werden, daher ist die Wahl recht schnell auf Bootstrap gefallen. Als Alternative hätte sonst Material \footnote{http://materializecss.com/} zur Auswahl gestanden. \\
+Da bei OpenTasks bereits durch die technische Implementation ein hoher Grad an Komplexität gegeben war, konnte nicht viel Zeit für das Einarbeiten in ein komplexes CSS-Framework investiert werden, daher ist die Wahl recht schnell auf Bootstrap gefallen. Als Alternative hätte sonst Material \footnote{http://materializecss.com/} zur Auswahl gestanden. \\
 
 
 
 \subsection{Typescript / Angular 2} \label{TS_NG2}
 
-Bevor man sich mit der Technologie beschäftigt die benutzt wurde um das Frontend zu bauen muss man sich vorher mit einer anderen Errungenschaft der Webentwicklung auseinander setzen. Typescript. \\
+Bevor man sich mit der Technologie beschäftigt, die benutzt wurde, um das Frontend zu bauen, muss man sich vorher mit einer anderen Errungenschaft der Webentwicklung auseinander setzen: Typescript. \\
 
 \emph{\glqq   
 TypeScript is a free and open-source programming language developed and maintained by Microsoft. It is a strict superset of JavaScript, and adds optional static typing and class-based object-oriented programming to the language. \\
 TypeScript is designed for development of large applications and transcompiles to JavaScript. As TypeScript is a superset of JavaScript, any existing JavaScript programs are also valid TypeScript programs.
 \grqq} \footnote{https://en.wikipedia.org/wiki/TypeScript} \\
 
-Besonders für Entwickler welche aus der Welt der stark-typisierten Programmierwelt kamen war TypeScript ein großer Fortschritt. Durch die Möglichkeit Variablen stark zu typisieren entstand die Möglichkeit Schnittstellen klarer zu definieren. Gleichzeitig wurden die bestehenden Möglichkeiten Entwicklungsumgebungen mit Auto-Vervollständigung auszustatten verbessert. \\
-Die Vorteile die sich daraus für die Entwicklung sind recht eindeutig: Eine Beschleunigung der Entwicklung, während die Testbarkeit vereinfacht wird und Fehler besser vermieden werden können. Kurz gesagt: Bessere Software in weniger Zeit. \\
+Besonders für Entwickler, welche aus der Welt der stark-typisierten Programmierwelt kamen, war TypeScript ein großer Fortschritt. Durch die Möglichkeit Variablen stark zu typisieren, entstand die Möglichkeit Schnittstellen klarer zu definieren. Gleichzeitig wurden die bestehenden Möglichkeiten Entwicklungsumgebungen mit Auto-Vervollständigung auszustatten verbessert. \\
+Die Vorteile, die sich daraus für die Entwicklung ergeben sind recht eindeutig: Eine Beschleunigung der Entwicklung, während die Testbarkeit vereinfacht wird und Fehler besser vermieden werden können. Kurz gesagt: Bessere Software in weniger Zeit. \\
 
-Was für die Anwendung relativ früh klar war war, dass es sich um eine Single Page Application (kurz SPA) handeln sollte. Doch was genau ist das und wieso sollte es verwendet werden? \\
+Was für die Anwendung relativ früh klar war, war dass es sich um eine Single Page Application (kurz SPA) handeln sollte. Doch was genau ist das und wieso sollte es verwendet werden? \\
 
 
 \emph{\glqq   
@@ -347,19 +344,19 @@ Als Single-Page-Webanwendung (englisch single-page application, kurz SPA) oder E
 
 Warum also eine Single-Page-Application? Der Hauptvorteil liegt darin, dass bei dem Initialisieren der Seite fast alle benötigten Informationen geladen werden, somit fallen die Ladezeiten nach der ersten Initialisierung sehr gering aus. Das sorgt insbesondere bei Nutzern von mobilen Endgeräten für eine bessere User-Experience, da bei diesen (bedingt durch schwächere Prozessoren) die Ladezeiten besonders ins Gewicht fallen. Gleichzeitig reduzieren sich die Anforderungen an den Webserver, da der Content nur ein einziges Mal ausgeliefert werden muss. Lediglich durch das Abfragen einiger Daten zur Laufzeit (wie zum Beispiel das Erhalten einer neuen Aufgabe) wird der Server nach dem Ausliefern der Webseite kontaktiert.\\
 
-Nachdem nun evaluiert wurde, dass eine SPA ein Gewinn ist also die Frage nach dem Framework / der Library um das umzusetzen. Im Raum stehen zwei Varianten. Zum einen ReactJS (welches seit längerem existiert und weit bekannt ist) oder das vor kurzem aus der Beta gekommene Angular2. \\
-Direkt zu sagen ist, dass Angular 2 von Haus aus mit TypeScript gebaut ist. Das bedeutet bester TypeScript-Support bei der Entwicklung von Angular 2, was bei ReactJS nur teilweise der Fall ist und viele Varianten wie man am besten mit ReactJS und Typescript arbeitet sich widersprechen da keine klare Konvention herrscht. \\
-Zusätzlich implementiert Angular 2 eine bessere Trennung der verschiedenen Komponenten. Während in ReactJS HTML und Javascript Code in der selben Klasse stehen werden in Angular 2 klare Mechanismen aufgezeigt wie diese sauber zu trennen und in verschiedenen Dateien abzulegen sind. Was gleichzeitig auch einer der Nachteile von Angular 2 ist. Dadurch, dass HTML und Script sauber getrennt werden ist es schwerer die Script-Variablen im HTML zu referenzieren und alle Namen im Kopf zu behalten ohne die zweite Datei irgendwo geöffnet zu haben. \\
+Nachdem nun evaluiert wurde, dass eine SPA ein Gewinn ist also die Frage nach dem Framework / der Library um die Anwendung zu programmieren. Im Raum stehen zwei Varianten. Zum einen ReactJS (welches seit längerem existiert und weit bekannt ist) oder das vor kurzem aus der Beta gekommene Angular2. \\
+Direkt zu sagen ist, dass Angular 2 von Haus aus mit TypeScript gebaut ist. Das bedeutet bester TypeScript-Support bei der Entwicklung von Angular 2, was bei ReactJS nur teilweise der Fall ist. Dies liegt daran, dass es bei ReactJS keine klare Konvention gibt wie man mit TypeScript arbeiten sollte, und daher viele verschiedene Varianten entstanden sind. \\
+Zusätzlich implementiert Angular 2 eine bessere Trennung der verschiedenen Komponenten. Während in ReactJS HTML und Javascript Code in der selben Klasse stehen, werden in Angular 2 klare Mechanismen aufgezeigt, wie diese sauber zu trennen und in verschiedenen Dateien abzulegen sind. Was gleichzeitig auch einer der Nachteile von Angular 2 ist. Dadurch, dass HTML und Script sauber getrennt werden, ist es schwerer die Script-Variablen im HTML zu referenzieren und alle Namen im Kopf zu behalten ohne die zweite Datei geöffnet zu haben. \\
 
-Bei Angular 2, sowie ReactJS handelt es sich standardmäßig um Technologien bei denen ``Client-Side Rendering'' betrieben wird. Das beudetet, dass vom Server alle Dateien ausgeliefert werden die benötigt werden. Der Client nimmt diese entgegen, rendert die einzelnen Komponenten und fügt diese korrekt zusammen. Das bedeutet, dass die Last des Rendering auf den Client übertragen wird. Das bedeutet weniger Aufwand für den Server, gleichzeitig aber eine bessere Performanz für den Server (da dieser nicht selber rendern muss). Was bei Angular 2 aber auch unterstützt wird ist die Möglichkeit auf der Seite des Server zu rendern. Das bedeutet wenn man  die Ladezeiten auf dem Client reduzieren will und einen performanten Server zur Hand hat ist dies die korrekte Lösung. Möglich ist dies durch eine die kürzlich heraus gekommene Bibliothek Angular Universal  \footnote{https://universal.angular.io/}. \\
+Bei Angular 2, sowie ReactJS handelt es sich standardmäßig um Technologien, bei denen ``Client-Side Rendering'' betrieben wird. Das bedeutet, dass vom Server alle Dateien ausgeliefert werden, die benötigt werden. Der Client nimmt diese entgegen, rendert die einzelnen Komponenten und fügt diese korrekt zusammen. Das bedeutet, dass die Last des Rendering auf den Client übertragen wird. Dadurch entsteht weniger Aufwand für den Server, was gleichzeitig für eine bessere Performance sorgt (da dieser nicht selber rendern muss). Was bei Angular 2 aber auch unterstützt wird, ist die Möglichkeit auf der Seite des Server zu rendern. Das bedeutet, wenn man  die Ladezeiten auf dem Client reduzieren will und einen performanten Server zur Hand hat, ist dies die korrekte Lösung. Möglich ist dies durch die kürzlich heraus gekommene Bibliothek Angular Universal  \footnote{https://universal.angular.io/}. \\
 
-Ein Feature welches ebenfalls beide Bibliotheken implementieren ist das sogenannte ``Two-Way-Binding''. Bei dem Two-Way-Binding wird eine Variable, welche in der View genutzt wird mit einer Variable aus dem Model verknüpft. Ein klassisches Beispiel dafür sind Textfelder. Wenn der Nutzer eine Eingabe betätigt wird dies ebenfalls an das Model weitergeleitet, welches daraufhin die zugehörige Variable erneuert. Gleichzeitig wird bei Veränderung der Variable im Model die View geupdatet. So kann man zum Beispiel ein Knopf der für einen Reset des Textfeldes verantwortlich ist einfach die Variable im Model ändern, die View wird automatisch erneuert. \\
+Ein Feature welches ebenfalls beide Bibliotheken implementieren, ist das sogenannte ``Two-Way-Binding''. Bei dem Two-Way-Binding wird eine Variable, welche in der View genutzt wird mit einer Variable aus dem Model verknüpft. Ein klassisches Beispiel dafür sind Textfelder. Wenn der Nutzer eine Eingabe betätigt, wird dies ebenfalls an das Model weitergeleitet, welches daraufhin die zugehörige Variable erneuert. Gleichzeitig wird bei Veränderung der Variable im Model die View geupdatet. So kann man zum Beispiel ein Knopf, der für einen Reset des Textfeldes verantwortlich ist, einfach die Variable im Model ändern. Die View wird automatisch erneuert. \\
 
-Am Ende fiel die Wahl auf Angular 2, auf Grund der oben genannten Vorteile zusätzlich dazu, dass hinter Angular 2 ein Team von Entwicklern steht welche Erfahrungen aus einem vorherigen Projekt (AngularJS) gezogen haben um daraus von neu an ein komplett neues Framework zu erstellen welches aus den Problemen der alten Version gelernt hat und diese ausgemerzt hat.
+Am Ende fiel die Wahl auf Angular 2. Grund waren die oben genannten Vorteile. Zusätzlich dazu steht hinter Angular 2 ein Team von Entwicklern, das Erfahrungen aus einem vorherigen Projekt (AngularJS) gezogen hat. Hierbei wurde aus den Problemen der alten Version gelernt und diese bei dem komplett neuen Framework ausgemerzt hat.
 
 \subsection{SocketIO}
 
-Es stand bereits sehr früh klar, dass Daten vom Server zum Client übertragen werden müssen um den aktuellen Stand der Aufgaben für die Übersicht des Administrators aktuell zu halten. Früher hätte man dafür Long Polling verwendet, doch heute gibt es eine Technologie, welche erheblich besser für diesen Zweck geeignet ist: Websockets. \\
+Es stand bereits sehr früh fest, dass Daten vom Server zum Client übertragen werden müssen, um den aktuellen Stand der Aufgaben für die Übersicht des Administrators aktuell zu halten. Früher hätte man dafür Long Polling verwendet, doch heute gibt es eine Technologie, welche erheblich besser für diesen Zweck geeignet ist: Websockets. \\
 
 TODO: Mehr Long Polling erklären
 
@@ -368,28 +365,28 @@ WebSockets ist eine fortschrittliche Technologie welche es möglich macht eine i
 \grqq} \footnote{https://developer.mozilla.org/de/docs/WebSockets} \\
 
 
-Für dieses Protokoll gibt es inzwischen etliche Implementierungen (PubNub, WS, uWebSockets um nur einige zu nennen), da für dieses Projekt am wichtigsten war eine zuverlässige Lösung zu haben fiel die Entscheidung am Ende auf socket.io, da es ein Projekt ist welches schon sehr lange genutzt, gewartet und weiterentwickelt ist. Daher ist bei einem so erfahrenen Entwicklerteam zu rechnen, dass es recht reibungslos funktioniert und auch zukünftige Versionen stabil und performant sind.
+Für dieses Protokoll gibt es inzwischen etliche Implementierungen (PubNub, WS, uWebSockets um nur einige zu nennen). Da für dieses Projekt am wichtigsten war, eine zuverlässige Lösung zu haben, fiel die Entscheidung am Ende auf socket.io. Da es ein Projekt ist welches schon sehr lange genutzt, gewartet und weiterentwickelt ist. Daher ist bei einem so erfahrenen Entwicklerteam damit zu rechnen, dass es recht reibungslos funktioniert und auch zukünftige Versionen stabil und performant sind.
 
 \subsection{JSON Web Tokens} \label{JWT}
 
-Wenn man im Web-Bereich Anwendungen entwickelt gibt es einne Abschnitt welcher fast immer relevant ist: Die Authentifizierung. Daher ist dieser Bereich inzwischen auch so vielschichtig und es gibt enorm viele Möglichkeiten und Verfahren Authentifizierung erfolgreich umzusetzen. Als Verfahren welches wohl am längsten dabei ist gibt es zum Beispiel ``Basic Auth''. Hierbei wird bei jeder Anfrage im Header der Nutzername und das Passwort übertragen. Dieses wird auf Server Seite überprüft und bei Korrektheit die Daten ausgeliefert. Der Vorteil ist eine sehr einfache Logik, allerdings muss der Server bei jeder Anfrage die Korrektheit von Nutzername und Passwort überprüfen, sowie eventuelle Daten die mit dem Nutzer in Verbindung stehen aus der Datenbank extrahieren. \\
+Wenn man im Web-Bereich Anwendungen entwickelt gibt es einen Abschnitt, welcher immer relevant ist: Die Authentifizierung. Daher ist dieser Bereich inzwischen auch so vielschichtig und es gibt enorm viele Möglichkeiten und Verfahren Authentifizierung erfolgreich umzusetzen. Als Verfahren, welches wohl am längsten dabei ist, gibt es zum Beispiel ``Basic Auth''. Hierbei wird bei jeder Anfrage im Header der Nutzername und das Passwort übertragen. Dieses wird auf Server Seite überprüft und bei Korrektheit werden die Daten ausgeliefert. Der Vorteil ist eine sehr einfache Logik, allerdings muss der Server bei jeder Anfrage die Korrektheit von Nutzername und Passwort überprüfen sowie eventuelle Daten die mit dem Nutzer in Verbindung stehen aus der Datenbank extrahieren. \\
 
-Zwei Ansätze die sich relativ ähneln sind Token und Cookie Authentication. Bei beiden wird ein Objekt generiert welches von dem Client als Authentifizerungs-Objekt bei jeder Anfrage mitgeschickt wird. Der Unterschied ist, dass Cookies direkt im Browser gespeichert werden, während die Speicherung von Tokens vom Programmierer selber entwickelt werden muss (und dann meistens im RAM gehalten werden). \\
+Zwei Ansätze, die sich relativ ähneln sind Token und Cookie Authentication. Bei beiden wird ein Objekt generiert, welches von dem Client als Authentifizerungs-Objekt bei jeder Anfrage mitgeschickt wird. Der Unterschied ist, dass Cookies direkt im Browser gespeichert werden, während die Speicherung von Tokens vom Programmierer selber entwickelt werden muss (und dann meistens im RAM gehalten wird). \\
 
-Am Ende ist die Wahl auf JSON Web Tokens(JWT) gefallen. Zusätzlich zu den Authentifizierungsmöglichkeiten beinhaltet JWT die Möglichkeit Nutzdaten im Token mitzuschicken. Das bedeutet, dass der Nutzer nach der Authentifizierung Daten erhalten kann welche für die gesamte Nutzung der Anwendung wichtig sind, wie zum Beispiel welche Rolle er erhalten hat und welche Rechte damit verbunden sind. 
+Am Ende ist die Wahl auf JSON Web Tokens(JWT) gefallen. Zusätzlich zu den Authentifizierungsmöglichkeiten beinhaltet JWT die Möglichkeit Nutzdaten im Token mitzuschicken. Das bedeutet, dass der Nutzer nach der Authentifizierung Daten erhalten kann, welche für die gesamte Nutzung der Anwendung wichtig sind, wie zum Beispiel welche Rolle er erhalten hat und welche Rechte damit verbunden sind. 
 
 \subsection{MathJax}
 
 Da innerhalb der folgenden Seiten der Begriff MathJax mehrfach verwendet wird, wird hier einmal darauf eingegangen was genau damit gemeint ist. \\
 
-Bei MathJax \footnote{https://www.mathjax.org/} handelt es sich um eine JavaScript-Bibliothek die im Jahre 2004 von Davide Cervone ins Leben gerufen wurde. Das Ziel dieser Bibliothek ist die Darstellung von mathematischen Formeln in jedem Browser ohne sich Sorgen um Kompatibilität zu machen. \\
-Dies funktioniert indem auf der Webseite innerhalb eines HTML-Elements ein Text eingetragen wird, welcher einer von mehreren Syntaxen folgt. Daraufhin wird der Bibliothek mitgeteilt, dass es die Seite scannen soll. Sollte sie Elemente finden, bei denen es sich um mathematische Formeln handelt werden diese in HTML-Elemente umgewandelt welche die Formel korrekt darstellen. \\
+Bei MathJax \footnote{https://www.mathjax.org/} handelt es sich um eine JavaScript-Bibliothek, die im Jahre 2004 von Davide Cervone ins Leben gerufen wurde. Das Ziel dieser Bibliothek ist die Darstellung von mathematischen Formeln in jedem Browser ohne sich Sorgen um Kompatibilität zu machen. \\
+Dies funktioniert, indem auf der Webseite innerhalb eines HTML-Elements ein Text eingetragen wird, welcher einer von mehreren Syntaxen folgt. Daraufhin wird der Bibliothek mitgeteilt, dass es die Seite scannen soll. Sollte sie Elemente finden, bei denen es sich um mathematische Formeln handelt, werden diese in HTML-Elemente umgewandelt, welche die Formel korrekt darstellen. \\
 
 Innerhalb von OpenTasks wird ausschließlich die LaTex-Syntax \footnote{https://en.wikibooks.org/wiki/LaTeX/Mathematics} verwendet um mathematische Formeln darzustellen.
 
 \chapter{Ein Rundgang durch das Frontend}
 
-Das Frontend ist im Wesentlichen in zwei große Abschnitte geteilt - Die Ansicht des Nutzers (also die Anwendung wie sie von den Studenten gesehen wird) und die Ansicht des Administrators, welche hauptsächlich die Aufgabe hat die Anwendung zu verwalten und Einstellungen zu ändern. Daher werden diese beiden Sichten im Nachfolgenden getrennt voneinander behandelt.
+Das Frontend ist im Wesentlichen in zwei große Abschnitte geteilt: Die Ansicht des Nutzers (also die Anwendung, wie sie von den Studenten gesehen wird) und die Ansicht des Administrators, welche hauptsächlich die Aufgabe hat die Anwendung zu verwalten und Einstellungen zu ändern. Daher werden diese beiden Sichten im Nachfolgenden getrennt voneinander behandelt.
 
 \section{Die Ansicht des Nutzers}
 
@@ -397,26 +394,26 @@ Für den Nutzer gibt es im wesentlichen nur zwei Prozesse die wichtig sind. Die 
 
 \subsection{Die Auswahl des Teams}
 
-Bevor mit der Bearbeitung der Aufgaben beginnen kann ist vorher der Login-Prozess von Nöten. Der Nutzer muss dafür lediglich ein Team auswählen und dies über Knopf-Druck bestätigen. Um die Auswahl besonders für Mobiltelefone gut auszulegen ist die Auswahl über Knöpfe gewählt worden. Um die aktuelle Auswahl hervorzuheben wird das ausgewählte Team als Text über den Knöpfen dargestellt, zusätzlich wird der entsprechende Knopf mit rotem Text versehen.
-
+Bevor man mit der Bearbeitung der Aufgaben beginnen kann, ist vorher der Login-Prozess von Nöten. Der Nutzer muss dafür lediglich ein Team auswählen und dies über Knopf-Druck bestätigen. Um die Auswahl besonders für Mobiltelefone gut auszulegen, ist die Auswahl über Knöpfe gewählt worden. Um die aktuelle Auswahl hervorzuheben, wird das ausgewählte Team als Text über den Knöpfen dargestellt, zusätzlich wird der entsprechende Knopf mit rotem Text versehen.
+TODO: FIX GRAPHIC
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/UserLogin} 
 \caption[Login für den Nutzer / Teamauswahl]{Team Auswahl für den Nutzer}
 \end{figure} 
 
-Sobald der Login Knopf betätigt wurde werden mehrere Pakete an den Server geschickt. Bei dem Ersten handelt es sich um das Erhalten des Tokens welches in Zukunft für die eindeutige Identifizierung und Authentifizierung zur Nutzung der REST-API genutzt wird. Sobald dieser Prozess beendet wurde wird die Auswahl des Teams übermittelt. Sind alle diese Prozesse erfolgreich wird auf die Bearbeitung der Aufgaben weitergeleitet. 
+Sobald der Login Knopf betätigt wurde, werden mehrere Pakete an den Server geschickt. Bei dem Ersten handelt es sich um das Erhalten des Tokens, welches in Zukunft für die eindeutige Identifizierung und Authentifizierung zur Nutzung der REST-API genutzt wird. Sobald dieser Prozess beendet wurde, wird die Auswahl des Teams übermittelt. Sind alle diese Prozesse erfolgreich, wird auf die Bearbeitung der Aufgaben weitergeleitet. 
 
-\subsection{Erhalten und bearbeiten der Aufgaben}
+\subsection{Erhalten und Bearbeiten der Aufgaben}
 
-Nachdem nun die initiale Prozedur der Team-Auswahl beendet ist kommt der Student zu dem Hauptteil der Anwendung. Die Erhaltung und Bearbeitung der Aufgaben. Nach der Einwahl erscheint ein Hinweis, dass bisher keine Aufgabe gefunden wurde. Durch das Betätigen des Refresh-Button kann allerdings eine Aufgabe angefordert werden. \\
+Nachdem nun die initiale Prozedur der Team-Auswahl beendet ist, kommt der Student zu dem Hauptteil der Anwendung. Die Erhaltung und Bearbeitung der Aufgaben: Nach der Einwahl erscheint ein Hinweis, dass bisher keine Aufgabe gefunden wurde. Durch das Betätigen des Refresh-Button kann allerdings eine Aufgabe angefordert werden. \\
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
 \includegraphics[width=1\textwidth]{bilder/NoTask} 
 \caption[Ansicht bei nicht geladener Aufgabe]{Ansicht bei nicht geladener Aufgabe}
 \end{figure} 
 
-Sollte dieser Knopf betätigt werden wird eine Anfrage an den Server gesendet, welche entweder mit dem Erhalt einer Aufgabe oder der Information, dass momentan kein Generator vorhanden ist beendet wird. \\
+Sollte dieser Knopf betätigt werden, wird eine Anfrage an den Server gesendet, welche entweder mit dem Erhalt einer Aufgabe oder der Information, dass momentan kein Generator vorhanden ist, beendet wird. \\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -424,7 +421,7 @@ Sollte dieser Knopf betätigt werden wird eine Anfrage an den Server gesendet, w
 \caption[Information über keine laufende Aufgabe]{Information über keinen laufende Aufgabe}
 \end{figure} 
 
-Nach dem Erhalt einer Aufgabe beginnt die Bearbeitung. Der erhaltene Inhalt wird als mathematische Formel dargestellt, hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein gibt er diese über das entsprechende Formular ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet welcher diese validiert. Für den Studenten gibt es nun drei Fälle: \\
+Nach dem Erhalt einer Aufgabe beginnt die Bearbeitung. Der erhaltene Inhalt wird als mathematische Formel dargestellt. Hierbei hilft die Bibliothek MathJax dabei den erhaltenen Text optisch ansprechend und mathematisch korrekt darzustellen. Der Student hat nun die Zeit, die er braucht um die Aufgabe zu bearbeiten. Sollte er sich der Lösung sicher sein, gibt er diese über das entsprechende Formular ein und bestätigt das Ganze mit einem Druck auf den ``Senden'' Knopf. Die Eingabe wird an den Server weitergeleitet, welcher diese validiert. Für den Studenten gibt es nun drei Fälle: \\
 \begin{enumerate}
 \itemsep0em
 \item Die Bearbeitungszeit für die Aufgabe ist abgelaufen. Der Nutzer erhält eine Informationsanzeige über den Ablauf der Zeit. Die momentan angezeigte Aufgabe wird entfernt.
@@ -432,8 +429,8 @@ Nach dem Erhalt einer Aufgabe beginnt die Bearbeitung. Der erhaltene Inhalt wird
 \item Die Lösung war falsch. Der Nutzer wird informiert, behält aber seine momentane Aufgabe bei um eine neue Lösung anzugeben.
 \end{enumerate} 
 
-Um die Effizienz für den Studenten während der Nutzung von Open Tasks zu steigern wurden zwei weitere Features eingebaut. Bei dem Ersten handelt es sich um eine kleine Informationsanzeige wie lange die durchschnittliche Zeit beträgt bis eine Aufgabe korrekt gelöst wurde. Dies soll dem Studenten helfen seine Leistungen zu überprüfen und sich vielleicht auch mit anderen zu vergleichen. \\
-Bei dem Zweiten handelt es sich um die Eingabeformulare. Je nachdem was für eine Aufgabe bearbeitet wird wird ein Formular angezeigt, welches darauf ausgelegt ist die Lösung einfach einzugeben. Eine Sache die alle gemeinsam haben ist die Validierung ob die momentane Antwort des Nutzers korrekt sein könnte und die graphische Darstellung davon (grün / rot- Färbung des Antwort Textes). Wie genau diese Validierung aussieht und welche weiteren Funktionalitäten das Formular bietet ist allerdings von Formular zu Formular unterschiedlich.
+Um die Effizienz für den Studenten während der Nutzung von Open Tasks zu steigern, wurden zwei weitere Features eingebaut.\\ Bei dem Ersten handelt es sich um eine kleine Informationsanzeige, wie lange die durchschnittliche Zeit beträgt bis eine Aufgabe korrekt gelöst wurde. Dies soll dem Studenten helfen seine Leistungen zu überprüfen und sich vielleicht auch mit anderen zu vergleichen. \\
+Bei dem Zweiten handelt es sich um die Eingabeformulare. Je nachdem was für eine Aufgabe bearbeitet wird, wird ein Formular angezeigt, welches darauf ausgelegt ist die Lösung einfach einzugeben. Eine Sache, die alle gemeinsam haben, ist die Validierung, ob die momentane Antwort des Nutzers korrekt sein könnte und die graphische Darstellung davon (grün / rot- Färbung des Antwort Textes). Wie genau diese Validierung aussieht und welche weiteren Funktionalitäten das Formular bietet, ist allerdings von Formular zu Formular unterschiedlich.
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -444,7 +441,7 @@ Bei dem Zweiten handelt es sich um die Eingabeformulare. Je nachdem was für ein
 
 \subsection{Die Eingabeformulare}
 
-Insgesamt existieren fünf Eingabeformulare.
+Insgesamt existieren fünf Eingabeformulare:
 \begin{enumerate}
 \itemsep0em
 \item Das Textformular
@@ -454,19 +451,19 @@ Insgesamt existieren fünf Eingabeformulare.
 \item Das Bruchformular
 \end{enumerate}
 
-In diesem Kapitel werden diese genauer unter die Lupe genommen und darüber gesprochen wie genau ihre graphische Darstellung ist, sowie die Validierung ob eine Antwort korrekt sein kann und abgeschickt werden darf. \\
-Die Antwort die sich am Ende von dem Formular ergibt wird zusätzlich immer über dem Formular noch einmal angezeigt. So kann der Nutzer überprüfen, dass seine Antwort dem Gewünschten entspricht. \\
-Welches Formular angezeigt wird wird immer von dem Administrator der Anwendung ausgewählt, für weitere Informationen bitte im Kapitel \ref{EditGenerator} Bearbeitung der Generatoren und ihrer Hilfsmittel nachlesen.
+In diesem Kapitel werden diese genauer unter die Lupe genommen und analysiert, wie genau ihre graphische Darstellung ist sowie die Validierung ob eine Antwort korrekt sein kann und abgeschickt werden darf. \\
+Die Antwort, die sich am Ende des Formulars ergibt wird zusätzlich immer über dem Formular noch einmal angezeigt. So kann der Nutzer überprüfen, ob seine Antwort dem Gewünschten entspricht. \\
+Welches Formular angezeigt wird, wird immer von dem Administrator der Anwendung ausgewählt. Für weitere Informationen bitte im Kapitel \ref{EditGenerator} Bearbeitung der Generatoren und ihrer Hilfsmittel nachlesen.
 
 
 \subsubsection{Das Textformular}
 
 Bei dem Textformular handelt es sich um das wohl einfachste aller Formulare. Die graphische Darstellung besteht lediglich aus einer Textbox. \\
-Ähnlich simpel ist ebenfalls die Validierung, es wird lediglich überprüft, dass die Antwort eine Länge von mindestens einem Zeichen hat, sodass keine leeren Antworten abgegeben werden können.
+Ähnlich simpel ist ebenfalls die Validierung. Es wird lediglich überprüft, dass die Antwort eine Länge von mindestens einem Zeichen hat, sodass keine leeren Antworten abgegeben werden können.
 
 \subsubsection{Das Zahlen / Dezimalformular}
 
-Da sich das Zahlen und das Dezimal-Formular sehr ähnelt werden sie hier gemeinsam behandelt. Da es sich bei den Nutzern von Open Tasks zu großen Teilen um mobile Endgeräte nutzen wird wurde dieses Formular mit einem speziellen Fokus auf diese entworfen.
+Da sich das Zahlen und das Dezimal-Formular sehr ähnelt, werden sie hier gemeinsam behandelt. Dadurch, dass es sich bei den Nutzern von Open Tasks zu großen Teilen um mobile Endgeräte nutzen wird wurde dieses Formular mit einem speziellen Fokus auf diese entworfen.
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -481,12 +478,12 @@ Da sich das Zahlen und das Dezimal-Formular sehr ähnelt werden sie hier gemeins
 \end{figure} 
 
 Die Eingabe kann über zwei Wege erfolgen. Bei dem Ersten handelt es sich um die Eingabe der Lösung über das Textfeld. Dies ist besonders für die Nutzer von Laptops gut, da hier eine Tastatur zur Verfügung steht. \\
-Für die mobilen Endgeräte wurden Knöpfe implementiert, welche bei Druck die abgebildete Zahl der Antwort hinzufügen. Außerdem gibt es noch zwei weitere Knöpfe, einen um die letzte Eingabe zu entfernen (C) und einen um das gesamte Eingabefeld zu leeren (CE). Ein Unterschied zwischen den beiden Formularen ist, dass das Dezimalformular zusätzlich einen Knopf besitzt welcher einen Punkt einfügt und es so ermöglicht Kommazahlen einzugeben. \\
-Der zweite Unterschied liegt in der Validierung der Eingaben. Während bei dem Zahlenformular nur Ganze Zahlen erlaubt sind werden bei dem Dezimalformular alle reellen Zahlen angenommen.
+Für die mobilen Endgeräte wurden Knöpfe implementiert, welche bei Druck die abgebildete Zahl der Antwort hinzufügen. Außerdem gibt es noch zwei weitere Knöpfe: Einen um die letzte Eingabe zu entfernen (C) und einen um das gesamte Eingabefeld zu leeren (CE). Ein Unterschied zwischen den beiden Formularen ist, dass das Dezimalformular zusätzlich einen Knopf besitzt, welcher einen Punkt einfügt und es so ermöglicht Kommazahlen einzugeben. \\
+Der zweite Unterschied liegt in der Validierung der Eingaben. Während bei dem Zahlenformular nur Ganze Zahlen erlaubt sind, werden bei dem Dezimalformular alle reellen Zahlen angenommen.
 
 \subsubsection{Das Matrixformular}
 
-Für einige Aufgabentypen war es notwendig, dass der Nutzer in der Lage ist eine Matrix als Antwort einzugeben. Da dies in einem Textfeld sehr schwer ist wurde das Matrixformular entwickelt. \\
+Für einige Aufgabentypen war es notwendig, dass der Nutzer in der Lage ist eine Matrix als Antwort einzugeben. Da dies in einem Textfeld sehr schwer ist, wurde das Matrixformular entwickelt. \\
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -494,13 +491,13 @@ Für einige Aufgabentypen war es notwendig, dass der Nutzer in der Lage ist eine
 \caption[Das Matrixformular]{Das Matrixformular}
 \end{figure} 
 
-Bei dem Matrixformular handelt es sich um Textfelder im $ m\times n$ Format, genau wie die Matrix die erzeugt werden soll. Dabei wird die produzierte Matrix immer über dem Formular angezeigt, dabei hilft wieder die MathJax Bibliothek das Ganze optisch ansprechend aufzubereiten. \\
+Bei dem Matrixformular handelt es sich um Textfelder im $ m\times n$ Format, genau wie die Matrix, die erzeugt werden soll. Dabei wird die produzierte Matrix immer über dem Formular angezeigt. Dabei hilft wieder die MathJax Bibliothek das Ganze optisch ansprechend aufzubereiten. \\
 
-Ein weiterer wichtiger Einfluss bei der Erstellung des Formulars war die Tatsache, dass die Größe der Matrix nicht am Anfang bekannt ist. Zum einen liegt dies daran, dass dies ein Tipp für den Studenten sein kann (da die Größe der entstehenden Matrix unter Umständen berechnet werden muss). Andererseits liegt dies auch daran, dass es ein größerer Aufwand wäre direkt bei der Generierung festzulegen wie groß die Matrix sein soll. Dieses Problem wurde über vier Knöpfe gelöst, welche die Manipulation der Größe der Matrix erlauben, jeweils zwei für Spalten und Reihen. \\
+Ein weiterer wichtiger Einfluss bei der Erstellung des Formulars war die Tatsache, dass die Größe der Matrix nicht am Anfang bekannt ist. Zum einen liegt dies daran, dass dies ein Tipp für den Studenten sein kann (da die Größe der entstehenden Matrix unter Umständen berechnet werden muss). Andererseits liegt dies auch daran, dass es ein größerer Aufwand wäre direkt bei der Generierung festzulegen, wie groß die Matrix sein soll. Dieses Problem wurde über vier Knöpfe gelöst, welche die Manipulation der Größe der Matrix erlauben: jeweils zwei für Spalten und Reihen. \\
 
-Ein weiteres Feature welches in diesem Formular implementiert wurde ist eine automatische Korrektur der Eingabe des Nutzers. Sollte der Nutzer sich vertippen und zum Beispiel aus Versehen einen Buchstaben in eines der Felder eintippen so wird dies automatisch korrigiert indem der Buchstabe entfernt und nicht in der Lösung angezeigt wird. \\
+Ein weiteres Feature, welches in diesem Formular implementiert wurde, ist eine automatische Korrektur der Eingabe des Nutzers. Sollte der Nutzer sich vertippen und zum Beispiel aus Versehen einen Buchstaben in eines der Felder eintippen, so wird dies automatisch korrigiert, indem der Buchstabe entfernt und nicht in der Lösung angezeigt wird. \\
 
-Für die mobilen Nutzer wurde ein Knopf implementiert welcher auf eine alternative, für mobile Nutzer angepasste Sicht umschaltet. Diese ähnelt sehr der Ansicht von dem Nummernformular. Der Nutzer wählt über Knopfdruck aus welches Feld er bearbeiten will. Daraufhin wird dieses durch blaue dickere Schrift markiert. Sollte der Nutzer nun einen der nummerierten Knöpfe drücken wird der Text des Knopfes der Eingabe hinzugefügt.
+Für die mobilen Nutzer wurde ein Knopf implementiert, welcher auf eine alternative, für mobile Nutzer angepasste Sicht umschaltet. Diese ähnelt sehr der Ansicht des Nummernformulars. Der Nutzer wählt über Knopfdruck aus welches Feld er bearbeiten will. Daraufhin wird dieses durch blaue dickere Schrift markiert. Sollte der Nutzer nun einen der nummerierten Knöpfe drücken, wird der Text des Knopfes der Eingabe hinzugefügt.
 
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
@@ -512,7 +509,7 @@ Für die mobilen Nutzer wurde ein Knopf implementiert welcher auf eine alternati
 
 \subsubsection{Das Bruchformular}
 
-Als letztes Formular ist das Bruchformular zu erwähnen. Dies sollte jederzeit genutzt werden wenn von dem Nutzer erwartet wird einen Bruch einzugeben.
+Als letztes Formular ist das Bruchformular zu erwähnen. Dies sollte jederzeit genutzt werden, wenn von dem Nutzer erwartet wird einen Bruch einzugeben.
 
 \begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
 \centering
@@ -521,9 +518,9 @@ Als letztes Formular ist das Bruchformular zu erwähnen. Dies sollte jederzeit g
 \end{figure} 
 
 Bei der graphischen Darstellung handelt es sich um zwei Textfelder, welche übereinander angeordnet sind. In dem oberen Feld sollte der Zähler eingetragen werden, während das untere für den Nenner vorgesehen ist. \\
-Wenn der Student in beide Felder eine Zahl eingeben hat wird der Wert des Bruches berechnet. Dieser wird über den beiden Textfeldern angezeigt. \\
+Wenn der Student in beide Felder eine Zahl eingeben hat, wird der Wert des Bruches berechnet. Dieser wird über den beiden Textfeldern angezeigt. \\
 
-Die Validierung erfolgt durch ein Überprüfen des Resultats der Rechnung Zähler/Nenner. Wenn hierbei eine valide Zahl herauskommt wird dies als mögliche Antwort akzeptiert und der Antwort-Text in grün gefärbt.
+Die Validierung erfolgt durch ein Überprüfen des Resultats der Rechnung Zähler/Nenner. Wenn hierbei eine valide Zahl herauskommt, wird dies als mögliche Antwort akzeptiert und der Antwort-Text in grün gefärbt.
 
 
 \section{Die Sicht des Administrators}
