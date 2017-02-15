@@ -531,6 +531,21 @@ Daher wurde diese Sektion in die Verwaltung von laufenden Aufgaben (Übersicht /
 \caption[Navigationsleiste Admin-Bereich]{Navigationsleiste Admin-Bereich}
 \end{figure} 
 
+Bevor in die Beschreibung der einzelnen Sektionen eingestiegen wird ist vorher allerdings noch zu erwähnen, dass die Navigationsleiste von dem momentan eingeloggten Nutzer abhängig ist. Prinzipiell wird hier zwischen zwei Rollen unterschieden:
+
+\begin{enumerate}
+\itemsep0em
+\item Der Administrator - Seine Aufgabe besteht darin einen Generator zu starten und die aktuelle Übersicht über den Punktestand einzusehen.
+\item Der Datenbank-Administrator - Der Datenbank-Administrator besitzt alle Rechte die ein Administrator hat. Zusätzlich ist er in der Lage auf alle Tabs zuzugreifen die mit der Editierung der Generatoren verknüpft sind.
+\end{enumerate}
+
+Daher hat der Administrator beim einloggen erheblich weniger Optionen zur Verfügung
+\begin{figure}[htp]     % h=here, t=top, b=bottom, p=page
+\centering
+\includegraphics[width=1\textwidth]{bilder/NavBarAdmin} 
+\caption[Navigationsleiste als Administrator]{Navigationsleiste als Administrator}
+\end{figure} 
+
 \subsection{Übersicht über die laufende und letzte Aufgabe}
 
 Die während der Laufzeit am wahrscheinlich meisten genutzte Seite ist die Übersicht. Hier wird eine Oberfläche dargestellt, welche optisch aufbereitet die Daten anzeigt, die von der Anwendung erzeugt werden: Die Zeit, wie lange eine Aufgabe noch läuft sowie den aktuellen Stand an richtig / falsch gelösten Aufgaben der verschiedenen Teams \\
@@ -1072,13 +1087,6 @@ Abschließend ist noch das Rollen-System zu nennen. Momentan sind die Rollen und
 
 Benötigte Befugnis : ADMIN \\
 
-\noindent Pfad: admin/generators \\
-Methode: GET \\
-Beschreibung: Sucht alle Generatoren und gibt ihre Namen zurück \\
-Rückgabe: \begin{lstlisting} 
-["Euklidischer Algorithmus", "Matritzenmultiplikation"]
-\end{lstlisting}
-
 \noindent Pfad: admin/generator \\
 Methode: GET \\
 Beschreibung: Sucht den Generator mit dem angegebenen Namen und gibt ihn zurück \\
@@ -1261,6 +1269,13 @@ Rückgabe: Ein String, welcher gültigen JavaScript-Code enthält. \\
 \section{Generator}
 
 Benötigte Befugnis : GENERATOR \\
+
+\noindent Pfad: generator/generators \\
+Methode: GET \\
+Beschreibung: Sucht alle Generatoren und gibt ihre Namen zurück \\
+Rückgabe: \begin{lstlisting} 
+["Euklidischer Algorithmus", "Matritzenmultiplikation"]
+\end{lstlisting}
 
 \noindent Pfad: generator/running \\
 Methode: GET \\

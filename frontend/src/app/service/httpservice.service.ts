@@ -4,14 +4,15 @@ import {Http, Headers, RequestOptions, Response} from '@angular/http'
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationObject} from '../data/authenticationObject'
 import {ConfigService} from "./config.service";
-
+import {JwtHelper} from "angular2-jwt"
 
 @Injectable()
 export class HttpService {
 
   private jwt: string;
   private admin: boolean;
-
+  private jwtHelper: JwtHelper = new JwtHelper();
+  private authorities : string[];
   //Keep for socketio
   private auth: AuthenticationObject
 
@@ -55,6 +56,7 @@ export class HttpService {
       (data: Response) => {
         this.auth = auth;
         this.jwt = data.json().token
+        this.authorities = this.jwtHelper.decodeToken(this.jwt).authorities;
         callback(true)
       }, (error: Error) => {
         console.log(error)
@@ -69,6 +71,10 @@ export class HttpService {
 
   public setAdmin(admin: boolean) {
     this.admin = admin;
+  }
+
+  public hasAuthority(authority:string) : boolean {
+    return this.authorities && this.authorities.indexOf(authority)!= -1;
   }
 
 }

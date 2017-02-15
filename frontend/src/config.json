@@ -7,7 +7,7 @@
 	"defaultpassword":"password",
 	"endpoints": {
 		"login":"auth",
-		"generatornames":"admin/generators",
+		"generatornames":"generator/generators",
 		"generator":"admin/generator",
 		"jaxhelper":"generated/mathjax.js",
 		"variablehelper":"generated/variables.js",

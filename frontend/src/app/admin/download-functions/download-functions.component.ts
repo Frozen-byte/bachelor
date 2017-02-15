@@ -24,7 +24,7 @@ export class DownloadFunctionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.doGet(this.config.backend + 'admin/generators')
+    this.http.doGet(this.config.generatorNames)
       .map((response: Response) => response.json())
       .subscribe(
         (data: String[]) => {

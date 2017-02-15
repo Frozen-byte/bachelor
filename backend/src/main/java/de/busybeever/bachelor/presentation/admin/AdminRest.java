@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ import de.busybeever.bachelor.data.repository.VariableFunctionRepository;
 import de.busybeever.bachelor.presentation.UpdateDatabaseResponse;
 import de.busybeever.bachelor.service.AdminService;
 import de.busybeever.bachelor.service.ValidationService;
-//@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('ADMIN')")
 @RestController
 @RequestMapping("admin")
 public class AdminRest {
@@ -49,15 +50,6 @@ public class AdminRest {
 		return RequestContextHolder.currentRequestAttributes().getSessionId();
 	}
 	
-	@GetMapping("/generators")
-	public String[] getGeneratorNames() {
-		List<ScriptEntity> entites = scriptRepository.findAll();
-		String[] res = new String[entites.size()];
-		for (int i = 0; i < res.length; i++) {
-			res[i] = entites.get(i).getName();
-		}
-		return res;
-	}
 	
 	@GetMapping("/generator")
 	public ScriptEntity getEntity(@RequestParam("name")String name) {

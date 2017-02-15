@@ -28,4 +28,8 @@ export class AdminComponent implements OnInit {
     )
   }
 
+  hasAuthority(authority : string) : boolean {
+    return this.http.hasAuthority(authority);
+  }
+
 }

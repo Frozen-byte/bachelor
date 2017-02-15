@@ -52,7 +52,7 @@ export class StartnewComponent implements OnInit {
         (data: string[]) => {
           this.teams = data;
         })
-    this.httpService.doGet(this.configService.generatorNames)
+    this.httpService.doGet(this.configService.backend+'generator/generators')
       .map(
         (response: Response) =>
           response.json()
@@ -65,7 +65,6 @@ export class StartnewComponent implements OnInit {
         ,
         (error: any) => {
           this.init = false;
-          console.log("2")
         }
       )
 

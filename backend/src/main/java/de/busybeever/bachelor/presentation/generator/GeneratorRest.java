@@ -1,5 +1,7 @@
 package de.busybeever.bachelor.presentation.generator;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.busybeever.bachelor.data.entity.ScriptEntity;
+import de.busybeever.bachelor.data.repository.ScriptRepository;
 import de.busybeever.bachelor.presentation.game.RuntimeInformation;
 import de.busybeever.bachelor.service.GameStatusService;
 import de.busybeever.bachelor.service.GeneratorService;
@@ -25,6 +29,9 @@ public class GeneratorRest {
 	@Autowired
 	private GameStatusService gameStatusService;
 
+	@Autowired
+	private ScriptRepository scriptRepository;
+	
 	@GetMapping("running")
 	public String getRunningGenerator() {
 		return generatorService.getRunningGeneratorName();
@@ -37,6 +44,16 @@ public class GeneratorRest {
 		} else {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping("/generators")
+	public String[] getGeneratorNames() {
+		List<ScriptEntity> entites = scriptRepository.findAll();
+		String[] res = new String[entites.size()];
+		for (int i = 0; i < res.length; i++) {
+			res[i] = entites.get(i).getName();
+		}
+		return res;
 	}
 
 	@PostMapping("start")
