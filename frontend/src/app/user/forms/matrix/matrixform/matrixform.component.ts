@@ -12,9 +12,11 @@ export class MatrixformComponent implements OnInit {
 
   @Input() answer : string;
   @Input() valid: boolean
+  @Input() answerDisplay: string;
 
   @Output() answerChange:any = new EventEmitter()
   @Output() validChange:any = new EventEmitter()
+  @Output() answerDisplayChange:any = new EventEmitter()
 
   mobileMode:boolean = false;
   rowCount: number = 3;
@@ -48,6 +50,11 @@ export class MatrixformComponent implements OnInit {
     this.validChange.emit(value)
   }
 
+  updateAnswerDisplay(value) {
+    this.answerDisplay = value;
+    this.answerDisplayChange.emit(value);
+  }
+
   update() {
     let notZero = false;
     for(let y=0; y<this.rowCount;y++) {
@@ -60,13 +67,14 @@ export class MatrixformComponent implements OnInit {
       }
     }
     if(notZero) {
-      this.updateAnswer('$$'+this.makeMatrixString(this.answerArray)+'$$');
+      this.updateAnswer(JSON.stringify(this.answerArray))
+      this.updateAnswerDisplay(this.makeMatrixString(this.answerArray));
     }
 
   }
 
   makeMatrixString(array) :string{
-    var res=""
+    var res="$$"
     res+="\\begin{bmatrix}"
     for(var i=0; i<array.length;i++) {
       for(var j=0; j<array[i].length;j++) {
@@ -75,7 +83,7 @@ export class MatrixformComponent implements OnInit {
       }
       if(i!=array.length-1) res+="\\\\"
     }
-    res+="\\end{bmatrix}"
+    res+="\\end{bmatrix}$$"
     return res
   }
 

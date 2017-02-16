@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimerTask;
 
-import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -77,6 +77,7 @@ public class GameStatusServiceImpl implements GameStatusService{
 			timer=null;
 		}
 		gameRunning=true;
+
 		endTime = DateUtils.addSeconds(new Date(), runTime);
 		timer = new TimerTask() {		
 			@Override

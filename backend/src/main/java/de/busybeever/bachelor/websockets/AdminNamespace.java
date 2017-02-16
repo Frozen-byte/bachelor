@@ -53,7 +53,7 @@ public class AdminNamespace {
 	private static final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 	
 	public void onRegister(AuthenticationRequest auth, SocketIOClient client) {
-		
+		System.out.println("register");
 		UserEntity user = userRepository.findByUserName(auth.getUsername());	
 		
 		String encodedPass = encoder.encodePassword(auth.getPassword(),null);

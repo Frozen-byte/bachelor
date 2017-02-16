@@ -18,10 +18,18 @@ export class NumberformComponent implements OnInit {
   ngOnInit() {
   }
 
+  @Input() answerDisplay : string;
+  @Output() answerDisplayChange:any = new EventEmitter()
+  updateAnswerDisplay(value) {
+    this.answerDisplay = value;
+    this.answerDisplayChange.emit(value);
+  }
+
   updateAnswer(event) {
     this.answer = event;
     this.answerChange.emit(event);
     this.validateInput()
+    this.updateAnswerDisplay(event);
   }
 
   updateValid(value) {

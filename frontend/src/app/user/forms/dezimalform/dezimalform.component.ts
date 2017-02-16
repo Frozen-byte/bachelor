@@ -15,6 +15,13 @@ export class DezimalformComponent implements OnInit {
 
   constructor() { }
 
+  @Input() answerDisplay : string;
+  @Output() answerDisplayChange:any = new EventEmitter()
+  updateAnswerDisplay(value) {
+    this.answerDisplay = value;
+    this.answerDisplayChange.emit(value);
+  }
+
   ngOnInit() {
   }
 
@@ -22,6 +29,7 @@ export class DezimalformComponent implements OnInit {
     this.answer = event;
     this.answerChange.emit(event);
     this.validateInput()
+    this.updateAnswerDisplay(event);
   }
 
   updateValid(value) {

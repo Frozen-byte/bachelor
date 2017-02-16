@@ -199,7 +199,7 @@ export class UploadFunctionsComponent implements OnInit {
     this.http.doPost(this.config.backend+'admin/uploadGenerator', this.obj)
       .map((response:Response) => response.json())
       .subscribe(
-        (data:String[]) => {
+        (data:string[]) => {
           this.log = data;
         }
       )
@@ -211,21 +211,21 @@ export class UploadFunctionsComponent implements OnInit {
     this.http.doGet(this.config.generatorNames)
       .map((response: Response) => response.json())
       .subscribe(
-        (data: String[]) => {
+        (data: string[]) => {
           this.generators = data
         }
       )
     this.http.doGet(this.config.backend + 'admin/variablefunctions')
       .map((response: Response) => response.json())
       .subscribe(
-        (data: String[]) => {
+        (data: string[]) => {
           this.variableFunctions = data
         }
       )
     this.http.doGet(this.config.backend + 'admin/mathjaxfunctions')
       .map((response: Response) => response.json())
       .subscribe(
-        (data: String[]) => {
+        (data: string[]) => {
           this.mathjaxFunctions = data
         }
       )

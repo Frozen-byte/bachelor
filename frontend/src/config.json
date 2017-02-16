@@ -1,5 +1,5 @@
 {
-	"backend": "http://localhost",
+	"backend": "https://localhost",
 	"backendport":"8080",
 	"socketioport":"8000",
 	"socketioadmin":"/admin",

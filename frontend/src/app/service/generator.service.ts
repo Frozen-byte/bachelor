@@ -72,6 +72,8 @@ export class GeneratorService {
         try {
           new Function(script)
         } catch(err) {
+          console.error(err)
+          console.log(script)
           let result = new TestData();
           result.error = err;
           callback([result], securityResult)
@@ -92,7 +94,7 @@ export class GeneratorService {
               data.variables = variables;
               data.mathjax = mathjax;
               if(autotest) {
-                data.success = testSolution(variables, variables.solution)
+                data.success = testSolution(variables, JSON.stringify(variables.solution))
 
               }
 
@@ -102,11 +104,6 @@ export class GeneratorService {
 
             retData.push(data)
           }
-
-
-
-
-
         callback(retData, securityResult)
       },
       (error:Error) => {
@@ -143,7 +140,7 @@ export class GeneratorService {
 
   private parseVariableForHuman(script: string) {
     script = script.replace(/;/g, '\n')
-    script = script.replace(/function\(\) {return (.*)}/g, '%$1%')
+    script = script.replace(/function\(\) \{return (.*)}/g, '%$1%')
     return script
   }
 
@@ -156,7 +153,9 @@ export class GeneratorService {
     //Unescape \\
     script = script.replace(/\\\\/g, "\\")
     //Get the functions back into human easy write mode
-    script = script.replace(/(\"\+.*\+\")/, '%$1%')
+
+    script = script.replace(/(\"\+[^\+]*\+\")/g, '%$1%')
+
     //Remove all +" and "+
     script = script.replace(/\"\+/g, "")
     script = script.replace(/\+\"/g, "")
@@ -169,11 +168,10 @@ export class GeneratorService {
     //Escape backslashs
     mathjax = mathjax.replace(/\\/g, "\\\\")
     //Escape functions
-    mathjax = mathjax.replace(/%(.*)%/g, '"+$1+"')
+    mathjax = mathjax.replace(/%([^%]*)%/g, '"+$1+"')
 
 
     mathjax = 'return "$$ ' + mathjax + ' $$"'
-    console.log(mathjax)
     return mathjax
 
   }

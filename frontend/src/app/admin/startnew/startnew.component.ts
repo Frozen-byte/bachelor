@@ -17,7 +17,7 @@ export class StartnewComponent implements OnInit {
   time: string;
   generators: string[] = [];
   message: string;
-  runningGenerator: String;
+  runningGenerator: string;
   teams: string[] = [];
 
   init: boolean = true
@@ -26,7 +26,7 @@ export class StartnewComponent implements OnInit {
   }
 
   changeTeams() {
-    this.httpService.doPost(this.configService.backend+"game/names", this.teams)
+    this.httpService.doPost(this.configService.backend+"generator/names", this.teams)
       .subscribe(
         (response:Response) =>{
           console.log("succces")

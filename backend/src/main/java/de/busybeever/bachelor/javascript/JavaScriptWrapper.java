@@ -16,8 +16,6 @@ public class JavaScriptWrapper {
 	private Invocable invocable;
 	
 	private final String name;
-	
-	private static final String mathjs = getMathjs();
 
 	public JavaScriptWrapper(String name, String generatorScript, String variableScript, String mathjaxScript) throws ScriptException {
 		engine = new ScriptEngineManager().getEngineByName("nashorn");
@@ -53,22 +51,5 @@ public class JavaScriptWrapper {
 
 	public String getName() {
 		return name;
-	}
-	
-	private static String getMathjs(){
-		ClassLoader loader = JavaScriptWrapper.class.getClassLoader();
-		File file = new File(loader.getResource("static/math.js").getFile());
-		StringBuilder result = new StringBuilder();
-		try(Scanner scanner = new Scanner(file)) {
-			while(scanner.hasNextLine()) {
-				result.append(scanner.nextLine()).append("\n");
-			}
-			scanner.close();
-			return result.toString();
-		} catch(IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		throw new RuntimeException();
 	}
 }

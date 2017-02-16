@@ -31,6 +31,7 @@ export class EdithelperComponent implements OnInit {
 
 
   constructor(private httpService: HttpService, private configService: ConfigService, private security:SecurityService, private generated:GeneratedcodeService) {
+    this.function.testCode= '';
   }
 
 
@@ -88,36 +89,35 @@ export class EdithelperComponent implements OnInit {
 
   test() {
     this.securityResult = this.security.applySecurity(this.function.code)
-    this.generated.loadCode(false)
+    this.generated.loadCode(() => {
+      this.httpService.doPost(this.configService.backend+'generated/constructHelper', this.function)
+        .map(
+          (result:Response) => result.text()
+        ).subscribe(
+        (data:string) => {
+          try {
+            eval(data)
+            this.testResults=[];
+            for(let i=0; i<this.testCount;i++) {
+              let r = ft.test();
+              if(this.editMathjax) {
+                r = '$$ '+ r+" $$";
+              }
+              if (typeof r === 'object') {
+                r = r.toString()
+              }
 
-    this.httpService.doPost(this.configService.backend+'generated/constructHelper', this.function)
-      .map(
-        (result:Response) => result.text()
-      ).subscribe(
-      (data:string) => {
-        try {
-          eval(data)
-          this.testResults=[];
-          for(let i=0; i<this.testCount;i++) {
-            let r = ft.test();
-            if(this.editMathjax) {
-              r = '$$ '+ r+" $$";
-            }
-            if (typeof r === 'object') {
-              r = r.toString()
+              this.testResults.push(r);
             }
 
-            this.testResults.push(r);
+          } catch(e) {
+            console.log(e)
+            console.log(data)
           }
+        })
+    })
 
-          console.log("strt")
 
-        } catch(e) {
-          console.log(e)
-          console.log(data)
-          console.log("error evaluating  :(")
-        }
-      })
 
 
 
@@ -130,7 +130,9 @@ export class EdithelperComponent implements OnInit {
       .subscribe(
         (data: Response) => {
           this.functions.splice(this.functions.indexOf(this.function.name),1)
-          this.function = new HelperFunction();
+          this.function = new HelperFunction(
+          );
+          this.function.testCode = '';
         },
         (error: any) => {
 
@@ -154,6 +156,7 @@ export class EdithelperComponent implements OnInit {
   reset() {
     this.function = new HelperFunction();
     this.select = ''
+    this.function.testCode = '';
 
   }
 

@@ -97,16 +97,18 @@ export class EditScriptComponent implements OnInit {
 
   test() {
 
-    this.generatedCodeService.loadCode(false)
-    try {
-      this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result: SecurityResult) => {
-        this.securityResult = result;
-        this.testData = data;
-      })
+    this.generatedCodeService.loadCode(() => {
+      try {
+        this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result: SecurityResult) => {
+          this.securityResult = result;
+          this.testData = data;
+        })
 
-    } catch (e) {
-      console.log(e)
-    }
+      } catch (e) {
+        console.log(e)
+      }
+    })
+
 
   }
 
@@ -119,34 +121,36 @@ export class EditScriptComponent implements OnInit {
       this.message="Bitte geben sie einen Namen ein"
       return;
     }
-    this.generatedCodeService.loadCode(false)
-    this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result: SecurityResult) => {
-      this.securityResult = result;
-      this.testData = data;
-      if (!this.securityResult.valid) {
-        return;
-      }
-      this.httpService.doPost(this.configService.generator + '?formType=' + this.generator.formType, this.generatorService.parseForComputer(this.generator))
-        .map((response: Response) => response.json())
-        .subscribe(
-          (data: UpdateDataBaseReponse) => {
-            if (data.result == "NOT_ALLOWED") {
-              this.message = 'Nicht erlaubte Funktion gefunden'
-            } else if (data.result == "SAVED_NEW") {
-              this.message = 'Neue Entität gespeichert'
-              this.generators.push(this.generator.name)
-              this.generator.id = data.id
-            } else if (data.result == "UPDATED") {
-              this.message = "Bestende Entität erneuert"
-              this.generator.id = data.id;
+    this.generatedCodeService.loadCode(() => {
+      this.generatorService.testGenerator(this.generator, this.autotest, this.testcount, (data: TestData[], result: SecurityResult) => {
+        this.securityResult = result;
+        this.testData = data;
+        if (!this.securityResult.valid) {
+          return;
+        }
+        this.httpService.doPost(this.configService.generator + '?formType=' + this.generator.formType, this.generatorService.parseForComputer(this.generator))
+          .map((response: Response) => response.json())
+          .subscribe(
+            (data: UpdateDataBaseReponse) => {
+              if (data.result == "NOT_ALLOWED") {
+                this.message = 'Nicht erlaubte Funktion gefunden'
+              } else if (data.result == "SAVED_NEW") {
+                this.message = 'Neue Entität gespeichert'
+                this.generators.push(this.generator.name)
+                this.generator.id = data.id
+              } else if (data.result == "UPDATED") {
+                this.message = "Bestende Entität erneuert"
+                this.generator.id = data.id;
+              }
+            },
+            (error: any) => {
+              console.log(error)
+              this.message = "Es gab einen unerwarteten Fehler"
             }
-          },
-          (error: any) => {
-            console.log(error)
-            this.message = "Es gab einen unerwarteten Fehler"
-          }
-        )
+          )
+      })
     })
+
 
   }
 

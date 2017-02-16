@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
 
   task: Assignment;
   answer: string;
+  answerDisplay: string;
   message: string;
   messageRed: boolean;
   tasksCorrect:number = 0;
@@ -53,10 +54,10 @@ export class UserComponent implements OnInit {
               this.task = data;
               this.setMessage("Richtige Antwort", false)
               this.tasksCorrect++;
-              let timeTaken = new Date().getSeconds()-this.taskStarted.getSeconds();
+              let timeTaken = Math.round((Date.now() - this.taskStarted)/1000)
+              console.log(timeTaken)
               this.totalTime+=timeTaken;
               this.averageTime = this.totalTime / this.tasksCorrect;
-              console.log(this.totalTime+ " "+this.tasksCorrect)
             }
 
           }, (error: any) => {
@@ -102,7 +103,6 @@ export class UserComponent implements OnInit {
   lastTimer = 0;
 
   private setMessage(message: string, messageRed: boolean) {
-    console.log("settin message "+message)
     this.messageRed = messageRed;
     this.message = message;
     let lid = ++this.lastTimer;

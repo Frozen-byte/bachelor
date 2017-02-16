@@ -1,5 +1,11 @@
 import { Component, OnInit, Input, ElementRef, AfterViewInit, ViewChild, OnChanges,SimpleChange  } from '@angular/core';
 
+
+
+
+import * as $ from 'jquery'
+require('jquery-knob/dist/jquery.knob.min.js')
+
 @Component({
   selector: 'knob',
   templateUrl: './knob.component.html',
@@ -7,11 +13,13 @@ import { Component, OnInit, Input, ElementRef, AfterViewInit, ViewChild, OnChang
 })
 export class KnobComponent implements AfterViewInit, OnChanges {
 
+
   @Input() actual:number;
   @Input() max:number
   @ViewChild('dial') el:ElementRef;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngAfterViewInit() {
 
@@ -36,6 +44,4 @@ export class KnobComponent implements AfterViewInit, OnChanges {
   }
 
 }
-
-
 declare var $:JQueryStatic

@@ -4,25 +4,31 @@ import {ConfigService} from "./config.service";
 @Injectable()
 export class GeneratedcodeService {
 
-  private initialized: boolean;
+
 
   constructor(private http: Http, private configService: ConfigService) {
 
   }
 
+  loadsFinished : number=-1;
 
-  loadCode(force: boolean) {
-    if (force || !this.initialized) {
-      this.initialized = true;
-      //TODO: add security mechanism to prevent code injection
+  loadCode(callback) {
+    if(this.loadsFinished!=-1)
+      //We are already loading code
+      return;
+      this.loadsFinished=0;
       this.http.get(this.configService.jaxhelper).subscribe(
         (data:Response) => {
           try {
             eval(data.text())
           } catch(e) {
-            console.log(e)
-            console.log(data.text())
+            console.error('Unerwarteter Fehler beim Evaluieren des Mathjaxhelper-Scriptes!  Bitte überprüfen sie alle MathJax-Funktionen.')
+            console.error(e)
+            console.error(data.text())
+
           }
+          this.loadingFinished(callback);
+
 
         },
         (data:any) => {
@@ -34,17 +40,27 @@ export class GeneratedcodeService {
         (data:Response) => {
           try {
             eval(data.text())
-            console.log(data.text())
           } catch(e) {
-            console.log(e)
-            console.log(data.text())
+            console.error('Unerwarteter Fehler beim Evaluieren des Variablen-Helper-Scriptes!  Bitte überprüfen sie alle Variablen-Helper-Funktionen.')
+            console.error(e)
+            console.error(data.text())
+
           }
+          this.loadingFinished(callback);
         },
         (data:any) => {
           alert("Unerwarteter Fehler beim Laden des VarHelper Scripts ")
         }
       )
 
+
+  }
+
+  loadingFinished(callback) {
+    this.loadsFinished++;
+    if(this.loadsFinished==2) {
+      this.loadsFinished=-1;
+     callback();
     }
   }
 

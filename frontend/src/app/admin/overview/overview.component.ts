@@ -7,6 +7,8 @@ import {Response} from '@angular/http'
 import 'rxjs/add/operator/map';
 import {RuntimeInformation} from "../../data/runtimeInformation";
 
+import * as io from 'socket.io-client'
+
 @Component({
   selector: 'or-admin-overview',
   templateUrl: './overview.component.html',
@@ -15,7 +17,7 @@ import {RuntimeInformation} from "../../data/runtimeInformation";
 export class OverviewComponent implements OnInit {
 
   overview:any = [];
-  runningGenerator:String;
+  runningGenerator:string;
   time:number;
   runtimeinfo:RuntimeInformation;
 
@@ -23,6 +25,7 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
 
+ //   var io = require('socket.io')
     let socket;
     let sub = this.router.events.subscribe(
       (val) => {
@@ -54,7 +57,7 @@ export class OverviewComponent implements OnInit {
       this.transformRuntimeInfo(data);
     })
 
-    socket.on('running', (data:String) =>{
+    socket.on('running', (data:string) =>{
       this.runningGenerator = data;
       if(this.runningGenerator) {
         this.http.doGet(this.config.runtimeinfo)
@@ -125,4 +128,3 @@ export class OverviewComponent implements OnInit {
 
 }
 
-declare var io;
